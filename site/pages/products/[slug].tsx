@@ -1,12 +1,12 @@
+import { Layout } from '@components/common'
+import { ProductView } from '@components/product'
+import commerce from '@lib/api/commerce'
 import type {
   GetStaticPathsContext,
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from 'next'
 import { useRouter } from 'next/router'
-import commerce from '@lib/api/commerce'
-import { Layout } from '@components/common'
-import { ProductView } from '@components/product'
 
 export async function getStaticProps({
   params,
@@ -56,13 +56,13 @@ export async function getStaticPaths({ locales }: GetStaticPathsContext) {
   return {
     paths: locales
       ? locales.reduce<string[]>((arr, locale) => {
-          // Add a product path for every locale
-          products.forEach((product: any) => {
-            arr.push(`/${locale}/product${product.path}`)
-          })
-          return arr
-        }, [])
-      : products.map((product: any) => `/product${product.path}`),
+        // Add a product path for every locale
+        products.forEach((product: any) => {
+          arr.push(`/${locale}${product.path}`)
+        })
+        return arr
+      }, [])
+      : products.map((product: any) => `${product.path}`),
     fallback: 'blocking',
   }
 }
