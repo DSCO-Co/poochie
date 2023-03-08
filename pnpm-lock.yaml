@@ -4,9 +4,14 @@ importers:
 
   .:
     specifiers:
+      '@headlessui/react': ^1.7.13
+      '@heroicons/react': ^2.0.16
       husky: ^8.0.1
       prettier: ^2.7.1
       turbo: ^1.4.6
+    dependencies:
+      '@headlessui/react': 1.7.13
+      '@heroicons/react': 2.0.16
     devDependencies:
       husky: 8.0.1
       prettier: 2.7.1
@@ -2201,6 +2206,22 @@ packages:
     dependencies:
       graphql: 16.6.0
     dev: true
+
+  /@headlessui/react/1.7.13:
+    resolution: {integrity: sha512-9n+EQKRtD9266xIHXdY5MfiXPDfYwl7zBM7KOx2Ae3Gdgxy8QML1FkCMjq6AsOf0l6N9uvI4HcFtuFlenaldKg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+      react-dom: ^16 || ^17 || ^18
+    dependencies:
+      client-only: 0.0.1
+    dev: false
+
+  /@heroicons/react/2.0.16:
+    resolution: {integrity: sha512-x89rFxH3SRdYaA+JCXwfe+RkE1SFTo9GcOkZettHer71Y3T7V+ogKmfw5CjTazgS3d0ClJ7p1NA+SP7VQLQcLw==}
+    peerDependencies:
+      react: '>= 16'
+    dev: false
 
   /@humanwhocodes/config-array/0.10.4:
     resolution: {integrity: sha512-mXAIHxZT3Vcpg83opl1wGlVZ9xydbfZO3r5YfRSH6Gpp2J/PfdBP0wbDa2sO6/qRbcalpoevVyW6A/fI6LfeMw==}
