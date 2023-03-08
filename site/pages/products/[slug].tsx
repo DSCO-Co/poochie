@@ -54,15 +54,16 @@ export async function getStaticPaths({ locales }: GetStaticPathsContext) {
   const { products } = await commerce.getAllProductPaths()
 
   return {
-    paths: locales
-      ? locales.reduce<string[]>((arr, locale) => {
-        // Add a product path for every locale
-        products.forEach((product: any) => {
-          arr.push(`/${locale}${product.path}`)
-        })
-        return arr
-      }, [])
-      : products.map((product: any) => `${product.path}`),
+    // locales
+    // ? locales.reduce<string[]>((arr, locale) => {
+    //   // Add a product path for every locale
+    //   products.forEach((product: any) => {
+    //     arr.push(`/${locale}${product.path}`)
+    //   })
+    //   return arr
+    // }, [])
+    //   : 
+    paths: products.map((product: any) => `${product.path}`),
     fallback: 'blocking',
   }
 }
