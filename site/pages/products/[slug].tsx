@@ -15,13 +15,17 @@ export async function getStaticProps({
   preview,
 }: GetStaticPropsContext<{ slug: string }>) {
   const config = { locale, locales }
+  const slug = `/products/${params!.slug}`;
+
   const pagesPromise = commerce.getAllPages({ config, preview })
   const siteInfoPromise = commerce.getSiteInfo({ config, preview })
   const productPromise = commerce.getProduct({
-    variables: { slug: params!.slug },
+    variables: { slug },
     config,
     preview,
   })
+
+
   const allProductsPromise = commerce.getAllProducts({
     variables: { first: 4 },
     config,
@@ -31,7 +35,10 @@ export async function getStaticProps({
   const { pages } = await pagesPromise
   const { categories } = await siteInfoPromise
   const { product } = await productPromise
+
   const { products: relatedProducts } = await allProductsPromise
+
+
 
   if (!product) {
     return {
@@ -54,6 +61,10 @@ export async function getStaticPaths({ locales }: GetStaticPathsContext) {
   const { products } = await commerce.getAllProductPaths()
 
   return {
+    //
+    // disabled because we're not using locales
+    // keep for now maybe?
+    //
     // locales
     // ? locales.reduce<string[]>((arr, locale) => {
     //   // Add a product path for every locale
@@ -73,7 +84,6 @@ export default function Slug({
   relatedProducts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
-
   return router.isFallback ? (
     <h1>Loading...</h1>
   ) : (

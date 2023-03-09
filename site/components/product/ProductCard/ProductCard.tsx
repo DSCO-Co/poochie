@@ -1,12 +1,12 @@
-import { FC } from 'react'
-import cn from 'clsx'
-import Link from 'next/link'
 import type { Product } from '@commerce/types/product'
-import s from './ProductCard.module.css'
-import Image, { ImageProps } from 'next/image'
 import WishlistButton from '@components/wishlist/WishlistButton'
 import usePrice from '@framework/product/use-price'
+import cn from 'clsx'
+import Image, { ImageProps } from 'next/image'
+import Link from 'next/link'
+import { FC } from 'react'
 import ProductTag from '../ProductTag'
+import s from './ProductCard.module.css'
 
 interface Props {
   className?: string
@@ -36,10 +36,9 @@ const ProductCard: FC<Props> = ({
     { [s.slim]: variant === 'slim', [s.simple]: variant === 'simple' },
     className
   )
-
   return (
     <Link
-      href={`/product/${product.slug}`}
+      href={`${product.path}`}
       className={rootClassName}
       aria-label={product.name}
     >
