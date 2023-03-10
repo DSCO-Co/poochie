@@ -11,6 +11,8 @@ import { Layout } from '@components/common'
 import { ProductCard } from '@components/product'
 import { Container, Skeleton } from '@components/ui'
 
+import Products from './search/Products/products';
+
 import useSearch from '@framework/product/use-search'
 import rangeMap from '@lib/range-map'
 
@@ -28,6 +30,7 @@ import {
   useSearchMeta,
 } from '@lib/search'
 import ErrorMessage from './ui/ErrorMessage'
+import commerce from '@lib/api/commerce'
 
 export default function Search({ categories, brands }: SearchPropsType) {
   const [activeFilter, setActiveFilter] = useState('')
@@ -45,6 +48,7 @@ export default function Search({ categories, brands }: SearchPropsType) {
 
   const activeCategory = categories.find((cat: any) => cat.slug === category)
   const activeBrand = brands.find((b: Brand) => b.slug === brand)
+
 
   const { data, error } = useSearch({
     search: typeof q === 'string' ? q : '',
@@ -275,76 +279,7 @@ export default function Search({ categories, brands }: SearchPropsType) {
           </div>
         </div>
         {/* Products */}
-        <div className="col-span-8 order-3 lg:order-none">
-          {(q || activeCategory || activeBrand) && (
-            <div className="mb-12 transition ease-in duration-75">
-              {data ? (
-                <>
-                  <span
-                    className={cn('animated', {
-                      fadeIn: data.found,
-                      hidden: !data.found,
-                    })}
-                  >
-                    Showing {data.products.length} results{' '}
-                    {q && (
-                      <>
-                        for "<strong>{q}</strong>"
-                      </>
-                    )}
-                  </span>
-                  <span
-                    className={cn('animated', {
-                      fadeIn: !data.found,
-                      hidden: data.found,
-                    })}
-                  >
-                    {q ? (
-                      <>
-                        There are no products that match "<strong>{q}</strong>"
-                      </>
-                    ) : (
-                      <>
-                        There are no products that match the selected category.
-                      </>
-                    )}
-                  </span>
-                </>
-              ) : q ? (
-                <>
-                  Searching for: "<strong>{q}</strong>"
-                </>
-              ) : (
-                <>Searching...</>
-              )}
-            </div>
-          )}
-          {data ? (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {data.products.map((product: Product) => (
-                <ProductCard
-                  variant="simple"
-                  key={product.path}
-                  className="animated fadeIn"
-                  product={product}
-                  imgProps={{
-                    width: 480,
-                    height: 480,
-                    alt: product.name,
-                  }}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {rangeMap(12, (i) => (
-                <Skeleton key={i}>
-                  <div className="w-60 h-60" />
-                </Skeleton>
-              ))}
-            </div>
-          )}{' '}
-        </div>
+        {Products({categories, brands})}
 
         {/* Sort */}
         <div className="col-span-8 lg:col-span-2 order-2 lg:order-none">
