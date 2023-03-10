@@ -3,11 +3,11 @@ import type {
   OperationOptions,
 } from '@vercel/commerce/api/operations'
 import type { GetProductOperation } from '@vercel/commerce/types/product'
-import type { GetProductQuery, GetProductQueryVariables } from '../../../schema'
-import setProductLocaleMeta from '../utils/set-product-locale-meta'
-import { productInfoFragment } from '../fragments/product'
 import { BigcommerceConfig, Provider } from '..'
+import type { GetProductQuery, GetProductQueryVariables } from '../../../schema'
 import { normalizeProduct } from '../../lib/normalize'
+import { productInfoFragment } from '../fragments/product'
+import setProductLocaleMeta from '../utils/set-product-locale-meta'
 
 export const getProductQuery = /* GraphQL */ `
   query getProduct(
@@ -97,12 +97,15 @@ export default function getAllProductPathsOperation({
   }): Promise<T['data']> {
     const config = commerce.getConfig(cfg)
     const { locale } = config
+    const path = slug ? `${slug}` : vars.path;
     const variables: GetProductQueryVariables = {
       locale,
       hasLocale: !!locale,
-      path: slug ? `/${slug}` : vars.path!,
+      //@ts-ignore
+      path,
     }
-    const { data } = await config.fetch<GetProductQuery>(query, { variables })
+    const { data } = await config.fetch<GetProductQuery>(query, { variables });
+
     const product = data.site?.route?.node
 
     if (product?.__typename === 'Product') {
