@@ -71,9 +71,6 @@ const ProductCard: FC<Props> = ({
           )}
           {!noNameTag && (
             <div className={s.header}>
-              <h3 className={s.name}>
-                <span>{product.name}</span>
-              </h3>
               <div className={s.price}>
                 {`${price} ${product.price?.currencyCode}`}
               </div>
@@ -81,15 +78,17 @@ const ProductCard: FC<Props> = ({
           )}
           <div className={s.imageContainer}>
             {product?.images && (
-              <Image
-                alt={product.name || 'Product Image'}
-                className={s.productImage}
-                src={product.images[0]?.url || placeholderImg}
-                height={540}
-                width={540}
-                quality="85"
-                {...imgProps}
-              />
+
+                  <a key={product.id} href={product.slug} className="group bg-white text-sm">
+                    <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75">
+                      <img
+                        src={product.images[0]?.url || placeholderImg}
+                        alt={product.name}
+                        className="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                    <h3 className="mt-4 font-medium bg-white text-gray-900">{product.name}</h3>
+                  </a>
             )}
           </div>
         </>
