@@ -6,6 +6,7 @@ module.exports = {
   safelist: ['outline-none'],
   theme: {
     extend: {
+      position: ['responsive', 'sticky'],
       maxWidth: {
         '8xl': '1920px',
       },
