@@ -87,7 +87,7 @@ const ProductCard: FC<Props> = ({
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
-                    <h3 className="mt-4 font-medium bg-white text-gray-900">{product.name}</h3>
+                    <h3 className="mt-4 px-4 py-2 font-medium bg-white text-gray-900 rounded-md">{product.name}</h3>
                   </a>
             )}
           </div>

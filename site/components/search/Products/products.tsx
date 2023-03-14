@@ -143,40 +143,6 @@ export default function Products({categories, brands}: SearchPropsType) {
             </div>
           )}{' '}
         </div>
-      //   <div className="bg-white">
-      //   <div className="mx-auto max-w-7xl overflow-hidden py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-      //     <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
-      //       {data ? (
-      //         data.products.map((product: Product) => {
-      //           console.log(product); // log all attributes of product object to console
-      //           return (
-      //             <a key={product.id} href={product.slug} className="group text-sm">
-      //               <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-      //                 <img
-      //                   src={product.images[0].url }
-      //                   alt={product.name}
-      //                   className="h-full w-full object-cover object-center"
-      //                 />
-      //               </div>
-      //               <h3 className="mt-4 font-medium text-gray-900">{product.name}</h3>
-      //               <p className="italic text-gray-500">{product.description}</p>
-      //               <p className="mt-2 font-medium text-gray-900">{product.name}</p>
-      //             </a>
-      //           );
-      //         })
-      //       ) : (
-      //         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      //           {rangeMap(12, (i) => (
-      //             <Skeleton key={i}>
-      //               <div className="w-60 h-60" />
-      //             </Skeleton>
-      //           ))}
-      //         </div>
-      //       )}
-      
-      //     </div>
-      //   </div>
-      // </div>
       
   )
 }
