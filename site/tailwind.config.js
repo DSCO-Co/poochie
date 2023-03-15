@@ -3,6 +3,9 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
   safelist: ['outline-none'],
   theme: {
     extend: {

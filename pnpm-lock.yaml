@@ -6,12 +6,14 @@ importers:
     specifiers:
       '@headlessui/react': ^1.7.13
       '@heroicons/react': ^2.0.16
+      '@tailwindcss/forms': ^0.5.3
       husky: ^8.0.1
       prettier: ^2.7.1
       turbo: ^1.4.6
     dependencies:
       '@headlessui/react': 1.7.13
       '@heroicons/react': 2.0.16
+      '@tailwindcss/forms': 0.5.3
     devDependencies:
       husky: 8.0.1
       prettier: 2.7.1
@@ -3336,6 +3338,14 @@ packages:
     dependencies:
       defer-to-connect: 1.1.3
     dev: true
+
+  /@tailwindcss/forms/0.5.3:
+    resolution: {integrity: sha512-y5mb86JUoiUgBjY/o6FJSFZSEttfb3Q5gllE4xoKjAAD+vBrnIhE4dViwUuow3va8mpH4s9jyUbUbrRGoRdc2Q==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
+    dependencies:
+      mini-svg-data-uri: 1.4.4
+    dev: false
 
   /@taskr/clear/1.1.0:
     resolution: {integrity: sha512-QC/zyNneQ5N2kyL4ZmiaMqXxXW7VqwqJssbbdezUs0113Y711I44tXQGKWJnxPVFOe3oGrFGNnkRESPKWq8AYw==}
@@ -7222,6 +7232,11 @@ packages:
     resolution: {integrity: sha512-j5EctnkH7amfV/q5Hgmoal1g2QHFJRraOtmx0JpIqkxhBhI/lJSl1nMpQ45hVarwNETOoWEimndZ4QK0RHxuxQ==}
     engines: {node: '>=4'}
     dev: true
+
+  /mini-svg-data-uri/1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
+    dev: false
 
   /minimatch/3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
