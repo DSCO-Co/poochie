@@ -1,6 +1,5 @@
 .root {
-  @apply transition-colors ease-in-out duration-500
-  absolute top-0 left-0 z-20 pr-16;
+  @apply transition-colors ease-in-out duration-500;
 }
 
 .root .name {
@@ -11,7 +10,7 @@
 }
 
 .root .name span {
-  @apply py-4 px-6 bg-primary text-primary font-bold;
+  @apply py-0 px-0 pr-12 bg-primary text-primary font-bold;
   min-height: 70px;
   font-size: inherit;
   letter-spacing: inherit;
@@ -21,11 +20,11 @@
 
 .root .name span.fontsizing {
   display: flex;
-  padding-top: 1.5rem;
+  /* padding-top: 1.5rem; */
 }
 
 .root .price {
-  @apply pt-2 px-6 pb-4 text-sm bg-primary text-accent-9
-  font-semibold inline-block tracking-wide;
+  @apply pt-2 pb-4 text-xl bg-primary text-accent-9
+  font-bold inline-block tracking-wide;
   margin-top: -1px;
 }

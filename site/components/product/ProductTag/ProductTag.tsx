@@ -1,5 +1,6 @@
 import cn from 'clsx'
 import s from './ProductTag.module.css'
+import { Rating } from '@components/ui'
 
 interface ProductTagProps {
   className?: string
@@ -27,6 +28,10 @@ const ProductTag: React.FC<ProductTagProps> = ({
           {name}
         </span>
       </h3>
+      <div className="flex flex-row justify-start items-center">
+        <Rating value={0} />
+        <div className="text-accent-6 pr-1 font-medium text-sm">&nbsp;&nbsp;&nbsp;No reviews yet</div>
+      </div>
       <div className={s.price}>{price}</div>
     </div>
   )
