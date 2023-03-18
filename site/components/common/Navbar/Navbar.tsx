@@ -3,7 +3,7 @@ import Link from 'next/link'
 import s from './Navbar.module.css'
 import NavbarRoot from './NavbarRoot'
 import { Logo, Container } from '@components/ui'
-import { Searchbar, UserNav } from '@components/common'
+import { Searchbar, UserNav, FreeShippingBanner } from '@components/common'
 
 interface Link {
   href: string
@@ -16,6 +16,9 @@ interface NavbarProps {
 
 const Navbar: FC<NavbarProps> = ({ links }) => (
   <NavbarRoot>
+    <div className=' h-[44px] relative z-50'>
+      <FreeShippingBanner />
+    </div>
     <Container clean className="mx-auto max-w-8xl px-6">
       <div className={s.nav}>
         <div className="flex items-center flex-1">
