@@ -28,8 +28,8 @@ import {
   getDesignerPath,
   useSearchMeta,
 } from '@lib/search'
-import ErrorMessage from '../../ui/ErrorMessage';
 
+import ErrorMessage from '../../ui/ErrorMessage';
 
 
 export default function Products({categories, brands}: SearchPropsType) {
@@ -61,6 +61,8 @@ export default function Products({categories, brands}: SearchPropsType) {
   if (error) {
     return <ErrorMessage error={error} />
   }
+  console.log(categories, brands);
+
 
   const handleClick = (event: any, filter: string) => {
     if (filter !== activeFilter) {
@@ -81,6 +83,7 @@ export default function Products({categories, brands}: SearchPropsType) {
                     className={cn('animated', {
                       fadeIn: data.found,
                       hidden: !data.found,
+                    
                     })}
                   >
                     Showing {data.products.length} results{' '}
@@ -143,6 +146,5 @@ export default function Products({categories, brands}: SearchPropsType) {
             </div>
           )}{' '}
         </div>
-      
   )
 }

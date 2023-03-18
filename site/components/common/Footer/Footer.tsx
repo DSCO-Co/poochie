@@ -140,11 +140,15 @@ const Footer: FC<Props> = ({ className, pages }) => {
                 {pages?.map((page) => (
                   <div key={page.id}>
                     <ul role="list" className="mt-6 space-y-4">
-                    {page?.children?.map((child) => (
-                          <li key={child.id}>
-                          <a href={`/${getSlug(child.url)}`} className="text-sm leading-6 text-gray-600 hover:text-gray-900"> {child.name} </a>
-                          </li>
-                      ))}
+                      <li key={page.id}>
+                        <a
+                          href={`/${getSlug(page.url)}`}
+                          className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                        >
+                          {' '}
+                          {page.name}{' '}
+                        </a>
+                      </li>
                     </ul>
                   </div>
                 ))}
@@ -157,11 +161,15 @@ const Footer: FC<Props> = ({ className, pages }) => {
                 {pages?.map((page) => (
                   <div key={page.id}>
                     <ul role="list" className="mt-6 space-y-4">
-                    {page?.children?.map((child) => (
-                          <li key={child.id}>
-                          <a href={`/${getSlug(child.url)}`} className="text-sm leading-6 text-gray-600 hover:text-gray-900"> {child.name} </a>
-                          </li>
-                      ))}
+                      <li key={page.id}>
+                        <a
+                          href={`/${getSlug(page.url)}`}
+                          className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                        >
+                          {' '}
+                          {page.name}{' '}
+                        </a>
+                      </li>
                     </ul>
                   </div>
                 ))}
@@ -175,11 +183,15 @@ const Footer: FC<Props> = ({ className, pages }) => {
                 {pages?.map((page) => (
                   <div key={page.id}>
                     <ul role="list" className="mt-6 space-y-4">
-                    {page?.children?.map((child) => (
-                          <li key={child.id}>
-                          <a href={`/${getSlug(child.url)}`} className="text-sm leading-6 text-gray-600 hover:text-gray-900"> {child.name} </a>
-                          </li>
-                      ))}
+                      <li key={page.id}>
+                        <a
+                          href={`/${getSlug(page.url)}`}
+                          className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                        >
+                          {' '}
+                          {page.name}{' '}
+                        </a>
+                      </li>
                     </ul>
                   </div>
                 ))}
@@ -191,11 +203,15 @@ const Footer: FC<Props> = ({ className, pages }) => {
                 {pages?.map((page) => (
                   <div key={page.id}>
                     <ul role="list" className="mt-6 space-y-4">
-                    {page?.children?.map((child) => (
-                          <li key={child.id}>
-                          <a href={`/${getSlug(child.url)}`} className="text-sm leading-6 text-gray-600 hover:text-gray-900"> {child.name} </a>
-                          </li>
-                      ))}
+                      <li key={page.id}>
+                        <a
+                          href={`/${getSlug(page.url)}`}
+                          className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                        >
+                          {' '}
+                          {page.name}{' '}
+                        </a>
+                      </li>
                     </ul>
                   </div>
                 ))}
@@ -250,7 +266,7 @@ const Footer: FC<Props> = ({ className, pages }) => {
             ))}
           </div>
           <p className="mt-8 text-xs leading-5 text-gray-500 md:order-1 md:mt-0">
-            &copy; 2023 Your Company, Inc. All rights reserved.
+            &copy; 2023 DSCO, Inc. All rights reserved.
           </p>
         </div>
       </div>
