@@ -17,6 +17,8 @@ export interface Category {
    * @example /t-shirts
    */
   path: string
+
+  children?: Category[] | any[]
 }
 
 export interface Brand {

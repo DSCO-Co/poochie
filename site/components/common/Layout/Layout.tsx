@@ -19,7 +19,7 @@ import type { Link as LinkProps } from '../UserNav/MenuSidebarView'
 import s from './Layout.module.css'
 
 const Loading = () => (
-  <div className="w-80 h-80 flex items-center text-center justify-center p-3">
+  <div className="flex items-center justify-center p-3 text-center w-80 h-80">
     <LoadingDots />
   </div>
 )
