@@ -1,22 +1,22 @@
-import cn from 'clsx'
-import s from './Layout.module.css'
-import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
-import { CommerceProvider } from '@framework'
-import LoginView from '@components/auth/LoginView'
-import { useUI } from '@components/ui/context'
-import { Navbar, Footer } from '@components/common'
-import ShippingView from '@components/checkout/ShippingView'
-import CartSidebarView from '@components/cart/CartSidebarView'
-import { useAcceptCookies } from '@lib/hooks/useAcceptCookies'
-import { Sidebar, Button, LoadingDots } from '@components/ui'
-import PaymentMethodView from '@components/checkout/PaymentMethodView'
-import CheckoutSidebarView from '@components/checkout/CheckoutSidebarView'
-import { CheckoutProvider } from '@components/checkout/context'
-import { MenuSidebarView } from '@components/common/UserNav'
 import type { Page } from '@commerce/types/page'
 import type { Category } from '@commerce/types/site'
+import LoginView from '@components/auth/LoginView'
+import CartSidebarView from '@components/cart/CartSidebarView'
+import CheckoutSidebarView from '@components/checkout/CheckoutSidebarView'
+import PaymentMethodView from '@components/checkout/PaymentMethodView'
+import ShippingView from '@components/checkout/ShippingView'
+import { CheckoutProvider } from '@components/checkout/context'
+import { Footer, Navbar } from '@components/common'
+import { MenuSidebarView } from '@components/common/UserNav'
+import { Button, LoadingDots, Sidebar } from '@components/ui'
+import { useUI } from '@components/ui/context'
+import { CommerceProvider } from '@framework'
+import { useAcceptCookies } from '@lib/hooks/useAcceptCookies'
+import cn from 'clsx'
+import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
 import type { Link as LinkProps } from '../UserNav/MenuSidebarView'
+import s from './Layout.module.css'
 
 const Loading = () => (
   <div className="w-80 h-80 flex items-center text-center justify-center p-3">
@@ -111,7 +111,7 @@ const Layout: React.FC<Props> = ({
   const { locale = 'en-US' } = useRouter()
   const navBarlinks = categories.slice(0, 2).map((c) => ({
     label: c.name,
-    href: `/search/${c.slug}`,
+    href: `/${c.slug}`,
   }))
 
   return (
