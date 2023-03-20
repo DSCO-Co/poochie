@@ -1,8 +1,7 @@
 import { Layout } from '@components/common'
 import { ProductCard } from '@components/product'
-import { Grid, Hero, Marquee } from '@components/ui'
 import commerce from '@lib/api/commerce'
-// import HomeAllProductsGrid from '@components/common/HomeAllProductsGrid'
+
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 
 export async function getStaticProps({
@@ -62,24 +61,25 @@ export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
 
-  
+
   return (
     <>
       <HeroSection />
-      <Marquee variant="primary">
-        {products.slice(0, 3).map((product: any, i: number) => (
-          <ProductCard key={product.id} product={product} variant="slim" />
+      {/* <Marquee variant="primary"> */}
+
+      <div className="max-w-8xl mx-auto mt-4">
+        {products.slice(0, 6).map((product: any, i: number) => (
+          <ProductCard key={product.id} product={product} variant="simple" className="max-w-xs" />
         ))}
-      </Marquee>
-      <Hero
+      </div>
+      {/* </Marquee> */}
+      {/* <Hero
         headline=" Dessert dragée halvah croissant."
         description="Cupcake ipsum dolor sit amet lemon drops pastry cotton candy. Sweet carrot cake macaroon bonbon croissant fruitcake jujubes macaroon oat cake. Soufflé bonbon caramels jelly beans. Tiramisu sweet roll cheesecake pie carrot cake. "
-      />
-      <Marquee>
-        {products.slice(3).map((product: any, i: number) => (
-          <ProductCard key={product.id} product={product} variant="slim" />
-        ))}
-      </Marquee>
+      /> */}
+      {/* <Marquee> */}
+
+      {/* </Marquee> */}
       {/* <HomeAllProductsGrid
         newestProducts={products}
         categories={categories}
