@@ -117,8 +117,6 @@ const Footer: FC<Props> = ({ className, pages }) => {
   const { sitePages } = usePages(pages)
   const rootClassName = cn(s.root, className)
 
-  console.log('pages: ', pages)
-
   return (
     <footer className="bg-gray-200" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
@@ -142,7 +140,7 @@ const Footer: FC<Props> = ({ className, pages }) => {
                     <ul role="list" className="mt-6 space-y-4">
                       <li key={page.id}>
                         <a
-                          href={`/${getSlug(page.url)}`}
+                          href={`/${getSlug(page.url!)}`}
                           className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                         >
                           {' '}
@@ -163,7 +161,7 @@ const Footer: FC<Props> = ({ className, pages }) => {
                     <ul role="list" className="mt-6 space-y-4">
                       <li key={page.id}>
                         <a
-                          href={`/${getSlug(page.url)}`}
+                          href={`/${getSlug(page.url!)}`}
                           className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                         >
                           {' '}
@@ -185,7 +183,7 @@ const Footer: FC<Props> = ({ className, pages }) => {
                     <ul role="list" className="mt-6 space-y-4">
                       <li key={page.id}>
                         <a
-                          href={`/${getSlug(page.url)}`}
+                          href={`/${getSlug(page.url!)}`}
                           className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                         >
                           {' '}
@@ -205,7 +203,7 @@ const Footer: FC<Props> = ({ className, pages }) => {
                     <ul role="list" className="mt-6 space-y-4">
                       <li key={page.id}>
                         <a
-                          href={`/${getSlug(page.url)}`}
+                          href={`/${getSlug(page.url!)}`}
                           className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                         >
                           {' '}

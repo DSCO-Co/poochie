@@ -1,6 +1,7 @@
 
 import cn from 'clsx'
 import type { SearchPropsType } from '@lib/search-props'
+import type { ProductsPropsType } from '@lib/products-props'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
@@ -32,7 +33,7 @@ import {
 import ErrorMessage from '../../ui/ErrorMessage';
 
 
-export default function Products({categories, brands}: SearchPropsType) {
+export default function Products({categories, brands}: ProductsPropsType) {
 
   const [activeFilter, setActiveFilter] = useState('')
   const [toggleFilter, setToggleFilter] = useState(false)
@@ -61,7 +62,6 @@ export default function Products({categories, brands}: SearchPropsType) {
   if (error) {
     return <ErrorMessage error={error} />
   }
-  console.log(categories, brands);
 
 
   const handleClick = (event: any, filter: string) => {
