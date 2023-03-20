@@ -50,7 +50,7 @@ function HeroSection() {
         <p className="mt-3 text-xl text-white">Unleash your style with new arrivals</p>
         <a
           href="#"
-          className="mt-8 block w-full  border-4  bg-transparent py-4 px-20 text-base text-white font-medium  hover:bg-black hover:border-transparent sm:w-auto"
+          className="mt-8 block w-full  border-4  bg-transparent py-4 px-20 text-white font-medium  hover:bg-black hover:border-transparent sm:w-auto"
         >Shop Now</a>
       </div>
     </div>
