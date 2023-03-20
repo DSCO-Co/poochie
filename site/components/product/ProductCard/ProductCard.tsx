@@ -44,19 +44,23 @@ const ProductCard: FC<Props> = ({
     >
       {variant === 'slim' && (
         <>
-          <div className={s.header}>
-            <span>{product.name}</span>
+          <div className="flex justify-center items-center">
+            {product?.images && (
+              <Image
+                quality="85"
+                src={product.images[0]?.url || placeholderImg}
+                alt={product.name || 'Product Image'}
+                height={320}
+                width={320}
+                {...imgProps}
+              />
+            )}
+            <div className="absolute bottom-0 right-0">
+              <h3 className="bg-accent-9 text-accent-0 inline-block p-3 font-bold text-l break-words m-4">
+                {product.name}
+              </h3>
+            </div>
           </div>
-          {product?.images && (
-            <Image
-              quality="85"
-              src={product.images[0]?.url || placeholderImg}
-              alt={product.name || 'Product Image'}
-              height={320}
-              width={320}
-              {...imgProps}
-            />
-          )}
         </>
       )}
 
@@ -78,17 +82,22 @@ const ProductCard: FC<Props> = ({
           )}
           <div className={s.imageContainer}>
             {product?.images && (
-
-                  <a key={product.id} href={product.slug} className="group bg-white text-sm">
-                    <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75">
-                      <img
-                        src={product.images[0]?.url || placeholderImg}
-                        alt={product.name}
-                        className="h-full w-full object-cover object-center"
-                      />
-                    </div>
-                    <h3 className="mt-4 px-4 py-2 font-medium bg-white text-gray-900 rounded-md">{product.name}</h3>
-                  </a>
+              <a
+                key={product.id}
+                href={product.slug}
+                className="group bg-white text-sm"
+              >
+                <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75">
+                  <img
+                    src={product.images[0]?.url || placeholderImg}
+                    alt={product.name}
+                    className="h-full w-full object-cover object-center"
+                  />
+                </div>
+                <h3 className="mt-4 px-4 py-2 font-medium bg-white text-gray-900 rounded-md">
+                  {product.name}
+                </h3>
+              </a>
             )}
           </div>
         </>
