@@ -24,7 +24,6 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<null | Error>(null)
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({})
-  const [quantity, setQuantity] = useState<number>(0)
 
   useEffect(() => {
     selectDefaultOptionFromProduct(product, setSelectedOptions)
@@ -90,7 +89,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         )}
       </div>
       <div className="mt-6">
-        <Collapse title="Details">
+        <Collapse title="Details" initial={true}>
           <Text
             className="pb-4 break-words w-full max-w-xl"
             html={product.descriptionHtml || product.description}
