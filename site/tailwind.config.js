@@ -3,9 +3,13 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
   safelist: ['outline-none'],
   theme: {
     extend: {
+      position: ['responsive', 'sticky'],
       maxWidth: {
         '8xl': '1920px',
       },

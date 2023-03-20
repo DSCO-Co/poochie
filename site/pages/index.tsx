@@ -61,6 +61,9 @@ function HeroSection() {
 export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+
+  console.log(products); 
+  
   return (
     <>
       <HeroSection />
