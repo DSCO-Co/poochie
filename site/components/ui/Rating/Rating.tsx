@@ -13,7 +13,7 @@ const Quantity: FC<RatingProps> = ({ value = 5 }) => (
       <span
         key={`star_${i}`}
         className={cn('inline-block ml-1 ', {
-          'text-accent-5': i >= Math.floor(value),
+          'text-accent-2': i >= Math.floor(value),
         })}
       >
         <Star />
