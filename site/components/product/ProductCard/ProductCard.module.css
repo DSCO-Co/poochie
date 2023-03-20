@@ -16,7 +16,6 @@
   & .wishlistButton {
     @apply bg-secondary text-secondary;
   }
-
   @apply shadow-lg;
 }
 

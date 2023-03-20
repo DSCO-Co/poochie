@@ -35,6 +35,29 @@ export async function getStaticProps({
   }
 }
 
+function HeroSection() {
+  return (
+    <div className="relative py-32 px-6 sm:py-60 sm:px-12 lg:px-16">
+      <div className="absolute inset-0 overflow-hidden">
+        <img
+          src="https://cdn11.bigcommerce.com/s-6b5ruzs4qu/images/stencil/original/carousel/16/adobestock_322789479__83032.jpeg?c=1"
+          alt=""
+          className="h-full w-full object-cover object-center"
+        />
+      </div>
+      <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
+        <h1 className="text-3xl font-bold tracking-tight text-white sm:text-8xl">SPRING IS HERE</h1>
+        <p className="mt-3 text-xl text-white">Unleash your style with new arrivals</p>
+        <a
+          href="#"
+          className="mt-8 block w-full  border-4  bg-transparent py-4 px-20 text-white font-medium  hover:bg-black hover:border-transparent sm:w-auto"
+        >Shop Now</a>
+      </div>
+    </div>
+  )
+}
+
+
 export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -43,21 +66,8 @@ export default function Home({
   
   return (
     <>
-      <Grid variant="filled">
-        {products.slice(0, 3).map((product: any, i: number) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            imgProps={{
-              alt: product.name,
-              width: i === 0 ? 1080 : 540,
-              height: i === 0 ? 1080 : 540,
-              priority: true,
-            }}
-          />
-        ))}
-      </Grid>
-      <Marquee variant="secondary">
+      <HeroSection />
+      <Marquee variant="primary">
         {products.slice(0, 3).map((product: any, i: number) => (
           <ProductCard key={product.id} product={product} variant="slim" />
         ))}
@@ -66,19 +76,6 @@ export default function Home({
         headline=" Dessert dragée halvah croissant."
         description="Cupcake ipsum dolor sit amet lemon drops pastry cotton candy. Sweet carrot cake macaroon bonbon croissant fruitcake jujubes macaroon oat cake. Soufflé bonbon caramels jelly beans. Tiramisu sweet roll cheesecake pie carrot cake. "
       />
-      <Grid layout="B" variant="filled">
-        {products.slice(0, 3).map((product: any, i: number) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            imgProps={{
-              alt: product.name,
-              width: i === 1 ? 1080 : 540,
-              height: i === 1 ? 1080 : 540,
-            }}
-          />
-        ))}
-      </Grid>
       <Marquee>
         {products.slice(3).map((product: any, i: number) => (
           <ProductCard key={product.id} product={product} variant="slim" />
