@@ -37,20 +37,20 @@ export async function getStaticProps({
 
 function HeroSection() {
   return (
-    <div className="relative py-32 px-6 sm:py-60 sm:px-12 lg:px-16">
+    <div className="relative px-6 py-32 sm:py-60 sm:px-12 lg:px-16">
       <div className="absolute inset-0 overflow-hidden">
         <img
           src="https://cdn11.bigcommerce.com/s-6b5ruzs4qu/images/stencil/original/carousel/16/adobestock_322789479__83032.jpeg?c=1"
           alt=""
-          className="h-full w-full object-cover object-center"
+          className="object-cover object-center w-full h-full"
         />
       </div>
-      <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
+      <div className="relative flex flex-col items-center max-w-3xl mx-auto text-center">
         <h1 className="text-3xl font-bold tracking-tight text-white sm:text-8xl">SPRING IS HERE</h1>
         <p className="mt-3 text-xl text-white">Unleash your style with new arrivals</p>
         <a
           href="#"
-          className="mt-8 block w-full  border-4  bg-transparent py-4 px-20 text-white font-medium  hover:bg-black hover:border-transparent sm:w-auto"
+          className="block w-full px-20 py-4 mt-8 font-medium text-white bg-transparent border-4 hover:bg-black hover:border-transparent sm:w-auto"
         >Shop Now</a>
       </div>
     </div>
@@ -60,27 +60,36 @@ function HeroSection() {
 
 export default function Home({
   products,
+  categories,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
 
-  
+
+
+
   return (
     <>
       <HeroSection />
-      <Marquee variant="primary">
-        {products.slice(0, 3).map((product: any, i: number) => (
+      {/* <Marquee variant="primary"> */}
+
+      {/* <div className="mx-auto mt-4 max-w-8xl"> */}
+      {/* {products.slice(0, 6).map((product: any, i: number) => (
           <ProductCard key={product.id} product={product} variant="slim" />
+        ))} */}
+      {/* </Marquee > */}
+      <div className="mx-auto mt-4 max-w-8xl">
+        {products.slice(0, 6).map((product: any, i: number) => (
+          <div className="float-left max-w-xs mt-4" key={product.id}>
+            <ProductCard key={product.id} product={product} variant="slim" />
+          </div>
         ))}
-      </Marquee>
-      <ProductCarousel products={products} />
-      <Hero
+      </div>
+      {/* <Hero
         headline=" Dessert dragée halvah croissant."
         description="Cupcake ipsum dolor sit amet lemon drops pastry cotton candy. Sweet carrot cake macaroon bonbon croissant fruitcake jujubes macaroon oat cake. Soufflé bonbon caramels jelly beans. Tiramisu sweet roll cheesecake pie carrot cake. "
-      />
-      <Marquee>
-        {products.slice(3).map((product: any, i: number) => (
-          <ProductCard key={product.id} product={product} variant="slim" />
-        ))}
-      </Marquee>
+      /> */}
+      {/* <Marquee> */}
+
+      {/* </Marquee> */}
       {/* <HomeAllProductsGrid
         newestProducts={products}
         categories={categories}
