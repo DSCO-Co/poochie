@@ -1,6 +1,6 @@
 import { Layout } from '@components/common'
 import { ProductCard } from '@components/product'
-import { Grid, Hero, Marquee } from '@components/ui'
+import { Grid, Hero, Marquee, ProductCarousel} from '@components/ui'
 import commerce from '@lib/api/commerce'
 // import HomeAllProductsGrid from '@components/common/HomeAllProductsGrid'
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
@@ -71,6 +71,7 @@ export default function Home({
           <ProductCard key={product.id} product={product} variant="slim" />
         ))}
       </Marquee>
+      <ProductCarousel products={products} />
       <Hero
         headline=" Dessert dragée halvah croissant."
         description="Cupcake ipsum dolor sit amet lemon drops pastry cotton candy. Sweet carrot cake macaroon bonbon croissant fruitcake jujubes macaroon oat cake. Soufflé bonbon caramels jelly beans. Tiramisu sweet roll cheesecake pie carrot cake. "

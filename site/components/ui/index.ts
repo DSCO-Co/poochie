@@ -12,6 +12,7 @@ export { default as Text } from './Text'
 export { default as Input } from './Input'
 export { default as Collapse } from './Collapse'
 export { default as Quantity } from './Quantity'
-export { default as Rating } from './Rating'
+export { default as ProductCarousel } from './ProductCarousel'
+ 
 export * from './Dropdown/Dropdown'
 export { useUI } from './context'
