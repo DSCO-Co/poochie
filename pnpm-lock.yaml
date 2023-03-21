@@ -616,7 +616,7 @@ importers:
       '@types/js-cookie': ^3.0.1
       '@types/lodash.random': ^3.2.6
       '@types/lodash.throttle': ^4.1.6
-      '@types/node': ^18.0.3
+      '@types/node': ^18.7.18
       '@types/react': ^18.0.20
       '@types/react-dom': ^18.0.6
       '@vercel/commerce': workspace:*
@@ -657,6 +657,7 @@ importers:
       react-use-measure: ^2.1.1
       tabbable: ^5.2.1
       tailwindcss: ^3.0.13
+      ts-loader: ^9.4.2
       typescript: 4.7.4
     dependencies:
       '@radix-ui/react-dropdown-menu': 1.0.0_7ey2zzynotv32rpkwno45fsx4e
@@ -708,6 +709,7 @@ importers:
       postcss-flexbugs-fixes: 5.0.2_postcss@8.4.16
       postcss-preset-env: 7.8.1_postcss@8.4.16
       prettier: 2.7.1
+      ts-loader: 9.4.2_typescript@4.7.4
       typescript: 4.7.4
 
 packages:
@@ -4958,6 +4960,14 @@ packages:
     resolution: {integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==}
     dependencies:
       once: 1.4.0
+    dev: true
+
+  /enhanced-resolve/5.12.0:
+    resolution: {integrity: sha512-QHTXI/sZQmko1cbDoNAa3mJ5qhWUUNAq3vR0/YiD379fWQrcfuoX1+HW2S0MTt7XmoPLapdaDKUtelUSPic7hQ==}
+    engines: {node: '>=10.13.0'}
+    dependencies:
+      graceful-fs: 4.2.10
+      tapable: 2.2.1
     dev: true
 
   /err-code/2.0.3:
@@ -9478,6 +9488,11 @@ packages:
       - ts-node
     dev: false
 
+  /tapable/2.2.1:
+    resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
+    engines: {node: '>=6'}
+    dev: true
+
   /tar/6.1.11:
     resolution: {integrity: sha512-an/KZQzQUkZCkuoAA64hM92X0Urb6VpRhAFllDzz44U2mcD5scmT3zBc4VgVpkugF580+DQn8eAFSyoQt0tznA==}
     engines: {node: '>= 10'}
@@ -9577,6 +9592,20 @@ packages:
 
   /tr46/0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
+
+  /ts-loader/9.4.2_typescript@4.7.4:
+    resolution: {integrity: sha512-OmlC4WVmFv5I0PpaxYb+qGeGOdm5giHU7HwDDUjw59emP2UYMHy9fFSDcYgSNoH8sXcj4hGCSEhlDZ9ULeDraA==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      typescript: '*'
+      webpack: ^5.0.0
+    dependencies:
+      chalk: 4.1.2
+      enhanced-resolve: 5.12.0
+      micromatch: 4.0.5
+      semver: 7.3.7
+      typescript: 4.7.4
+    dev: true
 
   /ts-log/2.2.4:
     resolution: {integrity: sha512-DEQrfv6l7IvN2jlzc/VTdZJYsWUnQNCsueYjMkC/iXoEoi5fNan6MjeDqkvhfzbmHgdz9UxDUluX3V5HdjTydQ==}
