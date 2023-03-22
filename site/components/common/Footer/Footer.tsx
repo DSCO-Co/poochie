@@ -21,7 +21,7 @@ interface Props {
   className?: string
   children?: any
   pages?: Page[]
-  navBarLinks?: Link[]
+  categories?: Category[]
 }
 
 const links = [
@@ -121,11 +121,10 @@ const navigation = {
   ],
 }
 
-const Footer: FC<Props> = ({ className, pages, navBarLinks }) => {
+const Footer: FC<Props> = ({ className, pages, categories }) => {
   const { sitePages } = usePages(pages)
   const rootClassName = cn(s.root, className)
 
-  console.log("callams a bitch", navBarLinks);
   
   return (
     <footer className="bg-gray-200" aria-labelledby="footer-heading">
@@ -145,12 +144,12 @@ const Footer: FC<Props> = ({ className, pages, navBarLinks }) => {
                 <h3 className="text-sm font-semibold leading-6 text-gray-900">
                   Shop
                 </h3>
-                {pages?.map((page) => (
+                {categories?.map((page) => (
                   <div key={page.id}>
                     <ul role="list" className="mt-6 space-y-4">
                       <li key={page.id}>
                         <a
-                          href={`/${getSlug(page.url!)}`}
+                          href={`/${getSlug('/${c.slug}')}`}   
                           className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                         >
                           {' '}
@@ -163,28 +162,6 @@ const Footer: FC<Props> = ({ className, pages, navBarLinks }) => {
               </div>
 
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Customer Service
-                </h3>
-                {pages?.map((page) => (
-                  <div key={page.id}>
-                    <ul role="list" className="mt-6 space-y-4">
-                      <li key={page.id}>
-                        <a
-                          href={`/${getSlug(page.url!)}`}
-                          className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                        >
-                          {' '}
-                          {page.name}{' '}
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
                 <h3 className="text-sm font-semibold leading-6 text-gray-900">
                   Company
                 </h3>
@@ -204,16 +181,19 @@ const Footer: FC<Props> = ({ className, pages, navBarLinks }) => {
                   </div>
                 ))}
               </div>
+            </div>
+            <div className="md:grid md:grid-cols-2 md:gap-8">
+
               <div className="mt-10 md:mt-0">
                 <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Legal
+                  Stay Connected
                 </h3>
-                {pages?.map((page) => (
-                  <div key={page.id}>
+                {navigation.social?.map((page) => (
+                  <div>
                     <ul role="list" className="mt-6 space-y-4">
-                      <li key={page.id}>
+                      <li>
                         <a
-                          href={`/${getSlug(page.url!)}`}
+                          href={`/${getSlug(page.href)}`}
                           className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                         >
                           {' '}
