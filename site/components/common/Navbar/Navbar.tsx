@@ -33,7 +33,7 @@ function DropDownMenu({ children }) {
       onMouseLeave={() => setIsMenuOpen(false)}
     >
       <div>
-        <Menu.Button className="flex items-center pb-2 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
+        <Menu.Button className="flex flex-col justify-center items-center hover:text-gray-600">
           {children}
         </Menu.Button>
       </div>
@@ -117,17 +117,20 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
 
   return (
     <NavbarRoot>
+      {/* Free shipping banner */}
       <div className=" h-[44px] relative z-50">
         <FreeShippingBanner />
       </div>
+      {/* Main Navbar piece */}
       <Container clean className="mx-auto max-w-8xl px-6">
         <div className={s.nav}>
+          {/* Logo */}
           <div className="flex items-center flex-1">
             <Link href="/" className={s.logo} aria-label="Logo">
               <Logo />
             </Link>
           </div>
-          {/* Bottom row of links */}
+          {/* Row of links */}
           <nav className={s.navMenu}>
             <Link href="/search" className={s.link}>
               All
@@ -140,7 +143,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
               </DropDownMenu>
             ))}
           </nav>
-          <div className="flex items-center justify-end flex-1 space-x-8">
+          <div className="flex items-center justify-end flex-1 flex-shrink-[2] space-x-8">
             {process.env.COMMERCE_SEARCH_ENABLED && (
               <div className="flex justify-center items-center">
                 <button

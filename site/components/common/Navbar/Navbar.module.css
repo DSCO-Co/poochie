@@ -8,11 +8,11 @@
 }
 
 .navMenu {
-  @apply hidden mb-4 space-x-4 lg:flex justify-center;
+  @apply hidden px-4 space-x-4 lg:flex justify-center;
 }
 
 .link {
-  @apply inline-flex items-center leading-6
+  @apply inline-flex justify-center items-center py-2
   transition ease-in-out duration-75 cursor-pointer
   text-accent-5;
 }
