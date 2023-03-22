@@ -8,6 +8,7 @@ import { Searchbar, UserNav, FreeShippingBanner } from '@components/common'
 interface Link {
   href: string
   label: string
+  subLinks?: any[] | Category[] | undefined
 }
 
 interface NavbarProps {

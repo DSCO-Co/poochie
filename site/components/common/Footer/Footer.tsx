@@ -4,16 +4,24 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import type { Page } from '@commerce/types/page'
 import getSlug from '@lib/get-slug'
+import type { Category } from '@commerce/types/site'
 import { Github, Vercel } from '@components/icons'
 import { Logo, Container } from '@components/ui'
 import { I18nWidget } from '@components/common'
 import ThemeSwitcher from '@components/ui/ThemeSwitcher'
 import s from './Footer.module.css'
 
+interface Link {
+  href: string
+  label: string
+  subLinks?: any[] | Category[] | undefined
+}
+
 interface Props {
   className?: string
   children?: any
   pages?: Page[]
+  navBarLinks?: Link[]
 }
 
 const links = [
@@ -113,10 +121,12 @@ const navigation = {
   ],
 }
 
-const Footer: FC<Props> = ({ className, pages }) => {
+const Footer: FC<Props> = ({ className, pages, navBarLinks }) => {
   const { sitePages } = usePages(pages)
   const rootClassName = cn(s.root, className)
 
+  console.log("callams a bitch", navBarLinks);
+  
   return (
     <footer className="bg-gray-200" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">

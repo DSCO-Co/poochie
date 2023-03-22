@@ -109,20 +109,21 @@ const Layout: React.FC<Props> = ({
 }) => {
   const { acceptedCookies, onAcceptCookies } = useAcceptCookies()
   const { locale = 'en-US' } = useRouter()
-  const navBarlinks = categories.map((c) => ({
+  const navBarLinks = categories.map((c) => ({
     label: c.name,
     href: `/${c.slug}`,
+    subLinks: c.children
   }))
 
   return (
     <CommerceProvider locale={locale}>
       <div className={cn(s.root)}>
-        <Navbar links={navBarlinks} />
+        <Navbar links={navBarLinks} />
         <main className="fit">{children}</main>
-        <Footer pages={pageProps.pages} />
+        <Footer navBarLinks={navBarLinks} pages={pageProps.pages} />
         <ModalUI />
         <CheckoutProvider>
-          <SidebarUI links={navBarlinks} />
+          <SidebarUI links={navBarLinks} />
         </CheckoutProvider>
         <FeatureBar
           title="This site uses cookies to improve your experience. By clicking, you agree to our Privacy Policy."
