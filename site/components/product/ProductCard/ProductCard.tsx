@@ -199,6 +199,22 @@ const ProductCard: FC<Props> = ({
               productId={product.id}
               variant={product.variants[0]}
             />
+            <div className="absolute top-2 left-2">
+              <div>
+                <div
+                  className="bg-white mx-1 my-3 text-orange-500 font-bold text-xs uppercase tracking-wide"
+                  style={{
+                    backgroundColor: 'white',
+                    border: '1px solid var(--on-sale-orange)',
+                    boxShadow: '4px 4px 0px 0px var(--on-sale-orange)',
+                    padding: '4px',
+                  }}
+                >
+                  Sale
+                </div>
+              </div>
+              {/* <div className="bg-orange-500 absolute top-1 left-1 p-1" /> */}
+            </div>
             <Button
               aria-label="Add to Cart"
               className="opacity-0 group-hover:opacity-100 absolute bottom-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-1 py-0.5 bg-black text-white font-semibold rounded-md whitespace-nowrap"
