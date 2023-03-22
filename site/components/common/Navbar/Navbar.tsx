@@ -136,8 +136,8 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
               All
             </Link>
             {links?.map((l) => (
-              <DropDownMenu>
-                <Link href={l.href} key={l.href} className={s.link}>
+              <DropDownMenu key={l.href}>
+                <Link href={l.href} className={s.link}>
                   {l.label}
                 </Link>
               </DropDownMenu>
@@ -168,18 +168,18 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
             <UserNav />
           </div>
         </div>
-        {/* Mobile search bar */}
-        {process.env.COMMERCE_SEARCH_ENABLED && (
-          <div className="flex pb-4 lg:px-6 lg:hidden">
-            {showSearchBar && <Searchbar id="mobile-search" />}
-          </div>
-        )}
         {/* Desktop search bar */}
         {process.env.COMMERCE_SEARCH_ENABLED && (
           <div className="flex justify-center pb-4">
             <div className="justify-center w-[320px] hidden lg:flex">
               {showSearchBar && <Searchbar />}
             </div>
+          </div>
+        )}
+        {/* Mobile search bar */}
+        {process.env.COMMERCE_SEARCH_ENABLED && (
+          <div className="flex pb-4 lg:px-6 lg:hidden">
+            {showSearchBar && <Searchbar id="mobile-search" />}
           </div>
         )}
       </Container>
