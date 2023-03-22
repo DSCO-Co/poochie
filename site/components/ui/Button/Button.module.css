@@ -4,7 +4,7 @@
   shadow-sm text-center justify-center uppercase
   border border-transparent items-center text-sm font-semibold
   tracking-wide;
-  max-height: 64px;
+  max-height: 32px;
 }
 
 .root:hover {

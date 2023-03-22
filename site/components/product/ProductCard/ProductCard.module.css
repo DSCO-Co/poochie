@@ -4,6 +4,7 @@
     ease-linear cursor-pointer inline-block bg-accent-1
     transition-shadow duration-100 ease-in-out;
   height: 100% !important;
+  --on-sale-orange: rgb(230, 92, 0);
 }
 
 .root:hover {
@@ -19,6 +20,11 @@
   @apply shadow-lg;
 }
 
+
+
+.addtocart {
+  white-space: nowrap;
+}
 
 .header {
   @apply transition-colors ease-in-out duration-500
