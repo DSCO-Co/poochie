@@ -13,6 +13,7 @@ export { default as Input } from './Input'
 export { default as Collapse } from './Collapse'
 export { default as Quantity } from './Quantity'
 export { default as Rating } from './Rating'
+export { default as Pagination} from './Pagination'
 export { default as ProductCarousel } from './ProductCarousel'
  
 export * from './Dropdown/Dropdown'
