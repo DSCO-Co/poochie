@@ -86,7 +86,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ products }) => {
                   className="max-h-100 max-w-80"
                 >
                   <ProductCard
-                    variant="simple"
+                    variant="simple-stylized"
                     className={`animated fadeIn transition-transform duration-500 mx-2`}
                     product={product}
                     imgProps={{

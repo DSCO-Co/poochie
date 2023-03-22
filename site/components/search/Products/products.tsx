@@ -124,7 +124,7 @@ export default function Products({categories, brands}: ProductsPropsType) {
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {data.products.map((product: Product) => (
                 <ProductCard
-                  variant="simple"
+                  variant="simple-stylized"
                   key={product.path}
                   className="animated fadeIn"
                   product={product}

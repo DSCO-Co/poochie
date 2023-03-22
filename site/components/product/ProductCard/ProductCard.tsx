@@ -1,19 +1,27 @@
 import type { Product } from '@commerce/types/product'
 import WishlistButton from '@components/wishlist/WishlistButton'
+import { Button } from '@components/ui'
 import usePrice from '@framework/product/use-price'
 import cn from 'clsx'
 import Image, { ImageProps } from 'next/image'
 import Link from 'next/link'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import ProductTag from '../ProductTag'
 import s from './ProductCard.module.css'
+import { useAddItem } from '@framework/cart'
+
+import {
+  SelectedOptions,
+  getProductVariant,
+  selectDefaultOptionFromProduct,
+} from '../helpers'
 
 interface Props {
   className?: string
   product: Product
   noNameTag?: boolean
   imgProps?: Omit<ImageProps, 'src' | 'layout' | 'placeholder' | 'blurDataURL'>
-  variant?: 'default' | 'slim' | 'simple'
+  variant?: 'default' | 'slim' | 'simple' | 'simple-stylized'
 }
 
 const placeholderImg = '/product-img-placeholder.svg'
@@ -36,6 +44,41 @@ const ProductCard: FC<Props> = ({
     { [s.slim]: variant === 'slim', [s.simple]: variant === 'simple' },
     className
   )
+
+  const addItem = useAddItem()
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<null | Error>(null)
+  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({})
+
+  useEffect(() => {
+    selectDefaultOptionFromProduct(product, setSelectedOptions)
+  }, [product])
+
+  const item = getProductVariant(product, selectedOptions)
+
+  const addToCart = async () => {
+    setLoading(true)
+    setError(null)
+
+    try {
+      await addItem({
+        productId: String(product.id),
+        variantId: String(item ? item.id : product.variants[0]?.id),
+      })
+
+      setLoading(false)
+    } catch (err) {
+      setLoading(false)
+      if (err instanceof Error) {
+        console.error(err)
+        setError({
+          ...err,
+          message: 'Could not add item to cart. Please try again.',
+        })
+      }
+    }
+  }
+
   return (
     <Link
       href={`${product.path}`}
@@ -128,6 +171,49 @@ const ProductCard: FC<Props> = ({
                 {...imgProps}
               />
             )}
+          </div>
+        </>
+      )}
+      {variant === 'simple-stylized' && (
+        <>
+          <div className="relative group bg-white text-sm flex flex-col">
+            <div className="p-1 flex-grow">
+              <Image
+                alt={product.name || 'Product Image'}
+                className="rounded-lg object-cover object-center"
+                src={product.images[0]?.url || placeholderImg}
+                height={540}
+                width={540}
+                quality="85"
+                {...imgProps}
+              />
+            </div>
+            <div className="bg-white rounded-b-lg py-3">
+              <h3 className="text-center font-medium text-gray-900">
+                {product.name}
+              </h3>
+              <div className="text-center">{`${price} ${product.price?.currencyCode}`}</div>
+            </div>
+            <WishlistButton
+              className="absolute top-2 right-2"
+              productId={product.id}
+              variant={product.variants[0]}
+            />
+            <Button
+              aria-label="Add to Cart"
+              className="opacity-0 group-hover:opacity-100 absolute bottom-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-1 py-0.5 bg-black text-white font-semibold rounded-md whitespace-nowrap"
+              onClick={(e) => {
+                e.preventDefault()
+                addToCart()
+              }}
+              type="button"
+              loading={loading}
+              disabled={item?.availableForSale === false}
+            >
+              {item?.availableForSale === false
+                ? 'Not Available'
+                : 'Add To Cart'}
+            </Button>
           </div>
         </>
       )}

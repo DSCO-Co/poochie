@@ -20,6 +20,10 @@
 }
 
 
+.addtocart {
+  white-space: nowrap;
+}
+
 .header {
   @apply transition-colors ease-in-out duration-500
   absolute top-0 left-0 z-20 pr-16;
