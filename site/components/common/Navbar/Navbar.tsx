@@ -1,4 +1,5 @@
 import { Children, FC, useState } from 'react'
+import type { Category } from '@commerce/types/site'
 import Link from 'next/link'
 import s from './Navbar.module.css'
 import NavbarRoot from './NavbarRoot'
