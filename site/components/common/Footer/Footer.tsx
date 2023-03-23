@@ -188,7 +188,7 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
                 <h3 className="text-sm font-semibold leading-6 text-gray-900">
                   Stay Connected
                 </h3>
-                {navigation.social?.map((page) => (
+                {/* {navigation.social?.map((page) => (
                   <div>
                     <ul role="list" className="mt-6 space-y-4">
                       <li>
@@ -202,7 +202,7 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
                       </li>
                     </ul>
                   </div>
-                ))}
+                ))} */}
               </div>
             </div>
           </div>

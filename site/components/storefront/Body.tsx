@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react'
+import Image from 'next/image'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import {
   Bars3Icon,
@@ -158,7 +159,7 @@ export default function Body() {
     return(
     
     <main>
-        {/* Category section */}
+        Category section
         <section aria-labelledby="category-heading" className="pt-24 sm:pt-32 xl:mx-auto xl:max-w-7xl xl:px-8">
           <div className="px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 xl:px-0">
             <h2 id="category-heading" className="text-2xl font-bold tracking-tight text-gray-900">
@@ -274,7 +275,7 @@ export default function Body() {
         <section aria-labelledby="comfort-heading" className="mx-auto max-w-7xl py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-lg">
             <div className="absolute inset-0">
-              <img
+              <Image
                 src="https://tailwindui.com/img/ecommerce-images/home-page-01-feature-section-02.jpg"
                 alt=""
                 className="h-full w-full object-cover object-center"
