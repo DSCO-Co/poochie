@@ -93,9 +93,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
   return (
     <NavbarRoot>
       {/* Free shipping banner */}
-      <div className=" h-[44px] relative z-50">
         <FreeShippingBanner />
-      </div>
       {/* Main Navbar piece */}
       <Container clean className="mx-auto max-w-8xl px-6">
         <div className={s.nav}>
