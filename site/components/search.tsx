@@ -5,14 +5,16 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
-
+import {
+  ArrowLongLeftIcon,
+  ArrowLongRightIcon,
+} from '@heroicons/react/20/solid'
 
 import type { Brand } from '@commerce/types/site'
 import type { Product } from '@commerce/types/product'
 
 import { Layout } from '@components/common'
-import { ProductCard } from '@components/product'
-import { Container, Skeleton } from '@components/ui'
+import { Container, Skeleton, Pagination } from '@components/ui'
 
 import Products from './search/Products/products'
 
@@ -36,6 +38,18 @@ import ErrorMessage from './ui/ErrorMessage'
 import commerce from '@lib/api/commerce'
 
 export default function Search({ categories, brands }: SearchPropsType) {
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 12
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage)
+    // Optionally, you can also update the URL to include the current page number
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, page: newPage },
+    })
+  }
+
   const [activeFilter, setActiveFilter] = useState('')
   const [toggleFilter, setToggleFilter] = useState(false)
 
@@ -58,6 +72,8 @@ export default function Search({ categories, brands }: SearchPropsType) {
     brandId: activeBrand?.id,
     sort: typeof sort === 'string' ? sort : '',
     locale,
+    page: currentPage,
+    itemsPerPage,
   })
 
   if (error) {
@@ -285,7 +301,12 @@ export default function Search({ categories, brands }: SearchPropsType) {
         </div>
 
         {/* Products */}
-        {Products({ categories, brands })}
+        <Products
+          categories={categories}
+          brands={brands}
+          currentPage={currentPage}
+          itemsPerPage={itemsPerPage}
+        />
 
         {/* Sort */}
         <div className=" sticky top-0 lg:top-16 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-2 lg:order-none">
@@ -385,6 +406,12 @@ export default function Search({ categories, brands }: SearchPropsType) {
           </div>
         </div>
       </div>
+      <Pagination
+        totalItems={data ? data.products.length : 0}
+        itemsPerPage={9} // Set the number of items per page as needed
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </Container>
   )
 }
