@@ -72,22 +72,6 @@ export default function Home({
 
       <ProductCarousel products={products}/> 
 
-      <Hero
-        headline=" Dessert dragée halvah croissant."
-        description="Cupcake ipsum dolor sit amet lemon drops pastry cotton candy. Sweet carrot cake macaroon bonbon croissant fruitcake jujubes macaroon oat cake. Soufflé bonbon caramels jelly beans. Tiramisu sweet roll cheesecake pie carrot cake. "
-      />
-      <Marquee>
-      {products.slice(0, 6).map((product: any, i: number) => (
-          <div className="float-left max-w-xs mt-4" key={product.id}>
-            <ProductCard key={product.id} product={product} variant="slim" />
-          </div>
-        ))}
-      </Marquee>
-      {/* <HomeAllProductsGrid
-        newestProducts={products}
-        categories={categories}
-        brands={brands}
-      /> */}
     </>
   )
 }
