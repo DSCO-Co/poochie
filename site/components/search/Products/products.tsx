@@ -34,7 +34,7 @@ export default function Products({
 }: ProductsProps) {
   const [activeFilter, setActiveFilter] = useState('')
   const [toggleFilter, setToggleFilter] = useState(false)
-
+  
   const router = useRouter()
   const { asPath, locale } = router
   const { q, sort } = router.query
@@ -66,6 +66,8 @@ export default function Products({
   )
 
   console.log("Paginated Products: ", paginatedProducts)
+  console.log("itemsPerPage: ", itemsPerPage)
+  console.log("currentPage: ", currentPage)
 
   const handleClick = (event: any, filter: string) => {
     if (filter !== activeFilter) {

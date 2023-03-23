@@ -4,7 +4,10 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <link rel="icon" href="/bc_favicon.ico" />
+        </Head>
+
         <body className="loading">
           <Main />
           <NextScript />
