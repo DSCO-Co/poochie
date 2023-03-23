@@ -408,7 +408,7 @@ export default function Search({ categories, brands }: SearchPropsType) {
       </div>
       <Pagination
         totalItems={data ? data.products.length : 0}
-        itemsPerPage={itemsPerPage} // Set the number of items per page as needed
+        itemsPerPage={itemsPerPage}
         currentPage={currentPage}
         onPageChange={handlePageChange}
       />
