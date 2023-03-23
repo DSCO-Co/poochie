@@ -25,11 +25,15 @@ function classNames(...classes) {
 }
 
 function DropDownMenu({ children, dropDownLinks }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleMouseEnter = (event) => {
+    event.target.style.transform = 'translateX(10px)';
+  };
 
-  console.log('bitch', dropDownLinks);
-  
+  const handleMouseLeave = (event) => {
+    event.target.style.transform = 'translateX(0)';
+  };
 
   return (
     <Menu
@@ -57,17 +61,21 @@ function DropDownMenu({ children, dropDownLinks }) {
         <Menu.Items className="absolute right-0 z-10 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {dropDownLinks.map((dropDownLink) => (
-              <Menu.Item>
+              <Menu.Item key={dropDownLink.name}>
                 {({ active }) => (
-                  <a
-                    href={dropDownLink.path}
-                    className={classNames(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block px-4 py-2 text-sm'
-                    )}
-                  >
-                    {dropDownLink.name}
-                  </a>
+                  <div className="relative">
+                    <a
+                      href={dropDownLink.path}
+                      className={classNames(
+                        active ? 'text-gray-900' : 'text-gray-900',
+                        'block px-4 py-2 text-sm transition-transform duration-200 transform origin-left'
+                      )}
+                      onMouseEnter={handleMouseEnter}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      {dropDownLink.name}
+                    </a>
+                  </div>
                 )}
               </Menu.Item>
             ))}
@@ -75,8 +83,9 @@ function DropDownMenu({ children, dropDownLinks }) {
         </Menu.Items>
       </Transition>
     </Menu>
-  )
+  );
 }
+
 
 const Navbar: FC<NavbarProps> = ({ links }) => {
   const [showSearchBar, setShowSearchBar] = useState(false)
