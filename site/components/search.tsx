@@ -301,7 +301,12 @@ export default function Search({ categories, brands }: SearchPropsType) {
         </div>
 
         {/* Products */}
-        {Products({ categories, brands })}
+        <Products
+          categories={categories}
+          brands={brands}
+          currentPage={currentPage}
+          itemsPerPage={itemsPerPage}
+        />
 
         {/* Sort */}
         <div className=" sticky top-0 lg:top-16 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-2 lg:order-none">
