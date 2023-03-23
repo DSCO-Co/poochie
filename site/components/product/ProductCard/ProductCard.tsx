@@ -176,7 +176,7 @@ const ProductCard: FC<Props> = ({
       )}
       {variant === 'simple-stylized' && (
         <>
-          <div className="relative group bg-white text-sm flex flex-col">
+          <div className=" h-full relative group bg-white text-sm flex flex-col">
             <div className="p-1 flex-grow">
               <Image
                 alt={product.name || 'Product Image'}
