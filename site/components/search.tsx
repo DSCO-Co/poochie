@@ -39,7 +39,7 @@ import commerce from '@lib/api/commerce'
 
 export default function Search({ categories, brands }: SearchPropsType) {
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 12
+  const itemsPerPage = 9
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage)
@@ -92,7 +92,7 @@ export default function Search({ categories, brands }: SearchPropsType) {
   return (
     <Container>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-3 mb-20">
-        <div className="sticky top-0 lg:top-16 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-1 lg:order-none">
+        <div className="sticky top-0 lg:top-32 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-1 lg:order-none">
           {/* Categories */}
 
           <div className="relative inline-block w-full">
@@ -309,7 +309,7 @@ export default function Search({ categories, brands }: SearchPropsType) {
         />
 
         {/* Sort */}
-        <div className=" sticky top-0 lg:top-16 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-2 lg:order-none">
+        <div className=" sticky top-0 lg:top-32 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-2 lg:order-none">
           <div className="relative inline-block w-full">
             <div className="lg:hidden">
               <span className="rounded-md shadow-sm">
@@ -408,7 +408,7 @@ export default function Search({ categories, brands }: SearchPropsType) {
       </div>
       <Pagination
         totalItems={data ? data.products.length : 0}
-        itemsPerPage={9} // Set the number of items per page as needed
+        itemsPerPage={itemsPerPage} // Set the number of items per page as needed
         currentPage={currentPage}
         onPageChange={handlePageChange}
       />
