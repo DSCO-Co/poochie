@@ -24,8 +24,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-function DropDownMenu({ children }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+function DropDownMenu({ children, dropDownLinks }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+
+  console.log('bitch', dropDownLinks);
+  
 
   return (
     <Menu
@@ -52,67 +56,27 @@ function DropDownMenu({ children }) {
       >
         <Menu.Items className="absolute right-0 z-10 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm"
-                  )}
-                >
-                  Account settings
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm"
-                  )}
-                >
-                  Support
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm"
-                  )}
-                >
-                  License
-                </a>
-              )}
-            </Menu.Item>
-            <form method="POST" action="#">
+            {dropDownLinks.map((dropDownLink) => (
               <Menu.Item>
                 {({ active }) => (
-                  <button
-                    type="submit"
+                  <a
+                    href={dropDownLink.path}
                     className={classNames(
-                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                      "block w-full px-4 py-2 text-left text-sm"
+                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                      'block px-4 py-2 text-sm'
                     )}
                   >
-                    Sign out
-                  </button>
+                    {dropDownLink.name}
+                  </a>
                 )}
               </Menu.Item>
-            </form>
+            ))}
           </div>
         </Menu.Items>
       </Transition>
     </Menu>
-  );
+  )
 }
-
 
 const Navbar: FC<NavbarProps> = ({ links }) => {
   const [showSearchBar, setShowSearchBar] = useState(false)
@@ -138,7 +102,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
               All
             </Link>
             {links?.map((l) => (
-              <DropDownMenu key={l.href}>
+              <DropDownMenu dropDownLinks={l.subLinks} key={l.href}>
                 <Link href={l.href} className={s.link}>
                   {l.label}
                 </Link>
