@@ -2,6 +2,7 @@ import { Layout } from '@components/common'
 import { ProductCard } from '@components/product'
 import { Grid, Hero, Marquee, ProductCarousel} from '@components/ui'
 import commerce from '@lib/api/commerce'
+
 // import HomeAllProductsGrid from '@components/common/HomeAllProductsGrid'
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 
@@ -12,7 +13,7 @@ export async function getStaticProps({
 }: GetStaticPropsContext) {
   const config = { locale, locales }
   const productsPromise = commerce.getAllProducts({
-    variables: { first: 6 },
+    variables: { first: 12, relevance: 'best_selling' }, // Add relevance: 'best_selling' here
     config,
     preview,
     // Saleor provider only
@@ -34,6 +35,7 @@ export async function getStaticProps({
     revalidate: 60,
   }
 }
+
 
 function HeroSection() {
   return (
