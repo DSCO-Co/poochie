@@ -1,5 +1,8 @@
 import cn from 'clsx'
 import type { SearchPropsType } from '@lib/search-props'
+import commerce from '@lib/api/commerce'
+import ErrorMessage from './ui/ErrorMessage'
+import type { GetStaticPropsContext } from 'next'
 
 import Link from 'next/link'
 import { useState } from 'react'
@@ -34,10 +37,10 @@ import {
   getDesignerPath,
   useSearchMeta,
 } from '@lib/search'
-import ErrorMessage from './ui/ErrorMessage'
-import commerce from '@lib/api/commerce'
 
-export default function Search({ categories, brands }: SearchPropsType) {
+
+
+export default function Search({categories, brands, products }: SearchPropsType) {
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 9
 
@@ -61,6 +64,7 @@ export default function Search({ categories, brands }: SearchPropsType) {
   // of those is selected
   const query = filterQuery({ sort })
 
+
   const { pathname, category, brand } = useSearchMeta(asPath)
 
   const activeCategory = categories.find((cat: any) => cat.slug === category)
@@ -79,6 +83,10 @@ export default function Search({ categories, brands }: SearchPropsType) {
   if (error) {
     return <ErrorMessage error={error} />
   }
+
+
+
+
 
   const handleClick = (event: any, filter: string) => {
     if (filter !== activeFilter) {
@@ -304,6 +312,7 @@ export default function Search({ categories, brands }: SearchPropsType) {
         <Products
           categories={categories}
           brands={brands}
+          products={products}
           currentPage={currentPage}
           itemsPerPage={itemsPerPage}
         />
@@ -407,7 +416,7 @@ export default function Search({ categories, brands }: SearchPropsType) {
         </div>
       </div>
       <Pagination
-        totalItems={data ? data.products.length : 0}
+        totalItems={products ? products.length : 0}
         itemsPerPage={itemsPerPage}
         currentPage={currentPage}
         onPageChange={handlePageChange}

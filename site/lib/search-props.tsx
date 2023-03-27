@@ -8,13 +8,22 @@ export async function getSearchStaticProps({
   locales,
 }: GetStaticPropsContext) {
   const config = { locale, locales }
+  const productsPromise = commerce.getAllProducts({
+    variables: { first: 50, relevance: 'best_selling'},
+    config,
+    preview,
+    // Saleor provider only
+    ...({ featured: true } as any),
+  })
   const pagesPromise = commerce.getAllPages({ config, preview })
   const siteInfoPromise = commerce.getSiteInfo({ config, preview })
   const { pages } = await pagesPromise
+  const { products } = await productsPromise
   const { categories, brands } = await siteInfoPromise
   return {
     props: {
       pages,
+      products,
       categories,
       brands,
     },
