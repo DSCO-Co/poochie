@@ -62,7 +62,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
                   noNameTag
                   product={p}
                   key={p.path}
-                  variant="simple"
+                  variant="simple-stylized"
                   className="animated fadeIn"
                   imgProps={{
                     alt: p.name,
