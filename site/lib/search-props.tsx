@@ -9,7 +9,7 @@ export async function getSearchStaticProps({
 }: GetStaticPropsContext) {
   const config = { locale, locales }
   const productsPromise = commerce.getAllProducts({
-    variables: { first: 50, relevance: 'best_selling'},
+    variables: { first: 50},
     config,
     preview,
     // Saleor provider only

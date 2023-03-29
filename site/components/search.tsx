@@ -1,8 +1,8 @@
 import cn from 'clsx'
-import type { SearchPropsType } from '@lib/search-props'
+import type { SearchPropsType } from '@lib/search-props' 
 import commerce from '@lib/api/commerce'
 import ErrorMessage from './ui/ErrorMessage'
-import type { GetStaticPropsContext } from 'next'
+import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 
 import Link from 'next/link'
 import { useState } from 'react'
@@ -70,6 +70,7 @@ export default function Search({categories, brands, products }: SearchPropsType)
   const activeCategory = categories.find((cat: any) => cat.slug === category)
   const activeBrand = brands.find((b: Brand) => b.slug === brand)
 
+
   const { data, error } = useSearch({
     search: typeof q === 'string' ? q : '',
     categoryId: activeCategory?.id,
@@ -85,7 +86,8 @@ export default function Search({categories, brands, products }: SearchPropsType)
   }
 
 
-
+  console.log("all products", products)
+  console.log("all categories", categories)
 
 
   const handleClick = (event: any, filter: string) => {
