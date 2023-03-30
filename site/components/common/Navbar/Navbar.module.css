@@ -9,6 +9,7 @@
 
 .navMenu {
   @apply hidden px-4 space-x-4 lg:flex justify-center;
+  
 }
 
 .link {
@@ -19,17 +20,22 @@
 
 .link:hover {
   @apply text-accent-9;
+  &:hover {
+    @apply hover:underline;
+  }
 }
-
+.linkActive {
+  @apply text-accent-9 underline;
+}
 .link:focus {
   @apply outline-none text-accent-8;
 }
 
 .logo {
-  @apply cursor-pointer rounded-full transform duration-100 ease-in-out;
-
+  @apply cursor-pointer transform duration-100 ease-in-out;
   &:hover {
-    @apply shadow-md;
+    /* @apply shadow-md; */
+
     transform: scale(1.05);
   }
 }

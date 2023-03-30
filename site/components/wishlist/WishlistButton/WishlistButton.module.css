@@ -25,7 +25,7 @@
 }
 
 .icon.inWishlist {
-  fill: var(--pink);
+  fill: var(--pink-light);
   color: transparent; /* Add this line */
 }
 
