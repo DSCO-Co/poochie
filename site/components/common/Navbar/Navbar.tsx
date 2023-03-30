@@ -24,26 +24,37 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-function DropDownMenu({ children, dropDownLinks }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+function DropDownMenu({ children, dropDownLinks, isActive, menuKey, setActiveMenu }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const handleMouseEnter = (event) => {
-    event.target.style.transform = 'translateX(10px)';
-  };
+    event.target.style.transform = 'translateX(10px)'
+  }
 
   const handleMouseLeave = (event) => {
-    event.target.style.transform = 'translateX(0)';
-  };
+    event.target.style.transform = 'translateX(0)'
+  }
 
   return (
     <Menu
       as="div"
       className="relative inline-block text-left"
-      onMouseEnter={() => setIsMenuOpen(true)}
-      onMouseLeave={() => setIsMenuOpen(false)}
+      onMouseEnter={() => {
+        setIsMenuOpen(true)
+        setActiveMenu(menuKey)
+      }}
+      onMouseLeave={() => {
+        setIsMenuOpen(false)
+        setActiveMenu(null)
+      }}
     >
       <div>
-        <Menu.Button className="flex flex-col justify-center items-center hover:text-gray-600">
+        <Menu.Button
+          className={classNames(
+            'flex flex-col justify-center items-center',
+            isActive ? 'text-gray-900 underline' : 'hover:text-gray-600'
+          )}
+        >
           {children}
         </Menu.Button>
       </div>
@@ -83,17 +94,17 @@ function DropDownMenu({ children, dropDownLinks }) {
         </Menu.Items>
       </Transition>
     </Menu>
-  );
+  )
 }
-
 
 const Navbar: FC<NavbarProps> = ({ links }) => {
   const [showSearchBar, setShowSearchBar] = useState(false)
+  const [activeMenu, setActiveMenu] = useState(null)
 
   return (
     <NavbarRoot>
       {/* Free shipping banner */}
-        <FreeShippingBanner />
+      <FreeShippingBanner />
       {/* Main Navbar piece */}
       <Container clean className="mx-auto max-w-8xl px-6">
         <div className={s.nav}>
@@ -109,10 +120,17 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
               All
             </Link>
             {links?.map((l) => (
-              <DropDownMenu dropDownLinks={l.subLinks} key={l.href}>
-                <Link href={l.href} className={s.link}>
+              <DropDownMenu
+                dropDownLinks={l.subLinks}
+                key={l.href}
+                menuKey={l.href}
+                isActive={activeMenu === l.href}
+                setActiveMenu={setActiveMenu}
+              >
+                <Link href={l.href} className={`${s.link} ${activeMenu === l.href ? s.linkActive : ''}`}>
                   {l.label}
                 </Link>
+                
               </DropDownMenu>
             ))}
           </nav>

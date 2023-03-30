@@ -20,8 +20,13 @@
 
 .link:hover {
   @apply text-accent-9;
+  &:hover {
+    @apply hover:underline;
+  }
 }
-
+.linkActive {
+  @apply text-accent-9 underline;
+}
 .link:focus {
   @apply outline-none text-accent-8;
 }
