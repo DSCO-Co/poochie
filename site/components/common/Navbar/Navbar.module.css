@@ -9,6 +9,7 @@
 
 .navMenu {
   @apply hidden px-4 space-x-4 lg:flex justify-center;
+  
 }
 
 .link {
@@ -27,9 +28,9 @@
 
 .logo {
   @apply cursor-pointer transform duration-100 ease-in-out;
-
   &:hover {
     /* @apply shadow-md; */
+
     transform: scale(1.05);
   }
 }
