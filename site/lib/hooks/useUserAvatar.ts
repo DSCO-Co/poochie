@@ -6,14 +6,15 @@ export const useUserAvatar = (name = 'userAvatar') => {
   const { userAvatar, setUserAvatar } = useUI()
 
   useEffect(() => {
-    if (!userAvatar && localStorage.getItem(name)) {
+    if (!userAvatar && localStorage.getItem(name) && localStorage.getItem(name)?.endsWith('.png')) {
       // Get bg from localStorage and push it to the context.
       setUserAvatar(localStorage.getItem(name))
     }
-    if (!localStorage.getItem(name)) {
-      // bg not set locally, generating one, setting localStorage and context to persist.
-      const bg = getRandomPairOfColors()
-      const value = `linear-gradient(140deg, ${bg[0]}, ${bg[1]} 100%)`
+    // In useUserAvatar hookc
+    if (localStorage.getItem(name)) {
+      // Avatar not set locally, using the image and setting localStorage and context to persist.
+      const randomPuppy = Math.floor(Math.random() * 5) + 1 // Generates a random number between 1 and 5
+      const value = `/puppies/puppy_icon_${randomPuppy}.png`
       localStorage.setItem(name, value)
       setUserAvatar(value)
     }

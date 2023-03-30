@@ -1,4 +1,4 @@
-import { FC, useRef, useEffect } from 'react'
+import { FC, useRef } from 'react'
 import { useUserAvatar } from '@lib/hooks/useUserAvatar'
 
 interface Props {
@@ -13,12 +13,17 @@ const Avatar: FC<Props> = ({}) => {
   return (
     <div
       ref={ref}
-      style={{ backgroundImage: userAvatar }}
       className="inline-block h-8 w-8 rounded-full border-2 border-primary hover:border-secondary focus:border-secondary transition-colors ease-linear"
     >
+      <img
+        src={userAvatar}
+        alt="User Avatar"
+        className="rounded-full h-full w-full object-cover"
+      />
       {/* Add an image - We're generating a gradient as placeholder  <img></img> */}
     </div>
   )
 }
 
 export default Avatar
+

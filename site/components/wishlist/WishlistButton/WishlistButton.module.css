@@ -16,14 +16,17 @@
   transition-timing-function: ease;
   transition-property: transform, fill;
   color: currentColor;
+  
 }
 
 .icon.loading {
   fill: var(--pink-light);
+  color: transparent; /* Add this line */
 }
 
 .icon.inWishlist {
   fill: var(--pink);
+  color: transparent; /* Add this line */
 }
 
 @screen lg {

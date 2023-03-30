@@ -24,11 +24,13 @@ import ErrorMessage from '../../ui/ErrorMessage'
 interface ProductsProps extends ProductsPropsType {
   currentPage: number
   itemsPerPage: number
+  products: any 
 }
 
 export default function Products({
   categories,
   brands,
+  products, 
   currentPage,
   itemsPerPage,
 }: ProductsProps) {
@@ -60,7 +62,7 @@ export default function Products({
     return <ErrorMessage error={error} />
   }
 
-  const paginatedProducts = data?.products.slice(
+  const paginatedProducts = products.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   )
