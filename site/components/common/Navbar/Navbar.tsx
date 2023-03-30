@@ -143,7 +143,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
         </div>
         {/* Desktop search bar */}
         {process.env.COMMERCE_SEARCH_ENABLED && (
-          <div className="flex justify-center pb-4">
+          <div className="flex justify-center">
             <div className="justify-center w-[320px] hidden lg:flex">
               {showSearchBar && <Searchbar />}
             </div>
