@@ -16,6 +16,7 @@ export { default as Rating } from './Rating'
 export { default as ConnectedPagination} from './Pagination'
 export { default as ConnectedSortBy } from './ConnectedSortBy'
 export { default as ProductCarousel } from './ProductCarousel'
+export { default as CategoriesSidebar } from './CategoriesSidebar'
  
 export * from './Dropdown/Dropdown'
 export { useUI } from './context'

@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import type { Brand } from '@commerce/types/site'
 
 import { Layout } from '@components/common'
-import { Container, ConnectedSortBy, ConnectedPagination } from '@components/ui'
+import { Container, ConnectedSortBy, ConnectedPagination, CategoriesSidebar } from '@components/ui'
 
 import Products from './search/Products/products'
 
@@ -301,17 +301,8 @@ export default function Search({
           </div> */}
 
           <div className="sticky top-0 lg:top-32 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-1 lg:order-none">
-            {/* Categories */}
-            <div className="mb-6">
-              <h3 className="text-lg font-medium mb-2">Categories</h3>
-              <RefinementList attribute="categories" />
-            </div>
-
-            {/* Designs */}
-            <div>
-              <h3 className="text-lg font-medium mb-2">Designs</h3>
-              <RefinementList attribute="brands" />
-            </div>
+            <CategoriesSidebar attribute="categories" />
+            {/* <CategoriesSidebar attribute="brands" /> */}
           </div>
 
           {/* Products */}
