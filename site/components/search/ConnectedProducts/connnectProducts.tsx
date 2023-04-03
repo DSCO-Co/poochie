@@ -64,16 +64,6 @@ const ProductsComponent = ({
   }
 
 
-  const handleClick = (event: any, filter: string) => {
-    if (filter !== activeFilter) {
-      setToggleFilter(true)
-    } else {
-      setToggleFilter(!toggleFilter)
-    }
-    setActiveFilter(filter)
-  }
-
-
   return (
     <div className="col-span-8 order-3 lg:order-none">
       {(q || activeCategory || activeBrand) && (

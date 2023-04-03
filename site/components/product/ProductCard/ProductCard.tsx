@@ -251,7 +251,7 @@ const ProductCard: FC<Props> = ({
               <h3 className="text-center font-medium text-gray-900">
                 {product.productName}
               </h3>
-              <div className="text-center">{`$${product.price}`}</div>
+              <div className="text-center font-bold">{`$${product.price}`}</div>
             </div>
             <WishlistButton
               className="absolute top-2 right-2"

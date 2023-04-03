@@ -14,7 +14,7 @@ export { default as Collapse } from './Collapse'
 export { default as Quantity } from './Quantity'
 export { default as Rating } from './Rating'
 export { default as ConnectedPagination} from './Pagination'
-export { default as CustomPagination } from './CustomPagination'
+export { default as ConnectedSortBy } from './ConnectedSortBy'
 export { default as ProductCarousel } from './ProductCarousel'
  
 export * from './Dropdown/Dropdown'
