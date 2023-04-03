@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import type { Brand } from '@commerce/types/site'
 
 import { Layout } from '@components/common'
-import { Container } from '@components/ui'
+import { Container, CustomPagination, ConnectedPagination } from '@components/ui'
 
 import Products from './search/Products/products'
 
@@ -35,7 +35,7 @@ import {
   createConnector,
   InstantSearch,
   Configure,
-  Pagination,
+  // Pagination,
   SearchBox,
   Hits,
   RefinementList,
@@ -98,30 +98,9 @@ export default function Search({
     setActiveFilter(filter)
   }
 
-  const connectWithQuery = createConnector({
-    displayName: 'WidgetWithQuery',
-    getProvidedProps(props, searchState) {
-      const currentRefinement = searchState.attributeForMyQuery || ''
-      return { currentRefinement }
-    },
-    refine(props, searchState, nextRefinement) {
-      return {
-        ...searchState,
-        attributeForMyQuery: nextRefinement,
-      }
-    },
-    getSearchParameters(searchParameters, props, searchState) {
-      return searchParameters.setQuery(searchState.attributeForMyQuery || '')
-    },
-    cleanUp(props, searchState) {
-      const { attributeForMyQuery, ...nextSearchState } = searchState
-      return nextSearchState
-    },
-  })
-
   return (
     <InstantSearch searchClient={searchClient} indexName="Products">
-      <Configure hitsPerPage={10} />
+      <Configure hitsPerPage={12} />
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-3 mb-20">
           <div className="sticky top-0 lg:top-32 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-1 lg:order-none">
@@ -440,11 +419,8 @@ export default function Search({
           </div>
         </div> */}
         </div>
-        <Pagination
-          totalItems={products ? products.length : 0}
-          itemsPerPage={itemsPerPage}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
+        <ConnectedPagination
+
         />
       </Container>
     </InstantSearch>
