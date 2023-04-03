@@ -11,7 +11,7 @@ export function FreeShippingBanner() {
   return (
     <>
       {isVisible && (
-        <div className="h-[44px] w-screen relative flex items-center gap-x-6 bg-[#EE7E7B] py-2.5 px-6 sm:before:flex-1">
+        <div className="h-[44px] w-screen relative flex items-center gap-x-6 bg-[#EE7E7B] py-2.5 px-6 before:flex-1">
           <p className="text-sm leading-6 text-white">
             <strong className="font-bold">Free Shipping on Orders over $100</strong>
           </p>
