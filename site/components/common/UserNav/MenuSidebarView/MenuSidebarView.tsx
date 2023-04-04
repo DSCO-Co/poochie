@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import Link from 'next/link'
 import s from './MenuSidebarView.module.css'
 import { useUI } from '@components/ui/context'
@@ -10,6 +11,11 @@ export default function MenuSidebarView({
   links?: LinkProps[]
 }) {
   const { closeSidebar } = useUI()
+  const [expandedLink, setExpandedLink] = useState<string | null>(null)
+
+  const toggleExpand = (href: string) => {
+    setExpandedLink((current) => (current === href ? null : href))
+  }
 
   return (
     <SidebarLayout handleClose={() => closeSidebar()}>
@@ -20,13 +26,27 @@ export default function MenuSidebarView({
               <Link href="/search">All</Link>
             </li>
             {links.map((l: any) => (
-              <li
-                key={l.href}
-                className={s.item}
-                onClick={() => closeSidebar()}
-              >
-                <Link href={l.href}>{l.label}</Link>
-              </li>
+              <React.Fragment key={l.href}>
+                <li
+                  className={`${s.item} border-4`}
+                  onClick={() => {
+                    toggleExpand(l.href)
+                    if (!l.subLinks.length) closeSidebar()
+                  }}
+                >
+                  <Link href={l.subLinks.length ? '#' : l.href}>{l.label}</Link>
+                </li>
+                {expandedLink === l.href &&
+                  l.subLinks.map((subLink: any) => (
+                    <li
+                      key={subLink.path}
+                      className={`${s.item} border-4 ${s.subItem}`}
+                      onClick={() => closeSidebar()}
+                    >
+                      <Link href={subLink.path}>{subLink.name}</Link>
+                    </li>
+                  ))}
+              </React.Fragment>
             ))}
           </ul>
         </nav>
@@ -34,5 +54,3 @@ export default function MenuSidebarView({
     </SidebarLayout>
   )
 }
-
-MenuSidebarView
