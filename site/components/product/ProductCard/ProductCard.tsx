@@ -61,6 +61,8 @@ const ProductCard: FC<Props> = ({
     setError(null)
 
     try {
+
+      console.log("Add Item, product.id: ", product.id, item ? "item.id: ": "product.variants[0]?.id: ", product.variants[0]?.id)
       await addItem({
         productId: String(product.id),
         variantId: String(item ? item.id : product.variants[0]?.id),
@@ -255,7 +257,7 @@ const ProductCard: FC<Props> = ({
             </div>
             <WishlistButton
               className="absolute top-2 right-2"
-              productId={product.productID?.toString() || ""}
+              productId={product.productID?.toString() || "missing id"}
               variant={product.variants[0]}
             />
             <div className="absolute top-2 left-2">
