@@ -16,31 +16,41 @@ export default function MenuSidebarView({
   const toggleExpand = (href: string) => {
     setExpandedLink((current) => (current === href ? null : href))
   }
+  console.log(links);
+  
 
   return (
     <SidebarLayout handleClose={() => closeSidebar()}>
       <div className={s.root}>
         <nav>
           <ul>
-            <li className={s.item} onClick={() => closeSidebar()}>
-              <Link href="/search">All</Link>
+            <li className={`${s.item} border-b border-black`} onClick={() => closeSidebar()}>
+              <Link href="/search" className='ml-2'>All</Link>
             </li>
             {links.map((l: any) => (
               <React.Fragment key={l.href}>
                 <li
-                  className={`${s.item} border-4`}
+                  className={`${s.item} flex justify-left border-b border-black`}
                   onClick={() => {
                     toggleExpand(l.href)
-                    if (!l.subLinks.length) closeSidebar()
                   }}
                 >
-                  <Link href={l.subLinks.length ? '#' : l.href}>{l.label}</Link>
+                  <Link href={l.href} onClick={() => closeSidebar()} className='ml-2' >{l.label}</Link>
+                  {l.subLinks.length > 0 && (
+                    <span
+                      className={`ml-auto mr-2 inline-block transition-transform duration-300 ${
+                        expandedLink === l.href ? 'transform rotate-180' : ''
+                      }`}
+                    >
+                      ▼
+                    </span>
+                  )}
                 </li>
                 {expandedLink === l.href &&
                   l.subLinks.map((subLink: any) => (
                     <li
                       key={subLink.path}
-                      className={`${s.item} border-4 ${s.subItem}`}
+                      className={`${s.item} ml-4`}
                       onClick={() => closeSidebar()}
                     >
                       <Link href={subLink.path}>{subLink.name}</Link>
