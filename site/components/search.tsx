@@ -1,33 +1,14 @@
-import cn from 'clsx'
 import type { SearchPropsType } from '@lib/search-props'
-import ErrorMessage from './ui/ErrorMessage'
 
-import Link from 'next/link'
 import { useState } from 'react'
-import { useRouter } from 'next/router'
-
-import type { Brand } from '@commerce/types/site'
 
 import { Layout } from '@components/common'
-import { Container, ConnectedSortBy, ConnectedPagination, CategoriesSidebar } from '@components/ui'
-
-import Products from './search/Products/products'
-
-import useSearch from '@framework/product/use-search'
-
-const SORT = {
-  'trending-desc': 'Trending',
-  'latest-desc': 'Latest arrivals',
-  'price-asc': 'Price: Low to high',
-  'price-desc': 'Price: High to low',
-}
-
 import {
-  filterQuery,
-  getCategoryPath,
-  getDesignerPath,
-  useSearchMeta,
-} from '@lib/search'
+  Container,
+  ConnectedSortBy,
+  ConnectedPagination,
+  CategoriesSidebar,
+} from '@components/ui'
 
 import algoliasearch from 'algoliasearch/lite'
 import {
@@ -43,14 +24,6 @@ import {
 } from 'react-instantsearch-dom'
 import { ConnectedProducts } from './search/ConnectedProducts'
 
-function Hit({ hit }) {
-  return (
-    <div>
-      <Highlight attribute="productName" hit={hit} />
-    </div>
-  )
-}
-
 export default function Search({
   categories,
   brands,
@@ -62,31 +35,6 @@ export default function Search({
   const itemsPerPage = 9
 
   const searchClient = algoliasearch(algoliaAppId!, algoliaSearchOnlyKey!)
-
-  const [activeFilter, setActiveFilter] = useState('')
-  const [toggleFilter, setToggleFilter] = useState(false)
-
-  const router = useRouter()
-  const { asPath, locale } = router
-  const { q, sort } = router.query
-  // `q` can be included but because categories and designers can't be searched
-  // in the same way of products, it's better to ignore the search input if one
-  // of those is selected
-  const query = filterQuery({ sort })
-
-  const { pathname, category, brand } = useSearchMeta(asPath)
-
-  const activeCategory = categories.find((cat: any) => cat.slug === category)
-  const activeBrand = brands.find((b: Brand) => b.slug === brand)
-
-  const handleClick = (event: any, filter: string) => {
-    if (filter !== activeFilter) {
-      setToggleFilter(true)
-    } else {
-      setToggleFilter(!toggleFilter)
-    }
-    setActiveFilter(filter)
-  }
 
   return (
     <InstantSearch searchClient={searchClient} indexName="Products">
@@ -301,8 +249,16 @@ export default function Search({
           </div> */}
 
           <div className="sticky top-0 lg:top-32 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-1 lg:order-none">
-            <CategoriesSidebar attribute="categories" />
-            {/* <CategoriesSidebar attribute="brands" /> */}
+            <div>
+              <div>
+                <h3 className="text-lg font-medium mb-2">Categories</h3>
+                <RefinementList attribute="category" />
+              </div>
+              <div>
+                <h3 className="text-lg font-medium mb-2">Brands</h3>
+                <RefinementList attribute="brandName" />
+              </div>
+            </div>
           </div>
 
           {/* Products */}
