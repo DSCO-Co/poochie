@@ -255,11 +255,11 @@ const ProductCard: FC<Props> = ({
               </h3>
               <div className="text-center font-bold">{`$${product.price}`}</div>
             </div>
-            <WishlistButton
+            {/* <WishlistButton
               className="absolute top-2 right-2"
               productId={product.productID?.toString() || "missing id"}
               variant={product.variants[0]}
-            />
+            /> */}
             <div className="absolute top-2 left-2">
               <div>
                 <div
@@ -276,7 +276,7 @@ const ProductCard: FC<Props> = ({
               </div>
               {/* <div className="bg-orange-500 absolute top-1 left-1 p-1" /> */}
             </div>
-            <Button
+            {/* <Button
               aria-label="Add to Cart"
               className="opacity-0 group-hover:opacity-100 absolute bottom-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-1 py-0.5 bg-black text-white font-semibold rounded-md whitespace-nowrap"
               onClick={(e) => {
@@ -290,7 +290,7 @@ const ProductCard: FC<Props> = ({
               {item?.availableForSale === false
                 ? 'Not Available'
                 : 'Add To Cart'}
-            </Button>
+            </Button> */}
           </div>
         </>
       )}
