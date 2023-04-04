@@ -37,7 +37,7 @@ export async function getStaticProps({
 
 function HeroSection() {
   return (
-    <div className="relative px-6 py-32 sm:py-60 sm:px-12 lg:px-16">
+    <div className="relative px-6 pt-8 pb-64 sm:py-60 sm:px-12 lg:px-16">
       <div className="absolute inset-0 overflow-hidden">
         <img
           src="https://cdn11.bigcommerce.com/s-6b5ruzs4qu/images/stencil/original/carousel/16/adobestock_322789479__83032.jpeg?c=1"
@@ -50,7 +50,7 @@ function HeroSection() {
         <p className="mt-3 text-xl text-white">Unleash your style with new arrivals</p>
         <a
           href="#"
-          className="block w-full px-20 py-4 mt-8 font-medium text-white bg-transparent border-4 hover:bg-black hover:border-transparent sm:w-auto"
+          className="block w-full px-16 py-4 mt-8 font-medium text-white bg-transparent border-4 hover:bg-black hover:border-transparent sm:w-auto"
         >Shop Now</a>
       </div>
     </div>
@@ -60,11 +60,7 @@ function HeroSection() {
 
 export default function Home({
   products,
-  categories,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-
-
-
 
   return (
     <>
