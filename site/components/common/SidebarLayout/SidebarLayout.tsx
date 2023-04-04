@@ -39,7 +39,7 @@ const SidebarLayout: FC<ComponentProps> = ({
           </button>
         )}
 
-        <UserNav />
+        <UserNav wishlist={false} userAvatar={false}/>
       </header>
       <div className={s.container}>{children}</div>
     </div>

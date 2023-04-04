@@ -20,7 +20,17 @@ const countItem = (count: number, item: LineItem) => count + item.quantity
 
 const UserNav: React.FC<{
   className?: string
-}> = ({ className }) => {
+  cart?: Boolean
+  wishlist?: Boolean
+  userAvatar?: Boolean
+  mobileMenu?: Boolean
+}> = ({
+  className,
+  cart = true,
+  wishlist = true,
+  userAvatar = true,
+  mobileMenu = true,
+}) => {
   const { data } = useCart()
   const { data: isCustomerLoggedIn } = useCustomer()
   const { closeSidebarIfPresent, openModal, setSidebarView, openSidebar } =
@@ -34,7 +44,7 @@ const UserNav: React.FC<{
   return (
     <nav className={cn(s.root, className)}>
       <ul className={s.list}>
-        {process.env.COMMERCE_CART_ENABLED && (
+        {process.env.COMMERCE_CART_ENABLED && cart && (
           <li className={s.item}>
             <Button
               className={s.item}
@@ -52,7 +62,7 @@ const UserNav: React.FC<{
             </Button>
           </li>
         )}
-        {process.env.COMMERCE_WISHLIST_ENABLED && (
+        {process.env.COMMERCE_WISHLIST_ENABLED && wishlist && (
           <li className={s.item}>
             <Link href="/wishlist">
               <button onClick={closeSidebarIfPresent} aria-label="Wishlist">
@@ -61,7 +71,7 @@ const UserNav: React.FC<{
             </Link>
           </li>
         )}
-        {process.env.COMMERCE_CUSTOMERAUTH_ENABLED && (
+        {process.env.COMMERCE_CUSTOMERAUTH_ENABLED && userAvatar && (
           <li className={s.item}>
             <Dropdown>
               <DropdownTrigger>
@@ -77,19 +87,21 @@ const UserNav: React.FC<{
             </Dropdown>
           </li>
         )}
-        <li className={s.mobileMenu}>
-          <Button
-            className={s.item}
-            aria-label="Menu"
-            variant="naked"
-            onClick={() => {
-              setSidebarView('MOBILE_MENU_VIEW')
-              openSidebar()
-            }}
-          >
-            <Menu />
-          </Button>
-        </li>
+        {mobileMenu && (
+          <li className={s.mobileMenu}>
+            <Button
+              className={s.item}
+              aria-label="Menu"
+              variant="naked"
+              onClick={() => {
+                setSidebarView('MOBILE_MENU_VIEW')
+                openSidebar()
+              }}
+            >
+              <Menu />
+            </Button>
+          </li>
+        )}
       </ul>
     </nav>
   )
