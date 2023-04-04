@@ -7,20 +7,13 @@ import {
   Container,
   ConnectedSortBy,
   ConnectedPagination,
-  CategoriesSidebar,
+  ConnectedRefinementList,
 } from '@components/ui'
 
 import algoliasearch from 'algoliasearch/lite'
 import {
-  createConnector,
   InstantSearch,
   Configure,
-  // Pagination,
-  SearchBox,
-  Hits,
-  SortBy,
-  RefinementList,
-  Highlight,
 } from 'react-instantsearch-dom'
 import { ConnectedProducts } from './search/ConnectedProducts'
 
@@ -41,7 +34,61 @@ export default function Search({
       <Configure hitsPerPage={12} />
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-3 mb-20">
-          {/* <div className="sticky top-0 lg:top-32 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-1 lg:order-none">
+          {/* Algolia search bar */}
+
+          {/* <div className="col-span-full text-center py-6">
+            <SearchBox/>
+          </div> */}
+
+          <div className="sticky top-0 lg:top-32 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-1 lg:order-none">
+            <div>
+              <div className="mb-8">
+                <h3 className="text-lg font-medium mb-2">Categories</h3>
+                <ConnectedRefinementList attribute="category" />
+              </div>
+              <div>
+                <h3 className="text-lg font-medium mb-2">Brands</h3>
+                <ConnectedRefinementList attribute="brandName" />
+              </div>
+            </div>
+          </div>
+
+          {/* Products */}
+
+          <ConnectedProducts
+            categories={categories}
+            brands={brands}
+          />
+
+          {/* Sort */}
+          <div className="sticky top-0 lg:top-32 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-2 lg:order-none">
+            <div className="mb-6">
+              <h3 className="text-lg font-medium mb-2">Sort by</h3>
+              <ConnectedSortBy
+                defaultRefinement="Products"
+                items={[
+                  { value: 'Products', label: 'Trending' },
+                  { value: 'Products_latest', label: 'Latest Arrivals' },
+                  { value: 'Products_price_asc', label: 'Price: Low to high' },
+                  {
+                    value: 'Products_price_desc',
+                    label: 'Price: High to Low',
+                  },
+                ]}
+              />
+            </div>
+          </div>
+        </div>
+
+        <ConnectedPagination />
+      </Container>
+    </InstantSearch>
+  )
+}
+
+Search.Layout = Layout
+
+/* <div className="sticky top-0 lg:top-32 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-1 lg:order-none">
 
 
             <div className="relative inline-block w-full">
@@ -246,55 +293,4 @@ export default function Search({
                 </div>
               </div>
             </div>
-          </div> */}
-
-          <div className="sticky top-0 lg:top-32 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-1 lg:order-none">
-            <div>
-              <div>
-                <h3 className="text-lg font-medium mb-2">Categories</h3>
-                <RefinementList attribute="category" />
-              </div>
-              <div>
-                <h3 className="text-lg font-medium mb-2">Brands</h3>
-                <RefinementList attribute="brandName" />
-              </div>
-            </div>
-          </div>
-
-          {/* Products */}
-
-          <ConnectedProducts
-            categories={categories}
-            brands={brands}
-            products={products}
-            currentPage={currentPage}
-            itemsPerPage={itemsPerPage}
-          />
-
-          {/* Sort */}
-          <div className="sticky top-0 lg:top-32 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-2 lg:order-none">
-            <div className="mb-6">
-              <h3 className="text-lg font-medium mb-2">Sort by</h3>
-              <ConnectedSortBy
-                defaultRefinement="Products"
-                items={[
-                  { value: 'Products', label: 'Trending' },
-                  { value: 'Products_latest', label: 'Latest Arrivals' },
-                  { value: 'Products_price_asc', label: 'Price: Low to high' },
-                  {
-                    value: 'Products_price_desc',
-                    label: 'Price: High to Low',
-                  },
-                ]}
-              />
-            </div>
-          </div>
-        </div>
-
-        <ConnectedPagination />
-      </Container>
-    </InstantSearch>
-  )
-}
-
-Search.Layout = Layout
+          </div> */

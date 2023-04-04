@@ -238,9 +238,9 @@ const ProductCard: FC<Props> = ({
           <div className=" h-full relative group bg-white text-sm flex flex-col">
             <div className="p-1 flex-grow">
               <Image
-                alt={product.name || 'Product Image'}
+                alt={product.productName?.toString() || 'Product Image'}
                 className="rounded-lg object-cover object-center"
-                src={product.productImages[0] || placeholderImg}
+                src={product.images[0]?.url  || placeholderImg}
                 height={540}
                 width={540}
                 quality="85"
@@ -249,13 +249,13 @@ const ProductCard: FC<Props> = ({
             </div>
             <div className="bg-white rounded-b-lg py-3">
               <h3 className="text-center font-medium text-gray-900">
-                {product.productName}
+                {product.productName?.toString()}
               </h3>
               <div className="text-center font-bold">{`$${product.price}`}</div>
             </div>
             <WishlistButton
               className="absolute top-2 right-2"
-              productId={product.productID}
+              productId={product.productID?.toString() || ""}
               variant={product.variants[0]}
             />
             <div className="absolute top-2 left-2">

@@ -24,27 +24,19 @@ import {
 import ErrorMessage from '../../ui/ErrorMessage'
 
 interface ProductsProps extends ProductsPropsType {
-  currentPage: number
-  itemsPerPage: number
-  products: any
   hits: any
 }
 
 const ProductsComponent = ({
   hits, // Receive hits (products) from Algolia via the connector
-  products, 
   categories,
   brands,
-  currentPage,
-  itemsPerPage,
 }: ProductsProps) => {
-  const [activeFilter, setActiveFilter] = useState('')
-  const [toggleFilter, setToggleFilter] = useState(false)
+
 
   const router = useRouter()
   const { asPath, locale } = router
   const { q, sort } = router.query
-  const query = filterQuery({ sort })
 
   const { pathname, category, brand } = useSearchMeta(asPath)
 
