@@ -15,6 +15,10 @@ export async function getSearchStaticProps({
     // Saleor provider only
     ...({ featured: true } as any),
   })
+
+  const algoliaAppId = process.env.ALGOLIA_APP_ID || null;
+  const algoliaSearchOnlyKey = process.env.ALGOLIA_SEARCH_ONLY_KEY || null;
+
   const pagesPromise = commerce.getAllPages({ config, preview })
   const siteInfoPromise = commerce.getSiteInfo({ config, preview })
   const { pages } = await pagesPromise
@@ -26,6 +30,8 @@ export async function getSearchStaticProps({
       products,
       categories,
       brands,
+      algoliaSearchOnlyKey, 
+      algoliaAppId,
     },
     revalidate: 200,
   }

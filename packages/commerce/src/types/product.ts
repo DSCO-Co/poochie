@@ -89,10 +89,19 @@ export interface Product {
    *  The unique identifier for the product.
    */
   id: string
+ /**
+   *  The unique identifier for the product. When arriving from Algolia.
+   */
+  productID?: string
+
   /**
    * The name of the product.
    */
   name: string
+  /**
+   * The name of the product, when arriving from Algolia
+   */
+    productName?: String
   /**
    * Stripped description of the product, single line.
    */

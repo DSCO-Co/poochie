@@ -4,22 +4,25 @@ import {
 } from '@heroicons/react/20/solid'
 import Link from 'next/link'
 
+import { connectPagination } from 'react-instantsearch-dom';
+
 type PaginationProps = {
-  totalItems: number
-  itemsPerPage: number
-  currentPage: number
-  onPageChange: any
-}
+  nbPages: number;
+  currentRefinement: number;
+  refine: (page: number) => void;
+};
+
+
 
 function Pagination({
-  totalItems,
-  itemsPerPage,
-  currentPage,
-  onPageChange,
+  nbPages,
+  currentRefinement,
+  refine,
 }: PaginationProps) {
-  const totalPages = Math.ceil(totalItems / itemsPerPage)
-  const showPrevious = currentPage > 1
-  const showNext = currentPage < totalPages
+
+  const totalPages = nbPages;
+  const showPrevious = currentRefinement > 1;
+  const showNext = currentRefinement < totalPages;
 
   const renderPages = () => {
     const pages: JSX.Element[] = []
@@ -30,14 +33,14 @@ function Pagination({
           href="#"
           onClick={(e) => {
             e.preventDefault()
-            onPageChange(i)
+            refine(i);
           }}
           className={`inline-flex items-center border-t-2 ${
-            i === currentPage
+            i === currentRefinement
               ? 'border-indigo-500 text-indigo-600'
               : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
           } px-4 pt-4 text-sm font-medium`}
-          aria-current={i === currentPage ? 'page' : undefined}
+          aria-current={i === currentRefinement ? 'page' : undefined}
         >
           {i}
         </a>
@@ -53,10 +56,10 @@ function Pagination({
           href="#"
           onClick={(e) => {
             e.preventDefault()
-            if (currentPage > 1) onPageChange(currentPage - 1)
+            if (currentRefinement > 1) refine(currentRefinement - 1);
           }}
           className={`inline-flex items-center border-t-2 pt-4 pr-1 text-sm font-medium ${
-            currentPage > 1
+            currentRefinement > 1
               ? 'text-gray-500 hover:border-gray-300 hover:text-gray-700'
               : 'text-gray-200'
           }`}
@@ -74,10 +77,10 @@ function Pagination({
           href="#"
           onClick={(e) => {
             e.preventDefault()
-            if (currentPage < totalPages) onPageChange(currentPage + 1)
+            if (currentRefinement < totalPages) refine(currentRefinement + 1);
           }}
           className={`inline-flex items-center border-t-2 pt-4 pl-1 text-sm font-medium ${
-            currentPage < totalPages
+            currentRefinement < totalPages
               ? 'text-gray-500 hover:border-gray-300 hover:text-gray-700'
               : 'text-gray-200'
           }`}
@@ -93,4 +96,6 @@ function Pagination({
   )
 }
 
-export default Pagination
+const ConnectedPagination = connectPagination(Pagination);
+export default ConnectedPagination;
+
