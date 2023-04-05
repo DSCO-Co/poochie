@@ -20,7 +20,19 @@ const countItem = (count: number, item: LineItem) => count + item.quantity
 
 const UserNav: React.FC<{
   className?: string
-}> = ({ className }) => {
+  cart?: Boolean
+  wishlist?: Boolean
+  userAvatar?: Boolean
+  mobileMenu?: Boolean
+  size?: 'small' | 'large'
+}> = ({
+  className,
+  cart = false,
+  wishlist = false,
+  userAvatar = false,
+  mobileMenu = false,
+  size = 'small',
+}) => {
   const { data } = useCart()
   const { data: isCustomerLoggedIn } = useCustomer()
   const { closeSidebarIfPresent, openModal, setSidebarView, openSidebar } =
@@ -34,7 +46,7 @@ const UserNav: React.FC<{
   return (
     <nav className={cn(s.root, className)}>
       <ul className={s.list}>
-        {process.env.COMMERCE_CART_ENABLED && (
+        {process.env.COMMERCE_CART_ENABLED && cart && (
           <li className={s.item}>
             <Button
               className={s.item}
@@ -45,23 +57,41 @@ const UserNav: React.FC<{
               }}
               aria-label={`Cart items: ${itemsCount}`}
             >
-              <Bag />
-              {itemsCount > 0 && (
-                <span className={s.bagCount}>{itemsCount}</span>
+              {size === 'small' && (
+                <>
+                  <Bag />
+                  {itemsCount > 0 && (
+                    <span className={s.bagCount}>{itemsCount}</span>
+                  )}
+                </>
+              )}
+
+              {size === 'large' && (
+                <>
+                  <Bag scale={2} />
+                  {itemsCount > 0 && (
+                    <span className={s.bagCountLarge}>{itemsCount}</span>
+                  )}
+                </>
               )}
             </Button>
           </li>
         )}
-        {process.env.COMMERCE_WISHLIST_ENABLED && (
+        {process.env.COMMERCE_WISHLIST_ENABLED && wishlist && (
           <li className={s.item}>
-            <Link href="/wishlist">
-              <button onClick={closeSidebarIfPresent} aria-label="Wishlist">
-                <Heart />
+            <Link className="pb-0 mb-0" href="/wishlist">
+              <button
+                className=" pt-1"
+                onClick={closeSidebarIfPresent}
+                aria-label="Wishlist"
+              >
+                {size === 'small' && <Heart />}
+                {size === 'large' && <Heart scale={2} />}
               </button>
             </Link>
           </li>
         )}
-        {process.env.COMMERCE_CUSTOMERAUTH_ENABLED && (
+        {process.env.COMMERCE_CUSTOMERAUTH_ENABLED && userAvatar && (
           <li className={s.item}>
             <Dropdown>
               <DropdownTrigger>
@@ -70,26 +100,29 @@ const UserNav: React.FC<{
                   className={s.avatarButton}
                   onClick={() => (isCustomerLoggedIn ? null : openModal())}
                 >
-                  <Avatar />
+                  {size === 'small' && <Avatar />}
+                  {size === 'large' && <Avatar scale={2} />}
                 </button>
               </DropdownTrigger>
               <CustomerMenuContent />
             </Dropdown>
           </li>
         )}
-        <li className={s.mobileMenu}>
-          <Button
-            className={s.item}
-            aria-label="Menu"
-            variant="naked"
-            onClick={() => {
-              setSidebarView('MOBILE_MENU_VIEW')
-              openSidebar()
-            }}
-          >
-            <Menu />
-          </Button>
-        </li>
+        {mobileMenu && (
+          <li className={s.mobileMenu}>
+            <Button
+              className={s.item}
+              aria-label="Menu"
+              variant="naked"
+              onClick={() => {
+                setSidebarView('MOBILE_MENU_VIEW')
+                openSidebar()
+              }}
+            >
+              <Menu />
+            </Button>
+          </li>
+        )}
       </ul>
     </nav>
   )

@@ -1,8 +1,8 @@
-const Heart = ({ ...props }) => {
+const Heart = ({scale = 1, ...props }) => {
   return (
     <svg
-      width="24"
-      height="20"
+      width={`${24 * scale}`}
+      height={`${20 * scale}`}
       viewBox="0 0 24 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
