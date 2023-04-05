@@ -39,9 +39,22 @@ const SidebarLayout: FC<ComponentProps> = ({
           </button>
         )}
 
-        <UserNav wishlist={false} userAvatar={false}/>
+        <UserNav mobileMenu={true} />
       </header>
       <div className={s.container}>{children}</div>
+      <div className=" absolute bottom-0 left-0 w-full z-10">
+        <div className="flex justify-center items-center h-24">
+          <div className="w-1/3 border border-black flex justify-center items-center h-full">
+            <UserNav cart={true} size={'large'} />
+          </div>
+          <div className="w-1/3 border-t border-b border-black flex justify-center items-center h-full border-l-0 border-r-0">
+            <UserNav wishlist={true} size={'large'} />
+          </div>
+          <div className="w-1/3 border border-black flex justify-center items-center h-full">
+            <UserNav userAvatar={true} size={'large'} />
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

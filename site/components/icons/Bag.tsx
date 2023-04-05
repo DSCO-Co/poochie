@@ -1,8 +1,8 @@
-const Bag = ({ ...props }) => {
+const Bag = ({ scale = 1, ...props }) => {
   return (
     <svg
-      width="20"
-      height="22"
+      width={`${20 * scale}`}
+      height={`${22 * scale}`}
       viewBox="0 0 20 22"
       fill="none"
       stroke="currentColor"

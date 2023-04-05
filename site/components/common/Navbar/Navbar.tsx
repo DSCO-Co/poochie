@@ -156,7 +156,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
                 </button>
               </div>
             )}
-            <UserNav />
+            <UserNav cart={true} wishlist={true} userAvatar={true} mobileMenu={true} />
           </div>
         </div>
         {/* Desktop search bar */}
