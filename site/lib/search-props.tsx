@@ -9,15 +9,17 @@ export async function getSearchStaticProps({
 }: GetStaticPropsContext) {
   const config = { locale, locales }
   const productsPromise = commerce.getAllProducts({
-    variables: { first: 50},
+    variables: { first: 50 },
     config,
     preview,
     // Saleor provider only
     ...({ featured: true } as any),
   })
 
-  const algoliaAppId = process.env.ALGOLIA_APP_ID || null;
-  const algoliaSearchOnlyKey = process.env.ALGOLIA_SEARCH_ONLY_KEY || null;
+  const algoliaSearchOnlyKey = process.env.ALGOLIA_SEARCH_ONLY_API_KEY
+  const algoliaAppId = process.env.ALGOLIA_APP_ID
+
+  console.log({ algoliaAppId })
 
   const pagesPromise = commerce.getAllPages({ config, preview })
   const siteInfoPromise = commerce.getSiteInfo({ config, preview })
@@ -30,7 +32,7 @@ export async function getSearchStaticProps({
       products,
       categories,
       brands,
-      algoliaSearchOnlyKey, 
+      algoliaSearchOnlyKey,
       algoliaAppId,
     },
     revalidate: 200,
