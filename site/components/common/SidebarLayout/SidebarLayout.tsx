@@ -42,7 +42,7 @@ const SidebarLayout: FC<ComponentProps> = ({
         <UserNav mobileMenu={true} />
       </header>
       <div className={s.container}>{children}</div>
-      <div className=" absolute bottom-0 left-0 w-full z-10">
+      <div className="fixed bottom-0 left-0 w-full z-20 bg-white">
         <div className="flex justify-center items-center h-24">
           <div className="w-1/3 border border-black flex justify-center items-center h-full">
             <UserNav cart={true} size={'large'} />

@@ -7,16 +7,16 @@ interface Props {
   scale?: number
 }
 
-const Avatar: FC<Props> = ({ scale = 1 }) => {
+const Avatar: FC<Props> = ({ scale = 2.5 }) => {
   let ref = useRef() as React.MutableRefObject<HTMLInputElement>
   let { userAvatar } = useUserAvatar()
-  let size = 8 * scale
 
   return (
     <div
       ref={ref}
-      className={`inline-block rounded-full border-2 border-primary hover:border-secondary focus:border-secondary transition-colors ease-linear h-${size} w-${size}`}
-    >
+      style={{ height: `${scale}rem`, width: `${scale}rem` }}
+      className={`inline-block rounded-full border-2 border-primary hover:border-secondary focus:border-secondary transition-colors ease-linear`}
+      >
       <img
         src={userAvatar}
         alt="User Avatar"
