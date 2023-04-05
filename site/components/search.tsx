@@ -13,6 +13,7 @@ import algoliasearch from 'algoliasearch/lite'
 import {
   InstantSearch,
   Configure,
+  SearchBox,
 } from 'react-instantsearch-dom'
 import { ConnectedProducts } from './search/ConnectedProducts'
 
@@ -42,7 +43,7 @@ export default function Search({
             <div>
               <div className="mb-8">
                 <h3 className="text-lg font-medium mb-2">Categories</h3>
-                <ConnectedRefinementList attribute="category" />
+                <ConnectedRefinementList attribute="category"  limit={5}/>
               </div>
               <div>
                 <h3 className="text-lg font-medium mb-2">Brands</h3>
