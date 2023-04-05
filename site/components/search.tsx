@@ -25,6 +25,8 @@ export default function Search({
 
   const searchClient = algoliasearch(algoliaAppId!, algoliaSearchOnlyKey!)
 
+  
+
   return (
     <InstantSearch searchClient={searchClient} indexName="Products">
       <Configure hitsPerPage={12} />
