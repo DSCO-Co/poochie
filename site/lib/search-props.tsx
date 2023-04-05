@@ -19,8 +19,6 @@ export async function getSearchStaticProps({
   const algoliaSearchOnlyKey = process.env.ALGOLIA_SEARCH_ONLY_API_KEY
   const algoliaAppId = process.env.ALGOLIA_APP_ID
 
-  console.log({ algoliaAppId })
-
   const pagesPromise = commerce.getAllPages({ config, preview })
   const siteInfoPromise = commerce.getSiteInfo({ config, preview })
   const { pages } = await pagesPromise

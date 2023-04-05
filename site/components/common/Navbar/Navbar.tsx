@@ -1,10 +1,10 @@
-import { Children, FC, useState } from 'react'
 import type { Category } from '@commerce/types/site'
+import { FreeShippingBanner, Searchbar, UserNav } from '@components/common'
+import { Container, Logo } from '@components/ui'
 import Link from 'next/link'
+import { FC, useState } from 'react'
 import s from './Navbar.module.css'
 import NavbarRoot from './NavbarRoot'
-import { Logo, Container } from '@components/ui'
-import { Searchbar, UserNav, FreeShippingBanner } from '@components/common'
 
 interface Link {
   href: string
@@ -16,9 +16,8 @@ interface NavbarProps {
   links?: Link[]
 }
 
-import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
+import { Fragment } from 'react'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -69,7 +68,7 @@ function DropDownMenu({ children, dropDownLinks, isActive, menuKey, setActiveMen
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 z-10 w-56 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {dropDownLinks.map((dropDownLink) => (
               <Menu.Item key={dropDownLink.name}>
@@ -106,7 +105,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
       {/* Free shipping banner */}
       <FreeShippingBanner />
       {/* Main Navbar piece */}
-      <Container clean className="mx-auto max-w-8xl px-6">
+      <Container clean className="px-6 mx-auto max-w-8xl">
         <div className={s.nav}>
           {/* Logo */}
           <div className="flex items-center flex-1">
@@ -130,20 +129,20 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
                 <Link href={l.href} className={`${s.link} ${activeMenu === l.href ? s.linkActive : ''}`}>
                   {l.label}
                 </Link>
-                
+
               </DropDownMenu>
             ))}
           </nav>
           <div className="flex items-center justify-end flex-1 flex-shrink-[2] space-x-8">
             {process.env.COMMERCE_SEARCH_ENABLED && (
-              <div className="flex justify-center items-center">
+              <div className="flex items-center justify-center">
                 <button
                   onClick={() =>
                     setShowSearchBar((prevShowSearchBar) => !prevShowSearchBar)
                   }
                 >
                   <svg
-                    className="h-6 w-6"
+                    className="w-6 h-6"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
