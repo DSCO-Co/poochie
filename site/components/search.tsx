@@ -1,6 +1,5 @@
 import type { SearchPropsType } from '@lib/search-props'
 
-import { useState } from 'react'
 
 import { Layout } from '@components/common'
 import {
@@ -20,12 +19,9 @@ import { ConnectedProducts } from './search/ConnectedProducts'
 export default function Search({
   categories,
   brands,
-  products,
   algoliaAppId,
   algoliaSearchOnlyKey,
 }: SearchPropsType) {
-  const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 9
 
   const searchClient = algoliasearch(algoliaAppId!, algoliaSearchOnlyKey!)
 
