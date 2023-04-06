@@ -77,10 +77,7 @@ const SubCategoryRefinementList = ({ attribute, parentCategory, categoriesData, 
   const { items, refine } = useRefinementList({ attribute, limit})
 
   const subCategories = categoriesData[parentCategory] || []
-
-  console.log("Subcategories: ", categoriesData[parentCategory]); 
-  console.log("Items:", items); 
-
+  
   return (
     <div className="flex flex-col space-y-2">
       {items

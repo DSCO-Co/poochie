@@ -30,7 +30,7 @@ export default function Search({
     <InstantSearch searchClient={searchClient} indexName="Products">
       
       <Container>
-        <Configure hitsPerPage={12} maxFacetHits={23} />
+        <Configure hitsPerPage={12}  />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-3 mb-20">
           {/* Algolia search bar */}
 
