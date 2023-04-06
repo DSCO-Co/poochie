@@ -8,7 +8,7 @@
 }
 
 .navMenu {
-  @apply hidden px-4 space-x-4 lg:flex justify-center;
+  @apply hidden px-4 space-x-4 lg:flex justify-center items-center;
 }
 
 .link {

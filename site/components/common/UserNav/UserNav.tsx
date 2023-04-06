@@ -101,7 +101,7 @@ const UserNav: React.FC<{
                   onClick={() => (isCustomerLoggedIn ? null : openModal())}
                 >
                   {size === 'small' && <Avatar />}
-                  {size === 'large' && <Avatar scale={2} />}
+                  {size === 'large' && <Avatar scale={4} />}
                 </button>
               </DropdownTrigger>
               <CustomerMenuContent />
