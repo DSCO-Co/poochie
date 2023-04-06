@@ -1,42 +1,53 @@
 import type { ProductsPropsType } from '@lib/products-props'
 
-import type { Product } from '@commerce/types/product'
+import type { Product as CommerceProduct } from '@commerce/types/product'
 
 import { AlgoliaProductCard } from '@components/product'
 import { Skeleton } from '@components/ui'
 
 import rangeMap from '@lib/range-map'
 
-import { connectHits } from '@components/common'
+import { useHits } from 'react-instantsearch-hooks-web'
 
+const ConnectedProducts = () => {
+  const { hits } = useHits()
 
-interface ProductsProps extends ProductsPropsType {
-  hits: any
-}
-
-const ProductsComponent = ({
-  hits, // Receive hits (products) from Algolia via the connector
-}: ProductsProps) => {
+  const algoliaHitToProduct = (hit: any): CommerceProduct => {
+    return {
+      id: hit.objectID,
+      name: hit.productName,
+      description: hit.description,
+      images: hit.images,
+      path: hit.path,
+      slug: hit.slug,
+      price: hit.price,
+      options: hit.options,
+      variants: hit.variants,
+    }
+  }
 
   return (
     <div className="col-span-8 order-3 lg:order-none">
-      { hits ? (
+      {hits ? (
         <div
           className="grid grid-cols-1
         gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {hits.map((product: Product) => (
-            <AlgoliaProductCard
-              key={product.path}
-              className="animated fadeIn"
-              product={product}
-              imgProps={{
-                width: 480,
-                height: 480,
-                alt: product.name,
-              }}
-            />
-          ))}
+          {hits.map((hit: any) => {
+            const product: CommerceProduct = algoliaHitToProduct(hit)
+            return (
+              <AlgoliaProductCard
+                key={product.path}
+                className="animated fadeIn"
+                product={product}
+                imgProps={{
+                  width: 480,
+                  height: 480,
+                  alt: product.name,
+                }}
+              />
+            )
+          })}
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -50,6 +61,4 @@ const ProductsComponent = ({
     </div>
   )
 }
-
-const ConnectedProducts = connectHits(ProductsComponent)
 export default ConnectedProducts

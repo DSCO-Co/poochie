@@ -14,7 +14,7 @@ import {
   InstantSearch,
   Configure,
   SearchBox,
-} from 'react-instantsearch-dom'
+} from 'react-instantsearch-hooks-web'
 import { ConnectedProducts } from './search/ConnectedProducts'
 
 export default function Search({
@@ -28,8 +28,9 @@ export default function Search({
 
   return (
     <InstantSearch searchClient={searchClient} indexName="Products">
-      <Configure hitsPerPage={12} />
+      
       <Container>
+        <Configure hitsPerPage={12} />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-3 mb-20">
           {/* Algolia search bar */}
 
@@ -41,11 +42,11 @@ export default function Search({
             <div>
               <div className="mb-8">
                 <h3 className="text-lg font-medium mb-2">Categories</h3>
-                <ConnectedRefinementList attribute="category"  limit={5}/>
+                <ConnectedRefinementList attribute="category"  limit={15}/>
               </div>
               <div>
                 <h3 className="text-lg font-medium mb-2">Brands</h3>
-                <ConnectedRefinementList attribute="brandName" />
+                <ConnectedRefinementList attribute="brandName" limit={15} />
               </div>
             </div>
           </div>
@@ -59,7 +60,6 @@ export default function Search({
             <div className="mb-6">
               <h3 className="text-lg font-medium mb-2">Sort by</h3>
               <ConnectedSortBy
-                defaultRefinement="Products"
                 items={[
                   { value: 'Products', label: 'Trending' },
                   { value: 'Products_latest', label: 'Latest Arrivals' },

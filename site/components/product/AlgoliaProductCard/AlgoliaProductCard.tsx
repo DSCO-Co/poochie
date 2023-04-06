@@ -88,7 +88,7 @@ const ProductCard: FC<Props> = ({
       <div className=" h-full relative group bg-white text-sm flex flex-col">
         <div className="p-1 flex-grow">
           <Image
-            alt={product.productName?.toString() || 'Product Image'}
+            alt={product.name?.toString() || 'Product Image'}
             className="rounded-lg object-cover object-center"
             src={product.images[0]?.url || placeholderImg}
             height={540}
@@ -99,7 +99,7 @@ const ProductCard: FC<Props> = ({
         </div>
         <div className="bg-white rounded-b-lg py-3">
           <h3 className="text-center font-medium text-gray-900">
-            {product.productName?.toString()}
+            {product.name?.toString()}
           </h3>
           <div className="text-center font-bold">{`$${product.price}`}</div>
         </div>

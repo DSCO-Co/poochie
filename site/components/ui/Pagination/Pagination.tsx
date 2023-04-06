@@ -2,31 +2,20 @@ import {
   ArrowLongLeftIcon,
   ArrowLongRightIcon,
 } from '@heroicons/react/20/solid'
-import Link from 'next/link'
 
-import { connectPagination } from 'react-instantsearch-dom';
 
-type PaginationProps = {
-  nbPages: number;
-  currentRefinement: number;
-  refine: (page: number) => void;
-};
+import { usePagination } from 'react-instantsearch-hooks-web';
 
 
 
-function Pagination({
-  nbPages,
-  currentRefinement,
-  refine,
-}: PaginationProps) {
+function ConnectedPagination() {
 
-  const totalPages = nbPages;
-  const showPrevious = currentRefinement > 1;
-  const showNext = currentRefinement < totalPages;
+
+  const { nbPages, currentRefinement, refine } = usePagination();
 
   const renderPages = () => {
     const pages: JSX.Element[] = []
-    for (let i = 1; i <= totalPages; i++) {
+    for (let i = 0; i < nbPages; i++) {
       pages.push(
         <a
           key={i}
@@ -42,7 +31,7 @@ function Pagination({
           } px-4 pt-4 text-sm font-medium`}
           aria-current={i === currentRefinement ? 'page' : undefined}
         >
-          {i}
+          {i + 1}
         </a>
       )
     }
@@ -77,10 +66,10 @@ function Pagination({
           href="#"
           onClick={(e) => {
             e.preventDefault()
-            if (currentRefinement < totalPages) refine(currentRefinement + 1);
+            if (currentRefinement < nbPages) refine(currentRefinement + 1);
           }}
           className={`inline-flex items-center border-t-2 pt-4 pl-1 text-sm font-medium ${
-            currentRefinement < totalPages
+            currentRefinement < nbPages
               ? 'text-gray-500 hover:border-gray-300 hover:text-gray-700'
               : 'text-gray-200'
           }`}
@@ -96,6 +85,5 @@ function Pagination({
   )
 }
 
-const ConnectedPagination = connectPagination(Pagination);
 export default ConnectedPagination;
 
