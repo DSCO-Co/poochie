@@ -14,7 +14,7 @@ const ConnectedProducts = () => {
 
   const algoliaHitToProduct = (hit: any): CommerceProduct => {
     return {
-      id: hit.objectID,
+      id: hit.ProductID,
       name: hit.productName,
       description: hit.description,
       images: hit.images,
@@ -26,6 +26,7 @@ const ConnectedProducts = () => {
     }
   }
 
+
   return (
     <div className="col-span-8 order-3 lg:order-none">
       {hits ? (
@@ -35,6 +36,7 @@ const ConnectedProducts = () => {
         >
           {hits.map((hit: any) => {
             const product: CommerceProduct = algoliaHitToProduct(hit)
+            console.log(product.path); 
             return (
               <AlgoliaProductCard
                 key={product.path}

@@ -30,7 +30,7 @@ export default function Search({
     <InstantSearch searchClient={searchClient} indexName="Products">
       
       <Container>
-        <Configure hitsPerPage={12} />
+        <Configure hitsPerPage={12} maxFacetHits={23} />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-3 mb-20">
           {/* Algolia search bar */}
 
@@ -42,11 +42,11 @@ export default function Search({
             <div>
               <div className="mb-8">
                 <h3 className="text-lg font-medium mb-2">Categories</h3>
-                <ConnectedRefinementList attribute="category"  limit={15}/>
+                <ConnectedRefinementList attribute="category"  limit={23}/>
               </div>
               <div>
                 <h3 className="text-lg font-medium mb-2">Brands</h3>
-                <ConnectedRefinementList attribute="brandName" limit={15} />
+                <ConnectedRefinementList attribute="brandName" limit={23} />
               </div>
             </div>
           </div>

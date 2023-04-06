@@ -61,6 +61,7 @@ const CustomRefinementList = ({ attribute, limit }) => {
                 attribute="subCategory"
                 parentCategory={item.label}
                 categoriesData={categoriesData}
+                limit={limit}
               />
             </div>
           )}
@@ -71,8 +72,9 @@ const CustomRefinementList = ({ attribute, limit }) => {
 }
 
 const ConnectedRefinementList = CustomRefinementList
-const SubCategoryRefinementList = ({ attribute, parentCategory, categoriesData }) => {
-  const { items, refine } = useRefinementList({ attribute })
+const SubCategoryRefinementList = ({ attribute, parentCategory, categoriesData, limit }) => {
+  
+  const { items, refine } = useRefinementList({ attribute, limit})
 
   const subCategories = categoriesData[parentCategory] || []
 

@@ -13,6 +13,7 @@ export const handler: MutationHook<AddItemHook> = {
     method: 'POST',
   },
   async fetcher({ input: item, options, fetch }) {
+    
     if (
       item.quantity &&
       (!Number.isInteger(item.quantity) || item.quantity! < 1)
@@ -35,6 +36,7 @@ export const handler: MutationHook<AddItemHook> = {
       const { mutate } = useCart()
       return useCallback(
         async function addItem(input) {
+          
           const data = await fetch({ input })
           await mutate(data, false)
           return data

@@ -59,10 +59,8 @@ const ProductCard: FC<Props> = ({
   const addToCart = async () => {
     setLoading(true)
     setError(null)
-
+    
     try {
-
-      console.log("Add Item, product.id: ", product.id, item ? "item.id: ": "product.variants[0]?.id: ", product.variants[0]?.id)
       await addItem({
         productId: String(product.id),
         variantId: String(item ? item.id : product.variants[0]?.id),

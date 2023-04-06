@@ -33,6 +33,7 @@ const WishlistButton: FC<Props> = ({
     (item) => item.productId === productId && item.variantId === variant.id
   )
 
+
   const handleWishlistChange = async (e: any) => {
     e.preventDefault()
 
@@ -50,6 +51,7 @@ const WishlistButton: FC<Props> = ({
       if (itemInWishlist) {
         await removeItem({ id: itemInWishlist.id! })
       } else {
+
         await addItem({
           productId,
           variantId: variant?.id!,
