@@ -54,10 +54,7 @@ export default function Search({
 
           {/* Products */}
 
-          <ConnectedProducts
-            categories={categories}
-            brands={brands}
-          />
+          <ConnectedProducts/>
 
           {/* Sort */}
           <div className="sticky top-0 lg:top-32 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-2 lg:order-none">
