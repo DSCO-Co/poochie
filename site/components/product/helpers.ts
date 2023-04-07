@@ -1,4 +1,4 @@
-import type { Product } from '@commerce/types/product'
+import type { Product, ProductVariant } from '@commerce/types/product'
 export type SelectedOptions = Record<string, string | null>
 import { Dispatch, SetStateAction } from 'react'
 
@@ -23,10 +23,27 @@ export function selectDefaultOptionFromProduct(
   updater: Dispatch<SetStateAction<SelectedOptions>>
 ) {
   // Selects the default option
-  product.variants[0]?.options?.forEach((v) => {
-    updater((choices) => ({
-      ...choices,
-      [v.displayName.toLowerCase()]: v.values[0].label.toLowerCase(),
-    }))
-  })
+  // @ts-ignore
+  // const opt1 = product.variants.find(v => v.isPurchasable)
+  // product.variants[0]?.options?.forEach((v) => {
+  //   updater((choices) => ({
+  //     ...choices,
+  //     [v.displayName.toLowerCase()]: v.values[0].label.toLowerCase(),
+  //   }))
+  // })
+  // console.log(product)
+}
+
+const calculateAvailableOptions = (variants: ProductVariant[]) => {
+  const availableOptions = {};
+
+  for (const variant of variants) {
+    // @ts-ignore
+    if (variant.isPurchasable) {
+      
+      for (const option of variant.options) {
+
+      }
+    }
+  }
 }

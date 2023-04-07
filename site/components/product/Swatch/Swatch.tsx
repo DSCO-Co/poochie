@@ -8,6 +8,7 @@ interface SwatchProps {
   active?: boolean
   children?: any
   className?: string
+  inStock?: boolean
   variant?: 'size' | 'color' | string
   color?: string
   label?: string | null
@@ -17,6 +18,7 @@ const Swatch: React.FC<Omit<ButtonProps, 'variant'> & SwatchProps> = ({
   active,
   className,
   color = '',
+  inStock = true,
   label = null,
   variant = 'size',
   ...props
@@ -36,7 +38,8 @@ const Swatch: React.FC<Omit<ButtonProps, 'variant'> & SwatchProps> = ({
       [s.dark]: color ? isDark(color) : false,
       [s.textLabel]: !color && label && label.length > 3,
     },
-    className
+    className,
+    inStock ? "" : "pointer-events-none",
   )
 
   return (
@@ -46,7 +49,8 @@ const Swatch: React.FC<Omit<ButtonProps, 'variant'> & SwatchProps> = ({
       aria-label={variant && label ? `${variant} ${label}` : 'Variant Swatch'}
       className={swatchClassName}
       {...(label && color && { title: label })}
-      style={color ? { backgroundColor: color } : {}}
+      // style={color ? { backgroundColor: color } : {}}
+      style={inStock ? {} : { backgroundColor: "rgba(0,0,0,0.1)"}}
       {...props}
     >
       {color && active && (

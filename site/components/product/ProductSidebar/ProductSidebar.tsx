@@ -68,6 +68,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
       />
       <ProductOptions
         options={product.options}
+        variants={product.variants}
         selectedOptions={selectedOptions}
         setSelectedOptions={setSelectedOptions}
       />
