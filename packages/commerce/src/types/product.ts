@@ -82,6 +82,10 @@ export interface ProductVariant {
    * The image associated with the variant.
    */
   image?: Image
+  /**
+   * Indicates if the variant is in stock.
+   */
+  isPurchasable: boolean
 }
 
 export interface Product {

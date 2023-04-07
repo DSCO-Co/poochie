@@ -3,4 +3,5 @@
   justify-center items-center font-medium fixed bottom-0
   w-full z-30 transition-all duration-300 ease-out
   md:flex md:text-left;
+  box-shadow: 0px -1px 10px rgba(113, 113, 113, 0.3);
 }
