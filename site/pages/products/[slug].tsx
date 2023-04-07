@@ -32,6 +32,9 @@ export async function getStaticProps({
     preview,
   })
 
+  const algoliaSearchOnlyKey = process.env.ALGOLIA_SEARCH_ONLY_API_KEY
+  const algoliaAppId = process.env.ALGOLIA_APP_ID
+
   const { pages } = await pagesPromise
   const { categories } = await siteInfoPromise
   const { product } = await productPromise
@@ -56,6 +59,8 @@ export async function getStaticProps({
     revalidate: 200,
   }
 }
+
+
 
 export async function getStaticPaths({ locales }: GetStaticPathsContext) {
   const { products } = await commerce.getAllProductPaths()

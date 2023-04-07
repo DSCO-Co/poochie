@@ -1,12 +1,10 @@
 import type { Product } from '@commerce/types/product'
 import WishlistButton from '@components/wishlist/WishlistButton'
 import { Button } from '@components/ui'
-import usePrice from '@framework/product/use-price'
 import cn from 'clsx'
 import Image, { ImageProps } from 'next/image'
 import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
-import ProductTag from '../ProductTag'
 import s from './AlgoliaProductCard.module.css'
 import { useAddItem } from '@framework/cart'
 
@@ -16,26 +14,19 @@ import {
   selectDefaultOptionFromProduct,
 } from '../helpers'
 
-interface Props {
-  className?: string
-  product: Product
-  noNameTag?: boolean
-  imgProps?: Omit<ImageProps, 'src' | 'layout' | 'placeholder' | 'blurDataURL'>
-}
+// interface Props {
+//   className?: string
+//   product: Product
+//   imgProps?: Omit<ImageProps, 'src' | 'layout' | 'placeholder' | 'blurDataURL'>
+// }
 
 const placeholderImg = '/product-img-placeholder.svg'
 
-const ProductCard: FC<Props> = ({
+const ProductCard = ({
   product,
   imgProps,
   className,
-  noNameTag = false,
 }) => {
-  const { price } = usePrice({
-    amount: product.price.value,
-    baseAmount: product.price.retailPrice,
-    currencyCode: product.price.currencyCode!,
-  })
 
   const rootClassName = cn(s.root, className)
 
@@ -55,12 +46,7 @@ const ProductCard: FC<Props> = ({
     setError(null)
 
     try {
-      console.log(
-        'Add Item, product.id: ',
-        product.id,
-        item ? 'item.id: ' : 'product.variants[0]?.id: ',
-        product.variants[0]?.id
-      )
+      
       await addItem({
         productId: String(product.id),
         variantId: String(item ? item.id : product.variants[0]?.id),
@@ -88,7 +74,7 @@ const ProductCard: FC<Props> = ({
       <div className=" h-full relative group bg-white text-sm flex flex-col">
         <div className="p-1 flex-grow">
           <Image
-            alt={product.productName?.toString() || 'Product Image'}
+            alt={product.name?.toString() || 'Product Image'}
             className="rounded-lg object-cover object-center"
             src={product.images[0]?.url || placeholderImg}
             height={540}
@@ -99,15 +85,15 @@ const ProductCard: FC<Props> = ({
         </div>
         <div className="bg-white rounded-b-lg py-3">
           <h3 className="text-center font-medium text-gray-900">
-            {product.productName?.toString()}
+            {product.name?.toString()}
           </h3>
           <div className="text-center font-bold">{`$${product.price}`}</div>
         </div>
-        {/* <WishlistButton
+        <WishlistButton
               className="absolute top-2 right-2"
-              productId={product.productID?.toString() || "missing id"}
+              productId={product.id?.toString() || "missing id"}
               variant={product.variants[0]}
-            /> */}
+            />
         <div className="absolute top-2 left-2">
           <div>
             <div
@@ -124,7 +110,7 @@ const ProductCard: FC<Props> = ({
           </div>
           {/* <div className="bg-orange-500 absolute top-1 left-1 p-1" /> */}
         </div>
-        {/* <Button
+        <Button
               aria-label="Add to Cart"
               className="opacity-0 group-hover:opacity-100 absolute bottom-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-1 py-0.5 bg-black text-white font-semibold rounded-md whitespace-nowrap"
               onClick={(e) => {
@@ -138,7 +124,7 @@ const ProductCard: FC<Props> = ({
               {item?.availableForSale === false
                 ? 'Not Available'
                 : 'Add To Cart'}
-            </Button> */}
+            </Button>
       </div>
     </Link>
   )

@@ -1,4 +1,4 @@
-import { connectRefinementList } from 'react-instantsearch-dom'
+import { useRefinementList } from 'react-instantsearch-hooks-web'
 import React, { useState } from 'react'
 
 const categoriesData = {
@@ -26,9 +26,10 @@ const categoriesData = {
     'Chewy Vuiton',
   ],
 }
-
-const CustomRefinementList = ({ items, refine, attribute }) => {
+const CustomRefinementList = ({ attribute, limit }) => {
   const [dropdown, setDropdown] = useState(null)
+
+  const { items, refine } = useRefinementList({ attribute, limit })
 
   const handleDropdownClick = (index) => {
     setDropdown(dropdown === index ? null : index)
@@ -60,6 +61,7 @@ const CustomRefinementList = ({ items, refine, attribute }) => {
                 attribute="subCategory"
                 parentCategory={item.label}
                 categoriesData={categoriesData}
+                limit={limit}
               />
             </div>
           )}
@@ -69,14 +71,13 @@ const CustomRefinementList = ({ items, refine, attribute }) => {
   )
 }
 
-const ConnectedRefinementList = connectRefinementList(CustomRefinementList)
+const ConnectedRefinementList = CustomRefinementList
+const SubCategoryRefinementList = ({ attribute, parentCategory, categoriesData, limit }) => {
+  
+  const { items, refine } = useRefinementList({ attribute, limit})
 
-const SubCategoryRefinementList = ({ items, refine, parentCategory, categoriesData }) => {
   const subCategories = categoriesData[parentCategory] || []
-
-  console.log("Subcategories: ", categoriesData[parentCategory]); 
-  console.log("Items:", items); 
-
+  
   return (
     <div className="flex flex-col space-y-2">
       {items
@@ -101,8 +102,6 @@ const SubCategoryRefinementList = ({ items, refine, parentCategory, categoriesDa
   )
 }
 
-const ConnectedSubCategoryRefinementList = connectRefinementList(
-  SubCategoryRefinementList
-)
+const ConnectedSubCategoryRefinementList = SubCategoryRefinementList
 
 export default ConnectedRefinementList

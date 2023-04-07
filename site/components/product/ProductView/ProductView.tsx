@@ -1,19 +1,47 @@
 import cn from 'clsx'
 import Image from 'next/image'
 import s from './ProductView.module.css'
-import { FC } from 'react'
+import { FC, useState, useEffect } from 'react'
 import type { Product } from '@commerce/types/product'
 import { WishlistButton } from '@components/wishlist'
-import { ProductSlider, ProductCard } from '@components/product'
+import { ProductSlider, AlgoliaProductCard} from '@components/product'
 import { Container, Text } from '@components/ui'
 import { SEO } from '@components/common'
 import ProductSidebar from '../ProductSidebar'
+import algoliasearch from 'algoliasearch/lite'
+
 interface ProductViewProps {
   product: Product
   relatedProducts: Product[]
 }
 
-const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
+const searchClient = algoliasearch(process.env.NEXT_PUBLIC_ALGOLIA_APP_ID!, process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY!)
+const index = searchClient.initIndex('Products')
+
+const ProductView: FC<ProductViewProps> = ({ product }) => {
+  const [algoliaRelatedProducts, setAlgoliaRelatedProducts] = useState<
+    Product[]
+  >([])
+
+  useEffect(() => {
+    async function fetchRelatedProducts() {
+      try {
+
+        const keywords = product.name.split(" ")
+        const { hits } = await index.search<Product>(keywords[0], {
+          hitsPerPage: 4,
+        })
+        const relatedProducts = hits.filter(
+          (hit) => hit.objectID !== product.id
+        )
+        setAlgoliaRelatedProducts(relatedProducts)
+      } catch (error) {
+        console.error('Error fetching related products from Algolia:', error)
+      }
+    }
+
+    fetchRelatedProducts()
+  }, [product])
 
   return (
     <>
@@ -56,13 +84,11 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
         <section className="py-12 px-6 mb-10">
           <Text variant="sectionHeading">Related Products</Text>
           <div className={s.relatedProductsGrid}>
-            {relatedProducts.map((p) => (
+            {algoliaRelatedProducts.map((p) => (
               <div key={p.path} className="bg-accent-0 border border-accent-2">
-                <ProductCard
-                  noNameTag
+                <AlgoliaProductCard
                   product={p}
                   key={p.path}
-                  variant="simple-stylized"
                   className="animated fadeIn"
                   imgProps={{
                     alt: p.name,
