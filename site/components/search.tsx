@@ -22,12 +22,12 @@ export default function Search({
   algoliaSearchOnlyKey,
 }: SearchPropsType) {
 
-  const searchClient = algoliasearch(algoliaAppId!, algoliaSearchOnlyKey!)
+  // const searchClient = algoliasearch(algoliaAppId!, algoliaSearchOnlyKey!)
 
   
 
   return (
-    <InstantSearch searchClient={searchClient} indexName="Products">
+    // <InstantSearch searchClient={searchClient} indexName="Products">
       
       <Container>
         <Configure hitsPerPage={12}  />
@@ -76,7 +76,7 @@ export default function Search({
 
         <ConnectedPagination />
       </Container>
-    </InstantSearch>
+    // </InstantSearch>
   )
 }
 

@@ -36,7 +36,7 @@ const ConnectedProducts = () => {
         >
           {hits.map((hit: any) => {
             const product: CommerceProduct = algoliaHitToProduct(hit)
-            console.log(product.path); 
+
             return (
               <AlgoliaProductCard
                 key={product.path}
