@@ -1,10 +1,10 @@
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swipe from "react-easy-swipe";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
-export function HeroCarousel({ slides }) {
+const HeroCarousel = ({ slides, useTimer = false }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
 
     const handleNextSlide = () => {
@@ -16,6 +16,22 @@ export function HeroCarousel({ slides }) {
         let newSlide = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
         setCurrentSlide(newSlide);
     };
+
+
+
+    useEffect(() => {
+        if (useTimer) {
+            const timer = setInterval(() => {
+                setCurrentSlide((currentSlide) => {
+                    const nextSlide = (currentSlide + 1) % slides.length;
+                    return nextSlide;
+                });
+            }, 1500);
+            return () => {
+                clearInterval(timer);
+            };
+        }
+    }, [useTimer]);
 
     return (
         <div className="relative">
@@ -86,3 +102,4 @@ export function HeroCarousel({ slides }) {
     );
 }
 
+export default HeroCarousel;
