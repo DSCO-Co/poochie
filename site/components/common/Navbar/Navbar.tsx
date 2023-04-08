@@ -68,7 +68,7 @@ function DropDownMenu({ children, dropDownLinks, isActive, menuKey, setActiveMen
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 w-56 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 z-10 w-56 origin-top-right rounded-md shadow-lg bg-primary ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {dropDownLinks.map((dropDownLink) => (
               <Menu.Item key={dropDownLink.name}>
@@ -134,7 +134,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
             ))}
           </nav>
           <div className="flex items-center justify-end flex-1 flex-shrink-[2] space-x-8">
-            {process.env.COMMERCE_SEARCH_ENABLED && (
+            {/* {process.env.COMMERCE_SEARCH_ENABLED && (
               <div className="flex items-center justify-center">
                 <button
                   onClick={() =>
@@ -154,7 +154,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
                   </svg>
                 </button>
               </div>
-            )}
+            )} */}
             <UserNav cart={true} wishlist={true} userAvatar={true} mobileMenu={true} />
           </div>
         </div>
