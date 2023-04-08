@@ -23,7 +23,7 @@ export function HeroCarousel({ slides }) {
                 onClick={handlePrevSlide}
                 className="absolute left-0 z-20 m-auto text-5xl text-gray-400 cursor-pointer inset-y-1/2"
             />
-            <div className="w-full h-[80vh] flex overflow-hidden relative m-auto">
+            <div className="w-full min-h-[50vh] sm:min-h-[70vh] flex overflow-hidden relative m-auto">
                 <Swipe
                     onSwipeLeft={handleNextSlide}
                     onSwipeRight={handlePrevSlide}
@@ -42,11 +42,11 @@ export function HeroCarousel({ slides }) {
                                             alt={slide.alt}
                                             width={1658}
                                             height={1400}
-                                            className="w-full animate-fadeIn min-h-[70vh] object-cover object-center"
+                                            className="w-full animate-fadeIn min-h-[50vh] sm:min-h-[70vh] object-cover object-center"
                                         />
                                     </div>
                                     <div className="relative flex flex-col items-center max-w-4xl mx-auto text-center">
-                                        <h2 className="text-2xl tracking-widest text-white font-extralight sm:text-8xl">{slide.title}</h2>
+                                        <h2 className="pt-20 tracking-widest text-white text-8xl sm:pt-0 font-extralight sm:text-8xl">{slide.title}</h2>
                                         <p className="mt-3 text-xl text-white">{slide.subtitle}</p>
                                         <a
                                             href="#"

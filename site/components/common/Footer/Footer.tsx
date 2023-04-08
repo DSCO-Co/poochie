@@ -1,5 +1,6 @@
 import type { Page } from '@commerce/types/page'
 import type { Category } from '@commerce/types/site'
+import { Logo } from '@components/ui'
 import getSlug from '@lib/get-slug'
 import cn from 'clsx'
 import Link from 'next/link'
@@ -128,13 +129,9 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
         Footer
       </h2>
       <div className="px-6 pt-16 pb-8 mx-auto max-w-7xl lg:px-8">
-        <div className="xl:grid xl:grid-cols-4 xl:gap-8">
+        <div className="sm:grid sm:grid-cols-4 sm:gap-8">
           <Link href="/" className="contents">
-            <img
-              className="h-7"
-              src="/favicon.ico" //./site/public/favicon.ico
-              alt="Pup Co."
-            />
+            <Logo color={"#fff"} variant="insignia" />
           </Link>
           <div className="md:grid md:grid-cols-2 md:gap-8">
             <div>
@@ -147,7 +144,7 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
                     <li key={page.id}>
                       <a
                         href={`/${page.slug}`}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                        className="text-sm leading-6 text-gray-400 hover:text-gray-200"
                       >
                         {' '}
                         {page.name}{' '}
@@ -160,7 +157,7 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
           </div>
 
           <div className="mt-10 md:mt-0">
-            <h3 className="text-sm font-semibold leading-6 text-gray-900">
+            <h3 className="text-sm font-semibold leading-6 text-gray-100">
               Company
             </h3>
             {pages?.map((page) => (
@@ -169,7 +166,7 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
                   <li key={page.id}>
                     <a
                       href={`/${getSlug(page.url!)}`}
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                      className="text-sm leading-6 text-gray-400 hover:text-gray-200"
                     >
                       {' '}
                       {page.name}{' '}
@@ -180,7 +177,7 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
             ))}
           </div>
 
-          <div className="md:grid md:grid-cols-2 md:gap-8">
+          <div className="xs:grid xs:grid-cols-2 xs:gap-8">
             <div className="mt-10 md:mt-0">
               <h3 className="text-sm font-semibold leading-6 text-gray-100">
                 Stay Connected
@@ -191,7 +188,7 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
                     <li>
                       <a
                         href={`/${getSlug(page.href)}`}
-                        className="text-sm leading-6 text-gray-300 hover:text-gray-100"
+                        className="text-sm leading-6 text-gray-400 hover:text-gray-100"
                       >
                         {' '}
                         {page.name}{' '}
@@ -235,7 +232,7 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
               </button>
             </div>
           </form>
-        </div> */}
+        </div> */}0
         <div className="pt-8 mt-8 border-t border-gray-900/10 md:flex md:items-center md:justify-between">
           <div className="flex space-x-6 md:order-2">
             {navigation.social.map((item) => (
