@@ -6,7 +6,7 @@ export const useUserAvatar = (name = 'userAvatar') => {
 
   useEffect(() => {
     const storedAvatar = localStorage.getItem(name)
-    if (storedAvatar && typeof storedAvatar === 'string' && storedAvatar.endsWith('.png')) {
+    if (storedAvatar && storedAvatar.endsWith('.png')) {
       // Get bg from localStorage and push it to the context.
       setUserAvatar(storedAvatar)
     }
