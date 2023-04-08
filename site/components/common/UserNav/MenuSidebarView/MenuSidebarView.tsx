@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import Link from 'next/link'
-import s from './MenuSidebarView.module.css'
-import { useUI } from '@components/ui/context'
 import SidebarLayout from '@components/common/SidebarLayout'
+import { useUI } from '@components/ui/context'
+import Link from 'next/link'
+import React, { useState } from 'react'
+import s from './MenuSidebarView.module.css'
 import type { Link as LinkProps } from './index'
 
 export default function MenuSidebarView({
@@ -17,7 +17,7 @@ export default function MenuSidebarView({
     setExpandedLink((current) => (current === href ? null : href))
   }
   console.log(links);
-  
+
 
   return (
     <SidebarLayout handleClose={() => closeSidebar()}>
@@ -38,9 +38,8 @@ export default function MenuSidebarView({
                   <Link href={l.href} onClick={() => closeSidebar()} className='ml-2' >{l.label}</Link>
                   {l.subLinks.length > 0 && (
                     <span
-                      className={`ml-auto mr-2 inline-block transition-transform duration-300 ${
-                        expandedLink === l.href ? 'transform rotate-180' : ''
-                      }`}
+                      className={`ml-auto mr-2 inline-block transition-transform duration-300 ${expandedLink === l.href ? 'transform rotate-180' : ''
+                        }`}
                     >
                       ▼
                     </span>
