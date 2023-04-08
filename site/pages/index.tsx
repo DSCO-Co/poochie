@@ -4,9 +4,9 @@ import { HeroCarousel } from '@components/ui/HeroCarousel';
 import commerce from '@lib/api/commerce';
 import Image from 'next/image';
 // import HomeAllProductsGrid from '@components/common/HomeAllProductsGrid'
-import JumpingJackets from '@assets/Heroes/Jumping-Jackets-Background.jpg';
-import SweetSweaters from '@assets/Heroes/Sweet-Sweaters-Background.jpg';
-import TotallyToys from '@assets/Heroes/Totally-Toys-Background.jpg';
+import JumpingJackets from '@assets/heroes/Jumping-Jackets-Background.jpg';
+import SweetSweaters from '@assets/heroes/Sweet-Sweaters-Background.jpg';
+import TotallyToys from '@assets/heroes/Totally-Toys-Background.jpg';
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 export async function getStaticProps({
   preview,
