@@ -82,7 +82,7 @@ const ProductCard: FC<Props> = ({
   return (
     <Link
       href={`${product.path}`}
-      className={rootClassName}
+      className={`${rootClassName} rounded-xl`}
       aria-label={product.name}
     >
       {variant === 'slim' && (
@@ -176,11 +176,11 @@ const ProductCard: FC<Props> = ({
       )}
       {variant === 'simple-stylized' && (
         <>
-          <div className="relative flex flex-col h-full text-sm bg-secondary-2 group">
+          <div className="relative flex flex-col h-full text-sm rounded-xl bg-secondary-2 group">
             <div className="flex-grow p-1">
               <Image
                 alt={product.name || 'Product Image'}
-                className="object-cover object-center rounded-lg"
+                className="object-cover object-center rounded-lg aspect-square"
                 src={product.images[0]?.url || placeholderImg}
                 height={500}
                 width={500}

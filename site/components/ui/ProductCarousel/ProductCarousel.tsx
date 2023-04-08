@@ -52,26 +52,26 @@ const ProductCarousel: React.FC<CarouselProps> = ({ products }) => {
 
   return visibleCards ? (
     <>
-      <div className="flex items-center justify-center mt-2 mb-2 md:my-20">
-        <div className="flex-grow inline-block h-1 max-w-xs mx-5 bg-black rounded-full"></div>
+      <div className="flex items-center justify-center mt-2 mb-2 align-top md:my-20">
+        <div className="flex-grow inline-block h-1 max-w-xs mx-5 bg-black rounded-lg"></div>
         <h2 className="mx-5 text-2xl font-bold tracking-wider uppercase">
           Top Sellers
         </h2>
-        <div className="flex-grow inline-block h-1 max-w-xs mx-5 bg-black rounded-full"></div>
+        <div className="flex-grow inline-block h-1 max-w-xs mx-5 bg-black rounded-lg"></div>
       </div>
       <div className="relative">
         <button
           onClick={slideLeft}
           className="absolute z-10 px-4 py-2 text-5xl text-black transform -translate-y-1/2 bg-transparent left-5 top-1/2"
         >
-          ‹
+          {"‹"}
         </button>
         <div
           ref={sliderRef}
           className="flex mx-auto overflow-hidden transition-transform duration-500 ease-in"
         >
           <div className="relative p-4 bg-primary">
-            <div className="flex items-center justify-center w-full mx-4 space-x-2 max-h-100 md:space-x-4">
+            <div className="flex justify-center w-full mx-4 space-x-2 align-top max-h-100 md:space-x-4">
               {products
                 .slice(currentSlide, currentSlide + visibleCards)
                 .concat(
@@ -103,7 +103,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ products }) => {
         </div>
         <button
           onClick={slideRight}
-          className="absolute z-10 px-4 py-2 text-5xl text-black transform -translate-y-1/2 bg-transparent right-5 top-1/2"
+          className="absolute z-10 px-4 py-2 text-5xl text-black transform -translate-y-1/2 right-5 top-1/2"
         >
           ›
         </button>

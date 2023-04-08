@@ -242,7 +242,7 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-400 hover:text-gray-500"
+                className="text-gray-300 hover:text-gray-500"
               >
                 <span className="sr-only">{item.name}</span>
                 <item.icon className="w-6 h-6" aria-hidden="true" />
@@ -250,7 +250,7 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
             ))}
           </div>
           <p className="mt-8 text-xs leading-5 text-gray-500 md:order-1 md:mt-0">
-            &copy; 2023 Pup Co., Inc. All rights reserved.
+            &copy; 2023 Poochie Co. All rights reserved.
           </p>
         </div>
       </div>

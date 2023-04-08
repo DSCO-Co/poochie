@@ -649,7 +649,9 @@ importers:
       prettier: ^2.5.1
       react: ^18.2.0
       react-dom: ^18.2.0
+      react-easy-swipe: ^0.0.23
       react-fast-marquee: ^1.3.1
+      react-icons: ^4.8.0
       react-instantsearch-hooks-web: ^6.42.1
       react-merge-refs: ^2.0.1
       react-use-measure: ^2.1.1
@@ -679,7 +681,9 @@ importers:
       postcss-nesting: 10.1.10_postcss@8.4.16
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-easy-swipe: 0.0.23
       react-fast-marquee: 1.3.5_biqbaboplfbrettd7655fr4n2y
+      react-icons: 4.8.0_react@18.2.0
       react-instantsearch-hooks-web: 6.42.1_hat5hgb73khbq5sjh6uehchiaa
       react-merge-refs: 2.0.1
       react-use-measure: 2.1.1_biqbaboplfbrettd7655fr4n2y
@@ -9101,6 +9105,13 @@ packages:
       react: 18.2.0
       scheduler: 0.23.0
 
+  /react-easy-swipe/0.0.23:
+    resolution: {integrity: sha512-bOSwpZQVPbckL3aN2HdcvYD0j+mgAgISS+AGHmdhpPoNh3Mh3l3NfNQ0mVHuWGyBBvH+VIrU/6GbS1XoST9Pxw==}
+    engines: {node: '>= 6'}
+    dependencies:
+      prop-types: 15.8.1
+    dev: false
+
   /react-fast-compare/3.2.1:
     resolution: {integrity: sha512-xTYf9zFim2pEif/Fw16dBiXpe0hoy5PxcD8+OwBnTtNLfIm3g6WxhKNurY+6OmdH1u6Ta/W/Vl6vjbYP1MFnDg==}
     dev: false
@@ -9113,6 +9124,14 @@ packages:
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /react-icons/4.8.0_react@18.2.0:
+    resolution: {integrity: sha512-N6+kOLcihDiAnj5Czu637waJqSnwlMNROzVZMhfX68V/9bu9qHaMIJC4UdozWoOk57gahFCNHwVvWzm0MTzRjg==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-instantsearch-core/6.39.1_pjkbbcxpnmwx6cqm2kk66w63ne:
