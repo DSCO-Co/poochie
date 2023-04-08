@@ -134,7 +134,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
             ))}
           </nav>
           <div className="flex items-center justify-end flex-1 flex-shrink-[2] space-x-8">
-            {process.env.COMMERCE_SEARCH_ENABLED && (
+            {/* {process.env.COMMERCE_SEARCH_ENABLED && (
               <div className="flex items-center justify-center">
                 <button
                   onClick={() =>
@@ -154,7 +154,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
                   </svg>
                 </button>
               </div>
-            )}
+            )} */}
             <UserNav cart={true} wishlist={true} userAvatar={true} mobileMenu={true} />
           </div>
         </div>
