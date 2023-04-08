@@ -1,4 +1,5 @@
 import type { SearchPropsType } from '@lib/search-props'
+import {useRouter} from 'next/router'
 
 
 import { Layout } from '@components/common'
@@ -17,6 +18,10 @@ import { ConnectedProducts } from './search/ConnectedProducts'
 export default function Search({
 }: SearchPropsType) {
 
+  const router = useRouter()
+  const initial = router.asPath.split("collections/")[1];
+
+
   return (
       
       <Container>
@@ -32,11 +37,11 @@ export default function Search({
             <div>
               <div className="mb-8">
                 <h3 className="text-lg font-medium mb-2">Categories</h3>
-                <ConnectedRefinementList attribute="category"  limit={23}/>
+                <ConnectedRefinementList attribute="category"  limit={100} initial={initial}/>
               </div>
               <div>
                 <h3 className="text-lg font-medium mb-2">Brands</h3>
-                <ConnectedRefinementList attribute="brandName" limit={23} />
+                <ConnectedRefinementList attribute="brandName" limit={100} initial={initial}/>
               </div>
             </div>
           </div>
