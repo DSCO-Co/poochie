@@ -4,8 +4,10 @@ import { HeroCarousel } from '@components/ui/HeroCarousel';
 import commerce from '@lib/api/commerce';
 import Image from 'next/image';
 // import HomeAllProductsGrid from '@components/common/HomeAllProductsGrid'
+import JumpingJackets from '@assets/Heroes/Jumping-Jackets-Background.jpg';
+import SweetSweaters from '@assets/Heroes/Sweet-Sweaters-Background.jpg';
+import TotallyToys from '@assets/Heroes/Totally-Toys-Background.jpg';
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
-
 export async function getStaticProps({
   preview,
   locale,
@@ -70,7 +72,7 @@ export default function Home({
       <HeroCarousel slides={[
         {
           id: 1,
-          image: '/Heroes/Jumping-Jackets-Background.jpg',
+          image: JumpingJackets,
           alt: 'Jumping Jackets',
           title: 'Jumping Jackets',
           subtitle: 'Jack Russels Jumping for Joy in New Jackets!',
@@ -78,7 +80,7 @@ export default function Home({
         },
         {
           id: 2,
-          image: '/Heroes/Sweet-Sweaters-Background.jpg',
+          image: SweetSweaters,
           alt: 'Spring Sweaters',
           title: 'Spring Sweaters',
           subtitle: 'Shibas Seen Sporting Sweet Spring Sweaters!',
@@ -86,7 +88,7 @@ export default function Home({
         },
         {
           id: 3,
-          image: '/Heroes/Totally-Toys-Background.jpg',
+          image: TotallyToys,
           alt: 'Totally Toys',
           title: 'Totally Toys',
           subtitle: 'Toys for Terriffic Terriers (and more)!',
