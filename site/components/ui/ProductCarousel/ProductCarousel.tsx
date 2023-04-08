@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
-import ProductCard from '../../product/ProductCard'
 import type { Product } from '@commerce/types/product'
-import headerStyles from './ProductCarousel.module.css'
+import React, { useEffect, useRef, useState } from 'react'
+import ProductCard from '../../product/ProductCard'
 
 interface CarouselProps {
   products: Product[]
@@ -54,25 +53,25 @@ const ProductCarousel: React.FC<CarouselProps> = ({ products }) => {
   return visibleCards ? (
     <>
       <div className="flex items-center justify-center mt-2 mb-2 md:my-20">
-        <div className="inline-block flex-grow h-1 bg-black rounded-full mx-5 max-w-xs"></div>
-        <h2 className="mx-5 text-2xl font-bold uppercase tracking-wider">
+        <div className="flex-grow inline-block h-1 max-w-xs mx-5 bg-black rounded-full"></div>
+        <h2 className="mx-5 text-2xl font-bold tracking-wider uppercase">
           Top Sellers
         </h2>
-        <div className="inline-block flex-grow h-1 bg-black rounded-full mx-5 max-w-xs"></div>
+        <div className="flex-grow inline-block h-1 max-w-xs mx-5 bg-black rounded-full"></div>
       </div>
       <div className="relative">
         <button
           onClick={slideLeft}
-          className="absolute left-5 top-1/2 text-5xl transform -translate-y-1/2 z-10 text-black bg-transparent px-4 py-2"
+          className="absolute z-10 px-4 py-2 text-5xl text-black transform -translate-y-1/2 bg-transparent left-5 top-1/2"
         >
           ‹
         </button>
         <div
           ref={sliderRef}
-          className="flex transition-transform duration-500 ease-in overflow-hidden mx-auto"
+          className="flex mx-auto overflow-hidden transition-transform duration-500 ease-in"
         >
-          <div className="relative bg-white p-4">
-            <div className="mx-4 max-h-100 w-full flex justify-center space-x-2 md:space-x-4 items-center">
+          <div className="relative p-4 bg-primary">
+            <div className="flex items-center justify-center w-full mx-4 space-x-2 max-h-100 md:space-x-4">
               {products
                 .slice(currentSlide, currentSlide + visibleCards)
                 .concat(
@@ -85,7 +84,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ products }) => {
                 .map((product, index) => (
                   <div
                     key={`${product.path}-${currentSlide}-${visibleCards}`}
-                    className="max-h-100 max-w-80 md:max-w-xs mx-auto"
+                    className="mx-auto max-h-100 max-w-80 md:max-w-xs"
                   >
                     <ProductCard
                       variant="simple-stylized"
@@ -104,7 +103,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ products }) => {
         </div>
         <button
           onClick={slideRight}
-          className="absolute right-5 text-5xl top-1/2 transform -translate-y-1/2 z-10 text-black bg-transparent px-4 py-2"
+          className="absolute z-10 px-4 py-2 text-5xl text-black transform -translate-y-1/2 bg-transparent right-5 top-1/2"
         >
           ›
         </button>

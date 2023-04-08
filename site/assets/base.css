@@ -1,11 +1,11 @@
 :root {
-  --primary: #ffffff;
-  --primary-2: #f1f3f5;
-  --secondary: #000000;
-  --secondary-2: #111;
+  --primary: #f1d6cc;
+  --primary-2: #2d3f50;
+  --secondary: #83b6e7;
+  --secondary-2: #e8a5a5;
   --selection: var(--cyan);
-  --text-base: #000000;
-  --text-primary: #000000;
+  --text-base: var(--primary-2));
+  --text-primary: var(--primary-2);
   --text-secondary: white;
   --hover: rgba(0, 0, 0, 0.075);
   --hover-1: rgba(0, 0, 0, 0.15);
@@ -30,11 +30,10 @@
   --accent-7: #333333;
   --accent-8: #111111;
   --accent-9: #000;
-  --font-sans: -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue',
-    'Helvetica', sans-serif;
+  --font-sans: BlinkMacSystemFont, 'Garamond', 'Times New Roman', serif;
 }
-
-/* [data-theme='dark'] {
+/* 
+[data-theme='dark'] {
   --primary: #000000;
   --primary-2: #111;
   --secondary: #ffffff;
@@ -70,6 +69,7 @@ body {
   box-sizing: border-box;
   touch-action: manipulation;
   font-family: var(--font-sans);
+  font-weight: 500;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -83,7 +83,6 @@ body {
   min-height: 100%;
   margin: 0;
 }
-
 a {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
