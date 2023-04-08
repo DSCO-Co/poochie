@@ -132,14 +132,15 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
-        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-          <img
-            className="h-7"
-            src="/bc_favicon.ico" //./site/public/bc_favicon.ico
-            alt="Pup Co."
-          />
-          <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+      <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 lg:px-8">
+        <div className="xl:grid xl:grid-cols-4 xl:gap-8">
+          <Link href="/" className="contents">
+            <img
+              className="h-7"
+              src="/favicon.ico" //./site/public/favicon.ico
+              alt="Pup Co."
+            />
+          </Link>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
                 <h3 className="text-sm font-semibold leading-6 text-gray-900">
@@ -150,28 +151,7 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
                     <ul role="list" className="mt-6 space-y-4">
                       <li key={page.id}>
                         <a
-                          href={`/${getSlug('/${c.slug}')}`}   
-                          className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                        >
-                          {' '}
-                          {page.name}{' '}
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Company
-                </h3>
-                {pages?.map((page) => (
-                  <div key={page.id}>
-                    <ul role="list" className="mt-6 space-y-4">
-                      <li key={page.id}>
-                        <a
-                          href={`/${getSlug(page.url!)}`}
+                          href={`/${page.slug}`}   
                           className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                         >
                           {' '}
@@ -183,14 +163,35 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
                 ))}
               </div>
             </div>
-            <div className="md:grid md:grid-cols-2 md:gap-8">
 
+            <div className="mt-10 md:mt-0">
+              <h3 className="text-sm font-semibold leading-6 text-gray-900">
+                Company
+              </h3>
+              {pages?.map((page) => (
+                <div key={page.id}>
+                  <ul role="list" className="mt-6 space-y-4">
+                    <li key={page.id}>
+                      <a
+                        href={`/${getSlug(page.url!)}`}
+                        className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                      >
+                        {' '}
+                        {page.name}{' '}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            <div className="md:grid md:grid-cols-2 md:gap-8">
               <div className="mt-10 md:mt-0">
                 <h3 className="text-sm font-semibold leading-6 text-gray-900">
                   Stay Connected
                 </h3>
-                {/* {navigation.social?.map((page) => (
-                  <div>
+                {navigation.social?.map((page) => (
+                  <div key={page.name}>
                     <ul role="list" className="mt-6 space-y-4">
                       <li>
                         <a
@@ -203,12 +204,11 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
                       </li>
                     </ul>
                   </div>
-                ))} */}
+                ))}
               </div>
             </div>
-          </div>
         </div>
-        <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24 lg:flex lg:items-center lg:justify-between">
+        {/* <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24 lg:flex lg:items-center lg:justify-between">
           <div>
             <h3 className="text-sm font-semibold leading-6 text-gray-900">
               Subscribe to our newsletter
@@ -240,7 +240,7 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
               </button>
             </div>
           </form>
-        </div>
+        </div> */}
         <div className="mt-8 border-t border-gray-900/10 pt-8 md:flex md:items-center md:justify-between">
           <div className="flex space-x-6 md:order-2">
             {navigation.social.map((item) => (
