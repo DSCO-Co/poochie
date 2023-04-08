@@ -1,14 +1,14 @@
-import { useEffect } from 'react'
 import { useUI } from '@components/ui/context'
-import { getRandomPairOfColors } from '@lib/colors'
+import { useEffect } from 'react'
 
 export const useUserAvatar = (name = 'userAvatar') => {
   const { userAvatar, setUserAvatar } = useUI()
 
   useEffect(() => {
-    if (!userAvatar && localStorage.getItem(name) && localStorage.getItem(name)?.endsWith('.png')) {
+    const storedAvatar = localStorage.getItem(name)
+    if (storedAvatar && typeof storedAvatar === 'string' && storedAvatar.endsWith('.png')) {
       // Get bg from localStorage and push it to the context.
-      setUserAvatar(localStorage.getItem(name))
+      setUserAvatar(storedAvatar)
     }
     // In useUserAvatar hookc
     if (localStorage.getItem(name)) {
