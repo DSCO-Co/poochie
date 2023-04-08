@@ -66,6 +66,7 @@ const SidebarLayout: FC<ComponentProps> = ({
         )}
         {children}
       </div>
+
     </div>
   )
 }
