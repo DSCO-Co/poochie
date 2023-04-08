@@ -16,7 +16,8 @@ export default function MenuSidebarView({
   const toggleExpand = (href: string) => {
     setExpandedLink((current) => (current === href ? null : href))
   }
-  console.log(links)
+  console.log(links);
+
 
   return (
     <SidebarLayout handleClose={() => closeSidebar()}>
@@ -48,9 +49,8 @@ export default function MenuSidebarView({
                   </Link>
                   {l.subLinks.length > 0 && (
                     <span
-                      className={`ml-auto mr-2 inline-block transition-transform duration-300 ${
-                        expandedLink === l.href ? 'transform rotate-180' : ''
-                      }`}
+                      className={`ml-auto mr-2 inline-block transition-transform duration-300 ${expandedLink === l.href ? 'transform rotate-180' : ''
+                        }`}
                     >
                       ▼
                     </span>
