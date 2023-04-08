@@ -3,5 +3,6 @@
   "editor.formatOnSave": true,
   "[html]": {
     "editor.defaultFormatter": "mohd-akram.vscode-html-format"
-  }
+  },
+  "eslint.packageManager": "pnpm"
 }
