@@ -18,6 +18,9 @@ module.exports = withCommerceConfig({
     ALGOLIA_APP_ID: process.env.ALGOLIA_APP_ID,
     ALGOLIA_SEARCH_ONLY_API_KEY: process.env.ALGOLIA_SEARCH_ONLY_API_KEY,
   },
+  images: {
+    domains: ['cdn11.bigcommerce.com', 'dev.beverlyhillspup.com'],
+  },
   rewrites() {
     return [
       (isBC || isShopify || isSwell || isVendure || isSaleor) && {

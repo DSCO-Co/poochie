@@ -1,6 +1,7 @@
 import type { Product } from '@commerce/types/product'
-import WishlistButton from '@components/wishlist/WishlistButton'
 import { Button } from '@components/ui'
+import WishlistButton from '@components/wishlist/WishlistButton'
+import { useAddItem } from '@framework/cart'
 import usePrice from '@framework/product/use-price'
 import cn from 'clsx'
 import Image, { ImageProps } from 'next/image'
@@ -8,7 +9,6 @@ import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
 import ProductTag from '../ProductTag'
 import s from './ProductCard.module.css'
-import { useAddItem } from '@framework/cart'
 
 import {
   SelectedOptions,
@@ -59,7 +59,7 @@ const ProductCard: FC<Props> = ({
   const addToCart = async () => {
     setLoading(true)
     setError(null)
-    
+
     try {
       await addItem({
         productId: String(product.id),
@@ -82,12 +82,12 @@ const ProductCard: FC<Props> = ({
   return (
     <Link
       href={`${product.path}`}
-      className={rootClassName}
+      className={`${rootClassName} rounded-xl`}
       aria-label={product.name}
     >
       {variant === 'slim' && (
         <>
-          <div className="flex justify-center items-center">
+          <div className="flex items-center justify-center">
             {product?.images && (
               <Image
                 quality="85"
@@ -99,7 +99,7 @@ const ProductCard: FC<Props> = ({
               />
             )}
             <div className="absolute bottom-0 right-0">
-              <h3 className="bg-accent-9 text-accent-0 inline-block p-3 font-bold text-l break-words m-4">
+              <h3 className="inline-block p-3 m-4 font-bold break-words bg-accent-9 text-accent-0 text-l">
                 {product.name}
               </h3>
             </div>
@@ -128,16 +128,16 @@ const ProductCard: FC<Props> = ({
               <a
                 key={product.id}
                 href={product.slug}
-                className="group bg-white text-sm"
+                className="text-sm group bg-secondary-2"
               >
-                <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75">
+                <div className="w-full overflow-hidden rounded-lg bg-secondary-2 aspect-w-1 aspect-h-1 group-hover:opacity-75">
                   <img
                     src={product.images[0]?.url || placeholderImg}
                     alt={product.name}
-                    className="h-full w-full object-cover object-center"
+                    className="object-cover object-center w-full h-full"
                   />
                 </div>
-                <h3 className="mt-4 px-4 py-2 font-medium bg-white text-gray-900 rounded-md">
+                <h3 className="px-4 py-2 mt-4 font-medium text-gray-900 rounded-md bg-secondary-2">
                   {product.name}
                 </h3>
               </a>
@@ -165,8 +165,8 @@ const ProductCard: FC<Props> = ({
                 alt={product.name || 'Product Image'}
                 className={s.productImage}
                 src={product.images[0]?.url || placeholderImg}
-                height={540}
-                width={540}
+                height={500}
+                width={500}
                 quality="85"
                 {...imgProps}
               />
@@ -176,20 +176,20 @@ const ProductCard: FC<Props> = ({
       )}
       {variant === 'simple-stylized' && (
         <>
-          <div className=" h-full relative group bg-white text-sm flex flex-col">
-            <div className="p-1 flex-grow">
+          <div className="relative flex flex-col h-full text-sm rounded-xl bg-secondary-2 group">
+            <div className="flex-grow p-1">
               <Image
                 alt={product.name || 'Product Image'}
-                className="rounded-lg object-cover object-center"
-                src={product.images[0]?.url  || placeholderImg}
-                height={540}
-                width={540}
+                className="object-cover object-center rounded-lg aspect-square"
+                src={product.images[0]?.url || placeholderImg}
+                height={500}
+                width={500}
                 quality="85"
                 {...imgProps}
               />
             </div>
-            <div className="bg-white rounded-b-lg py-3">
-              <h3 className="text-center font-medium text-gray-900">
+            <div className="py-3 rounded-b-lg bg-secondary-2">
+              <h3 className="font-medium text-center text-gray-900">
                 {product.name}
               </h3>
               <div className="text-center">{`${price} ${product.price?.currencyCode}`}</div>
@@ -202,7 +202,7 @@ const ProductCard: FC<Props> = ({
             <div className="absolute top-2 left-2">
               <div>
                 <div
-                  className="bg-white mx-1 my-3 text-orange-500 font-bold text-xs uppercase tracking-wide"
+                  className="mx-1 my-3 text-xs font-bold tracking-wide text-orange-500 uppercase bg-secondary-2"
                   style={{
                     backgroundColor: 'white',
                     border: '1px solid var(--on-sale-orange)',
@@ -213,7 +213,7 @@ const ProductCard: FC<Props> = ({
                   Sale
                 </div>
               </div>
-              {/* <div className="bg-orange-500 absolute top-1 left-1 p-1" /> */}
+              {/* <div className="absolute p-1 bg-orange-500 top-1 left-1" /> */}
             </div>
             <Button
               aria-label="Add to Cart"
@@ -235,23 +235,23 @@ const ProductCard: FC<Props> = ({
       )}
       {variant === 'algolia-stylized' && (
         <>
-          <div className=" h-full relative group bg-white text-sm flex flex-col">
-            <div className="p-1 flex-grow">
+          <div className="relative flex flex-col h-full text-sm bg-secondary-2 group">
+            <div className="flex-grow p-1">
               <Image
                 alt={product.productName?.toString() || 'Product Image'}
-                className="rounded-lg object-cover object-center"
-                src={product.images[0]?.url  || placeholderImg}
-                height={540}
-                width={540}
+                className="object-cover object-center rounded-lg"
+                src={product.images[0]?.url || placeholderImg}
+                height={500}
+                width={500}
                 quality="85"
                 {...imgProps}
               />
             </div>
-            <div className="bg-white rounded-b-lg py-3">
-              <h3 className="text-center font-medium text-gray-900">
+            <div className="py-3 rounded-b-lg bg-secondary-2">
+              <h3 className="font-medium text-center text-gray-900">
                 {product.productName?.toString()}
               </h3>
-              <div className="text-center font-bold">{`$${product.price}`}</div>
+              <div className="font-bold text-center">{`$${product.price}`}</div>
             </div>
             {/* <WishlistButton
               className="absolute top-2 right-2"
@@ -261,7 +261,7 @@ const ProductCard: FC<Props> = ({
             <div className="absolute top-2 left-2">
               <div>
                 <div
-                  className="bg-white mx-1 my-3 text-orange-500 font-bold text-xs uppercase tracking-wide"
+                  className="mx-1 my-3 text-xs font-bold tracking-wide text-orange-500 uppercase bg-secondary-2"
                   style={{
                     backgroundColor: 'white',
                     border: '1px solid var(--on-sale-orange)',
@@ -272,7 +272,7 @@ const ProductCard: FC<Props> = ({
                   Sale
                 </div>
               </div>
-              {/* <div className="bg-orange-500 absolute top-1 left-1 p-1" /> */}
+              {/* <div className="absolute p-1 bg-orange-500 top-1 left-1" /> */}
             </div>
             {/* <Button
               aria-label="Add to Cart"

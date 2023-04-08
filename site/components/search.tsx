@@ -1,4 +1,5 @@
 import type { SearchPropsType } from '@lib/search-props'
+import {useRouter} from 'next/router'
 
 
 import { Layout } from '@components/common'
@@ -9,25 +10,19 @@ import {
   ConnectedRefinementList,
 } from '@components/ui'
 
-import algoliasearch from 'algoliasearch/lite'
 import {
-  InstantSearch,
   Configure,
-  SearchBox,
 } from 'react-instantsearch-hooks-web'
 import { ConnectedProducts } from './search/ConnectedProducts'
 
 export default function Search({
-  algoliaAppId,
-  algoliaSearchOnlyKey,
 }: SearchPropsType) {
 
-  // const searchClient = algoliasearch(algoliaAppId!, algoliaSearchOnlyKey!)
+  const router = useRouter()
+  const initial = router.asPath.split("collections/")[1];
 
-  
 
   return (
-    // <InstantSearch searchClient={searchClient} indexName="Products">
       
       <Container>
         <Configure hitsPerPage={12}  />
@@ -42,11 +37,11 @@ export default function Search({
             <div>
               <div className="mb-8">
                 <h3 className="text-lg font-medium mb-2">Categories</h3>
-                <ConnectedRefinementList attribute="category"  limit={23}/>
+                <ConnectedRefinementList attribute="category"  limit={100} initial={initial}/>
               </div>
               <div>
                 <h3 className="text-lg font-medium mb-2">Brands</h3>
-                <ConnectedRefinementList attribute="brandName" limit={23} />
+                <ConnectedRefinementList attribute="brandName" limit={100} initial={initial}/>
               </div>
             </div>
           </div>
@@ -76,7 +71,6 @@ export default function Search({
 
         <ConnectedPagination />
       </Container>
-    // </InstantSearch>
   )
 }
 

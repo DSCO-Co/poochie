@@ -1,15 +1,11 @@
-import { FC } from 'react'
+import type { Page } from '@commerce/types/page'
+import type { Category } from '@commerce/types/site'
+import { Logo } from '@components/ui'
+import getSlug from '@lib/get-slug'
 import cn from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import bc_favicon from "@site/bc_favicon.ico"
-import type { Page } from '@commerce/types/page'
-import getSlug from '@lib/get-slug'
-import type { Category } from '@commerce/types/site'
-import { Github, Vercel } from '@components/icons'
-import { Logo, Container } from '@components/ui'
-import { I18nWidget } from '@components/common'
-import ThemeSwitcher from '@components/ui/ThemeSwitcher'
+import { FC } from 'react'
 import s from './Footer.module.css'
 
 interface Link {
@@ -126,55 +122,29 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
   const { sitePages } = usePages(pages)
   const rootClassName = cn(s.root, className)
 
-  
+
   return (
-    <footer className="bg-gray-200" aria-labelledby="footer-heading">
+    <footer className="bg-primary-2" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 lg:px-8">
-        <div className="xl:grid xl:grid-cols-4 xl:gap-8">
+      <div className="px-6 pt-16 pb-8 mx-auto max-w-7xl lg:px-8">
+        <div className="sm:grid sm:grid-cols-4 sm:gap-8">
           <Link href="/" className="contents">
-            <img
-              className="h-7"
-              src="/favicon.ico" //./site/public/favicon.ico
-              alt="Pup Co."
-            />
+            <Logo color={"#fff"} variant="insignia" />
           </Link>
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Shop
-                </h3>
-                {categories?.map((page) => (
-                  <div key={page.id}>
-                    <ul role="list" className="mt-6 space-y-4">
-                      <li key={page.id}>
-                        <a
-                          href={`/${page.slug}`}   
-                          className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                        >
-                          {' '}
-                          {page.name}{' '}
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-10 md:mt-0">
-              <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                Company
+          <div className="md:grid md:grid-cols-2 md:gap-8">
+            <div>
+              <h3 className="text-sm font-semibold leading-6 text-gray-100">
+                Shop
               </h3>
-              {pages?.map((page) => (
+              {categories?.map((page) => (
                 <div key={page.id}>
                   <ul role="list" className="mt-6 space-y-4">
                     <li key={page.id}>
                       <a
-                        href={`/${getSlug(page.url!)}`}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                        href={`/${page.slug}`}
+                        className="text-sm leading-6 text-gray-400 hover:text-gray-200"
                       >
                         {' '}
                         {page.name}{' '}
@@ -184,36 +154,58 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
                 </div>
               ))}
             </div>
+          </div>
 
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Stay Connected
-                </h3>
-                {navigation.social?.map((page) => (
-                  <div key={page.name}>
-                    <ul role="list" className="mt-6 space-y-4">
-                      <li>
-                        <a
-                          href={`/${getSlug(page.href)}`}
-                          className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                        >
-                          {' '}
-                          {page.name}{' '}
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                ))}
+          <div className="mt-10 md:mt-0">
+            <h3 className="text-sm font-semibold leading-6 text-gray-100">
+              Company
+            </h3>
+            {pages?.map((page) => (
+              <div key={page.id}>
+                <ul role="list" className="mt-6 space-y-4">
+                  <li key={page.id}>
+                    <a
+                      href={`/${getSlug(page.url!)}`}
+                      className="text-sm leading-6 text-gray-400 hover:text-gray-200"
+                    >
+                      {' '}
+                      {page.name}{' '}
+                    </a>
+                  </li>
+                </ul>
               </div>
+            ))}
+          </div>
+
+          <div className="xs:grid xs:grid-cols-2 xs:gap-8">
+            <div className="mt-10 md:mt-0">
+              <h3 className="text-sm font-semibold leading-6 text-gray-100">
+                Stay Connected
+              </h3>
+              {navigation.social?.map((page) => (
+                <div key={page.name}>
+                  <ul role="list" className="mt-6 space-y-4">
+                    <li>
+                      <a
+                        href={`/${getSlug(page.href)}`}
+                        className="text-sm leading-6 text-gray-400 hover:text-gray-100"
+                      >
+                        {' '}
+                        {page.name}{' '}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              ))}
             </div>
+          </div>
         </div>
-        {/* <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24 lg:flex lg:items-center lg:justify-between">
+        {/* <div className="pt-8 mt-16 border-t border-gray-900/10 sm:mt-20 lg:mt-24 lg:flex lg:items-center lg:justify-between">
           <div>
-            <h3 className="text-sm font-semibold leading-6 text-gray-900">
+            <h3 className="text-sm font-semibold leading-6 text-gray-100">
               Subscribe to our newsletter
             </h3>
-            <p className="mt-2 text-sm leading-6 text-gray-600">
+            <p className="mt-2 text-sm leading-6 text-gray-300">
               The latest news, articles, and resources, sent to your inbox
               weekly.
             </p>
@@ -228,34 +220,34 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
               id="email-address"
               autoComplete="email"
               required
-              className="w-full min-w-0 appearance-none rounded-md border-0 bg-white px-3 py-1.5 text-base text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:w-56 sm:text-sm sm:leading-6"
+              className="w-full min-w-0 appearance-none rounded-md border-0 bg-white px-3 py-1.5 text-base text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-secondary-2 sm:w-56 sm:text-sm sm:leading-6"
               placeholder="Enter your email"
             />
             <div className="mt-4 sm:mt-0 sm:ml-4 sm:flex-shrink-0">
               <button
                 type="submit"
-                className="flex w-full items-center justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex items-center justify-center w-full px-3 py-2 text-sm font-semibold rounded-md shadow-sm text-primary-2 bg-primary hover:bg-secondary-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-2"
               >
                 Subscribe
               </button>
             </div>
           </form>
-        </div> */}
-        <div className="mt-8 border-t border-gray-900/10 pt-8 md:flex md:items-center md:justify-between">
+        </div> */}0
+        <div className="pt-8 mt-8 border-t border-gray-900/10 md:flex md:items-center md:justify-between">
           <div className="flex space-x-6 md:order-2">
             {navigation.social.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-400 hover:text-gray-500"
+                className="text-gray-300 hover:text-gray-500"
               >
                 <span className="sr-only">{item.name}</span>
-                <item.icon className="h-6 w-6" aria-hidden="true" />
+                <item.icon className="w-6 h-6" aria-hidden="true" />
               </a>
             ))}
           </div>
           <p className="mt-8 text-xs leading-5 text-gray-500 md:order-1 md:mt-0">
-            &copy; 2023 Pup Co., Inc. All rights reserved.
+            &copy; 2023 Poochie Co. All rights reserved.
           </p>
         </div>
       </div>

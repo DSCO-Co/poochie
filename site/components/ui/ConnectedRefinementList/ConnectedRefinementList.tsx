@@ -1,5 +1,5 @@
 import { useRefinementList } from 'react-instantsearch-hooks-web'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const categoriesData = {
   Apparel: [
@@ -26,14 +26,79 @@ const categoriesData = {
     'Chewy Vuiton',
   ],
 }
-const CustomRefinementList = ({ attribute, limit }) => {
-  const [dropdown, setDropdown] = useState(null)
 
-  const { items, refine } = useRefinementList({ attribute, limit })
+
+
+const routeMapping = {
+  'apparel': 'Apparel',
+  'dog-sweaters': 'Dog Sweaters',
+  'dog-coats-jackets': 'Dog Coats & Jackets',
+  'dog-tops-tees': 'Dog Tops & Tees',
+  'accessories': 'Accessories',
+  'toys': 'Toys',
+  'birthday-toys': 'Birthday Toys',
+  'food-drink-toys': 'Food & Drink Toys',
+  'fashion-toys': 'Fashion Toys',
+  'toy-sets': 'Toy Sets',
+  'collars-leashes': 'Collars & Leashes',
+  'dog-leashes-harnesses': 'Dog Leashes & Harnesses',
+  'dog-collar-leash-sets': 'Dog Collar & Leash Sets',
+  'dog-collars': 'Dog Collars',
+  'home': 'Home',
+  'dog-blankets': 'Dog Blankets',
+  'dog-bowls': 'Dog Bowls',
+  'dog-beds': 'Dog Beds',
+  'cat': 'Cat',
+  'cat-beds-blankets': 'Cat Beds & Blankets',
+  'cat-clothing': 'Cat Clothing',
+  'leashes-harnesses': 'Leashes & Harnesses',
+  'collections': 'Collections',
+  'fast-shipping': 'Fast Shipping',
+  'new-arrivals': 'New Arrivals',
+  'best-sellers': 'Best Sellers',
+  'poochie': 'Poochie',
+  'pawda': 'Pawda',
+  'dogior': 'Dogior',
+  'chewy-vuiton': 'Chewy Vuiton',
+}
+
+
+
+const CustomRefinementList = ({ attribute, limit, initial }) => {
+  const [dropdown, setDropdown] = useState(-1);
+  const [initialDropdownSet, setInitialDropdownSet] = useState(false);
+
+  const { items, refine } = useRefinementList({ attribute, limit });
 
   const handleDropdownClick = (index) => {
-    setDropdown(dropdown === index ? null : index)
-  }
+    setDropdown(dropdown === index ? -1 : index);
+  };
+
+  useEffect(() => {
+    if (routeMapping[initial]) {
+      const initialValue = routeMapping[initial];
+      const isCategory = Object.values(categoriesData).some((subcategories) =>
+        subcategories.includes(initialValue)
+      );
+      if (!isCategory && attribute === "category") {
+        refine(initialValue);
+      }
+    }
+  }, [initial]);
+
+  useEffect(() => {
+    if (routeMapping[initial] && !initialDropdownSet) {
+      const initialValue = routeMapping[initial];
+      const parentIndex = items.findIndex((item) =>
+        categoriesData[item.label]?.includes(initialValue)
+      );
+      if (parentIndex !== -1) {
+        setDropdown(parentIndex);
+        setInitialDropdownSet(true);
+      }
+    }
+  }, [items, initial, initialDropdownSet]);
+
 
   return (
     <div className="flex flex-col space-y-2">
@@ -43,7 +108,12 @@ const CustomRefinementList = ({ attribute, limit }) => {
             <input
               type="checkbox"
               checked={item.isRefined}
-              onChange={() => refine(item.value)}
+              onChange={() => {
+                  refine(item.value)
+                  console.log(item, typeof(item.value))
+                }
+              }
+
               className="mr-2 focus:ring-0 focus:outline-none"
             />
             <button
@@ -62,6 +132,7 @@ const CustomRefinementList = ({ attribute, limit }) => {
                 parentCategory={item.label}
                 categoriesData={categoriesData}
                 limit={limit}
+                initial={initial}
               />
             </div>
           )}
@@ -72,11 +143,20 @@ const CustomRefinementList = ({ attribute, limit }) => {
 }
 
 const ConnectedRefinementList = CustomRefinementList
-const SubCategoryRefinementList = ({ attribute, parentCategory, categoriesData, limit }) => {
+const SubCategoryRefinementList = ({ attribute, parentCategory, categoriesData, limit, initial  }) => {
   
-  const { items, refine } = useRefinementList({ attribute, limit})
+  const { items, refine, canRefine } = useRefinementList({ attribute, limit})
 
   const subCategories = categoriesData[parentCategory] || []
+
+  useEffect(() => {
+    if (routeMapping[initial]) {
+      const initialValue = routeMapping[initial];
+      if (subCategories.includes(initialValue)) {
+        refine(initialValue);
+      }
+    }
+  }, [initial]);
   
   return (
     <div className="flex flex-col space-y-2">
@@ -90,7 +170,12 @@ const SubCategoryRefinementList = ({ attribute, parentCategory, categoriesData, 
             <input
               type="checkbox"
               checked={item.isRefined}
-              onChange={() => refine(item.value)}
+              onChange={() => 
+                {
+                console.log(item, typeof(item.value))
+                refine(item.value)
+                console.log(item.isRefined)
+              }}
               className="mr-2 focus:ring-0 focus:outline-none"
             />
             <span className="text-accent-4 hover:text-accent-5 focus:text-accent-5">
