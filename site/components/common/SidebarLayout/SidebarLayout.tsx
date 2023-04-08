@@ -3,6 +3,7 @@ import { Cross, ChevronLeft } from '@components/icons'
 import { UserNav } from '@components/common'
 import cn from 'clsx'
 import s from './SidebarLayout.module.css'
+import { useUI } from '@components/ui/context'
 
 type ComponentProps = { className?: string; children?: ReactNode } & (
   | { handleClose: () => any; handleBack?: never }
@@ -15,6 +16,7 @@ const SidebarLayout: FC<ComponentProps> = ({
   handleBack,
   handleClose,
 }) => {
+  const { sidebarView } = useUI()
   return (
     <div className={cn(s.root, className)}>
       <header className={s.header}>
@@ -41,20 +43,27 @@ const SidebarLayout: FC<ComponentProps> = ({
 
         <UserNav mobileMenu={true} />
       </header>
-      <div className={s.container}>{children}</div>
-      <div className="fixed bottom-0 left-0 w-full z-20 bg-white">
-        <div className="flex justify-center items-center h-24">
-          <div className="w-1/3 border border-black flex justify-center items-center h-full">
-            <UserNav cart={true} size={'large'} />
-          </div>
-          <div className="w-1/3 border-t border-b border-black flex justify-center items-center h-full border-l-0 border-r-0">
-            <UserNav wishlist={true} size={'large'} />
-          </div>
-          <div className="w-1/3 border border-black flex justify-center items-center h-full">
-            <UserNav userAvatar={true} size={'large'} />
+      <div className={s.container}>
+      {sidebarView === 'MOBILE_MENU_VIEW' && (
+        
+        // create the mobile navbar 
+        <div className=" bottom-0 left-0 w-full z-100 bg-white">
+          <div className="flex justify-center items-center h-24">
+            <div className="w-1/3 border border-gray-300 flex justify-center items-center h-full">
+              <UserNav cart={true} size={'large'} />
+            </div>
+            <div className="w-1/3 border-t border-b border-gray-300 flex justify-center items-center h-full border-l-0 border-r-0">
+              <UserNav wishlist={true} size={'large'} />
+            </div>
+            <div className="w-1/3 border border-gray-300 flex justify-center items-center h-full">
+              <UserNav userAvatar={true} size={'large'} />
+            </div>
           </div>
         </div>
-      </div>
+      )}
+        {children}
+        </div>
+      
     </div>
   )
 }
