@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useRefinementList } from 'react-instantsearch-hooks-web';
 
 const categoriesData = {
@@ -80,7 +80,7 @@ const CustomRefinementList = ({ attribute, limit, initial }) => {
         refine(initialValue)
       }
     }
-  }, [initial])
+  }, [initial, attribute, refine])
 
   useEffect(() => {
     if (routeMapping[initial] && !initialDropdownSet) {
@@ -144,7 +144,9 @@ const SubCategoryRefinementList = ({
 }) => {
   const { items, refine, canRefine } = useRefinementList({ attribute, limit })
 
-  const subCategories = categoriesData[parentCategory] || []
+  const subCategories = useMemo(() => {
+    return categoriesData[parentCategory] || [];
+  }, [categoriesData, parentCategory]);
 
   useEffect(() => {
     if (routeMapping[initial]) {
@@ -153,7 +155,7 @@ const SubCategoryRefinementList = ({
         refine(initialValue)
       }
     }
-  }, [initial])
+  }, [initial, refine, subCategories])
 
   return (
     <div className="flex flex-col space-y-2">

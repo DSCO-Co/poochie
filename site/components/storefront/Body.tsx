@@ -211,7 +211,7 @@ export default function Body() {
                     className="relative flex flex-col w-56 p-6 overflow-hidden rounded-lg h-80 hover:opacity-75 xl:w-auto"
                   >
                     <span aria-hidden="true" className="absolute inset-0">
-                      <img
+                      <Image
                         src={category.imageSrc}
                         alt=""
                         className="object-cover object-center w-full h-full"
@@ -247,9 +247,11 @@ export default function Body() {
       >
         <div className="relative overflow-hidden rounded-lg">
           <div className="absolute inset-0">
-            <img
+            <Image
               src="https://tailwindui.com/img/ecommerce-images/home-page-01-feature-section-01.jpg"
               alt=""
+              height={640}
+              width={1280}
               className="object-cover object-center w-full h-full"
             />
           </div>
@@ -305,9 +307,11 @@ export default function Body() {
                 aria-hidden="true"
                 className="overflow-hidden rounded-lg aspect-w-3 aspect-h-2 group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
               >
-                <img
+                <Image
                   src={collection.imageSrc}
                   alt={collection.imageAlt}
+                  height={640}
+                  width={1280}
                   className="object-cover object-center w-full h-full"
                 />
               </div>
@@ -331,6 +335,8 @@ export default function Body() {
             <Image
               src="https://tailwindui.com/img/ecommerce-images/home-page-01-feature-section-02.jpg"
               alt=""
+              height={640}
+              width={1280}
               className="object-cover object-center w-full h-full"
             />
           </div>
