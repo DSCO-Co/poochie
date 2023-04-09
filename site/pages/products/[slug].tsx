@@ -15,7 +15,7 @@ export async function getStaticProps({
   preview,
 }: GetStaticPropsContext<{ slug: string }>) {
   const config = { locale, locales }
-  const slug = `/products/${params!.slug}`;
+  const slug = `/products/${params!.slug}`
 
   const pagesPromise = commerce.getAllPages({ config, preview })
   const siteInfoPromise = commerce.getSiteInfo({ config, preview })
@@ -24,7 +24,6 @@ export async function getStaticProps({
     config,
     preview,
   })
-
 
   const allProductsPromise = commerce.getAllProducts({
     variables: { first: 4 },
@@ -40,8 +39,6 @@ export async function getStaticProps({
   const { product } = await productPromise
 
   const { products: relatedProducts } = await allProductsPromise
-
-
 
   if (!product) {
     return {
@@ -60,8 +57,6 @@ export async function getStaticProps({
   }
 }
 
-
-
 export async function getStaticPaths({ locales }: GetStaticPathsContext) {
   const { products } = await commerce.getAllProductPaths()
 
@@ -78,7 +73,7 @@ export async function getStaticPaths({ locales }: GetStaticPathsContext) {
     //   })
     //   return arr
     // }, [])
-    //   : 
+    //   :
     paths: products.map((product: any) => `${product.path}`),
     fallback: 'blocking',
   }

@@ -22,9 +22,17 @@ export async function getStaticProps({
 export default function ContactUs() {
   return (
     <Container className="pt-16 pb-8">
-      <Text variant="pageHeading">Contact Us</Text><br />
+      <Text variant="pageHeading">Contact Us</Text>
+      <br />
       <p>
-        Email us at <a href='mailto:support@poochie.co?subject=Poochie%20Customer%20Support' rel="noopener noreferrer">support@poochi.co</a> and we will get back to you as soon as possible :)
+        Email us at{' '}
+        <a
+          href="mailto:support@poochie.co?subject=Poochie%20Customer%20Support"
+          rel="noopener noreferrer"
+        >
+          support@poochi.co
+        </a>{' '}
+        and we will get back to you as soon as possible :)
       </p>
     </Container>
   )

@@ -1,2 +1,1 @@
-export { default } from './HeroCarousel';
-
+export { default } from './HeroCarousel'

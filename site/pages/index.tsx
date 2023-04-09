@@ -1,11 +1,11 @@
-import { Layout } from '@components/common';
-import { Guarantees, HeroCarousel, ProductCarousel } from '@components/ui';
-import commerce from '@lib/api/commerce';
+import { Layout } from '@components/common'
+import { Guarantees, HeroCarousel, ProductCarousel } from '@components/ui'
+import commerce from '@lib/api/commerce'
 // import HomeAllProductsGrid from '@components/common/HomeAllProductsGrid'
-import JumpingJackets from '@assets/heroes/Jumping-Jackets-Background.jpg';
-import SweetSweaters from '@assets/heroes/Sweet-Sweaters-Background.jpg';
-import TotallyToys from '@assets/heroes/Totally-Toys-Background.jpg';
-import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+import JumpingJackets from '@assets/heroes/Jumping-Jackets-Background.jpg'
+import SweetSweaters from '@assets/heroes/Sweet-Sweaters-Background.jpg'
+import TotallyToys from '@assets/heroes/Totally-Toys-Background.jpg'
+import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 export async function getStaticProps({
   preview,
   locale,
@@ -36,12 +36,9 @@ export async function getStaticProps({
   }
 }
 
-
-
 export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-
   return (
     <>
       <HeroCarousel
@@ -70,8 +67,9 @@ export default function Home({
             title: 'Jumping Jackets',
             subtitle: 'Jack Russels Jumping for Joy in New Jackets!',
             button: 'Shop Now',
-          }
-        ]} />
+          },
+        ]}
+      />
 
       <ProductCarousel products={products} />
       <Guarantees />

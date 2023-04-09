@@ -1,2 +1,1 @@
-export { default } from './Guarantees';
-
+export { default } from './Guarantees'

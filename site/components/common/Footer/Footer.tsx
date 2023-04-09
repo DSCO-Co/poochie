@@ -122,7 +122,6 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
   const { sitePages } = usePages(pages)
   const rootClassName = cn(s.root, className)
 
-
   return (
     <footer className="bg-primary-2" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
@@ -131,7 +130,7 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
       <div className="px-6 pt-16 pb-8 mx-auto max-w-7xl lg:px-8">
         <div className="sm:grid sm:grid-cols-4 sm:gap-8">
           <Link href="/" className="contents">
-            <Logo color={"#fff"} variant="insignia" />
+            <Logo color={'#fff'} variant="insignia" />
           </Link>
           <div className="md:grid md:grid-cols-2 md:gap-8">
             <div>
@@ -232,7 +231,8 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
               </button>
             </div>
           </form>
-        </div> */}0
+        </div> */}
+        0
         <div className="pt-8 mt-8 border-t border-gray-900/10 md:flex md:items-center md:justify-between">
           <div className="flex space-x-6 md:order-2">
             {navigation.social.map((item) => (

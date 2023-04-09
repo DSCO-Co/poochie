@@ -3,15 +3,10 @@ import {
   ArrowLongRightIcon,
 } from '@heroicons/react/20/solid'
 
-
-import { usePagination } from 'react-instantsearch-hooks-web';
-
-
+import { usePagination } from 'react-instantsearch-hooks-web'
 
 function ConnectedPagination() {
-
-
-  const { nbPages, currentRefinement, refine } = usePagination();
+  const { nbPages, currentRefinement, refine } = usePagination()
 
   const renderPages = () => {
     const pages: JSX.Element[] = []
@@ -22,7 +17,7 @@ function ConnectedPagination() {
           href="#"
           onClick={(e) => {
             e.preventDefault()
-            refine(i);
+            refine(i)
           }}
           className={`inline-flex items-center border-t-2 ${
             i === currentRefinement
@@ -45,7 +40,7 @@ function ConnectedPagination() {
           href="#"
           onClick={(e) => {
             e.preventDefault()
-            if (currentRefinement > 1) refine(currentRefinement - 1);
+            if (currentRefinement > 1) refine(currentRefinement - 1)
           }}
           className={`inline-flex items-center border-t-2 pt-4 pr-1 text-sm font-medium ${
             currentRefinement > 1
@@ -66,7 +61,7 @@ function ConnectedPagination() {
           href="#"
           onClick={(e) => {
             e.preventDefault()
-            if (currentRefinement < nbPages) refine(currentRefinement + 1);
+            if (currentRefinement < nbPages) refine(currentRefinement + 1)
           }}
           className={`inline-flex items-center border-t-2 pt-4 pl-1 text-sm font-medium ${
             currentRefinement < nbPages
@@ -85,5 +80,4 @@ function ConnectedPagination() {
   )
 }
 
-export default ConnectedPagination;
-
+export default ConnectedPagination

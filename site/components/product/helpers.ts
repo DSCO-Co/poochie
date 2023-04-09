@@ -35,14 +35,12 @@ export function selectDefaultOptionFromProduct(
 }
 
 const calculateAvailableOptions = (variants: ProductVariant[]) => {
-  const availableOptions = {};
+  const availableOptions = {}
 
   for (const variant of variants) {
     // @ts-ignore
     if (variant.isPurchasable) {
-      
       for (const option of variant.options) {
-
       }
     }
   }

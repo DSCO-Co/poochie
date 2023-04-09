@@ -112,7 +112,7 @@ const Layout: React.FC<Props> = ({
   const navBarLinks = categories.map((c) => ({
     label: c.name,
     href: `/${c.slug}`,
-    subLinks: c.children
+    subLinks: c.children,
   }))
 
   return (

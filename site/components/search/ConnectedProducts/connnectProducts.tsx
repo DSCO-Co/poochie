@@ -26,7 +26,6 @@ const ConnectedProducts = () => {
     }
   }
 
-
   return (
     <div className="col-span-8 order-3 lg:order-none">
       {hits ? (

@@ -1,6 +1,6 @@
-import { useUserAvatar } from '@lib/hooks/useUserAvatar';
-import Image from 'next/image';
-import { FC, useRef } from 'react';
+import { useUserAvatar } from '@lib/hooks/useUserAvatar'
+import Image from 'next/image'
+import { FC, useRef } from 'react'
 
 interface Props {
   className?: string

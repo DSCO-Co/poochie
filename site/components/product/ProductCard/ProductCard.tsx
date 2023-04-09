@@ -10,11 +10,10 @@ import {
   SimpleCard,
   SimpleStylizedCard,
   SlimCard,
-  useProductCard
+  useProductCard,
 } from './'
 
 import s from './ProductCard.module.css'
-
 
 const ProductCard: FC<ProductCardProps> = ({
   product,
@@ -23,13 +22,7 @@ const ProductCard: FC<ProductCardProps> = ({
   noNameTag = false,
   variant = 'default',
 }) => {
-
-  const {
-    addToCart,
-    loading,
-    item,
-    price
-  } = useProductCard(product)
+  const { addToCart, loading, item, price } = useProductCard(product)
 
   const rootClassName = cn(
     s.root,
@@ -44,19 +37,48 @@ const ProductCard: FC<ProductCardProps> = ({
     >
       {variant === 'slim' && <SlimCard product={product} imgProps={imgProps} />}
 
-      {variant === 'simple' && (<SimpleCard product={product} noNameTag={noNameTag} s={s} price={price} />)}
+      {variant === 'simple' && (
+        <SimpleCard
+          product={product}
+          noNameTag={noNameTag}
+          s={s}
+          price={price}
+        />
+      )}
 
-      {variant === 'default' && <DefaultCard product={product} price={price} s={s} imgProps={imgProps} />}
-      {variant === 'simple-stylized' && <SimpleStylizedCard
-        product={product}
-        price={price}
-        s={s}
-        imgProps={imgProps}
-        addToCart={addToCart}
-        loading={loading}
-        item={item} />}
-      {variant === 'algolia-stylized' && <AlgoliaStylizedCard product={product} imgProps={imgProps} />}
-      {variant === 'callout' && <CalloutProductCard product={product} price={price} s={s} imgProps={imgProps} addToCart={addToCart} loading={loading} item={item} />}
+      {variant === 'default' && (
+        <DefaultCard
+          product={product}
+          price={price}
+          s={s}
+          imgProps={imgProps}
+        />
+      )}
+      {variant === 'simple-stylized' && (
+        <SimpleStylizedCard
+          product={product}
+          price={price}
+          s={s}
+          imgProps={imgProps}
+          addToCart={addToCart}
+          loading={loading}
+          item={item}
+        />
+      )}
+      {variant === 'algolia-stylized' && (
+        <AlgoliaStylizedCard product={product} imgProps={imgProps} />
+      )}
+      {variant === 'callout' && (
+        <CalloutProductCard
+          product={product}
+          price={price}
+          s={s}
+          imgProps={imgProps}
+          addToCart={addToCart}
+          loading={loading}
+          item={item}
+        />
+      )}
     </Link>
   )
 }

@@ -24,19 +24,19 @@ import ErrorMessage from '../../ui/ErrorMessage'
 interface ProductsProps extends ProductsPropsType {
   currentPage: number
   itemsPerPage: number
-  products: any 
+  products: any
 }
 
 export default function Products({
   categories,
   brands,
-  products, 
+  products,
   currentPage,
   itemsPerPage,
 }: ProductsProps) {
   const [activeFilter, setActiveFilter] = useState('')
   const [toggleFilter, setToggleFilter] = useState(false)
-  
+
   const router = useRouter()
   const { asPath, locale } = router
   const { q, sort } = router.query
@@ -67,9 +67,9 @@ export default function Products({
     currentPage * itemsPerPage
   )
 
-  console.log("Paginated Products: ", paginatedProducts)
-  console.log("itemsPerPage: ", itemsPerPage)
-  console.log("currentPage: ", currentPage)
+  console.log('Paginated Products: ', paginatedProducts)
+  console.log('itemsPerPage: ', itemsPerPage)
+  console.log('currentPage: ', currentPage)
 
   const handleClick = (event: any, filter: string) => {
     if (filter !== activeFilter) {
