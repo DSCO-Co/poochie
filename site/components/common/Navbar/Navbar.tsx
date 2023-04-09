@@ -74,7 +74,8 @@ function DropDownMenu({ children, dropDownLinks, isActive, menuKey, setActiveMen
               <Menu.Item key={dropDownLink.name}>
                 {({ active }) => (
                   <div className="relative">
-                    <a
+
+                    <Link
                       href={dropDownLink.path}
                       className={classNames(
                         active ? 'text-gray-900' : 'text-gray-900',
@@ -84,7 +85,7 @@ function DropDownMenu({ children, dropDownLinks, isActive, menuKey, setActiveMen
                       onMouseLeave={handleMouseLeave}
                     >
                       {dropDownLink.name}
-                    </a>
+                    </Link>
                   </div>
                 )}
               </Menu.Item>

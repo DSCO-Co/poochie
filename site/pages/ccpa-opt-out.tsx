@@ -1,7 +1,7 @@
-import type { GetStaticPropsContext } from 'next'
-import commerce from '@lib/api/commerce'
 import { Layout } from '@components/common'
 import { Container, Text } from '@components/ui'
+import commerce from '@lib/api/commerce'
+import type { GetStaticPropsContext } from 'next'
 
 export async function getStaticProps({
   preview,
