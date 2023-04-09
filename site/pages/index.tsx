@@ -44,32 +44,34 @@ export default function Home({
 
   return (
     <>
-      <HeroCarousel slides={[
-        {
-          id: 1,
-          image: JumpingJackets,
-          alt: 'Jumping Jackets',
-          title: 'Jumping Jackets',
-          subtitle: 'Jack Russels Jumping for Joy in New Jackets!',
-          button: 'Shop Now',
-        },
-        {
-          id: 2,
-          image: SweetSweaters,
-          alt: 'Spring Sweaters',
-          title: 'Spring Sweaters',
-          subtitle: 'Shibas Seen Sporting Sweet Spring Sweaters!',
-          button: 'Shop Now',
-        },
-        {
-          id: 3,
-          image: TotallyToys,
-          alt: 'Totally Toys',
-          title: 'Totally Toys',
-          subtitle: 'Toys for Terriffic Terriers (and more)!',
-          button: 'Shop Now',
-        }
-      ]} />
+      <HeroCarousel
+        useTimer
+        slides={[
+          {
+            id: 2,
+            image: SweetSweaters,
+            alt: 'Spring Sweaters',
+            title: 'Spring Sweaters',
+            subtitle: 'Shibas Seen Sporting Sweet Spring Sweaters!',
+            button: 'Shop Now',
+          },
+          {
+            id: 3,
+            image: TotallyToys,
+            alt: 'Totally Toys',
+            title: 'Totally Toys',
+            subtitle: 'Toys for Terriffic Terriers (and more)!',
+            button: 'Shop Now',
+          },
+          {
+            id: 1,
+            image: JumpingJackets,
+            alt: 'Jumping Jackets',
+            title: 'Jumping Jackets',
+            subtitle: 'Jack Russels Jumping for Joy in New Jackets!',
+            button: 'Shop Now',
+          }
+        ]} />
 
       <ProductCarousel products={products} />
       <Guarantees />

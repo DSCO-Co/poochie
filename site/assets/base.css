@@ -1,8 +1,8 @@
 :root {
-  --primary: #f1d6cc;
-  --primary-2: #2d3f50;
+  --primary: #fff;
+  --primary-2: #162431;
   --secondary: #83b6e7;
-  --secondary-2: #e8a5a5;
+  --secondary-2: #fff;
   --selection: var(--cyan);
   --text-base: var(--primary-2));
   --text-primary: var(--primary-2);
@@ -16,6 +16,7 @@
   --purple: #f81ce5;
   --blue: #0070f3;
   --pink: #ff0080;
+  --pink-super: #F832C0;
   --pink-light: #ff379c;
   --magenta: #eb367f;
   --violet: #7928ca;
@@ -31,15 +32,15 @@
   --primary-accent-8: #432e1d;
   --primary-accent-9: #1f0d02;
   --primary-2-accent-0: #f0f7f6; /* 3 shades lighter */
-  --primary-2-accent-1: #d4e3e1;
-  --primary-2-accent-2: #b7cdcb;
-  --primary-2-accent-3: #9bb6b4;
-  --primary-2-accent-4: #7e9e9a;
-  --primary-2-accent-5: #657c7e;
-  --primary-2-accent-6: #4c5b62;
-  --primary-2-accent-7: #333c44;
-  --primary-2-accent-8: #0f202e;
-  --primary-2-accent-9: #030b14;
+--primary-2-accent-1: #d4e3e1;
+--primary-2-accent-2: #b7cdcb;
+--primary-2-accent-3: #9bb6b4;
+--primary-2-accent-4: #7e9e9a;
+--primary-2-accent-5: #657c7e;
+--primary-2-accent-6: #4c5b62;
+--primary-2-accent-7: #333c44;
+--primary-2-accent-8: #0f202e;
+--primary-2-accent-9: #030b14;
 
   --accent-0: #f7f8fa;
   --accent-1: #e1e4e8;

@@ -21,7 +21,7 @@ const Guarantees = () => {
     return (
 
         <div className="px-4 py-24 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div className="px-6 py-16 rounded-2xl bg-primary-accent-9 sm:p-16">
+            <div className="px-6 py-16 bg- rounded-2xl bg-primary-accent-0 sm:p-16">
                 <div className="max-w-xl mx-auto lg:max-w-none">
                     <div className="text-center">
                         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
