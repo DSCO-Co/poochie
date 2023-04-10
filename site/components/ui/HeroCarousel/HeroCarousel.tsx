@@ -21,7 +21,7 @@ const HeroCarousel = ({ slides, useTimer = false, time = 5000 }) => {
               />
             </div>
             <div className="relative flex flex-col items-center max-w-5xl mx-auto text-center">
-              <h2 className="pt-20 tracking-widest text-black uppercase text-8xl sm:pt-0 font-extralight sm:text-8xl">
+              <h2 className="pt-20 tracking-widest text-black uppercase text-8xl sm:pt-0 font-extralight sm:text-4xl">
                 {slide.title}
               </h2>
               <a
