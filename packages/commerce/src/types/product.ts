@@ -82,6 +82,10 @@ export interface ProductVariant {
    * The image associated with the variant.
    */
   image?: Image
+  /**
+   * Indicates if the variant is in stock.
+   */
+  isPurchasable: boolean
 }
 
 export interface Product {
@@ -89,10 +93,19 @@ export interface Product {
    *  The unique identifier for the product.
    */
   id: string
+ /**
+   *  The unique identifier for the product. When arriving from Algolia.
+   */
+  productID?: string
+
   /**
    * The name of the product.
    */
   name: string
+  /**
+   * The name of the product, when arriving from Algolia
+   */
+    productName?: String
   /**
    * Stripped description of the product, single line.
    */

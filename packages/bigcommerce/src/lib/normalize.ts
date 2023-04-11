@@ -1,14 +1,14 @@
+import type { Cart, LineItem } from '@vercel/commerce/types/cart'
 import type { Page } from '@vercel/commerce/types/page'
 import type { Product } from '@vercel/commerce/types/product'
-import type { Cart, LineItem } from '@vercel/commerce/types/cart'
-import type { Category, Brand } from '@vercel/commerce/types/site'
-import type { BigcommerceCart, BCCategory, BCBrand } from '../types'
-import type { ProductNode } from '../api/operations/get-all-products'
+import type { Brand, Category } from '@vercel/commerce/types/site'
 import type { definitions } from '../api/definitions/store-content'
+import type { ProductNode } from '../api/operations/get-all-products'
 import type { BCWishlist } from '../api/utils/types'
+import type { BCBrand, BCCategory, BigcommerceCart } from '../types'
 
-import getSlug from './get-slug'
 import { Wishlist } from '@vercel/commerce/types/wishlist'
+import getSlug from './get-slug'
 
 function normalizeProductOption(productOption: any) {
   const {
@@ -121,10 +121,14 @@ function normalizeLineItem(item: any): LineItem {
 }
 
 export function normalizeCategory(category: BCCategory): Category {
+  // console.log('------------------ DEBUG ------------------');
+  // console.log(category);
+  // console.log('------------------ DEBUG ------------------');
   return {
     id: `${category.entityId}`,
     name: category.name,
     slug: getSlug(category.path),
+    children: category.children,
     path: category.path,
   }
 }
