@@ -16,7 +16,6 @@
   transition-timing-function: ease;
   transition-property: transform, fill;
   color: currentColor;
-  
 }
 
 .icon.loading {

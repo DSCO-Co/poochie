@@ -26,61 +26,69 @@ const ProductOptions: React.FC<ProductOptionsProps> = ({
   selectedOptions,
   setSelectedOptions,
 }) => {
-
   const getAvailableOptions = (option: ProductOption) => {
     const availableOptions = new Set()
-    variants.forEach(variant => {
+    variants.forEach((variant) => {
       if (variant.isPurchasable) {
-        let flag = true;
+        let flag = true
         for (const opt in selectedOptions) {
-          const label = variant.options.find(o => o.displayName.toLowerCase() === opt)?.values[0].label.toLowerCase()
-          if (selectedOptions[opt] === label || opt === option.displayName.toLowerCase()) {
-            continue;
+          const label = variant.options
+            .find((o) => o.displayName.toLowerCase() === opt)
+            ?.values[0].label.toLowerCase()
+          if (
+            selectedOptions[opt] === label ||
+            opt === option.displayName.toLowerCase()
+          ) {
+            continue
           }
-          flag = false;
+          flag = false
         }
         if (flag) {
-          const label = variant.options.find(opt => opt.displayName.toLowerCase() === option.displayName.toLowerCase())?.values[0].label.toLowerCase()
+          const label = variant.options
+            .find(
+              (opt) =>
+                opt.displayName.toLowerCase() ===
+                option.displayName.toLowerCase()
+            )
+            ?.values[0].label.toLowerCase()
           availableOptions.add(label)
         }
       }
     })
-    return availableOptions;
+    return availableOptions
   }
-  
 
   const getSelect = (opt: ProductOption) => {
-    const available = getAvailableOptions(opt);
-    return (
-      opt.values.map((v, i: number) => {
-        const active = selectedOptions[opt.displayName.toLowerCase()] === v.label.toLowerCase()
-        return (
-          <Swatch
-            key={`${opt.id}-${i}`}
-            active={active}
-            variant={opt.displayName}
-            inStock={available.has(v.label.toLowerCase())}
-            color={v.hexColors ? v.hexColors[0] : ''}
-            label={v.label}
-            onClick={() => {
-              if (active) {
-                const newOptions = {...selectedOptions};
-                delete newOptions[opt.displayName.toLowerCase()];
-                setSelectedOptions(newOptions);
-                return;
-              } else {
-                setSelectedOptions((selectedOptions) => {
-                  return {
-                    ...selectedOptions,
-                    [opt.displayName.toLowerCase()]: v.label.toLowerCase(),
-                  }
-                })
-              }
-            }}
-          />
-        )
-      })
-    )
+    const available = getAvailableOptions(opt)
+    return opt.values.map((v, i: number) => {
+      const active =
+        selectedOptions[opt.displayName.toLowerCase()] === v.label.toLowerCase()
+      return (
+        <Swatch
+          key={`${opt.id}-${i}`}
+          active={active}
+          variant={opt.displayName}
+          inStock={available.has(v.label.toLowerCase())}
+          color={v.hexColors ? v.hexColors[0] : ''}
+          label={v.label}
+          onClick={() => {
+            if (active) {
+              const newOptions = { ...selectedOptions }
+              delete newOptions[opt.displayName.toLowerCase()]
+              setSelectedOptions(newOptions)
+              return
+            } else {
+              setSelectedOptions((selectedOptions) => {
+                return {
+                  ...selectedOptions,
+                  [opt.displayName.toLowerCase()]: v.label.toLowerCase(),
+                }
+              })
+            }
+          }}
+        />
+      )
+    })
   }
 
   return (

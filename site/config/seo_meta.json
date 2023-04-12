@@ -1,13 +1,13 @@
 {
-  "title": "ACME Storefront | Powered by Next.js Commerce",
-  "titleTemplate": "%s - ACME Storefront",
-  "description": "Next.js Commerce - https://www.nextjs.org/commerce",
+  "title": "Poochie - Designer-Inspired Dog Apparel & Toys",
+  "titleTemplate": "%s - Poochie - Designer-Inspired Dog Apparel & Toys",
+  "description": "Designer-Inspired Dog Apparel & Toys",
   "openGraph": {
-    "title": "ACME Storefront | Powered by Next.js Commerce",
-    "description": "Next.js Commerce - https://www.nextjs.org/commerce",
+    "title": "Poochie - Designer-Inspired Dog Apparel & Toys",
+    "description": "Designer-Inspired Dog Apparel & Toys",
     "type": "website",
-    "url": "https://nextjs.org/commerce",
-    "site_name": "Next.js Commerce",
+    "url": "https://poochie.co",
+    "site_name": "Poochie Designer-Inspired Dog Clothes",
     "images": [
       {
         "url": "/card.png",
@@ -18,8 +18,8 @@
     ]
   },
   "twitter": {
-    "handle": "@nextjs",
-    "site": "@nextjs",
+    "handle": "@poochie.co",
+    "site": "@poochie_co",
     "cardType": "summary_large_image"
   }
 }

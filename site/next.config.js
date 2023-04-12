@@ -18,6 +18,13 @@ module.exports = withCommerceConfig({
     ALGOLIA_APP_ID: process.env.ALGOLIA_APP_ID,
     ALGOLIA_SEARCH_ONLY_API_KEY: process.env.ALGOLIA_SEARCH_ONLY_API_KEY,
   },
+  images: {
+    domains: [
+      'cdn11.bigcommerce.com',
+      'dev.beverlyhillspup.com',
+      'tailwindui.com',
+    ],
+  },
   rewrites() {
     return [
       (isBC || isShopify || isSwell || isVendure || isSaleor) && {
@@ -47,4 +54,4 @@ module.exports = withCommerceConfig({
 })
 
 // Don't delete this console log, useful to see the commerce config in Vercel deployments
-console.log('next.config.js', JSON.stringify(module.exports, null, 2))
+// console.log('next.config.js', JSON.stringify(module.exports, null, 2))

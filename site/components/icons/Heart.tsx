@@ -1,4 +1,4 @@
-const Heart = ({scale = 1, ...props }) => {
+const Heart = ({ scale = 1, ...props }) => {
   return (
     <svg
       width={`${24 * scale}`}

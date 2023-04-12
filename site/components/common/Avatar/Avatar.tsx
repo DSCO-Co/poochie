@@ -1,5 +1,6 @@
-import { FC, useRef } from 'react'
 import { useUserAvatar } from '@lib/hooks/useUserAvatar'
+import Image from 'next/image'
+import { FC, useRef } from 'react'
 
 interface Props {
   className?: string
@@ -16,11 +17,13 @@ const Avatar: FC<Props> = ({ scale = 2.5 }) => {
       ref={ref}
       style={{ height: `${scale}rem`, width: `${scale}rem` }}
       className={`inline-block rounded-full border-2 border-primary hover:border-secondary focus:border-secondary transition-colors ease-linear`}
-      >
-      <img
+    >
+      <Image
         src={userAvatar}
         alt="User Avatar"
-        className="rounded-full h-full w-full object-cover"
+        height={scale * 32}
+        width={scale * 32}
+        className="object-cover w-full h-full rounded-full"
       />
       {/* Add an image - We're generating a gradient as placeholder  <img></img> */}
     </div>

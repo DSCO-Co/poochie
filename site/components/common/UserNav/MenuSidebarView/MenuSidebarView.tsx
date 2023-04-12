@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import Link from 'next/link'
-import s from './MenuSidebarView.module.css'
-import { useUI } from '@components/ui/context'
 import SidebarLayout from '@components/common/SidebarLayout'
+import { useUI } from '@components/ui/context'
+import Link from 'next/link'
+import React, { useState } from 'react'
+import s from './MenuSidebarView.module.css'
 import type { Link as LinkProps } from './index'
 
 export default function MenuSidebarView({
@@ -16,16 +16,20 @@ export default function MenuSidebarView({
   const toggleExpand = (href: string) => {
     setExpandedLink((current) => (current === href ? null : href))
   }
-  console.log(links);
-  
+  console.log(links)
 
   return (
     <SidebarLayout handleClose={() => closeSidebar()}>
       <div className={s.root}>
         <nav>
           <ul>
-            <li className={`${s.item} border-b border-black`} onClick={() => closeSidebar()}>
-              <Link href="/search" className='ml-2'>All</Link>
+            <li
+              className={`${s.item} border-b border-black`}
+              onClick={() => closeSidebar()}
+            >
+              <Link href="/search" className="ml-2">
+                All
+              </Link>
             </li>
             {links.map((l: any) => (
               <React.Fragment key={l.href}>
@@ -35,7 +39,13 @@ export default function MenuSidebarView({
                     toggleExpand(l.href)
                   }}
                 >
-                  <Link href={l.href} onClick={() => closeSidebar()} className='ml-2' >{l.label}</Link>
+                  <Link
+                    href={l.href}
+                    onClick={() => closeSidebar()}
+                    className="ml-2"
+                  >
+                    {l.label}
+                  </Link>
                   {l.subLinks.length > 0 && (
                     <span
                       className={`ml-auto mr-2 inline-block transition-transform duration-300 ${

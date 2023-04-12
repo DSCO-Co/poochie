@@ -39,7 +39,7 @@ const Swatch: React.FC<Omit<ButtonProps, 'variant'> & SwatchProps> = ({
       [s.textLabel]: !color && label && label.length > 3,
     },
     className,
-    inStock ? "" : "pointer-events-none",
+    inStock ? '' : 'pointer-events-none'
   )
 
   return (
@@ -50,7 +50,7 @@ const Swatch: React.FC<Omit<ButtonProps, 'variant'> & SwatchProps> = ({
       className={swatchClassName}
       {...(label && color && { title: label })}
       // style={color ? { backgroundColor: color } : {}}
-      style={inStock ? {} : { backgroundColor: "rgba(0,0,0,0.1)"}}
+      style={inStock ? {} : { backgroundColor: 'rgba(0,0,0,0.1)' }}
       {...props}
     >
       {color && active && (

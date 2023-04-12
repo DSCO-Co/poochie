@@ -1,25 +1,29 @@
-import '@assets/main.css'
 import '@assets/chrome-bug.css'
+import '@assets/main.css'
 import 'keen-slider/keen-slider.min.css'
 
-import {
-  InstantSearch,
-  Configure,
-} from 'react-instantsearch-hooks-web'
-import algoliasearch from 'algoliasearch/lite';
+import algoliasearch from 'algoliasearch/lite'
+import { Configure, InstantSearch } from 'react-instantsearch-hooks-web'
 
-import { FC, ReactNode, useEffect } from 'react'
-import type { AppProps } from 'next/app'
 import { Head } from '@components/common'
 import { ManagedUIContext } from '@components/ui/context'
+import { useGTM, useGTMPageView } from '@lib/hooks/useGTM'
+import type { AppProps } from 'next/app'
+import { useRouter } from 'next/router'
+import { FC, ReactNode, useEffect } from 'react'
 
 const Noop: FC<{ children?: ReactNode }> = ({ children }) => <>{children}</>
 
-const searchClient = algoliasearch(process.env.NEXT_PUBLIC_ALGOLIA_APP_ID!, process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY!);
+const searchClient = algoliasearch(
+  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID!,
+  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY!
+)
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = (Component as any).Layout || Noop
-
+  const Router = useRouter();
+  useGTM();
+  useGTMPageView(Router.asPath);
   useEffect(() => {
     document.body.classList?.remove('loading')
   }, [])

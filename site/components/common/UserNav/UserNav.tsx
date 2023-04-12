@@ -1,18 +1,18 @@
-import cn from 'clsx'
-import Link from 'next/link'
-import s from './UserNav.module.css'
 import { Avatar } from '@components/common'
-import useCart from '@framework/cart/use-cart'
-import { useUI } from '@components/ui/context'
-import { Heart, Bag, Menu } from '@components/icons'
-import CustomerMenuContent from './CustomerMenuContent'
-import useCustomer from '@framework/customer/use-customer'
-import React from 'react'
+import { Bag, Heart, Menu } from '@components/icons'
 import {
+  Button,
   Dropdown,
   DropdownTrigger as DropdownTriggerInst,
-  Button,
 } from '@components/ui'
+import { useUI } from '@components/ui/context'
+import useCart from '@framework/cart/use-cart'
+import useCustomer from '@framework/customer/use-customer'
+import cn from 'clsx'
+import Link from 'next/link'
+import React from 'react'
+import CustomerMenuContent from './CustomerMenuContent'
+import s from './UserNav.module.css'
 
 import type { LineItem } from '@commerce/types/cart'
 
@@ -54,6 +54,7 @@ const UserNav: React.FC<{
               onClick={() => {
                 setSidebarView('CART_VIEW')
                 openSidebar()
+                closeSidebarIfPresent()
               }}
               aria-label={`Cart items: ${itemsCount}`}
             >
@@ -81,7 +82,7 @@ const UserNav: React.FC<{
           <li className={s.item}>
             <Link className="pb-0 mb-0" href="/wishlist">
               <button
-                className=" pt-1"
+                className="pt-1 "
                 onClick={closeSidebarIfPresent}
                 aria-label="Wishlist"
               >
@@ -117,6 +118,7 @@ const UserNav: React.FC<{
               onClick={() => {
                 setSidebarView('MOBILE_MENU_VIEW')
                 openSidebar()
+                closeSidebarIfPresent()
               }}
             >
               <Menu />

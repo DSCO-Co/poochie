@@ -23,7 +23,13 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-function DropDownMenu({ children, dropDownLinks, isActive, menuKey, setActiveMenu }) {
+function DropDownMenu({
+  children,
+  dropDownLinks,
+  isActive,
+  menuKey,
+  setActiveMenu,
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const handleMouseEnter = (event) => {
@@ -68,13 +74,13 @@ function DropDownMenu({ children, dropDownLinks, isActive, menuKey, setActiveMen
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 w-56 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 z-10 w-56 origin-top-right rounded-md shadow-lg bg-primary ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {dropDownLinks.map((dropDownLink) => (
               <Menu.Item key={dropDownLink.name}>
                 {({ active }) => (
                   <div className="relative">
-                    <a
+                    <Link
                       href={dropDownLink.path}
                       className={classNames(
                         active ? 'text-gray-900' : 'text-gray-900',
@@ -84,7 +90,7 @@ function DropDownMenu({ children, dropDownLinks, isActive, menuKey, setActiveMen
                       onMouseLeave={handleMouseLeave}
                     >
                       {dropDownLink.name}
-                    </a>
+                    </Link>
                   </div>
                 )}
               </Menu.Item>
@@ -126,10 +132,14 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
                 isActive={activeMenu === l.href}
                 setActiveMenu={setActiveMenu}
               >
-                <Link href={l.href} className={`${s.link} ${activeMenu === l.href ? s.linkActive : ''}`}>
+                <Link
+                  href={l.href}
+                  className={`${s.link} ${
+                    activeMenu === l.href ? s.linkActive : ''
+                  }`}
+                >
                   {l.label}
                 </Link>
-
               </DropDownMenu>
             ))}
           </nav>
@@ -155,7 +165,12 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
                 </button>
               </div>
             )} */}
-            <UserNav cart={true} wishlist={true} userAvatar={true} mobileMenu={true} />
+            <UserNav
+              cart={true}
+              wishlist={true}
+              userAvatar={true}
+              mobileMenu={true}
+            />
           </div>
         </div>
         {/* Desktop search bar */}

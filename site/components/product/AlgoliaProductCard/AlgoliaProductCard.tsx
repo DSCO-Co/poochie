@@ -22,12 +22,7 @@ import {
 
 const placeholderImg = '/product-img-placeholder.svg'
 
-const ProductCard = ({
-  product,
-  imgProps,
-  className,
-}) => {
-
+const ProductCard = ({ product, imgProps, className }) => {
   const rootClassName = cn(s.root, className)
 
   const addItem = useAddItem()
@@ -46,7 +41,6 @@ const ProductCard = ({
     setError(null)
 
     try {
-      
       await addItem({
         productId: String(product.id),
         variantId: String(item ? item.id : product.variants[0]?.id),
@@ -90,10 +84,10 @@ const ProductCard = ({
           <div className="text-center font-bold">{`$${product.price}`}</div>
         </div>
         <WishlistButton
-              className="absolute top-2 right-2"
-              productId={product.id?.toString() || "missing id"}
-              variant={product.variants[0]}
-            />
+          className="absolute top-2 right-2"
+          productId={product.id?.toString() || 'missing id'}
+          variant={product.variants[0]}
+        />
         <div className="absolute top-2 left-2">
           <div>
             <div
@@ -111,20 +105,18 @@ const ProductCard = ({
           {/* <div className="bg-orange-500 absolute top-1 left-1 p-1" /> */}
         </div>
         <Button
-              aria-label="Add to Cart"
-              className="opacity-0 group-hover:opacity-100 absolute bottom-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-1 py-0.5 bg-black text-white font-semibold rounded-md whitespace-nowrap"
-              onClick={(e) => {
-                e.preventDefault()
-                addToCart()
-              }}
-              type="button"
-              loading={loading}
-              disabled={item?.availableForSale === false}
-            >
-              {item?.availableForSale === false
-                ? 'Not Available'
-                : 'Add To Cart'}
-            </Button>
+          aria-label="Add to Cart"
+          className="opacity-0 group-hover:opacity-100 absolute bottom-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-1 py-0.5 bg-black text-white font-semibold rounded-md whitespace-nowrap"
+          onClick={(e) => {
+            e.preventDefault()
+            addToCart()
+          }}
+          type="button"
+          loading={loading}
+          disabled={item?.availableForSale === false}
+        >
+          {item?.availableForSale === false ? 'Not Available' : 'Add To Cart'}
+        </Button>
       </div>
     </Link>
   )
