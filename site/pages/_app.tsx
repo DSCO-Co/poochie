@@ -11,6 +11,7 @@ import { useGTM, useGTMPageView } from '@lib/hooks/useGTM'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { FC, ReactNode, useEffect } from 'react'
+import axios from 'axios'
 
 const Noop: FC<{ children?: ReactNode }> = ({ children }) => <>{children}</>
 
@@ -21,12 +22,35 @@ const searchClient = algoliasearch(
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = (Component as any).Layout || Noop
-  const Router = useRouter();
-  useGTM();
-  useGTMPageView(Router.asPath);
+  // const Router = useRouter();
+  // useGTM();
+  // useGTMPageView(Router.asPath);
   useEffect(() => {
     document.body.classList?.remove('loading')
   }, [])
+
+  const router = useRouter()
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      const eventData = {
+        msg: 'hi',
+        url: url
+      }
+
+      axios
+        .post('/api/webhooks/stape', eventData)
+        .then((response) => {
+          console.log('Server response:', response.data)
+        })
+        .catch((error) => {
+          console.error('Error sending event data:', error)
+        })
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   return (
     <>
