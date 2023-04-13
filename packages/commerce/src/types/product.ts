@@ -93,7 +93,7 @@ export interface Product {
    *  The unique identifier for the product.
    */
   id: string
- /**
+  /**
    *  The unique identifier for the product. When arriving from Algolia.
    */
   productID?: string
@@ -105,7 +105,7 @@ export interface Product {
   /**
    * The name of the product, when arriving from Algolia
    */
-    productName?: String
+  productName?: String
   /**
    * Stripped description of the product, single line.
    */

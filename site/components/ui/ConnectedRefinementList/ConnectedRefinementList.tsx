@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useRefinementList } from 'react-instantsearch-hooks-web';
+import { useEffect, useMemo, useState } from 'react'
+import { useRefinementList } from 'react-instantsearch-hooks-web'
 
 const categoriesData = {
   Apparel: [
@@ -111,8 +111,9 @@ const CustomRefinementList = ({ attribute, limit, initial }) => {
             />
             <button
               onClick={() => handleDropdownClick(index)}
-              className={`${item.isRefined ? 'text-accent-8 underline' : 'text-accent-4'
-                } hover:text-accent-5 focus:outline-none focus:text-accent-5`}
+              className={`${
+                item.isRefined ? 'text-accent-8 underline' : 'text-accent-4'
+              } hover:text-accent-5 focus:outline-none focus:text-accent-5`}
             >
               {item.label}
             </button>
@@ -145,8 +146,8 @@ const SubCategoryRefinementList = ({
   const { items, refine, canRefine } = useRefinementList({ attribute, limit })
 
   const subCategories = useMemo(() => {
-    return categoriesData[parentCategory] || [];
-  }, [categoriesData, parentCategory]);
+    return categoriesData[parentCategory] || []
+  }, [categoriesData, parentCategory])
 
   useEffect(() => {
     if (routeMapping[initial]) {

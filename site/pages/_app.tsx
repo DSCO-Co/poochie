@@ -34,7 +34,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     const handleRouteChange = (url) => {
       const eventData = {
         msg: 'hi',
-        url: url
+        url: url,
       }
 
       axios

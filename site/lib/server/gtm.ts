@@ -12,9 +12,4 @@
 // const url = 'https://www.google-analytics.com/analytics.js';
 // injectScript(url, data.gtmOnSuccess, data.gtmOnFailure, url);
 
-export const gtm = () => void 0;
-
-
-
-
-
+export const gtm = () => void 0

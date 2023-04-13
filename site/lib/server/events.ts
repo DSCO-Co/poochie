@@ -1,9 +1,8 @@
-// // 
+// //
 // // Description: This file contains all the events that are used in the application.
 // // https://developers.google.com/analytics/devguides/collection/ga4/user-id?client_type=gtag
 // // https://developers.google.com/analytics/devguides/collection/ga4/ecommerce?client_type=gtag
 // // https://developers.google.com/analytics/devguides/collection/ga4/display-features?client_type=gtag
-
 
 // const productImpression = (product) => ({
 //     'ecommerce': {
@@ -86,8 +85,6 @@
 //         }
 //     }
 // });
-
-
 
 // const removeFromCart = (productObj) => (
 //     {
@@ -300,7 +297,6 @@
 //   'user_id': 'USER_ID'
 // });
 // */
-
 
 // const ecommerce = {
 //     productImpression,

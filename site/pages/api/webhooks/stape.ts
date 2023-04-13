@@ -11,12 +11,10 @@ export default async function handler(req, res) {
 
   switch (requestMethod) {
     case 'GET':
-      res
-        .status(200)
-        .json({
-          message: `Get requests are not supported. Did you mean to make a POST request?`,
-        })
-      break 
+      res.status(200).json({
+        message: `Get requests are not supported. Did you mean to make a POST request?`,
+      })
+      break
 
     case 'POST':
       const eventData = req.body
