@@ -49,7 +49,7 @@ const UserNav: React.FC<{
         {process.env.COMMERCE_CART_ENABLED && cart && (
           <li className={s.item}>
             <Button
-              className={s.item}
+              className={`${s.item} view_cart_button`}
               variant="naked"
               onClick={() => {
                 setSidebarView('CART_VIEW')
