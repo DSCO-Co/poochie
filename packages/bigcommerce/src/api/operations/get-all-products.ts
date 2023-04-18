@@ -3,7 +3,6 @@ import type {
   OperationOptions,
 } from '@vercel/commerce/api/operations'
 
-
 import type {
   GetAllProductsQuery,
   GetAllProductsQueryVariables,

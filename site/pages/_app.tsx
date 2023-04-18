@@ -21,12 +21,26 @@ const searchClient = algoliasearch(
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = (Component as any).Layout || Noop
-  const Router = useRouter();
-  useGTM();
-  useGTMPageView(Router.asPath);
+  // const Router = useRouter();
+  // useGTM();
+  // useGTMPageView(Router.asPath);
   useEffect(() => {
     document.body.classList?.remove('loading')
   }, [])
+
+  const router = useRouter()
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      if (typeof window !== 'undefined' && window.analytics) {
+        window.analytics.page();
+      }
+    }
+
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   return (
     <>

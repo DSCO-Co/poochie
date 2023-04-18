@@ -1,5 +1,5 @@
-import WishlistButton from '@components/wishlist/WishlistButton';
-import Image from 'next/image';
+import WishlistButton from '@components/wishlist/WishlistButton'
+import Image from 'next/image'
 const placeholderImg = '/product-img-placeholder.svg'
 export const SimpleCard = ({ product, noNameTag, s, price }) => {
   return (

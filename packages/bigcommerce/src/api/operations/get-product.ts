@@ -98,14 +98,14 @@ export default function getAllProductPathsOperation({
   }): Promise<T['data']> {
     const config = commerce.getConfig(cfg)
     const { locale } = config
-    const path = slug ? `${slug}` : vars.path;
+    const path = slug ? `${slug}` : vars.path
     const variables: GetProductQueryVariables = {
       locale,
       hasLocale: !!locale,
       //@ts-ignore
       path,
     }
-    const { data } = await config.fetch<GetProductQuery>(query, { variables });
+    const { data } = await config.fetch<GetProductQuery>(query, { variables })
 
     const product = data.site?.route?.node
 
