@@ -7,9 +7,15 @@ import {
   ConnectedSortBy,
   ConnectedPagination,
   ConnectedRefinementList,
+  CustomHierarchicalMenu,
 } from '@components/ui'
 
-import { Configure } from 'react-instantsearch-hooks-web'
+import {
+  Configure,
+  HierarchicalMenu,
+  Menu,
+} from 'react-instantsearch-hooks-web'
+import { Panel } from 'react-instantsearch-dom'
 import { ConnectedProducts } from './search/ConnectedProducts'
 
 export default function Search({}: SearchPropsType) {
@@ -28,16 +34,23 @@ export default function Search({}: SearchPropsType) {
 
         <div className="sticky top-0 lg:top-32 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-1 lg:order-none">
           <div>
-            <div className="mb-8">
+            {/* <div className="mb-8">
               <h3 className="text-lg font-medium mb-2">Categories</h3>
               <ConnectedRefinementList
                 attribute="category"
                 limit={100}
                 initial={initial}
               />
-            </div>
+            </div> */}
+
+            <h3 className="text-lg font-medium mb-2">Categories</h3>
+              <CustomHierarchicalMenu
+                attributes={['categories.lvl0', 'categories.lvl1']}
+                limit={40}
+              />
+
             <div>
-              <h3 className="text-lg font-medium mb-2">Brands</h3>
+              <h3 className="text-lg font-medium mb-2 mt-2">Brands</h3>
               <ConnectedRefinementList
                 attribute="brandName"
                 limit={100}
