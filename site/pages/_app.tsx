@@ -31,20 +31,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
   useEffect(() => {
     const handleRouteChange = (url) => {
-      // const eventData = {
-      //   msg: 'hi',
-      //   url: url,
-      // }
-
-      // axios
-      //   .post('/api/webhooks/stape', eventData)
-      //   .then((response) => {
-      //     console.log('Server response:', response.data)
-      //   })
-      //   .catch((error) => {
-      //     console.error('Error sending event data:', error)
-      //   })
+      if (typeof window !== 'undefined' && window.analytics) {
+        window.analytics.page();
+      }
     }
+
     router.events.on('routeChangeComplete', handleRouteChange)
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange)
