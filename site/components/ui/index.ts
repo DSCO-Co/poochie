@@ -22,6 +22,7 @@ export { default as Rating } from './Rating'
 export { default as Sidebar } from './Sidebar'
 export { default as Skeleton } from './Skeleton'
 export { default as Text } from './Text'
+export { default as CustomHierarchicalMenu} from './CustomHierarchicalMenu'
 
 export * from './Dropdown/Dropdown'
 export { useUI } from './context'

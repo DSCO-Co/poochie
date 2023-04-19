@@ -1,6 +1,6 @@
-import { useUserAvatar } from '@lib/hooks/useUserAvatar'
-import Image from 'next/image'
-import { FC, useRef } from 'react'
+import { useUserAvatar } from '@lib/hooks/useUserAvatar';
+import Image from 'next/image';
+import { FC, useRef } from 'react';
 
 interface Props {
   className?: string
@@ -18,8 +18,11 @@ const Avatar: FC<Props> = ({ scale = 2.5 }) => {
       style={{ height: `${scale}rem`, width: `${scale}rem` }}
       className={`inline-block rounded-full border-2 border-primary hover:border-secondary focus:border-secondary transition-colors ease-linear`}
     >
+      {/*
+      // eslint-disable-next-line @next/next/no-img-element 
+      */}
       <Image
-        src={userAvatar}
+        src={'/puppies/puppy_icon_3.png'}
         alt="User Avatar"
         height={scale * 32}
         width={scale * 32}
