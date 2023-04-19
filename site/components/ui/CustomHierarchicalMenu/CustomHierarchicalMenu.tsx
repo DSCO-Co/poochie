@@ -1,15 +1,68 @@
-import { useHierarchicalMenu } from 'react-instantsearch-hooks-web';
+import { useHierarchicalMenu } from 'react-instantsearch-hooks-web'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import path from 'path'
+
+type HierarchicalMenuItem = {
+  /**
+  * Value of the menu item.
+  */
+  value: string;
+  /**
+  * Human-readable value of the menu item.
+  */
+  label: string;
+  /**
+  * Number of matched results after refinement is applied.
+  */
+  count: number;
+  /**
+  * Indicates if the refinement is applied.
+  */
+  isRefined: boolean;
+  /**
+  * n+1 level of items
+  */
+  data: HierarchicalMenuItem[] | null;
+};
+
+
+const getCategoryItemFromRouteName = (routeName: string, items: HierarchicalMenuItem[]) => {
+  function routeFormatter(str) {
+    return str
+      .replace(/&/g, '') // Remove '&'
+      .replace(/\s+/g, '-') // Replace spaces with '-'
+      .toLowerCase(); // Convert to lower case
+  }
+  
+  for (const i in items) {
+    if (routeName === routeFormatter(items[i].value)){
+      return items[i]; 
+    }
+  }
+  return null;
+};
 
 const CustomHierarchicalMenu = ({ attributes, limit }) => {
-  const { items, refine } = useHierarchicalMenu({ attributes, limit});
-  console.log("Items", items)
-  items.map((item) => (
-    console.log("Item: ", item.data)
-  ))
+  const { items, refine } = useHierarchicalMenu({ attributes, limit })
+  const router = useRouter()
+  const [initialCategoryItem, setInitialCategoryItem] = useState(null);
+
+  useEffect(() => {
+    if (items && items.length > 0) {
+      const categoryItem = getCategoryItemFromRouteName(router.asPath.split('collections/')[1], items);
+      //@ts-ignore
+      if (categoryItem && categoryItem.value !== initialCategoryItem?.value) {
+        //@ts-ignore
+        setInitialCategoryItem(categoryItem);
+        handleItemClick(categoryItem);
+      }
+    }
+  }, [router.asPath.split('collections/')[1], items, refine, initialCategoryItem]);
 
   const handleItemClick = (item) => {
-    refine(item.value);
-  };
+    refine(item.value)
+  }
 
   return (
     <div className="flex flex-col space-y-2">
@@ -33,7 +86,10 @@ const CustomHierarchicalMenu = ({ attributes, limit }) => {
           {item.data && (
             <div className="mt-2 ml-4">
               {item.data.map((subItem) => (
-                <label className="flex items-center text-sm leading-5 text-left mt-1" key={subItem.label}>
+                <label
+                  className="flex items-center text-sm leading-5 text-left mt-1"
+                  key={subItem.label}
+                >
                   <input
                     type="checkbox"
                     checked={subItem.isRefined}
@@ -42,7 +98,9 @@ const CustomHierarchicalMenu = ({ attributes, limit }) => {
                   />
                   <span
                     className={`${
-                      subItem.isRefined ? 'text-accent-8 underline' : 'text-accent-4'
+                      subItem.isRefined
+                        ? 'text-accent-8 underline'
+                        : 'text-accent-4'
                     } hover:text-accent-5 focus:outline-none focus:text-accent-5`}
                   >
                     {subItem.label}
@@ -54,7 +112,7 @@ const CustomHierarchicalMenu = ({ attributes, limit }) => {
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default CustomHierarchicalMenu;
+export default CustomHierarchicalMenu
