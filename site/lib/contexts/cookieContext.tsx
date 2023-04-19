@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { Cookie } from './Cookie';
+import { Cookie } from '../dscookies/Cookie';
 
 export interface CookieContextProps {
     // cookie: Cookie;

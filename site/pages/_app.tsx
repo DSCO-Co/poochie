@@ -7,7 +7,7 @@ import { Configure, InstantSearch } from 'react-instantsearch-hooks-web'
 
 import { Head } from '@components/common'
 import { ManagedUIContext } from '@components/ui/context'
-import { CookieProvider } from '@lib/dscookies'
+import { CookieProvider } from '@lib/contexts'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { FC, ReactNode, useEffect } from 'react'
@@ -21,9 +21,6 @@ const searchClient = algoliasearch(
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = (Component as any).Layout || Noop
-  // const Router = useRouter();
-  // useGTM();
-  // useGTMPageView(Router.asPath);
   useEffect(() => {
     document.body.classList?.remove('loading')
   }, [])
