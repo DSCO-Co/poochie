@@ -11,6 +11,8 @@ import { useGTM, useGTMPageView } from '@lib/hooks/useGTM'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { FC, ReactNode, useEffect } from 'react'
+import axios from 'axios'
+import { type } from 'os'
 
 const Noop: FC<{ children?: ReactNode }> = ({ children }) => <>{children}</>
 
@@ -24,15 +26,24 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   // const Router = useRouter();
   // useGTM();
   // useGTMPageView(Router.asPath);
+
   useEffect(() => {
     document.body.classList?.remove('loading')
   }, [])
 
   const router = useRouter()
   useEffect(() => {
-    const handleRouteChange = (url) => {
+    const handleRouteChange = async (url) => {
       if (typeof window !== 'undefined' && window.analytics) {
-        window.analytics.page();
+        let data = await window.analytics.page()
+        axios
+          .post('/api/webhooks/stape', data)
+          .then((response) => {
+            console.log('Server response:', response.data)
+          })
+          .catch((error) => {
+            console.error('Error sending event data:', error)
+          })
       }
     }
 
