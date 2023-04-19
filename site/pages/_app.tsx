@@ -7,11 +7,10 @@ import { Configure, InstantSearch } from 'react-instantsearch-hooks-web'
 
 import { Head } from '@components/common'
 import { ManagedUIContext } from '@components/ui/context'
-import { useGTM, useGTMPageView } from '@lib/hooks/useGTM'
+import { CookieProvider } from '@lib/dscookies'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { FC, ReactNode, useEffect } from 'react'
-import axios from 'axios'
 
 const Noop: FC<{ children?: ReactNode }> = ({ children }) => <>{children}</>
 
@@ -55,14 +54,16 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head />
-      <ManagedUIContext>
-        <InstantSearch searchClient={searchClient} indexName="Products">
-          <Configure />
-          <Layout pageProps={pageProps}>
-            <Component {...pageProps} />
-          </Layout>
-        </InstantSearch>
-      </ManagedUIContext>
+      <CookieProvider>
+        <ManagedUIContext>
+          <InstantSearch searchClient={searchClient} indexName="Products">
+            <Configure />
+            <Layout pageProps={pageProps}>
+              <Component {...pageProps} />
+            </Layout>
+          </InstantSearch>
+        </ManagedUIContext>
+      </CookieProvider>
     </>
   )
 }
