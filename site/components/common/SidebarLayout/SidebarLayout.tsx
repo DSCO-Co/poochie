@@ -1,9 +1,9 @@
 import { UserNav } from '@components/common'
 import { ChevronLeft } from '@components/icons'
-import { useUI } from '@components/ui/context'
 import cn from 'clsx'
 import { FC, ReactNode } from 'react'
 import s from './SidebarLayout.module.css'
+import { useUI } from '@components/ui/context'
 
 type ComponentProps = { className?: string; children?: ReactNode } & (
   | { handleClose: () => any; handleBack?: never }
