@@ -14,7 +14,7 @@ class MyDocument extends Document {
   }}(); `}
           </Script>
 
-          {/* <link rel="icon" href="/bc_favicon.ico" /> */}
+
           <link
             rel="apple-touch-icon"
             sizes="76x76"

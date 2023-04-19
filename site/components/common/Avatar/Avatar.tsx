@@ -1,5 +1,4 @@
 import { useUserAvatar } from '@lib/hooks/useUserAvatar'
-import Image from 'next/image'
 import { FC, useRef } from 'react'
 
 interface Props {
@@ -18,7 +17,10 @@ const Avatar: FC<Props> = ({ scale = 2.5 }) => {
       style={{ height: `${scale}rem`, width: `${scale}rem` }}
       className={`inline-block rounded-full border-2 border-primary hover:border-secondary focus:border-secondary transition-colors ease-linear`}
     >
-      <Image
+      {/*
+      // eslint-disable-next-line @next/next/no-img-element 
+      */}
+      <img
         src={userAvatar}
         alt="User Avatar"
         height={scale * 32}
