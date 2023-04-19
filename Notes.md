@@ -20,7 +20,8 @@
 &utm_campaign=
 &utm_agid=144926631063
 &utm_term=
-&creative=649011512099&device=c
+&creative=649011512099
+&device=c
 &placement=
 gclid=CjwKCAjw__ihBhADEiwAXEazJouQDaL96e_N3_U20Y4zJ9V92I4iQmGtNQFG9txEBBhVVEwMYadO6RoCQBgQAvD_BwE
 ```
