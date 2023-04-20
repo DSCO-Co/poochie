@@ -48,7 +48,7 @@ export default async function handler(req, res) {
 
               res
                 .status(200)
-                .json({ message: 'Page View Sent From Server' })
+                .json({ message: `Server Event ${receivedData.eventName}` })
             } catch (error) {
               console.error('Error processing received data:', error)
               res.status(500).json({ error: 'Error processing received data' })
@@ -56,10 +56,25 @@ export default async function handler(req, res) {
             break
 
           case 'Product Added':
-            res.status(200).json({ message: 'Product Sent From Server' })
+            res
+              .status(200)
+              .json({ message: `Server Event ${receivedData.eventName}` })
             break
-
+          case 'Product Removed':
+            res
+              .status(200)
+              .json({ message: `Server Event ${receivedData.eventName}` })
+            break
+          case 'Product Added to Wishlist':
+            res
+              .status(200)
+              .json({ message: `Server Event ${receivedData.eventName}` })
+            break
+         
           default:
+            res
+              .status(500)
+              .json({ error: `Server Event ${receivedData.eventName} did not match any server events.` })
             break
         }
 
