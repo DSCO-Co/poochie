@@ -9,7 +9,7 @@ const forwardToServer = (eventName, data) => {
   data.eventName = eventName;
   console.log('data in forwardeded:', data)
   axios
-    .post('/api/webhooks/stape', data)
+    .post('/api/webhooks/segment', data)
     .then((response) => {
       console.log('Server response:', response.data)
     })
@@ -74,7 +74,7 @@ export const trackProductAdded = async () => {
   let data = await window.analytics.track(eventName, {})
   console.log('Product Added data:', data)
   forwardToServer(eventName, data)
-  
+
 }
 
 // export const trackProductSearched = (formValue: string) => {

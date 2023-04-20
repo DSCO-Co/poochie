@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { Analytics } from '@segment/analytics-node'
 
 export default async function handler(req, res) {
@@ -28,6 +27,43 @@ export default async function handler(req, res) {
         const receivedData = req.body
         console.log('receivedData:', receivedData.eventName)
         switch (receivedData.eventName) {
+          case 'Order Completed':
+            try {
+              const { anonymousId, properties } = receivedData
+              const { orderId, total, revenue, products } = properties || {}
+
+              console.log('heres the products from segment:', products)
+
+              const productsArray = products.map((product) => {
+                const { product_id, sku, name, price, quantity } = product
+                return {
+                  product_id,
+                  sku,
+                  name,
+                  price,
+                  quantity,
+                }
+              })
+
+              analytics.track({
+                anonymousId,
+                event: 'Order Completed',
+                properties: {
+                  orderId,
+                  total,
+                  revenue,
+                  products: productsArray,
+                },
+              })
+
+              res
+                .status(200)
+                .json({ message: 'Order Completed Sent From Server' })
+            } catch (error) {
+              console.error('Error processing received data:', error)
+              res.status(500).json({ error: 'Error processing received data' })
+            }
+            break
           case 'Page Viewed':
             try {
               const { anonymousId, properties } = receivedData
@@ -75,4 +111,5 @@ export default async function handler(req, res) {
   }
 }
 
-export {}
+export { }
+
