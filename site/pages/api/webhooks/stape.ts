@@ -1,53 +1,78 @@
-// import axios from 'axios'
+import axios from 'axios'
+import { Analytics } from '@segment/analytics-node'
 
-// // localhost:3000/api/webhooks/stape
+export default async function handler(req, res) {
+  const requestMethod = req.method
 
-// /*
-//     nextjs client -> api route -> stape.io -> gtm
-//     client: POST /api/webhooks/stape
-//     server: builds the event type, adds user data, adds product data, etc...
-//     server: POST https://ss.poochie.co/collect, whatever...
-// */
-// export default async function handler(req, res) {
-//   const requestMethod = req.method
+  // Check if SEGMENT_SERVER_WRITEKEY is defined
+  const segmentServerWriteKey = process.env.SEGMENT_SERVER_WRITEKEY
+  if (!segmentServerWriteKey) {
+    console.error('SEGMENT_SERVER_WRITEKEY is not defined')
+    res.status(500).json({ error: 'Internal server error' })
+    return
+  }
 
-//   switch (requestMethod) {
-//     case 'GET':
-//       res.status(200).json({
-//         message: `Get requests are not supported. Did you mean to make a POST request?`,
-//       })
-//       break
+  const analytics = new Analytics({
+    writeKey: segmentServerWriteKey,
+  })
 
-//     case 'POST':
-//       const eventData = req.body
-//       console.log('Received event data:', eventData)
+  try {
+    switch (requestMethod) {
+      case 'GET':
+        res.status(200).json({
+          message: `Get requests are not supported. Did you mean to make a POST request?`,
+        })
+        break
 
-//       const url = eventData.url ? encodeURIComponent(eventData.url) : ''
+      case 'POST':
+        const receivedData = req.body
+        console.log('receivedData:', receivedData.eventName)
+        switch (receivedData.eventName) {
+          case 'Page Viewed':
+            try {
+              const { anonymousId, properties } = receivedData
+              const { path, referrer, search, title, url } = properties || {}
 
-//       try {
-//         const response = await axios.get(
-//           `https://ss.poochie.co/g/collect?v=2&en=page_view&tid=G-1234&cid=123.456&dl=${url}`,
-//           {
-//             headers: {
-//               'x-gtm-server-preview':
-//                 'ZW52LTR8Mm1kZnBEQ1ZpdHhJemRkbkNEaU9zd3wxODc3YzgzOTNhMTFhMzVjNmNmZDQ=',
-//             },
-//           }
-//         )
-//         console.log('Axios response:', response.data)
-//       } catch (error) {
-//         console.error('Axios request failed:', error)
-//       }
+              console.log('heres the url from segment:', url)
 
-//       res
-//         .status(200)
-//         .json({ message: 'Hey it worked in stape routes this time' })
-//       break
+              analytics.page({
+                anonymousId,
+                properties: {
+                  path,
+                  referrer,
+                  search,
+                  title,
+                  url,
+                },
+              })
 
-//     // handle other HTTP methods
-//     default:
-//       res.status(200).json({ message: 'Welcome to API Routes!' })
-//       break
-//   }
-// }
+              res
+                .status(200)
+                .json({ message: 'Page View Sent From Server' })
+            } catch (error) {
+              console.error('Error processing received data:', error)
+              res.status(500).json({ error: 'Error processing received data' })
+            }
+            break
+
+          case 'Product Added':
+            res.status(200).json({ message: 'Product Sent From Server' })
+            break
+
+          default:
+            break
+        }
+
+        break
+
+      default:
+        res.status(200).json({ message: 'Welcome to API Routes!' })
+        break
+    }
+  } catch (error) {
+    console.error('Error handling request:', error)
+    res.status(500).json({ error: 'Internal server error' })
+  }
+}
+
 export {}

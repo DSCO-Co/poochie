@@ -14,6 +14,7 @@ import {
 } from './'
 
 import s from './ProductCard.module.css'
+import { trackProductViewed } from '@Segment/segmentAnalytics'
 
 const ProductCard: FC<ProductCardProps> = ({
   product,
@@ -29,11 +30,15 @@ const ProductCard: FC<ProductCardProps> = ({
     { [s.slim]: variant === 'slim', [s.simple]: variant === 'simple' },
     className
   )
+  console.log('variant:', variant)
   return (
     <Link
       href={`${product.path}`}
       className={`${rootClassName} rounded-xl`}
       aria-label={product.name}
+      onClick={() => { 
+        trackProductViewed(product); 
+      }}
     >
       {variant === 'slim' && <SlimCard product={product} imgProps={imgProps} />}
 

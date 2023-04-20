@@ -38,7 +38,7 @@ export const AlgoliaStylizedCard = ({ product, imgProps }) => {
                 padding: '4px',
               }}
             >
-              Sale
+              Sale 
             </div>
           </div>
           {/* <div className="absolute p-1 bg-orange-500 top-1 left-1" /> */}

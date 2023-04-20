@@ -1,6 +1,6 @@
-import { useUserAvatar } from '@lib/hooks/useUserAvatar'
-import Image from 'next/image'
-import { FC, useRef } from 'react'
+// import { useUserAvatar } from '@lib/hooks/useUserAvatar';
+import Image from 'next/image';
+import { FC, useRef } from 'react';
 
 interface Props {
   className?: string
@@ -10,7 +10,7 @@ interface Props {
 
 const Avatar: FC<Props> = ({ scale = 2.5 }) => {
   let ref = useRef() as React.MutableRefObject<HTMLInputElement>
-  let { userAvatar } = useUserAvatar()
+  // let { userAvatar } = useUserAvatar()
 
   return (
     <div
@@ -19,7 +19,7 @@ const Avatar: FC<Props> = ({ scale = 2.5 }) => {
       className={`inline-block rounded-full border-2 border-primary hover:border-secondary focus:border-secondary transition-colors ease-linear`}
     >
       <Image
-        src={userAvatar}
+        src={'/puppies/puppy_icon_3.png'}
         alt="User Avatar"
         height={scale * 32}
         width={scale * 32}

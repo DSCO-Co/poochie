@@ -12,6 +12,7 @@ import {
 } from '../helpers'
 import ErrorMessage from '@components/ui/ErrorMessage'
 import ProductTag from '../ProductTag'
+import { trackProductAdded} from '@Segment/segmentAnalytics'
 
 interface ProductSidebarProps {
   product: Product
@@ -79,7 +80,10 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
             aria-label="Add to Cart"
             type="button"
             className={s.button}
-            onClick={addToCart}
+            onClick={() => {
+              addToCart(); 
+              trackProductAdded();
+            }}
             loading={loading}
             disabled={variant?.availableForSale === false}
           >

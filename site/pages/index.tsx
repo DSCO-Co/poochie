@@ -6,6 +6,10 @@ import JumpingJackets from '@assets/heroes/Jumping-Jackets-Background.jpg'
 import SweetSweaters from '@assets/heroes/Sweet-Sweaters-Background.jpg'
 import TotallyToys from '@assets/heroes/Totally-Toys-Background.jpg'
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+
+
+import { useAttributor } from '@lib/hooks'
+
 export async function getStaticProps({
   preview,
   locale,
@@ -39,6 +43,8 @@ export async function getStaticProps({
 export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const attributor = useAttributor()
+  console.log({ attributor });
   return (
     <>
       <HeroCarousel
