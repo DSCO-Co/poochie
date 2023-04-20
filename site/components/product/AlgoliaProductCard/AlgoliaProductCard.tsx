@@ -13,7 +13,7 @@ import {
   getProductVariant,
   selectDefaultOptionFromProduct,
 } from '../helpers'
-import { trackProductViewed } from '@Segment/segmentAnalytics'
+import { trackProductAdded, trackProductViewed } from '@Segment/segmentAnalytics'
 
 // interface Props {
 //   className?: string
@@ -114,6 +114,7 @@ const ProductCard = ({ product, imgProps, className }) => {
           onClick={(e) => {
             e.preventDefault()
             addToCart()
+            trackProductAdded()
           }}
           type="button"
           loading={loading}

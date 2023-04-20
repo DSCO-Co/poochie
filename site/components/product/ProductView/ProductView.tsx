@@ -84,7 +84,7 @@ const ProductView: FC<ProductViewProps> = ({ product }) => {
         </div>
         <hr className="mt-7 border-accent-2" />
         <section className="py-12 px-6 mb-10">
-          <Text variant="sectionHeading">Related Products</Text>
+          <Text variant="sectionHeading">Related Products </Text>
           <div className={s.relatedProductsGrid}>
             {algoliaRelatedProducts.map((p) => (
               <div key={p.path} className="bg-accent-0 border border-accent-2">

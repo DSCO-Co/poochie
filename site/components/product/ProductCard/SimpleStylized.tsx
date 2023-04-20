@@ -1,3 +1,4 @@
+import { trackProductAdded } from '@Segment/segmentAnalytics'
 import { Button } from '@components/ui'
 import WishlistButton from '@components/wishlist/WishlistButton'
 import Image from 'next/image'
@@ -61,6 +62,7 @@ export const SimpleStylizedCard = ({
           onClick={(e) => {
             e.preventDefault()
             addToCart()
+            trackProductAdded()
           }}
           type="button"
           loading={loading}

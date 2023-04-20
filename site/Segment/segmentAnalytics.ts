@@ -4,16 +4,20 @@ import { AnalyticsWindow } from './types/Segment'
 
 declare let window: AnalyticsWindow
 
-const forwardToServer = (data) => {
+const forwardToServer = (eventName, data) => {
+  data = data.event
+  data.eventName = eventName;
+  console.log('data in forwardeded:', data)
   axios
     .post('/api/webhooks/stape', data)
     .then((response) => {
-      console.log('Server response:', response.data);
+      console.log('Server response:', response.data)
     })
     .catch((error) => {
-      console.error('Error sending event data:', error);
-    });
-};
+      console.error('Error sending event data:', error)
+    })
+}
+
 /**
  * Basic Analytics calls
  */
@@ -22,8 +26,8 @@ export const pageViewed = async (
   category = 'Default category'
 ) => {
   let data = await window.analytics.page()
-  console.log('Page Viewed data:', data);
-  forwardToServer(data);
+  console.log('Page Viewed data:', data)
+  forwardToServer('Page Viewed', data)
 }
 
 type EventType =
@@ -65,19 +69,12 @@ export const defaultProductAddedProperties = {
   image_url: 'https://www.example.com/product/path.jpg',
 }
 
-export const trackProductAdded = ({
-  color,
-  size,
-}: {
-  color: ShirtColor
-  size: ShirtSize
-}) => {
+export const trackProductAdded = async () => {
   const eventName = 'Product Added'
-  window.analytics.track(eventName, {
-    variant: color,
-    size,
-    ...defaultProductAddedProperties,
-  })
+  let data = await window.analytics.track(eventName, {})
+  console.log('Product Added data:', data)
+  forwardToServer(eventName, data)
+  
 }
 
 // export const trackProductSearched = (formValue: string) => {
@@ -127,7 +124,6 @@ export const trackProductViewed = async (product: any) => {
   const eventName = 'Product Viewed'
   let data = await window.analytics.track(eventName, { product })
   console.log('Product Viewed data:', data)
-  
 }
 
 // export const defaultPromotionClickedProperties = {
