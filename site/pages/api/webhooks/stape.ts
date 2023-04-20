@@ -30,7 +30,7 @@ export default async function handler(req, res) {
           const { anonymousId, properties } = receivedData.event;
           const { path, referrer, search, title, url } = properties || {};
 
-          console.log('heres the url:', url);
+          console.log('heres the url from segment:', url);
 
           analytics.page({
             anonymousId,

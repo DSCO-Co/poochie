@@ -4,6 +4,16 @@ import { AnalyticsWindow } from './types/Segment'
 
 declare let window: AnalyticsWindow
 
+const forwardToServer = (data) => {
+  axios
+    .post('/api/webhooks/stape', data)
+    .then((response) => {
+      console.log('Server response:', response.data);
+    })
+    .catch((error) => {
+      console.error('Error sending event data:', error);
+    });
+};
 /**
  * Basic Analytics calls
  */
@@ -11,22 +21,16 @@ export const pageViewed = async (
   name = 'John Doe',
   category = 'Default category'
 ) => {
-    let data = await window.analytics.page()
-    axios
-      .post('/api/webhooks/stape', data)
-      .then((response) => {
-        console.log('Server response:', response.data)
-      })
-      .catch((error) => {
-        console.error('Error sending event data:', error)
-      })
-  }
-
-export const trackButtonClicked = (title: string) => {
-  window.analytics.track('Button Clicked', {
-    title,
-  })
+  let data = await window.analytics.page()
+  console.log('Page Viewed data:', data);
+  forwardToServer(data);
 }
+
+type EventType =
+  | 'Product Viewed'
+  | 'Product Added'
+  | 'Checkout Started'
+  | 'Order Completed'
 
 export const identifyUser = (name: string) => {
   window.analytics.identify({
@@ -96,19 +100,34 @@ export const defaultProductViewedProperties = {
   url: 'https://www.example.com/product/path',
   image_url: 'https://www.example.com/product/path.jpg',
 }
-export const trackProductViewed = ({
-  title,
-  author,
-}: {
-  title: string
-  author: string
-}) => {
+
+interface ProductImage {
+  url: string
+}
+
+interface ProductVariant {
+  id: string
+  name: string
+  sku: string
+}
+
+interface Product {
+  description?: string
+  id: string
+  images: ProductImage[]
+  name: string
+  options?: unknown
+  path: string
+  price: number
+  slug?: string
+  variants: ProductVariant[]
+}
+
+export const trackProductViewed = async (product: any) => {
   const eventName = 'Product Viewed'
-  window.analytics.track(eventName, {
-    title,
-    author,
-    ...defaultProductViewedProperties,
-  })
+  let data = await window.analytics.track(eventName, { product })
+  console.log('Product Viewed data:', data)
+  
 }
 
 // export const defaultPromotionClickedProperties = {

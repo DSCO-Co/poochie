@@ -13,6 +13,7 @@ import {
   getProductVariant,
   selectDefaultOptionFromProduct,
 } from '../helpers'
+import { trackProductViewed } from '@Segment/segmentAnalytics'
 
 // interface Props {
 //   className?: string
@@ -64,6 +65,9 @@ const ProductCard = ({ product, imgProps, className }) => {
       href={`${product.path}`}
       className={rootClassName}
       aria-label={product.name}
+      onClick={() => { 
+        trackProductViewed(product); 
+      }}
     >
       <div className=" h-full relative group bg-white text-sm flex flex-col">
         <div className="p-1 flex-grow">
