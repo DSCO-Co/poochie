@@ -8,7 +8,7 @@ import TotallyToys from '@assets/heroes/Totally-Toys-Background.jpg'
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 
 
-import { useAttributor } from '@lib/attributor'
+import { useAttributor } from '@lib/hooks'
 
 export async function getStaticProps({
   preview,

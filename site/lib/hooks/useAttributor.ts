@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Attributor, { AttributorConfig } from './Attributor';
+import Attributor, { AttributorConfig } from '../attributor/Attributor';
 
 export const useAttributor = (config?: AttributorConfig): Attributor => {
     // @ts-expect-error
