@@ -2,10 +2,6 @@ import { useHierarchicalMenu } from 'react-instantsearch-hooks-web';
 
 const CustomHierarchicalMenu = ({ attributes, limit }) => {
   const { items, refine } = useHierarchicalMenu({ attributes, limit});
-  console.log("Items", items)
-  items.map((item) => (
-    console.log("Item: ", item.data)
-  ))
 
   const handleItemClick = (item) => {
     refine(item.value);

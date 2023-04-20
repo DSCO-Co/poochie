@@ -12,6 +12,8 @@ import axios from 'axios'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { FC, ReactNode, useEffect } from 'react'
+import { pageViewed } from '@Segment/segmentAnalytics'
+
 
 const Noop: FC<{ children?: ReactNode }> = ({ children }) => <>{children}</>
 
@@ -29,20 +31,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   const router = useRouter()
   useEffect(() => {
-    const handleRouteChange = async (url) => {
-      if (typeof window !== 'undefined' && window.analytics) {
-        let data = await window.analytics.page()
-        axios
-          .post('/api/webhooks/stape', data)
-          .then((response) => {
-            console.log('Server response:', response.data)
-          })
-          .catch((error) => {
-            console.error('Error sending event data:', error)
-          })
-      }
-    }
-
+    const handleRouteChange = (url) => {
+      pageViewed();
+    } 
     router.events.on('routeChangeComplete', handleRouteChange)
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange)
