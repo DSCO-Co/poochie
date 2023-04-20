@@ -3,22 +3,21 @@ import { useRouter } from 'next/router'
 
 import { Layout } from '@components/common'
 import {
-  Container,
-  ConnectedSortBy,
   ConnectedPagination,
   ConnectedRefinementList,
+  ConnectedSortBy,
+  Container,
   CustomHierarchicalMenu,
 } from '@components/ui'
 
+import { Button } from '@components/ui'
+import { Menu as HeadlessMenu } from '@headlessui/react'
 import {
-  Configure,
-  HierarchicalMenu,
-  Menu,
+  Configure
 } from 'react-instantsearch-hooks-web'
-import { Panel } from 'react-instantsearch-dom'
 import { ConnectedProducts } from './search/ConnectedProducts'
 
-export default function Search({}: SearchPropsType) {
+export default function Search({ }: SearchPropsType) {
   const router = useRouter()
   const initial = router.asPath.split('collections/')[1]
 
@@ -32,7 +31,7 @@ export default function Search({}: SearchPropsType) {
             <SearchBox/>
           </div> */}
 
-        <div className="sticky top-0 lg:top-32 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-1 lg:order-none">
+        <div className="hidden lg:block lg:sticky top-0 lg:top-32 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-1 lg:order-none">
           <div>
             {/* <div className="mb-8">
               <h3 className="text-lg font-medium mb-2">Categories</h3>
@@ -44,10 +43,10 @@ export default function Search({}: SearchPropsType) {
             </div> */}
 
             <h3 className="text-lg font-medium mb-2">Categories</h3>
-              <CustomHierarchicalMenu
-                attributes={['categories.lvl0', 'categories.lvl1']}
-                limit={40}
-              />
+            <CustomHierarchicalMenu
+              attributes={['categories.lvl0', 'categories.lvl1']}
+              limit={40}
+            />
 
             <div>
               <h3 className="text-lg font-medium mb-2 mt-2">Brands</h3>
@@ -59,6 +58,59 @@ export default function Search({}: SearchPropsType) {
             </div>
           </div>
         </div>
+        {/* Mobile Filter */}
+        <div className="block lg:hidden">
+          <HeadlessMenu>
+            <HeadlessMenu.Button>
+              <Button>Filter</Button>
+            </HeadlessMenu.Button>
+            <HeadlessMenu.Items>
+              <HeadlessMenu.Item>
+                {({ active }) => (
+                  <>
+                    <h3 className="text-lg font-medium mb-2">Categories</h3>
+                    <CustomHierarchicalMenu
+                      attributes={['categories.lvl0', 'categories.lvl1']}
+                      limit={40}
+                    />
+                  </>
+                )}
+              </HeadlessMenu.Item>
+              <HeadlessMenu.Item>
+                {({ active }) => (
+                  <>
+
+
+
+                    <h3 className="text-lg font-medium mb-2 mt-2">Brands</h3>
+                    <ConnectedRefinementList
+                      attribute="brandName"
+                      limit={100}
+                      initial={initial}
+                    />
+
+                  </>
+                )}
+              </HeadlessMenu.Item>
+              <HeadlessMenu.Item disabled>
+                <>
+                  <h3 className="text-lg font-medium mb-2">Sort by</h3>
+                  <ConnectedSortBy
+                    items={[
+                      { value: 'Products', label: 'Trending' },
+                      { value: 'Products_latest', label: 'Latest Arrivals' },
+                      { value: 'Products_price_asc', label: 'Price: Low to high' },
+                      {
+                        value: 'Products_price_desc',
+                        label: 'Price: High to Low',
+                      },
+                    ]}
+                  />
+                </>
+              </HeadlessMenu.Item>
+            </HeadlessMenu.Items>
+          </HeadlessMenu>
+        </div>
 
         {/* Products */}
 
@@ -66,7 +118,7 @@ export default function Search({}: SearchPropsType) {
 
         {/* Sort */}
         <div className="sticky top-0 lg:top-32 max-h-screen overflow-auto col-span-8 lg:col-span-2 order-2 lg:order-none">
-          <div className="mb-6">
+          <div className="mb-6 hidden lg:block">
             <h3 className="text-lg font-medium mb-2">Sort by</h3>
             <ConnectedSortBy
               items={[
