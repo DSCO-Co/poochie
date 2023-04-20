@@ -75,7 +75,7 @@ const CartSidebarView: FC = () => {
           <div className="px-4 sm:px-6 flex-1">
             <Link href="/cart">
               <Text variant="sectionHeading" onClick={handleClose}>
-                My Cart
+                My Cart 
               </Text>
             </Link>
             <ul className={s.lineItemsList}>
