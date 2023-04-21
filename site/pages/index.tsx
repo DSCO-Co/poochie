@@ -17,7 +17,7 @@ export async function getStaticProps({
 }: GetStaticPropsContext) {
   const config = { locale, locales }
   const productsPromise = commerce.getAllProducts({
-    variables: { first: 12, relevance: 'best_selling' },
+    variables: { first: 12 },
     config,
     preview,
     // Saleor provider only
@@ -45,6 +45,7 @@ export default function Home({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const attributor = useAttributor()
   console.log({ attributor });
+  console.log({ products });
   return (
     <>
       <HeroCarousel

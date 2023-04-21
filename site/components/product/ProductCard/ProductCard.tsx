@@ -34,7 +34,7 @@ const ProductCard: FC<ProductCardProps> = ({
   console.log({ product });
   return (
     <Link
-      href={`/producs/${product.path}`}
+      href={`${product.path}`}
       className={`${rootClassName} rounded-xl`}
       aria-label={product.name}
       onClick={() => {
