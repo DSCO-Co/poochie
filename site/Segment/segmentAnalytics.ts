@@ -5,17 +5,17 @@ import { AnalyticsWindow } from './types/Segment'
 declare let window: AnalyticsWindow
 
 const forwardToServer = (eventName, data) => {
-  data = data.event
-  data.eventName = eventName;
-  console.log('data in forwardeded:', data)
-  axios
-    .post('/api/webhooks/stape', data)
-    .then((response) => {
-      console.log('Server response:', response.data)
-    })
-    .catch((error) => {
-      console.error('Error sending event data:', error)
-    })
+  // data = data.event
+  // data.eventName = eventName;
+  // console.log('data in forwardeded:', data)
+  // axios
+  //   .post('/api/webhooks/stape', data)
+  //   .then((response) => {
+  //     console.log('Server response:', response.data)
+  //   })
+  //   .catch((error) => {
+  //     console.error('Error sending event data:', error)
+  //   })
 }
 
 /**

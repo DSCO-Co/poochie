@@ -5,63 +5,75 @@ import path from 'path'
 
 type HierarchicalMenuItem = {
   /**
-  * Value of the menu item.
-  */
-  value: string;
+   * Value of the menu item.
+   */
+  value: string
   /**
-  * Human-readable value of the menu item.
-  */
-  label: string;
+   * Human-readable value of the menu item.
+   */
+  label: string
   /**
-  * Number of matched results after refinement is applied.
-  */
-  count: number;
+   * Number of matched results after refinement is applied.
+   */
+  count: number
   /**
-  * Indicates if the refinement is applied.
-  */
-  isRefined: boolean;
+   * Indicates if the refinement is applied.
+   */
+  isRefined: boolean
   /**
-  * n+1 level of items
-  */
-  data: HierarchicalMenuItem[] | null;
-};
+   * n+1 level of items
+   */
+  data: HierarchicalMenuItem[] | null
+}
 
+function routeFormatter(str) {
+  return str
+    .replace(/&/g, '') // Remove '&'
+    .replace(/\s+/g, '-') // Replace spaces with '-'
+    .toLowerCase() // Convert to lower case
+}
 
-const getCategoryItemFromRouteName = (routeName: string, items: HierarchicalMenuItem[]) => {
-  function routeFormatter(str) {
-    return str
-      .replace(/&/g, '') // Remove '&'
-      .replace(/\s+/g, '-') // Replace spaces with '-'
-      .toLowerCase(); // Convert to lower case
-  }
-  
+const getCategoryItemFromRouteName = (
+  routeName: string,
+  items: HierarchicalMenuItem[]
+) => {
   for (const i in items) {
-    if (routeName === routeFormatter(items[i].value)){
-      return items[i]; 
+    if (routeName === routeFormatter(items[i].value)) {
+      return items[i]
     }
   }
-  return null;
-};
+  return null
+}
 
 const CustomHierarchicalMenu = ({ attributes, limit }) => {
   const { items, refine } = useHierarchicalMenu({ attributes, limit })
   const router = useRouter()
-  const [initialCategoryItem, setInitialCategoryItem] = useState(null);
+  const [initialCategoryItem, setInitialCategoryItem] = useState(null)
 
   useEffect(() => {
     if (items && items.length > 0) {
-      const categoryItem = getCategoryItemFromRouteName(router.asPath.split('collections/')[1], items);
+      const categoryItem = getCategoryItemFromRouteName(
+        router.asPath.split('collections/')[1],
+        items
+      )
       //@ts-ignore
       if (categoryItem && categoryItem.value !== initialCategoryItem?.value) {
         //@ts-ignore
-        setInitialCategoryItem(categoryItem);
-        handleItemClick(categoryItem);
+        setInitialCategoryItem(categoryItem)
+        refine(categoryItem.value)
       }
     }
-  }, [router.asPath.split('collections/')[1], items, refine, initialCategoryItem]);
+  }, [
+    router.asPath.split('collections/')[1],
+    initialCategoryItem,
+  ])
 
   const handleItemClick = (item) => {
-    refine(item.value)
+
+    const formattedCategory = routeFormatter(item.value)
+    router.push(`/collections/${formattedCategory}`, undefined, {
+      shallow: true,
+    })
   }
 
   return (

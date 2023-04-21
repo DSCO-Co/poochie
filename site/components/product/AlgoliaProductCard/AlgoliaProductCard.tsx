@@ -13,7 +13,10 @@ import {
   getProductVariant,
   selectDefaultOptionFromProduct,
 } from '../helpers'
-import { trackProductAdded, trackProductViewed } from '@Segment/segmentAnalytics'
+import {
+  trackProductAdded,
+  trackProductViewed,
+} from '@Segment/segmentAnalytics'
 
 // interface Props {
 //   className?: string
@@ -65,20 +68,20 @@ const ProductCard = ({ product, imgProps, className }) => {
       href={`${product.path}`}
       className={rootClassName}
       aria-label={product.name}
-      onClick={() => { 
-        trackProductViewed(product); 
+      onClick={() => {
+        trackProductViewed(product)
       }}
     >
       <div className=" h-full relative group bg-white text-sm flex flex-col">
         <div className="p-1 flex-grow">
           <Image
             alt={product.name?.toString() || 'Product Image'}
-            className="rounded-lg object-cover object-center"
+            className="rounded-lg object-contain"
             src={product.images[0]?.url || placeholderImg}
-            height={540}
-            width={540}
+            height={240}
+            width={240}
             quality="85"
-            {...imgProps}
+            // {...imgProps}
           />
         </div>
         <div className="bg-white rounded-b-lg py-3">
