@@ -61,14 +61,14 @@ const ProductCard = ({ product, imgProps, className }) => {
 
   return (
     <Link
-      href={`/products${product.path}`}
+      href={`${product.path}`}
       className={rootClassName}
       aria-label={product.name}
       onClick={() => {
         trackProductViewed(product);
       }}
     >
-      <div className="relative flex flex-col h-full text-sm bg-white  group">
+      <div className="relative flex flex-col h-full text-sm bg-white group">
         <div className="flex-grow p-1">
           <Image
             alt={product.name?.toString() || 'Product Image'}

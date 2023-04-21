@@ -28,6 +28,47 @@ export default async function handler(req, res) {
         console.log('receivedData:', receivedData.eventName)
         switch (receivedData.eventName) {
 
+
+
+          case 'Checkout Started':
+            try {
+              const { anonymousId, properties } = receivedData
+              const { orderId, total, revenue, products } = properties || {}
+
+              console.log('heres the products from segment:', products)
+
+              const productsArray = products.map((product) => {
+                const { product_id, sku, name, price, quantity } = product
+                return {
+                  product_id,
+                  sku,
+                  name,
+                  price,
+                  quantity,
+                }
+              })
+
+              analytics.track({
+                anonymousId,
+                event: 'Checkout Started',
+                properties: {
+                  orderId,
+                  total,
+                  revenue,
+                  products: productsArray,
+                },
+              })
+
+              res
+                .status(200)
+                .json({ message: 'Checkout Started Sent From Server' })
+            } catch (error) {
+              console.error('Error processing received data:', error)
+              res.status(500).json({ error: 'Error processing received data' })
+            }
+            break
+
+
           /**
            * Webhook from BigCommerce
            * Event: Order Completed
@@ -141,5 +182,5 @@ export default async function handler(req, res) {
   }
 }
 
-export { }
+
 
