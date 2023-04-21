@@ -41,11 +41,6 @@ const ConnectedProducts = () => {
                 key={product.path}
                 className="animated fadeIn"
                 product={product}
-                imgProps={{
-                  width: 480,
-                  height: 480,
-                  alt: product.name,
-                }}
               />
             )
           })}
