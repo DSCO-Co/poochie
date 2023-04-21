@@ -92,10 +92,6 @@ const ProductView: FC<ProductViewProps> = ({ product }) => {
                   product={p}
                   key={p.path}
                   className="animated fadeIn"
-                  imgProps={{
-                    alt: p.name,
-                    className: 'w-full h-full object-cover',
-                  }}
                 />
               </div>
             ))}
