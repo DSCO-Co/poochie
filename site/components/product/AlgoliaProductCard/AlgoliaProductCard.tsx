@@ -111,7 +111,6 @@ const ProductCard = ({ product, className }) => {
           onClick={(e) => {
             e.preventDefault()
             addToCart()
-            trackProductAdded()
           }}
           type="button"
           loading={loading}
