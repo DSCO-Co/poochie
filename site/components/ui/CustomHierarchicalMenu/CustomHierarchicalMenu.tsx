@@ -51,29 +51,34 @@ const CustomHierarchicalMenu = ({ attributes, limit }) => {
   const [initialCategoryItem, setInitialCategoryItem] = useState(null)
 
   useEffect(() => {
+    
     if (items && items.length > 0) {
-      const categoryItem = getCategoryItemFromRouteName(
-        router.asPath.split('collections/')[1],
-        items
-      )
-      //@ts-ignore
-      if (categoryItem && categoryItem.value !== initialCategoryItem?.value) {
-        //@ts-ignore
-        setInitialCategoryItem(categoryItem)
-        refine(categoryItem.value)
+      if (router.asPath !== "/search") {
+        const categoryItem = getCategoryItemFromRouteName(
+          router.asPath.split('collections/')[1],
+          items
+        )
+        if (categoryItem && !categoryItem.isRefined) refine(categoryItem.value);
       }
     }
-  }, [
-    router.asPath.split('collections/')[1],
-    initialCategoryItem,
-  ])
+  },[router.asPath])
 
   const handleItemClick = (item) => {
 
-    const formattedCategory = routeFormatter(item.value)
-    router.push(`/collections/${formattedCategory}`, undefined, {
-      shallow: true,
-    })
+    const formattedCategory = routeFormatter(item.value);
+    console.log(router.asPath);
+    if (item.isRefined) {
+      // Deselect the item by navigating to the base collections path
+      refine(item.value)
+      router.push(`/search`, undefined, {
+        shallow: true,
+      });
+    } else {
+      // Select the item by navigating to the specific collection
+      router.push(`/collections/${formattedCategory}`, undefined, {
+        shallow: true,
+      });
+    }
   }
 
   return (
