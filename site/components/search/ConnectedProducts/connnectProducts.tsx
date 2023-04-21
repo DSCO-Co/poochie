@@ -30,8 +30,7 @@ const ConnectedProducts = () => {
     <div className="col-span-8 order-3 lg:order-none">
       {hits ? (
         <div
-          className="grid grid-cols-1
-        gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           {hits.map((hit: any) => {
             const product: CommerceProduct = algoliaHitToProduct(hit)
@@ -46,7 +45,7 @@ const ConnectedProducts = () => {
           })}
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {rangeMap(12, (i) => (
             <Skeleton key={i}>
               <div className="w-60 h-60" />
