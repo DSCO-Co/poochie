@@ -61,7 +61,7 @@ const ProductCard = ({ product, imgProps, className }) => {
 
   return (
     <Link
-      href={`${product.path}`}
+      href={`/${product.path}`}
       className={rootClassName}
       aria-label={product.name}
       onClick={() => {
