@@ -25,6 +25,7 @@
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/typography": "^0.5.9",
     "@types/react-gtm-module": "^2.0.1",
+    "@vercel/analytics": "^1.0.0",
     "@vercel/commerce": "workspace:*",
     "@vercel/commerce-bigcommerce": "workspace:*",
     "algoliasearch": "^4.16.0",

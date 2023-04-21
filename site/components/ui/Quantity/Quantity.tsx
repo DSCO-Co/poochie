@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import s from './Quantity.module.css'
 import { Cross, Plus, Minus } from '@components/icons'
 import cn from 'clsx'
+import { trackProductRemoved } from '@Segment/segmentAnalytics'
 export interface QuantityProps {
   value: number
   increase: () => any
@@ -21,7 +22,7 @@ const Quantity: FC<QuantityProps> = ({
 }) => {
   return (
     <div className="flex flex-row h-9">
-      <button className={s.actions} onClick={handleRemove}>
+      <button className={s.actions} onClick={(e) => {handleRemove(e); trackProductRemoved();}}>
         <Cross width={20} height={20} />
       </button>
       <label className="w-full border-accent-2 border ml-2">
