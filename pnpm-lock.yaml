@@ -633,6 +633,7 @@ importers:
       '@types/react': ^18.0.20
       '@types/react-dom': ^18.0.6
       '@types/react-gtm-module': ^2.0.1
+      '@upstash/redis': ^1.20.4
       '@vercel/analytics': ^1.0.0
       '@vercel/commerce': workspace:*
       '@vercel/commerce-bigcommerce': workspace:*
@@ -689,6 +690,7 @@ importers:
       '@tailwindcss/line-clamp': 0.4.4_tailwindcss@3.1.8
       '@tailwindcss/typography': 0.5.9_tailwindcss@3.1.8
       '@types/react-gtm-module': 2.0.1
+      '@upstash/redis': 1.20.4
       '@vercel/analytics': 1.0.0_react@18.2.0
       '@vercel/commerce': link:../packages/commerce
       '@vercel/commerce-bigcommerce': link:../packages/bigcommerce
@@ -5091,6 +5093,14 @@ packages:
       '@typescript-eslint/types': 5.37.0
       eslint-visitor-keys: 3.3.0
     dev: true
+
+  /@upstash/redis/1.20.4:
+    resolution: {integrity: sha512-U7j7py+yPvafB5KS7o+F19j2CWzZCwmQ4Tvs+n2lpCWuw/8CeFtWrFWPtQa5dgrVu6tu+Ki9DmhDiAbgMS5fGA==}
+    dependencies:
+      isomorphic-fetch: 3.0.0
+    transitivePeerDependencies:
+      - encoding
+    dev: false
 
   /@vercel/analytics/1.0.0_react@18.2.0:
     resolution: {integrity: sha512-RQmj7pv82JwGDHrnKeRc6TtSw2U7rWNubc2IH0ernTzWTj02yr9zvIYiYJeztsBzrJtWv7m8Nz6vxxb+cdEtJw==}
