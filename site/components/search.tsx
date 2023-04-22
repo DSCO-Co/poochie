@@ -12,12 +12,10 @@ import {
 
 import { Button } from '@components/ui'
 import { Menu as HeadlessMenu } from '@headlessui/react'
-import {
-  Configure
-} from 'react-instantsearch-hooks-web'
+import { Configure } from 'react-instantsearch-hooks-web'
 import { ConnectedProducts } from './search/ConnectedProducts'
 
-export default function Search({ }: SearchPropsType) {
+export default function Search({}: SearchPropsType) {
   const router = useRouter()
   const initial = router.asPath.split('collections/')[1]
 
@@ -58,59 +56,50 @@ export default function Search({ }: SearchPropsType) {
             </div>
           </div>
         </div>
-        {/* Mobile Filter */}
-        <div className="block lg:hidden">
-          <HeadlessMenu>
-            <HeadlessMenu.Button>
-              <Button>Filter</Button>
-            </HeadlessMenu.Button>
-            <HeadlessMenu.Items>
-              <HeadlessMenu.Item>
-                {({ active }) => (
-                  <>
-                    <h3 className="text-lg font-medium mb-2">Categories</h3>
-                    <CustomHierarchicalMenu
-                      attributes={['categories.lvl0', 'categories.lvl1']}
-                      limit={40}
-                    />
-                  </>
-                )}
-              </HeadlessMenu.Item>
-              <HeadlessMenu.Item>
-                {({ active }) => (
-                  <>
-
-
-
-                    <h3 className="text-lg font-medium mb-2 mt-2">Brands</h3>
-                    <ConnectedRefinementList
-                      attribute="brandName"
-                      limit={100}
-                      initial={initial}
-                    />
-
-                  </>
-                )}
-              </HeadlessMenu.Item>
-              <HeadlessMenu.Item disabled>
-                <>
-                  <h3 className="text-lg font-medium mb-2">Sort by</h3>
-                  <ConnectedSortBy
-                    items={[
-                      { value: 'Products', label: 'Trending' },
-                      { value: 'Products_latest', label: 'Latest Arrivals' },
-                      { value: 'Products_price_asc', label: 'Price: Low to high' },
-                      {
-                        value: 'Products_price_desc',
-                        label: 'Price: High to Low',
-                      },
-                    ]}
-                  />
-                </>
-              </HeadlessMenu.Item>
-            </HeadlessMenu.Items>
-          </HeadlessMenu>
+{/* Mobile Filter */}
+<div className="block lg:hidden">
+  <HeadlessMenu>
+    <HeadlessMenu.Button>
+      <Button>Filter</Button>
+    </HeadlessMenu.Button>
+    <HeadlessMenu.Items className="bg-white w-full">
+      <div className="grid grid-cols-2 gap-4 p-4">
+        <div className="col-span-1">
+          <h3 className="text-lg font-medium mb-2">Categories</h3>
+          <CustomHierarchicalMenu
+            attributes={['categories.lvl0', 'categories.lvl1']}
+            limit={40}
+          />
+          <h3 className="text-lg font-medium mb-2 mt-2">Brands</h3>
+          <ConnectedRefinementList
+            attribute="brandName"
+            limit={100}
+            initial={initial}
+          />
         </div>
+        <div className="col-span-1 col-start-3">
+          <h3 className="text-lg font-medium mb-2">Sort by</h3>
+          <ConnectedSortBy
+            className="text-lg"
+            items={[
+              { value: 'Products', label: 'Trending' },
+              { value: 'Products_latest', label: 'Latest Arrivals' },
+              {
+                value: 'Products_price_asc',
+                label: 'Price: Low to high',
+              },
+              {
+                value: 'Products_price_desc',
+                label: 'Price: High to Low',
+              },
+            ]}
+          />
+        </div>
+      </div>
+    </HeadlessMenu.Items>
+  </HeadlessMenu>
+</div>
+
 
         {/* Products */}
 
