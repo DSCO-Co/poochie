@@ -144,12 +144,22 @@ export const trackProductRemoved = async () => {
 
 }
 
+
 export const trackProductAddedToWishlist = async () => {
   const eventName = 'Product Added to Wishlist'
   let data = await window.analytics.track(eventName, {})
   console.log('Product Added to Wishlist', data)
   forwardToServer(eventName, data)
 
+}
+
+
+export const trackCheckoutStarted = async (cartData: any) => {
+  const eventName = 'Checkout Started'
+  console.log('Checkout Started data:', cartData)
+  let data = await window.analytics.track(eventName, { cartData })
+  console.log('Checkout Started data:', data)
+  forwardToServer(eventName, data)
 }
 
 

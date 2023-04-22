@@ -33,32 +33,32 @@ export default async function handler(req, res) {
         switch (receivedData.eventName) {
           case 'Checkout Started':
             try {
-              const { anonymousId, properties } = receivedData
-              const { orderId, total, revenue, products } = properties || {}
+              // const { anonymousId, properties } = receivedData
+              // const { orderId, total, revenue, products } = properties || {}
 
-              console.log('heres the products from segment:', products)
+              // console.log('heres the products from segment:', products)
 
-              const productsArray = products.map((product) => {
-                const { product_id, sku, name, price, quantity } = product
-                return {
-                  product_id,
-                  sku,
-                  name,
-                  price,
-                  quantity,
-                }
-              })
+              // const productsArray = products.map((product) => {
+              //   const { product_id, sku, name, price, quantity } = product
+              //   return {
+              //     product_id,
+              //     sku,
+              //     name,
+              //     price,
+              //     quantity,
+              //   }
+              // })
 
-              analytics.track({
-                anonymousId,
-                event: 'Checkout Started',
-                properties: {
-                  orderId,
-                  total,
-                  revenue,
-                  products: productsArray,
-                },
-              })
+              // analytics.track({
+              //   anonymousId,
+              //   event: 'Checkout Started',
+              //   properties: {
+              //     orderId,
+              //     total,
+              //     revenue,
+              //     products: productsArray,
+              //   },
+              // })
 
               res
                 .status(200)
