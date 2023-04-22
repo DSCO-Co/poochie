@@ -9,9 +9,9 @@ export const useAttributor = (config?: AttributorConfig): Attributor => {
         const newAttributor = new Attributor(config);
         setAttributor(newAttributor);
 
-        return () => {
-            newAttributor.destroy();
-        };
+        // return () => {
+        //     newAttributor.destroy();
+        // };
     }, []);
 
     return attributor;

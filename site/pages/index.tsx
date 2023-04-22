@@ -7,8 +7,8 @@ import SweetSweaters from '@assets/heroes/Sweet-Sweaters-Background.jpg'
 import TotallyToys from '@assets/heroes/Totally-Toys-Background.jpg'
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 
-import useCart from '@framework/cart/use-cart'
-import useCustomer from '@framework/customer/use-customer'
+// import useCart from '@framework/cart/use-cart'
+// import useCustomer from '@framework/customer/use-customer'
 
 import { useAttributor } from '@lib/hooks'
 
@@ -49,10 +49,10 @@ export default function Home({
   console.log({ attributor });
   console.log({ products });
 
-  const cart = useCart();
-  const customer = useCustomer();
+  // const cart = useCart();
+  // const customer = useCustomer();
 
-  console.log({ cart, customer });
+  // console.log({ cart, customer });
 
   return (
     <>
