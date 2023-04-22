@@ -95,8 +95,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         res.status(200).json({ message: 'Success' });
     } catch (error) {
+        // @ts-ignore
         console.error('Error handling request:', error.message);
         console.log(`------------------`);
+        console.log(req.body);
         console.log(req.body);
         console.log(`------------------`);
         res.status(500).json({ error: 'Internal server error' });
