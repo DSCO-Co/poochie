@@ -7,7 +7,11 @@ export default async function handler(req, res) {
   const segmentServerWriteKey = process.env.SEGMENT_SERVER_WRITEKEY
   if (!segmentServerWriteKey) {
     console.error('SEGMENT_SERVER_WRITEKEY is not defined')
-    res.status(500).json({ error: 'Internal server error' })
+    res
+      .status(500)
+      .json({
+        error: 'Internal server error SEGMENT_SERVER_WRITEKEY is not defined',
+      })
     return
   }
 
@@ -25,11 +29,8 @@ export default async function handler(req, res) {
 
       case 'POST':
         const receivedData = req.body
-        console.log('receivedData:', receivedData.eventName)
+        console.log('receivedData:', receivedData)
         switch (receivedData.eventName) {
-
-
-
           case 'Checkout Started':
             try {
               const { anonymousId, properties } = receivedData
@@ -68,11 +69,10 @@ export default async function handler(req, res) {
             }
             break
 
-
           /**
            * Webhook from BigCommerce
            * Event: Order Completed
-           * 
+           *
            * @argument {object} properties
            * @argument {object} receivedData
            * @argument {string} anonymousId
@@ -80,7 +80,7 @@ export default async function handler(req, res) {
            * @argument {number} total
            * @argument {number} revenue
            * @argument {array} products
-           * 
+           *
            */
 
           case 'Order Completed':
@@ -122,13 +122,20 @@ export default async function handler(req, res) {
             break
           case 'Page Viewed':
             try {
-              const { anonymousId, properties } = receivedData
+              const { anonymousId, properties, timestamp, messageId, context } =
+                receivedData
               const { path, referrer, search, title, url } = properties || {}
+              const clientUserAgent = context.clientUserAgent
 
               console.log('heres the url from segment:', url)
 
               analytics.page({
                 anonymousId,
+                timestamp,
+                // messageId, TODO: add this for deduplication
+                context: {
+                  userAgent: clientUserAgent,
+                },
                 properties: {
                   path,
                   referrer,
@@ -166,7 +173,9 @@ export default async function handler(req, res) {
           default:
             res
               .status(500)
-              .json({ error: `Server Event ${receivedData.eventName} did not match any server events.` })
+              .json({
+                error: `Server Event ${receivedData.eventName} did not match any server events.`,
+              })
             break
         }
 
@@ -181,6 +190,3 @@ export default async function handler(req, res) {
     res.status(500).json({ error: 'Internal server error' })
   }
 }
-
-
-

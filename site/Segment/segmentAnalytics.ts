@@ -36,6 +36,8 @@ export const pageViewed = async (
   category = 'Default category'
 ) => {
   let data = await window.analytics.page()
+  // @ts-ignore
+  data.event.context.clientUserAgent = navigator.userAgent;
   console.log('Page Viewed data:', data)
   forwardToServer('Page Viewed', data)
 }
@@ -107,6 +109,7 @@ interface Product {
 
 export const trackProductViewed = async (product: any) => {
   const eventName = 'Product Viewed'
+  product.clientUserAgent = navigator.userAgent;
   let data = await window.analytics.track(eventName, { product })
   console.log('Product Viewed data:', data)
 }
