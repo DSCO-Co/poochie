@@ -105,7 +105,7 @@ const ProductCard = ({ product, className }) => {
           </div>
           {/* <div className="bg-orange-500 absolute top-1 left-1 p-1" /> */}
         </div>
-        <Button
+        {/* <Button
           aria-label="Add to Cart"
           className="opacity-0 group-hover:opacity-100 absolute bottom-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-1 py-0.5 bg-black text-white font-semibold rounded-md whitespace-nowrap"
           onClick={(e) => {
@@ -117,7 +117,7 @@ const ProductCard = ({ product, className }) => {
           disabled={item?.availableForSale === false}
         >
           {item?.availableForSale === false ? 'Not Available' : 'Add To Cart'}
-        </Button>
+        </Button> */}
       </div>
     </Link>
   )

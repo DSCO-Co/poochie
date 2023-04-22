@@ -47,7 +47,6 @@ const getCategoryItemFromRouteName = (
 const CustomHierarchicalMenu = ({ attributes, limit }) => {
   const { items, refine } = useHierarchicalMenu({ attributes, limit })
   const router = useRouter()
-  const [initialCategoryItem, setInitialCategoryItem] = useState(null)
 
   useEffect(() => {
     
