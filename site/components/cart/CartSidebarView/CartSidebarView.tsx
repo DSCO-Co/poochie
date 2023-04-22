@@ -10,6 +10,9 @@ import { FC } from 'react'
 import CartItem from '../CartItem'
 import s from './CartSidebarView.module.css'
 
+import { useStasher } from '@lib/hooks'
+
+
 const CartSidebarView: FC = () => {
   const { closeSidebar, setSidebarView } = useUI()
   const { data, isLoading, isEmpty } = useCart()
@@ -29,8 +32,18 @@ const CartSidebarView: FC = () => {
   const handleClose = () => closeSidebar()
   const goToCheckout = () => setSidebarView('CHECKOUT_VIEW')
 
+  // const attributor = useAttributor();
+  // const ip = useIp();
+
+  const stasher = useStasher();
+
+  console.log({ stasher });
+
   const error = null
   const success = null
+
+
+
 
   return (
     <SidebarLayout
@@ -74,7 +87,7 @@ const CartSidebarView: FC = () => {
         <>
           <div className="flex-1 px-4 sm:px-6">
             {/* @ts-ignore */}
-            {console.log({ data })}
+
             <Link href="/cart">
               <Text variant="sectionHeading" onClick={handleClose}>
                 My Cart
