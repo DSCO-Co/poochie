@@ -11,7 +11,7 @@ export function useStasher() {
 
     useEffect(() => {
         // @ts-ignore
-        if (data.id) {
+        if (data?.id) {
             // @ts-ignore
             setCartId(data.id)
             setStashData(JSON.stringify({
