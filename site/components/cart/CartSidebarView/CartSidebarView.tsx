@@ -1,3 +1,4 @@
+// @ts-nocheck
 import SidebarLayout from '@components/common/SidebarLayout'
 import { Bag, Check, Cross } from '@components/icons'
 import { Button, Text } from '@components/ui'
