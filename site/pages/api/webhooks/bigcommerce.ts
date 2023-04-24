@@ -78,6 +78,29 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // Retrieve the anonymousId from Redis using the cartId
         const stashedData = await redis.getAnonymousId(data.cartId);
 
+        console.log(`------------------`);
+        console.log(stashedData);
+        console.log(`------------------`);
+        const trackData = {
+            anonymousId: stashedData.segmentAnonymousData,
+            event: 'Order Completed',
+            properties: {
+                orderId: cartData.data.id,
+                total: cartData.data.base_total,
+                revenue: cartData.data.cart_amount,
+                products,
+                userAgent: stashedData.ua,
+                ip: stashedData.ip,
+            }
+        }
+        analytics.track(trackData, (err, batch) => {
+            "Manually called"
+            if (err) {
+                console.log('Error sending event to Segment');
+            }
+            console.log(batch);
+        });
+
         const eventData: EventData = {
             anonymousId: stashedData.segmentAnonymousData,
             event: eventName[req.body.scope],
@@ -91,14 +114,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             },
         };
 
-        const event = analytics.track(eventData);
+        analytics.track(eventData, (err, batch) => {
+            if (err) {
+                console.log('Error sending event to Segment');
+                console.error(err);
+            }
+            console.log(batch);
+        });
 
         res.status(200).json({ message: 'Success' });
     } catch (error) {
         // @ts-ignore
-        console.error('Error handling request:', error.message);
+        console.error('Error handling request:', error);
         console.log(`------------------`);
-        console.log(req.body);
         console.log(req.body);
         console.log(`------------------`);
         res.status(500).json({ error: 'Internal server error' });
