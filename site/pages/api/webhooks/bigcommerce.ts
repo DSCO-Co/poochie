@@ -12,7 +12,7 @@ async function getCart(cartId: string) {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'X-Auth-Token': process.env.BIGCOMMERCE_STORE_API_TOKEN || '',
+            'X-Auth-Token': BIGCOMMERCE_STOREFRONT_API_TOKEN || '',
         },
     }).then((response) => response.data);
 }
