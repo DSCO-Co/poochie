@@ -1,7 +1,8 @@
 import Head from 'next/head'
-import type { NextPage } from 'next'
+import type { GetStaticPropsContext, NextPage } from 'next'
 import { Layout } from '@components/common'
 import commerce from '@lib/api/commerce'
+import Link from 'next/link'
 
 export async function getStaticProps({
   preview,
@@ -21,7 +22,7 @@ export async function getStaticProps({
   }
 }
 
-const ShippingPage: NextPage = () => {
+const ShippingPage = () => {
   return (
     <>
       <Head>
@@ -112,9 +113,9 @@ const ShippingPage: NextPage = () => {
         <section className="mt-8">
           <p>
             Any questions please{' '}
-            <a href="/contact" className="text-blue-600">
-              contact us
-            </a>
+            <Link href="/contact">
+              <a className="text-blue-600">contact us</a>
+            </Link>
             .
           </p>
         </section>
