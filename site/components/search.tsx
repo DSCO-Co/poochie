@@ -80,7 +80,7 @@ export default function Search({}: SearchPropsType) {
         <div className="col-span-1 col-start-3">
           <h3 className="text-lg font-medium mb-2">Sort by</h3>
           <ConnectedSortBy
-            className="text-lg"
+
             items={[
               { value: 'Products', label: 'Trending' },
               { value: 'Products_latest', label: 'Latest Arrivals' },
