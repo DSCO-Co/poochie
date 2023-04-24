@@ -1,13 +1,13 @@
-import { Button } from '@components/ui'
+import type { Product } from '@commerce/types/product'
 import WishlistButton from '@components/wishlist/WishlistButton'
-import { useAddItem } from '@framework/cart'
+import { Button } from '@components/ui'
 import cn from 'clsx'
-import Image from 'next/image'
+import Image, { ImageProps } from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import s from './AlgoliaProductCard.module.css'
+import { useAddItem } from '@framework/cart'
 
-import { trackProductAdded, trackProductViewed } from '@Segment/segmentAnalytics'
 import {
   SelectedOptions,
   getProductVariant,
@@ -22,7 +22,7 @@ import {
 
 const placeholderImg = '/product-img-placeholder.svg'
 
-const ProductCard = ({ product, imgProps, className }) => {
+const ProductCard = ({ product, className }) => {
   const rootClassName = cn(s.root, className)
 
   const addItem = useAddItem()
@@ -64,27 +64,25 @@ const ProductCard = ({ product, imgProps, className }) => {
       href={`/${product.path}`}
       className={rootClassName}
       aria-label={product.name}
-      onClick={() => {
-        trackProductViewed(product);
-      }}
+
     >
-      <div className="relative flex flex-col h-full text-sm bg-white group">
-        <div className="flex-grow p-1">
-          <Image
-            alt={product.name?.toString() || 'Product Image'}
-            className="object-cover object-center rounded-lg"
-            src={product.images[0]?.url || placeholderImg}
-            height={540}
-            width={540}
-            quality="85"
-            {...imgProps}
-          />
+      <div className=" h-full relative group bg-white text-sm flex flex-col">
+        <div className="p-1 flex-grow">
+          <div className="relative w-full h-0 overflow-hidden pb-[80%]">
+            <Image
+              alt={product.name?.toString() || 'Product Image'}
+              className="rounded-lg object-contain absolute top-0 left-0"
+              src={product.images[0]?.url || placeholderImg}
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
         </div>
-        <div className="py-3 bg-white rounded-b-lg">
-          <h3 className="font-medium text-center text-gray-900">
+        <div className="bg-white rounded-b-lg py-3">
+          <h3 className="text-center font-medium text-gray-900">
             {product.name?.toString()}
           </h3>
-          <div className="font-bold text-center">{`$${product.price}`}</div>
+          <div className="text-center font-bold">{`$${product.price}`}</div>
         </div>
         <WishlistButton
           className="absolute top-2 right-2"
@@ -94,7 +92,7 @@ const ProductCard = ({ product, imgProps, className }) => {
         <div className="absolute top-2 left-2">
           <div>
             <div
-              className="mx-1 my-3 text-xs font-bold tracking-wide text-orange-500 uppercase bg-white"
+              className="bg-white mx-1 my-3 text-orange-500 font-bold text-xs uppercase tracking-wide"
               style={{
                 backgroundColor: 'white',
                 border: '1px solid var(--on-sale-orange)',
@@ -105,22 +103,21 @@ const ProductCard = ({ product, imgProps, className }) => {
               Sale
             </div>
           </div>
-          {/* <div className="absolute p-1 bg-orange-500 top-1 left-1" /> */}
+          {/* <div className="bg-orange-500 absolute top-1 left-1 p-1" /> */}
         </div>
-        <Button
+        {/* <Button
           aria-label="Add to Cart"
           className="opacity-0 group-hover:opacity-100 absolute bottom-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-1 py-0.5 bg-black text-white font-semibold rounded-md whitespace-nowrap"
           onClick={(e) => {
             e.preventDefault()
             addToCart()
-            trackProductAdded()
           }}
           type="button"
           loading={loading}
           disabled={item?.availableForSale === false}
         >
           {item?.availableForSale === false ? 'Not Available' : 'Add To Cart'}
-        </Button>
+        </Button> */}
       </div>
     </Link>
   )

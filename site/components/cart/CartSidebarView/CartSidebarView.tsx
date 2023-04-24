@@ -1,3 +1,4 @@
+
 // @ts-nocheck
 import SidebarLayout from '@components/common/SidebarLayout'
 import { Bag, Check, Cross } from '@components/icons'
@@ -10,9 +11,7 @@ import Link from 'next/link'
 import { FC } from 'react'
 import CartItem from '../CartItem'
 import s from './CartSidebarView.module.css'
-
 import { useStasher } from '@lib/hooks'
-
 
 const CartSidebarView: FC = () => {
   const { closeSidebar, setSidebarView } = useUI()
@@ -88,7 +87,6 @@ const CartSidebarView: FC = () => {
         <>
           <div className="flex-1 px-4 sm:px-6">
             {/* @ts-ignore */}
-
             <Link href="/cart">
               <Text variant="sectionHeading" onClick={handleClose}>
                 My Cart
