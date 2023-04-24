@@ -73,8 +73,6 @@ const CartSidebarView: FC = () => {
       ) : (
         <>
           <div className="flex-1 px-4 sm:px-6">
-            {/* @ts-ignore */}
-            {console.log({ data })}
             <Link href="/cart">
               <Text variant="sectionHeading" onClick={handleClose}>
                 My Cart
