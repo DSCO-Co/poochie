@@ -531,7 +531,7 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
           </div>
 
           {/* Payment items */}
-          <div className="flex space-x-6 mt-8 md:mt-0 md:order-2">
+          <div className="flex flex-wrap space-x-6 space-y-0 mt-8  md:order-2">
             {navigation.paymentMethods.map((item) => (
               <a
                 key={item.name}
