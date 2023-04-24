@@ -23,7 +23,13 @@ function ConnectedPagination() {
             i === currentRefinement
               ? 'border-indigo-500 text-indigo-600'
               : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-          } px-4 pt-4 text-sm font-medium`}
+          } px-4 pt-4 text-sm font-medium ${
+            i === currentRefinement - 1 ||
+            i === currentRefinement ||
+            i === currentRefinement + 1
+              ? 'md:inline-flex'
+              : 'hidden md:inline-flex'
+          }`}
           aria-current={i === currentRefinement ? 'page' : undefined}
         >
           {i + 1}
@@ -32,7 +38,6 @@ function ConnectedPagination() {
     }
     return pages
   }
-
   return (
     <nav className="flex items-center justify-between border-t border-gray-200 px-4 sm:px-0 mb-8 mx-auto max-w-4xl">
       <div className="-mt-px flex">
@@ -55,6 +60,7 @@ function ConnectedPagination() {
           Previous
         </a>
       </div>
+      <div className="flex md:hidden">{renderPages()}</div>
       <div className="hidden md:-mt-px md:flex">{renderPages()}</div>
       <div className="-mt-px flex">
         <a

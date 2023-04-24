@@ -15,17 +15,17 @@ type EventType =
   | 'Order Completed'
 
 const forwardToServer = (eventName: EventType, data) => {
-  data = data.event
-  data.eventName = eventName;
-  console.log('data in forwardeded:', data)
-  axios
-    .post('/api/webhooks/segment', data)
-    .then((response) => {
-      console.log('Server response:', response.data)
-    })
-    .catch((error) => {
-      console.error('Error sending event data:', error)
-    })
+  // data = data.event
+  // data.eventName = eventName;
+  // console.log('data in forwardeded:', data)
+  // axios
+  //   .post('/api/webhooks/segment', data)
+  //   .then((response) => {
+  //     console.log('Server response:', response.data)
+  //   })
+  //   .catch((error) => {
+  //     console.error('Error sending event data:', error)
+  //   })
 }
 
 /**

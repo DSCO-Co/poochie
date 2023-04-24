@@ -3,35 +3,30 @@ import { Analytics } from '@segment/analytics-node';
 import axios from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-
 const { BIGCOMMERCE_STOREFRONT_API_TOKEN } = process.env;
 
-/*
-    // Example Data:
-    {
-    "bcCartID": "7beb59f4-0226-4223-89e0-b10b959d1526",
-    "ip": "47.156.232.192",
-    "segmentAnonymousID": "c8a004d6-c53c-41a3-a840-8ed6c4b125e5",
-    "cookies": {
-        "accept_cookies": "accepted",
-        "_ga": "GA1.1.1057293567.1663608326",
-        "_uetvid": "0ca07f50384011eda54447a82113ba3f",
-        "ki_r": "",
-        "ki_t": "1663608326893;1663608326893;1663608538928;1;4",
-        "_ga_MPZEH6N5CJ": "GS1.1.1663608325.1.1.1663608561.0.0.0",
-        "localization": "",
-        "_y": "a672b10c-7FD0-45CE-7BBE-7E03921B09D6",
-        "_shopify_y": "a672b10c-7FD0-45CE-7BBE-7E03921B09D6",
-        "_shg_user_id": "ff25b31b-4194-419c-b7f7-212d1fbbc2f5",
-        "__kla_id": "eyIkcmVmZXJyZXIiOnsidHMiOjE2NjQ5NDQ4NzYsInZhbHVlIjoiIiwiZmlyc3RfcGFnZSI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTI5Mi8ifSwiJGxhc3RfcmVmZXJyZXIiOnsidHMiOjE2NjQ5NDUwMTYsInZhbHVlIjoiIiwiZmlyc3RfcGFnZSI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTI5Mi8ifX0=",
-        "_ga_KHV19111K1": "GS1.1.1664944875.1.1.1664946246.0.0.0",
-        "ajs_anonymous_id": "c8a004d6-c53c-41a3-a840-8ed6c4b125e5",
-        "bc_cartId": "7beb59f4-0226-4223-89e0-b10b959d1526",
-        "attr_first": "{\"source\":null,\"medium\":null,\"campaign\":null,\"term\":null,\"content\":null,\"source_platform\":null,\"marketing_tactic\":null,\"creative_format\":null,\"adgroup\":null,\"lp\":null,\"date\":null}",
-        "attr_last": "{\"source\":null,\"medium\":null,\"campaign\":null,\"term\":null,\"content\":null,\"source_platform\":null,\"marketing_tactic\":null,\"creative_format\":null,\"adgroup\":null,\"lp\":null,\"date\":null}"
-    }
+// TypeScript type for the cart data
+interface CartData {
+    product_id: string;
+    sku: string;
+    name: string;
+    price: number;
+    quantity: number;
 }
-*/
+
+// TypeScript type for the event data
+interface EventData {
+    anonymousId: string;
+    event: string;
+    properties: {
+        orderId: string;
+        total: number;
+        revenue: number;
+        products: CartData[];
+        userAgent: string;
+        ip: string;
+    };
+}
 
 async function getCart(cartId: string) {
     const endpointUrl = `https://api.bigcommerce.com/stores/day26hsh2m/v3/carts/${cartId}`;
@@ -45,30 +40,15 @@ async function getCart(cartId: string) {
     }).then((response) => response.data);
 }
 
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
-
     try {
         const { scope, data, created_at } = req.body;
 
         const redis = new RedisClient();
-
         let cartData;
         if (data) {
-            console.log('data:', data);
             cartData = await getCart(data.cartId);
         }
-
-        const events = [
-            'store/cart/lineItem/updated',
-            'store/cart/lineItem/created',
-            'store/cart/lineItem/deleted',
-            'store/cart/created',
-            'store/cart/updated',
-            'store/cart/deleted',
-            'store/cart/abandoned',
-            'store/cart/converted',
-        ];
 
         const eventName = {
             'store/cart/lineItem/updated': 'Cart Updated',
@@ -81,12 +61,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             'store/cart/converted': 'Order Completed',
         };
 
-        // console.log('req.body:', req.body);
-        // console.log('cartData:', cartData.data);
-
-        const products = cartData.data.line_items.physical_items.map((item) => {
-            console.log({ item });
-
+        const products: CartData[] = cartData.data.line_items.physical_items.map((item) => {
             return {
                 product_id: item.id,
                 sku: item.sku,
@@ -100,41 +75,57 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             writeKey: process.env.SEGMENT_SERVER_WRITEKEY || '',
         });
 
-        const productsArray = products.map((product) => {
-            const { product_id, sku, name, price, quantity } = product;
-            return {
-                product_id,
-                sku,
-                name,
-                price,
-                quantity,
-            };
-        });
-
         // Retrieve the anonymousId from Redis using the cartId
         const stashedData = await redis.getAnonymousId(data.cartId);
 
-        const eventData = {
+        console.log(`------------------`);
+        console.log(stashedData);
+        console.log(`------------------`);
+        const trackData = {
+            anonymousId: stashedData.segmentAnonymousData,
+            event: 'Order Completed',
+            properties: {
+                orderId: cartData.data.id,
+                total: cartData.data.base_total,
+                revenue: cartData.data.cart_amount,
+                products,
+                userAgent: stashedData.ua,
+                ip: stashedData.ip,
+            }
+        }
+        analytics.track(trackData, (err, batch) => {
+            "Manually called"
+            if (err) {
+                console.log('Error sending event to Segment');
+            }
+            console.log(batch);
+        });
+
+        const eventData: EventData = {
             anonymousId: stashedData.segmentAnonymousData,
             event: eventName[req.body.scope],
             properties: {
                 orderId: cartData.data.id,
                 total: cartData.data.base_total,
                 revenue: cartData.data.cart_amount,
-                products: productsArray,
+                products,
                 userAgent: stashedData.ua,
                 ip: stashedData.ip,
             },
         };
 
-        console.log({ eventData: JSON.stringify(eventData) });
-        const event = analytics.track(eventData);
+        analytics.track(eventData, (err, batch) => {
+            if (err) {
+                console.log('Error sending event to Segment');
+                console.error(err);
+            }
+            console.log(batch);
+        });
 
-        console.log({ event });
         res.status(200).json({ message: 'Success' });
     } catch (error) {
         // @ts-ignore
-        console.error('Error handling request:', error.message);
+        console.error('Error handling request:', error);
         console.log(`------------------`);
         console.log(req.body);
         console.log(`------------------`);
