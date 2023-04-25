@@ -1,10 +1,7 @@
 #!/bin/bash
 
 webhook_ids=(
-  26130637
-  26173397
-  26186769
-  26187037
+  26189804
 )
 
 for webhook_id in "${webhook_ids[@]}"; do
