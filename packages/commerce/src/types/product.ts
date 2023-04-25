@@ -146,6 +146,14 @@ export interface Product {
    * The product’s vendor name.
    */
   vendor?: string
+  /** 
+   * The product's brand name.
+   */
+  brand?: string
+  /**
+   * The product's category
+   */
+  category?: string
 }
 
 export interface SearchProductsBody {
