@@ -66,6 +66,18 @@ function getProducts(cartData: any): CartData[] {
     }));
 }
 
+async function getOrderInfo(orderId: string) {
+    const endpointUrl = `https://api.bigcommerce.com/stores/day26hsh2m/v2/orders/${orderId}`;
+
+    return axios.get(endpointUrl, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Auth-Token': process.env.BIGCOMMERCE_STORE_API_TOKEN || '',
+        },
+    }).then((response) => response.data);
+}
+
 async function getAnonymousId(redis: RedisClient, cartId: string): Promise<string> {
     const stashedData = await redis.getAnonymousId(cartId);
 
@@ -122,6 +134,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             },
 
         };
+
+        let orderInfo;
+
+        if (scope === 'store/cart/converted') {
+            orderInfo = await getOrderInfo(data.orderId);
+
+            console.log(`
+                CONVERTED!!!! 
+            
+                CARTID: ${cartId}    
+        
+                ${JSON.stringify(orderInfo, null, 2)}
+
+            `);
+
+            const {
+                billing_address,
+                ip_address,
+
+            } = orderInfo;
+        }
 
         const analytics = new Analytics({
             writeKey: process.env.SEGMENT_SERVER_WRITEKEY || '',
