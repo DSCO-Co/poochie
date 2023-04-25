@@ -48,35 +48,50 @@ const CustomHierarchicalMenu = ({ attributes, limit }) => {
   const { items, refine } = useHierarchicalMenu({ attributes, limit })
   const router = useRouter()
 
-  useEffect(() => {
-    
-    if (items && items.length > 0) {
-      if (router.asPath !== "/search") {
-        const categoryItem = getCategoryItemFromRouteName(
-          router.asPath.split('collections/')[1],
-          items
-        )
-        if (categoryItem) refine(categoryItem.value);
-      }
+  const [isItemsLoaded, setIsItemsLoaded] = useState(false);
+
+// useEffect(() => {
+//   // Load your items here and set isItemsLoaded to true when they are loaded
+//   // Example:
+
+//   const { items, refine } = useHierarchicalMenu({ attributes, limit }).
+//     then(() => {
+//     setIsItemsLoaded(true);
+//   });
+// }, []); // This effect runs only on component mount to fetch items
+
+useEffect(() => {
+  if (!isItemsLoaded) {
+    return; // Don't execute if items are not loaded yet
+  }
+
+  if (router.asPath !== '/search') {
+    const categoryItem = getCategoryItemFromRouteName(
+      router.asPath.split('collections/')[1],
+      items
+    );
+    console.log('Category Item: ', categoryItem);
+    if (categoryItem) {
+      refine(categoryItem.value);
+      console.log('refined Category Item: ', categoryItem.value);
     }
-    
-  },[router.asPath])
+  }
+}, [router.asPath, isItemsLoaded]);
 
   const handleItemClick = (item) => {
-
-    const formattedCategory = routeFormatter(item.value);
-    console.log(router.asPath);
+    const formattedCategory = routeFormatter(item.value)
+    console.log(router.asPath)
     if (item.isRefined) {
       // Deselect the item by navigating to the base collections path
       refine(item.value)
       router.push(`/search`, undefined, {
         shallow: true,
-      });
+      })
     } else {
       // Select the item by navigating to the specific collection
       router.push(`/collections/${formattedCategory}`, undefined, {
         shallow: true,
-      });
+      })
     }
   }
 

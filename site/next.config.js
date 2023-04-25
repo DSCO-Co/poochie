@@ -23,6 +23,7 @@ module.exports = withCommerceConfig({
       'cdn11.bigcommerce.com',
       'dev.beverlyhillspup.com',
       'tailwindui.com',
+      'v5.airtableusercontent.com',
     ],
   },
   rewrites() {
