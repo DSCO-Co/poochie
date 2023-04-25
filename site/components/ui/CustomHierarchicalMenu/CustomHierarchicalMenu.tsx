@@ -56,9 +56,10 @@ const CustomHierarchicalMenu = ({ attributes, limit }) => {
           router.asPath.split('collections/')[1],
           items
         )
-        if (categoryItem && !categoryItem.isRefined) refine(categoryItem.value);
+        if (categoryItem) refine(categoryItem.value);
       }
     }
+    
   },[router.asPath])
 
   const handleItemClick = (item) => {
