@@ -1,3 +1,4 @@
+
 // @ts-nocheck
 import SidebarLayout from '@components/common/SidebarLayout'
 import { Bag, Check, Cross } from '@components/icons'
@@ -10,9 +11,8 @@ import Link from 'next/link'
 import { FC } from 'react'
 import CartItem from '../CartItem'
 import s from './CartSidebarView.module.css'
-
 import { useStasher } from '@lib/hooks'
-
+import { trackCheckoutStarted } from '@Segment/segmentAnalytics'
 
 const CartSidebarView: FC = () => {
   const { closeSidebar, setSidebarView } = useUI()
@@ -36,15 +36,12 @@ const CartSidebarView: FC = () => {
   // const attributor = useAttributor();
   // const ip = useIp();
 
-  const stasher = useStasher();
+  const stasher = useStasher()
 
-  console.log({ stasher });
+  console.log({ stasher })
 
   const error = null
   const success = null
-
-
-
 
   return (
     <SidebarLayout
@@ -88,7 +85,6 @@ const CartSidebarView: FC = () => {
         <>
           <div className="flex-1 px-4 sm:px-6">
             {/* @ts-ignore */}
-
             <Link href="/cart">
               <Text variant="sectionHeading" onClick={handleClose}>
                 My Cart
@@ -132,7 +128,14 @@ const CartSidebarView: FC = () => {
                   Proceed to Checkout ({total})
                 </Button>
               ) : (
-                <Button href="/checkout" Component="a" width="100%">
+                <Button
+                  onClick={() => {
+                    trackCheckoutStarted(data);
+                  }}
+                  href="/checkout"
+                  Component="a"
+                  width="100%"
+                >
                   Proceed to Checkout
                 </Button>
               )}

@@ -64,7 +64,7 @@ function DropDownMenu({
         </Menu.Button>
       </div>
 
-      <Transition
+      {/* <Transition
         show={isMenuOpen}
         as={Fragment}
         enter="transition ease-out duration-100"
@@ -97,7 +97,7 @@ function DropDownMenu({
             ))}
           </div>
         </Menu.Items>
-      </Transition>
+      </Transition> */}
     </Menu>
   )
 }

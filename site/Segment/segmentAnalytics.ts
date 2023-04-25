@@ -15,17 +15,17 @@ type EventType =
   | 'Order Completed'
 
 const forwardToServer = (eventName: EventType, data) => {
-  data = data.event
-  data.eventName = eventName;
-  console.log('data in forwardeded:', data)
-  axios
-    .post('/api/webhooks/segment', data)
-    .then((response) => {
-      console.log('Server response:', response.data)
-    })
-    .catch((error) => {
-      console.error('Error sending event data:', error)
-    })
+  // data = data.event
+  // data.eventName = eventName;
+  // console.log('data in forwardeded:', data)
+  // axios
+  //   .post('/api/webhooks/segment', data)
+  //   .then((response) => {
+  //     console.log('Server response:', response.data)
+  //   })
+  //   .catch((error) => {
+  //     console.error('Error sending event data:', error)
+  //   })
 }
 
 /**
@@ -36,6 +36,8 @@ export const pageViewed = async (
   category = 'Default category'
 ) => {
   let data = await window.analytics.page()
+  // @ts-ignore
+  data.event.context.clientUserAgent = navigator.userAgent;
   console.log('Page Viewed data:', data)
   forwardToServer('Page Viewed', data)
 }
@@ -107,6 +109,7 @@ interface Product {
 
 export const trackProductViewed = async (product: any) => {
   const eventName = 'Product Viewed'
+  product.clientUserAgent = navigator.userAgent;
   let data = await window.analytics.track(eventName, { product })
   console.log('Product Viewed data:', data)
 }
@@ -141,12 +144,22 @@ export const trackProductRemoved = async () => {
 
 }
 
+
 export const trackProductAddedToWishlist = async () => {
   const eventName = 'Product Added to Wishlist'
   let data = await window.analytics.track(eventName, {})
   console.log('Product Added to Wishlist', data)
   forwardToServer(eventName, data)
 
+}
+
+
+export const trackCheckoutStarted = async (cartData: any) => {
+  const eventName = 'Checkout Started'
+  console.log('Checkout Started data:', cartData)
+  let data = await window.analytics.track(eventName, { cartData })
+  console.log('Checkout Started data:', data)
+  forwardToServer(eventName, data)
 }
 
 
