@@ -113,9 +113,7 @@ const CartSidebarView: FC = () => {
               </li>
               <li className="flex justify-between py-1">
                 <span>Shipping</span>
-                <span className="font-bold tracking-wide">
-                  Calculated at checkout
-                </span>
+                <span>Calculated at checkout</span>
               </li>
             </ul>
             <div className="flex justify-between py-3 mb-2 font-bold border-t border-accent-2">
