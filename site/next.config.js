@@ -52,10 +52,6 @@ module.exports = withCommerceConfig({
     esmExternals: 'loose',
   },
 
-  webpackDevMiddleware: (config) => {
-    config.hot = false;
-    return config;
-  },
 })
 
 // Don't delete this console log, useful to see the commerce config in Vercel deployments
