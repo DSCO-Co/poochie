@@ -19,7 +19,7 @@ export async function getStaticProps({
   }
 }
 
-export default function Refund() {
+export default function Privacy() {
   return (
     <Container className="pt-16 pb-8">
       <Text variant="pageHeading">Privacy Policy</Text>
@@ -295,4 +295,4 @@ export default function Refund() {
   )
 }
 
-Refund.Layout = Layout
+Privacy.Layout = Layout
