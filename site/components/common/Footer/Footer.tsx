@@ -42,11 +42,11 @@ const navigation = {
     { name: 'API Status', href: '#' },
   ],
   company: [
-    { name: 'About', href: '#' },
-    { name: 'Blog', href: '#' },
-    { name: 'Jobs', href: '#' },
-    { name: 'Press', href: '#' },
-    { name: 'Partners', href: '#' },
+    { name: 'About Us', href: '/about-us'},
+    { name: 'Refund Policy', href: '/policies/refund-policy'},
+    { name: 'Privacy Policy', href: '/policies/privacy-policy'},
+    { name: 'Terms of Service', href:'/policies/terms-of-service'},
+    { name: 'Shipping & Tracking', href: '/shipping'},
   ],
   legal: [
     { name: 'Claim', href: '#' },
@@ -450,12 +450,12 @@ const Footer: FC<Props> = ({ className, pages, categories }) => {
             <h3 className="text-sm font-semibold leading-6 text-gray-100">
               Company
             </h3>
-            {pages?.map((page) => (
-              <div key={page.id}>
+            {navigation.company.map((page) => (
+              <div key={page.name}>
                 <ul role="list" className="mt-6 space-y-4">
-                  <li key={page.id}>
+                  <li key={page.name}>
                     <a
-                      href={`/${getSlug(page.url!)}`}
+                      href={`/${getSlug(page.href)}`}
                       className="text-sm leading-6 text-gray-400 hover:text-gray-200"
                     >
                       {' '}

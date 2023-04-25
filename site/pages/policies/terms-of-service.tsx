@@ -28,11 +28,11 @@ export default function TOS() {
         <span>OVERVIEW</span>
         <br />
         <span>
-          This website is operated by BeverlyHillsPup. Throughout the site, the
-          terms “we”, “us” and “our” refer to BeverlyHillsPup. BeverlyHillsPup
-          offers this website, including all information, tools and Services
-          available from this site to you, the user, conditioned upon your
-          acceptance of all terms, conditions, policies and notices stated here.
+          This website is operated by Poochie. Throughout the site, the terms
+          “we”, “us” and “our” refer to Poochie. Poochie offers this website,
+          including all information, tools and Services available from this site
+          to you, the user, conditioned upon your acceptance of all terms,
+          conditions, policies and notices stated here.
         </span>
         <br />
         <br />
@@ -70,111 +70,81 @@ export default function TOS() {
         <br />
         <br />
         <span>
-          Our store is hosted on Shopify Inc. They provide us with the online
+          Our store is hosted on Big Commerce. They provide us with the online
           e-commerce platform that allows us to sell our products and Services
           to you.
         </span>
         <br />
         <br />
-        <span>SECTION 1 - ONLINE STORE TERMS</span>
+        <b>SECTION 1 - ONLINE STORE TERMS</b>
         <br />
-        <span>
-          By agreeing to these Terms of Service, you represent that you are at
-          least the age of majority in your state or province of residence, or
-          that you are the age of majority in your state or province of
-          residence and you have given us your consent to allow any of your
-          minor dependents to use this site.
-        </span>
+        By agreeing to these Terms of Service, you represent that you are at
+        least the age of majority in your state or province of residence, or
+        that you are the age of majority in your state or province of residence
+        and you have given us your consent to allow any of your minor dependents
+        to use this site.
         <br />
-        <span>
-          You may not use our products for any illegal or unauthorized purpose
-          nor may you, in the use of the Service, violate any laws in your
-          jurisdiction (including but not limited to copyright laws).
-        </span>
+        You may not use our products for any illegal or unauthorized purpose nor
+        may you, in the use of the Service, violate any laws in your
+        jurisdiction (including but not limited to copyright laws).
         <br />
-        <span>
-          You must not transmit any worms or viruses or any code of a
-          destructive nature.
-        </span>
+        You must not transmit any worms or viruses or any code of a destructive
+        nature.
         <br />
-        <span>
-          A breach or violation of any of the Terms will result in an immediate
-          termination of your Services.
-        </span>
+        A breach or violation of any of the Terms will result in an immediate
+        termination of your Services.
         <br />
         <br />
-        <span>SECTION 2 - GENERAL CONDITIONS</span>
+        <b>SECTION 2 - GENERAL CONDITIONS</b>
         <br />
-        <span>
-          We reserve the right to refuse Service to anyone for any reason at any
-          time.
-        </span>
+        We reserve the right to refuse Service to anyone for any reason at any
+        time.
         <br />
-        <span>
-          You understand that your content (not including credit card
-          information), may be transferred unencrypted and involve (a)
-          transmissions over various networks; and (b) changes to conform and
-          adapt to the technical requirements of connecting networks or devices.
-          Credit card information is always encrypted during transfer over
-          networks.
-        </span>
+        You understand that your content (not including credit card
+        information), may be transferred unencrypted and involve (a)
+        transmissions over various networks; and (b) changes to conform and
+        adapt to the technical requirements of connecting networks or devices.
+        Credit card information is always encrypted during transfer over
+        networks.
         <br />
-        <span>
-          You agree not to reproduce, duplicate, copy, sell, resell or exploit
-          any portion of the Service, use of the Service, or access to the
-          Service or any contact on the website through which the Service is
-          provided, without express written permission by us.
-        </span>
+        You agree not to reproduce, duplicate, copy, sell, resell or exploit any
+        portion of the Service, use of the Service, or access to the Service or
+        any contact on the website through which the Service is provided,
+        without express written permission by us.
         <br />
-        <span>
-          The headings used in this agreement are included for convenience only
-          and will not limit or otherwise affect these Terms.
-        </span>
+        The headings used in this agreement are included for convenience only
+        and will not limit or otherwise affect these Terms.
         <br />
         <br />
-        <span>
-          SECTION 3 - ACCURACY, COMPLETENESS AND TIMELINESS OF INFORMATION
-        </span>
+        <b>SECTION 3 - ACCURACY, COMPLETENESS AND TIMELINESS OF INFORMATION</b>
         <br />
-        <span>
-          We are not responsible if information made available on this site is
-          not accurate, complete or current. The material on this site is
-          provided for general information only and should not be relied upon or
-          used as the sole basis for making decisions without consulting
-          primary, more accurate, more complete or more timely sources of
-          information. Any reliance on the material on this site is at your own
-          risk.
-        </span>
+        We are not responsible if information made available on this site is not
+        accurate, complete or current. The material on this site is provided for
+        general information only and should not be relied upon or used as the
+        sole basis for making decisions without consulting primary, more
+        accurate, more complete or more timely sources of information. Any
+        reliance on the material on this site is at your own risk.
         <br />
-        <span>
-          This site may contain certain historical information. Historical
-          information, necessarily, is not current and is provided for your
-          reference only. We reserve the right to modify the contents of this
-          site at any time, but we have no obligation to update any information
-          on our site. You agree that it is your responsibility to monitor
-          changes to our site.
-        </span>
+        This site may contain certain historical information. Historical
+        information, necessarily, is not current and is provided for your
+        reference only. We reserve the right to modify the contents of this site
+        at any time, but we have no obligation to update any information on our
+        site. You agree that it is your responsibility to monitor changes to our
+        site.
         <br />
         <br />
-        <span>SECTION 4 - MODIFICATIONS TO THE SERVICE AND PRICES</span>
+        <b>SECTION 4 - MODIFICATIONS TO THE SERVICE AND PRICES</b>
         <br />
-        <span>
-          Prices for our products are subject to change without notice.
-        </span>
+        Prices for our products are subject to change without notice.
         <br />
-        <span>
-          We reserve the right at any time to modify or discontinue the Service
-          (or any part or content thereof) without notice at any time.
-        </span>
+        We reserve the right at any time to modify or discontinue the Service
+        (or any part or content thereof) without notice at any time.
         <br />
-        <span>
-          We shall not be liable to you or to any third-party for any
-          modification, price change, suspension or discontinuance of the
-          Service.
-        </span>
+        We shall not be liable to you or to any third-party for any
+        modification, price change, suspension or discontinuance of the Service.
         <br />
         <br />
-        <span>SECTION 5 - PRODUCTS OR SERVICES (if applicable)</span>
+        <b>SECTION 5 - PRODUCTS OR SERVICES (if applicable)</b>
         <br />
         <span>
           Certain products or Services may be available exclusively online
@@ -196,7 +166,7 @@ export default function TOS() {
           We may exercise this right on a case-by-case basis. We reserve the
           right to limit the quantities of any products or Services that we
           offer. All descriptions of products or product pricing are subject to
-          change at anytime without notice, at the sole discretion of us. We
+          change at any time without notice, at the sole discretion of us. We
           reserve the right to discontinue any product at any time. Any offer
           for any product or Service made on this site is void where prohibited.
         </span>
@@ -209,7 +179,7 @@ export default function TOS() {
         </span>
         <br />
         <br />
-        <span>SECTION 6 - ACCURACY OF BILLING AND ACCOUNT INFORMATION</span>
+        <b>SECTION 6 - ACCURACY OF BILLING AND ACCOUNT INFORMATION</b>
         <br />
         <span>
           We reserve the right to refuse any order you place with us. We may, in
@@ -234,16 +204,16 @@ export default function TOS() {
         </span>
         <br />
         <br />
-        <span>For more details, please review our Refund Policy:&nbsp;</span>
+        <span>For more details, please review our Refund Policy: </span>
         <a
           title="Our Refund Policy"
-          href="https://beverlyhillspup.com/policies/refund-policy"
+          href="https://poochie.com/policies/refund-policy"
         >
-          http://beverlyhillspup.com/policies/refund-policy
+          http://poochie.com/policies/refund-policy
         </a>
         <br />
         <br />
-        <span>SECTION 7 - OPTIONAL TOOLS</span>
+        <b>SECTION 7 - OPTIONAL TOOLS</b>
         <br />
         <span>
           We may provide you with access to third-party tools over which we
@@ -273,7 +243,7 @@ export default function TOS() {
         </span>
         <br />
         <br />
-        <span>SECTION 8 - THIRD-PARTY LINKS</span>
+        <b>SECTION 8 - THIRD-PARTY LINKS</b>
         <br />
         <span>
           Certain content, products and Services available via our Service may
@@ -300,7 +270,7 @@ export default function TOS() {
         </span>
         <br />
         <br />
-        <span>SECTION 9 - USER COMMENTS, FEEDBACK AND OTHER SUBMISSIONS</span>
+        <b>SECTION 9 - USER COMMENTS, FEEDBACK AND OTHER SUBMISSIONS</b>
         <br />
         <span>
           If, at our request, you send certain specific submissions (for example
@@ -337,23 +307,23 @@ export default function TOS() {
         </span>
         <br />
         <br />
-        <span>SECTION 10 - PERSONAL INFORMATION</span>
+        <b>SECTION 10 - PERSONAL INFORMATION</b>
         <br />
         <span>
           Your submission of personal information through the store is governed
-          by our Privacy Policy, which can be viewed here:&nbsp;
+          by our Privacy Policy, which can be viewed here:
         </span>
         <a
           title="Our Privacy Policy"
-          href="https://beverlyhillspup.com/policies/privacy-policy"
+          href="https://poochie.co/policies/privacy-policy"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span>https://beverlyhillspup.com/policies/privacy-policy</span>
+          <span>https://poochie.co/policies/privacy-policy</span>
         </a>
         <br />
         <br />
-        <span>SECTION 11 - ERRORS, INACCURACIES AND OMISSIONS</span>
+        <b>SECTION 11 - ERRORS, INACCURACIES AND OMISSIONS</b>
         <br />
         <span>
           Occasionally there may be information on our site or in the Service
@@ -376,7 +346,7 @@ export default function TOS() {
         </span>
         <br />
         <br />
-        <span>SECTION 12 - PROHIBITED USES</span>
+        <b>SECTION 12 - PROHIBITED USES</b>
         <br />
         <span>
           In addition to other prohibitions as set forth in the Terms of
@@ -402,9 +372,9 @@ export default function TOS() {
         </span>
         <br />
         <br />
-        <span>
+        <b>
           SECTION 13 - DISCLAIMER OF WARRANTIES; LIMITATION OF LIABILITY
-        </span>
+        </b>
         <br />
         <span>
           We do not guarantee, represent or warrant that your use of our Service
@@ -455,7 +425,7 @@ export default function TOS() {
         </span>
         <br />
         <br />
-        <span>SECTION 14 - INDEMNIFICATION</span>
+        <b>SECTION 14 - INDEMNIFICATION</b>
         <br />
         <span>
           You agree to indemnify, defend and hold harmless BeverlyHillsPup and
@@ -469,7 +439,7 @@ export default function TOS() {
         </span>
         <br />
         <br />
-        <span>SECTION 15 - SEVERABILITY</span>
+        <b>SECTION 15 - SEVERABILITY</b>
         <br />
         <span>
           In the event that any provision of these Terms of Service is
@@ -482,7 +452,7 @@ export default function TOS() {
         </span>
         <br />
         <br />
-        <span>SECTION 16 - TERMINATION</span>
+        <b>SECTION 16 - TERMINATION</b>
         <br />
         <span>
           The obligations and liabilities of the parties incurred prior to the
@@ -507,7 +477,7 @@ export default function TOS() {
         </span>
         <br />
         <br />
-        <span>SECTION 17 - ENTIRE AGREEMENT</span>
+        <b>SECTION 17 - ENTIRE AGREEMENT</b>
         <br />
         <span>
           The failure of us to exercise or enforce any right or provision of
@@ -531,7 +501,7 @@ export default function TOS() {
         </span>
         <br />
         <br />
-        <span>SECTION 18 - GOVERNING LAW</span>
+        <b>SECTION 18 - GOVERNING LAW</b>
         <br />
         <span>
           These Terms of Service and any separate agreements whereby we provide
@@ -540,7 +510,7 @@ export default function TOS() {
         </span>
         <br />
         <br />
-        <span>SECTION 19 - CHANGES TO TERMS OF SERVICE</span>
+        <b>SECTION 19 - CHANGES TO TERMS OF SERVICE</b>
         <br />
         <span>
           You can review the most current version of the Terms of Service at any
@@ -557,20 +527,20 @@ export default function TOS() {
         </span>
         <br />
         <br />
-        <span>SECTION 20 - CONTACT INFORMATION</span>
+        <b>SECTION 20 - CONTACT INFORMATION</b>
         <br />
         <span>
-          Questions about the Terms of Service should be sent to us
-          at&nbsp;shop@beverlyhillspup.com
+          Questions about the Terms of Service should be sent to us at
+          shop@poochie.co
         </span>
         <br />
         <span>Our contact information is posted below:</span>
         <br />
-        <span>WM Kasel Holdings LLC</span>
+        <span>Disco Puppy LLC</span>
         <br />
-        <span>DBA BeverlyHillsPups.com</span>
+        <span>DBA Poochie.co</span>
         <br />
-        <span>shop@beverlyhillspup.com</span>
+        <span>shop@poochie.co</span>
         <br />
         <span>1632 north orange grove Ave</span>
         <br />
