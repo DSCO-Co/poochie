@@ -20,7 +20,7 @@ export async function getStaticProps({
   }
 }
 
-export default function Refund() {
+export default function About() {
   return (
     <Container className="pt-16 pb-8">
       <Text className="flex justify-center" variant="sectionHeading">About Us</Text>
@@ -96,4 +96,4 @@ export default function Refund() {
   )
 }
 
-Refund.Layout = Layout
+About.Layout = Layout

@@ -44,6 +44,7 @@ const navigation = {
   company: [
     { name: 'About Us', href: '/about-us'},
     { name: 'Refund Policy', href: '/policies/refund-policy'},
+    { name: 'Privacy Policy', href: '/policies/privacy-policy'},
     { name: 'Terms of Service', href:'/policies/terms-of-service'},
     { name: 'Shipping & Tracking', href: '/shipping'},
   ],
