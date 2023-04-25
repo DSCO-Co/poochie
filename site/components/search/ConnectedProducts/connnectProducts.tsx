@@ -15,7 +15,10 @@ const ConnectedProducts = () => {
   const algoliaHitToProduct = (hit: any): CommerceProduct => {
     return {
       id: hit.ProductID,
+      sku: hit.sku,
       name: hit.productName,
+      brand: hit.brandName,
+      category: hit.categories,
       description: hit.description,
       images: hit.images,
       path: hit.path,

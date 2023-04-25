@@ -12,6 +12,7 @@ import { FC } from 'react'
 import CartItem from '../CartItem'
 import s from './CartSidebarView.module.css'
 import { useStasher } from '@lib/hooks'
+import { trackCheckoutStarted } from '@Segment/segmentAnalytics'
 
 const CartSidebarView: FC = () => {
   const { closeSidebar, setSidebarView } = useUI()
@@ -35,15 +36,12 @@ const CartSidebarView: FC = () => {
   // const attributor = useAttributor();
   // const ip = useIp();
 
-  const stasher = useStasher();
+  const stasher = useStasher()
 
-  console.log({ stasher });
+  console.log({ stasher })
 
   const error = null
   const success = null
-
-
-
 
   return (
     <SidebarLayout
@@ -115,9 +113,7 @@ const CartSidebarView: FC = () => {
               </li>
               <li className="flex justify-between py-1">
                 <span>Shipping</span>
-                <span className="font-bold tracking-wide">
-                  Calculated at checkout
-                </span>
+                <span>Calculated at checkout</span>
               </li>
             </ul>
             <div className="flex justify-between py-3 mb-2 font-bold border-t border-accent-2">
@@ -130,7 +126,14 @@ const CartSidebarView: FC = () => {
                   Proceed to Checkout ({total})
                 </Button>
               ) : (
-                <Button href="/checkout" Component="a" width="100%">
+                <Button
+                  onClick={() => {
+                    trackCheckoutStarted(data);
+                  }}
+                  href="/checkout"
+                  Component="a"
+                  width="100%"
+                >
                   Proceed to Checkout
                 </Button>
               )}
