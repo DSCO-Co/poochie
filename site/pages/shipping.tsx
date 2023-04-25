@@ -33,34 +33,29 @@ const ShippingPage = () => {
         <section>
           <h2 className="text-xl font-semibold mb-4">Shipping Information</h2>
           <p>
-            Please allow 1-2 business days from the day order is placed for
-            items to leave warehouse plus shipping time.
+            Most items generally ship within 3-5 business days, and you will
+            receive a confirmation email with tracking as soon as your items
+            ship. Please note, some items are on backorder and may take longer
+            to ship. Allow up to 8 weeks for beds & blankets. Your order may
+            also ship in multiple deliveries.
           </p>
           <p>
             Business days are Monday-Friday and exclude federal holidays within
             the United States.
           </p>
-          <p>
-            Orders placed on Friday after 8:00 am PST will ship the following
-            Monday.
-          </p>
-          <p>
-            2-day and overnight deliveries can only be delivered Monday-Friday.
-          </p>
-          <p>Expedited shipping is not eligible for weekend delivery.</p>
         </section>
         <section className="mt-8">
           <h2 className="text-xl font-semibold mb-4">Track Your Order</h2>
           <p>
-            Poochie uses FedEx as our preferred shipping provider. All tracking
+            Poochie uses USPS as our preferred shipping provider. All tracking
             information will be available in the shipping confirmation email
             sent to the email you used at checkout with the subject line ‘Your
             Poochie order is on its way…’ Alternatively, you can visit{' '}
             <a
-              href="https://www.fedex.com/apps/fedextrack/"
-              className="text-blue-600"
+              href="https://tools.usps.com/go/TrackConfirmAction_input"
+              className="text-blue"
             >
-              FedEx tracking page
+              USPS tracking page
             </a>{' '}
             and use your tracking ID to check on its progress.
           </p>
@@ -79,42 +74,16 @@ const ShippingPage = () => {
         </section>
         <section className="mt-8">
           <h2 className="text-xl font-semibold mb-4">Shipping Prices</h2>
-          <table className="table-auto w-full">
-            <thead>
-              <tr className="border-b">
-                <th className="text-left pb-2">Type</th>
-                <th className="text-left pb-2">Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="py-2">Ground</td>
-                <td className="py-2">$4.99</td>
-              </tr>
-              <tr>
-                <td className="py-2">Ground</td>
-                <td className="py-2">Free Over $65</td>
-              </tr>
-              <tr>
-                <td className="py-2">2-Day</td>
-                <td className="py-2">$15.00</td>
-              </tr>
-              <tr>
-                <td className="py-2">Overnight</td>
-                <td className="py-2">$25.00</td>
-              </tr>
-              <tr>
-                <td className="py-2">Guam and Puerto Rico</td>
-                <td className="py-2">$40.00</td>
-              </tr>
-            </tbody>
-          </table>
+          <p>
+            Shipping is calculated based on package weight and destination.
+            Expedited speeds are available for an additional charge.
+          </p>
         </section>
         <section className="mt-8">
           <p>
             Any questions please{' '}
             <Link href="/contact">
-              <a className="text-blue-600">contact us</a>
+              <span className="text-blue">contact us</span>
             </Link>
             .
           </p>
