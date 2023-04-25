@@ -2,9 +2,9 @@ import { Redis } from '@upstash/redis';
 
 interface DataObject {
     bcCartID: string;
-    ip: string;
+    ip?: string;
     segmentAnonymousID: string;
-    cookies: Record<string, any>;
+    cookies?: Record<string, any>;
 }
 
 export class RedisClient {
