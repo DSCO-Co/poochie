@@ -49,7 +49,7 @@ export default function Refund() {
       {/* <!-- Image Description: A luxurious dog bed --> */}
       <div className="flex justify-center mb-8">
       <Image
-        src="/Two_insanely_cute_dogs_in_a_Louis_Vuiton_bed_playing.png"
+        src="/Cute_puppies_playing_in_luxury_dog.png"
         alt="A luxurious dog bed"
         width={500}
         height={300}
