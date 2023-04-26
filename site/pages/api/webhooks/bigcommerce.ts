@@ -78,21 +78,23 @@ async function getOrderInfo(orderId: string) {
     }).then((response) => response.data);
 }
 
-async function getAnonymousId(redis: RedisClient, cartId: string): Promise<string> {
-    const stashedData = await redis.getAnonymousId(cartId);
+// async function getAnonymousId(redis: RedisClient, cartId: string): Promise<string> {
+//     const stashedData = await redis.getAnonymousId(cartId);
 
-    if (stashedData) {
-        return stashedData.segmentAnonymousID;
-    }
+//     if (stashedData) {
+//         return stashedData.segmentAnonymousID;
+//     }
 
-    const anonymousId = uuidv4();
-    await redis.saveData(cartId, {
-        segmentAnonymousID: anonymousId,
-        bcCartID: cartId,
-    });
+//     const anonymousId = uuidv4();
+//     await redis.saveData(cartId, {
+//         segmentAnonymousID: anonymousId,
+//         bcCartID: cartId,
+//     });
 
-    return anonymousId;
-}
+//     return anonymousId;
+// }
+
+async function get
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
     try {
@@ -119,7 +121,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const cartData = await getCart(cartId).catch(() => console.log('No cart data to get'));
         const products = getProducts(cartData);
         const eventName = getEventName(scope);
-        const anonymousId = await getAnonymousId(redis, cartId);
+        const unstashedData = await redis.unstash(cartId);
+        const anonymousId = unstashedData?.segmentAnonymousID || uuidv4();
+
 
         const eventData: EventData = {
             anonymousId,
@@ -129,8 +133,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 total: cartData?.data?.base_total,
                 revenue: cartData?.data?.cart_amount,
                 products,
-                userAgent: cartData?.ua,
-                ip: cartData?.ip,
+                userAgent: unstashedData?.ua,
+                ip: unstashedData?.ip,
             },
 
         };

@@ -41,11 +41,7 @@ export function useStasher() {
             },
             body: JSON.stringify({ cartId, data: stashData }),
         }).then((res) => { setStatus('success') }).catch(() => { setStatus('error') })
-    }, [cartId]);
+    }, [stashData, cartId]);
 
-    return {
-        status,
-        cartId,
-        stashData,
-    }
+    return { status, cartId, stashData };
 }
