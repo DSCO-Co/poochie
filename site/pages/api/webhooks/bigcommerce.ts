@@ -140,6 +140,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         };
 
         let orderInfo;
+            console.log( eventData, 'eventData:  ////////////////////////////// ')
 
         if (scope === 'store/cart/converted') {
             orderInfo = await getOrderInfo(data.orderId);
