@@ -67,15 +67,26 @@ function getProducts(cartData: any): CartData[] {
 }
 
 async function getOrderInfo(orderId: string) {
-    const endpointUrl = `https://api.bigcommerce.com/stores/day26hsh2m/v2/orders/${orderId}`;
+    const orderEndpointUrl = `https://api.bigcommerce.com/stores/day26hsh2m/v2/orders/${orderId}`;
+    const productEndpointUrl = `https://api.bigcommerce.com/stores/day26hsh2m/v2/orders/${orderId}/products`;
 
-    return axios.get(endpointUrl, {
+   const orderInfo = await axios.get(orderEndpointUrl, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'X-Auth-Token': process.env.BIGCOMMERCE_STORE_API_TOKEN || '',
         },
     }).then((response) => response.data);
+
+    orderInfo.productInfo = await axios.get(productEndpointUrl, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Auth-Token': process.env.BIGCOMMERCE_STORE_API_TOKEN || '',
+        },
+    }).then((response) => response.data);
+
+    return orderInfo
 }
 
 async function getAnonymousId(redis: RedisClient, cartId: string): Promise<string> {
@@ -136,8 +147,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         };
 
         let orderInfo;
-            console.log( eventData, 'eventData:  ////////////////////////////// ')
 
+            console.log( 'start eventData:__________________________', JSON.stringify(eventData, null, 2), '  ________________________________ end')
         if (scope === 'store/cart/converted') {
             orderInfo = await getOrderInfo(data.orderId);
 
@@ -149,6 +160,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 ${JSON.stringify(orderInfo, null, 2)}
 
             `);
+
+            // @ts-ignore
+            eventData.properties.purchaseInfo = orderInfo
 
             const {
                 billing_address,
@@ -165,6 +179,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             if (err) {
                 console.log('Error sending event to Segment');
                 console.error(err);
+            } else {
+                console.log('######## event sent to segment: ', `${JSON.stringify(eventData, null, 2)}`)
             }
         });
 
