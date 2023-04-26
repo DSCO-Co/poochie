@@ -1,11 +1,11 @@
 {
-  "name": "Next.js Commerce",
-  "short_name": "Next.js Commerce",
-  "description": "Next.js Commerce -> https://www.nextjs.org/commerce",
+  "name": "Poochie.co",
+  "short_name": "Poochie.co",
+  "description": "Poochie.co designer-inspired dog clothes and accessories.",
   "display": "standalone",
   "start_url": "/",
-  "theme_color": "#fff",
-  "background_color": "#000000",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
   "orientation": "portrait",
   "icons": [
     {

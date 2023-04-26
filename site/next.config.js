@@ -22,6 +22,7 @@ module.exports = withCommerceConfig({
     domains: [
       'cdn11.bigcommerce.com',
       'dev.beverlyhillspup.com',
+      'poochie.co',
       'tailwindui.com',
     ],
   },
@@ -53,8 +54,8 @@ module.exports = withCommerceConfig({
   },
 
   webpackDevMiddleware: (config) => {
-    config.hot = false;
-    return config;
+    config.hot = false
+    return config
   },
 })
 
