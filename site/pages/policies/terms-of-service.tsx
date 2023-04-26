@@ -2,6 +2,7 @@ import { Layout } from '@components/common'
 import { Container, Text } from '@components/ui'
 import commerce from '@lib/api/commerce'
 import type { GetStaticPropsContext } from 'next'
+import Link from 'next/link'
 
 export async function getStaticProps({
   preview,
@@ -205,12 +206,12 @@ export default function TOS() {
         <br />
         <br />
         <span>For more details, please review our Refund Policy: </span>
-        <a
+        <Link
           title="Our Refund Policy"
           href="https://poochie.com/policies/refund-policy"
         >
           http://poochie.com/policies/refund-policy
-        </a>
+        </Link>
         <br />
         <br />
         <b>SECTION 7 - OPTIONAL TOOLS</b>
@@ -404,7 +405,7 @@ export default function TOS() {
         </span>
         <br />
         <span>
-          In no case shall BeverlyHillsPup, our directors, officers, employees,
+          In no case shall Poochie, our directors, officers, employees,
           affiliates, agents, contractors, interns, suppliers, Service providers
           or licensors be liable for any injury, loss, claim, or any direct,
           indirect, incidental, punitive, special, or consequential damages of
@@ -428,7 +429,7 @@ export default function TOS() {
         <b>SECTION 14 - INDEMNIFICATION</b>
         <br />
         <span>
-          You agree to indemnify, defend and hold harmless BeverlyHillsPup and
+          You agree to indemnify, defend and hold harmless Poochie and
           our parent, subsidiaries, affiliates, partners, officers, directors,
           agents, contractors, licensors, Service providers, subcontractors,
           suppliers, interns and employees, harmless from any claim or demand,

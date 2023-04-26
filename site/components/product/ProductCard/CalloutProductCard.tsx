@@ -1,6 +1,8 @@
-import { Button } from '@components/ui'
-import { Card } from 'flowbite-react'
+import { Button } from '@components/ui';
+import { Card } from 'flowbite-react';
 const placeholderImg = '/product-img-placeholder.svg'
+
+import Link from 'next/link';
 export const CalloutProductCard = ({
   product,
   price,
@@ -14,11 +16,11 @@ export const CalloutProductCard = ({
     <>
       <div className="max-w-sm">
         <Card imgSrc={product.images?.[0]?.url || placeholderImg}>
-          <a href="#">
+          <Link href="#">
             <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
               {product.name}
             </h5>
-          </a>
+          </Link>
           <div className="flex items-center justify-between">
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
               {`${price} ${product.price?.currencyCode}`}
