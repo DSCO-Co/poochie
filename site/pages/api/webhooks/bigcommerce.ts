@@ -94,7 +94,7 @@ async function getOrderInfo(orderId: string) {
 //     return anonymousId;
 // }
 
-async function get
+
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
     try {
@@ -140,7 +140,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         };
 
         let orderInfo;
-            console.log( eventData, 'eventData:  ////////////////////////////// ')
+        console.log(eventData, 'eventData:  ////////////////////////////// ')
 
         if (scope === 'store/cart/converted') {
             orderInfo = await getOrderInfo(data.orderId);
