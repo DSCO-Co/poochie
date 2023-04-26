@@ -4,7 +4,10 @@ interface DataObject {
     bcCartID: string;
     ip?: string;
     segmentAnonymousID: string;
+    ua?: string;
     cookies?: Record<string, any>;
+
+
 }
 
 export class RedisClient {
@@ -18,11 +21,11 @@ export class RedisClient {
 
     }
 
-    async saveData(cartId: string, data: DataObject): Promise<void> {
+    async stash(cartId: string, data: DataObject): Promise<void> {
         await this.redis.set(`cart:${cartId}:data`, JSON.stringify(data));
     }
 
-    async getAnonymousId(cartId: string): Promise<any> {
+    async unstash(cartId: string): Promise<any> {
         const data = await this.redis.get(`cart:${cartId}:data`);
         // @ts-ignore
         const parsedData: DataObject = JSON.parse(data);

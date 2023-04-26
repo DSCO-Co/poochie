@@ -22,6 +22,7 @@ module.exports = withCommerceConfig({
     domains: [
       'cdn11.bigcommerce.com',
       'dev.beverlyhillspup.com',
+      'poochie.co',
       'tailwindui.com',
     ],
   },
@@ -50,6 +51,11 @@ module.exports = withCommerceConfig({
   // Avoid Module not found: ESM packages (supports-color) need to be imported. Use 'import' to reference the package instead. https://nextjs.org/docs/messages/import-esm-externals
   experimental: {
     esmExternals: 'loose',
+  },
+
+  webpackDevMiddleware: (config) => {
+    config.hot = false
+    return config
   },
 })
 
