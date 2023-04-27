@@ -50,30 +50,31 @@ const CustomHierarchicalMenu = ({ attributes, limit }) => {
 
   const [isItemsLoaded, setIsItemsLoaded] = useState(false);
 
-// useEffect(() => {
-//   // Load your items here and set isItemsLoaded to true when they are loaded
-//   // Example:
 
-//   const { items, refine } = useHierarchicalMenu({ attributes, limit }).
-//     then(() => {
-//     setIsItemsLoaded(true);
-//   });
-// }, []); // This effect runs only on component mount to fetch items
+  // This effect runs when the "items" value changes. And will tell the other to run when the category items are loaded and can be refined. 
+useEffect(() => {
+  if (items) {
+    setIsItemsLoaded(true);
+  } else {
+    setIsItemsLoaded(false);
+  }
+}, [items]);
 
 useEffect(() => {
   if (!isItemsLoaded) {
-    return; // Don't execute if items are not loaded yet
+    return;
   }
 
   if (router.asPath !== '/search') {
+    // Get the category item from the route name.
     const categoryItem = getCategoryItemFromRouteName(
       router.asPath.split('collections/')[1],
       items
     );
-    console.log('Category Item: ', categoryItem);
+
+    // If the category item is found, refine the results using the category item's value.
     if (categoryItem) {
       refine(categoryItem.value);
-      console.log('refined Category Item: ', categoryItem.value);
     }
   }
 }, [router.asPath, isItemsLoaded]);
