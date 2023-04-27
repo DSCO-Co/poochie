@@ -1,12 +1,10 @@
-import type { Product } from '@commerce/types/product'
 import WishlistButton from '@components/wishlist/WishlistButton'
-import { Button } from '@components/ui'
-import cn from 'clsx'
-import Image, { ImageProps } from 'next/image'
-import Link from 'next/link'
-import { FC, useEffect, useState } from 'react'
-import s from './AlgoliaProductCard.module.css'
 import { useAddItem } from '@framework/cart'
+import cn from 'clsx'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import s from './AlgoliaProductCard.module.css'
 
 import {
   SelectedOptions,
@@ -61,12 +59,12 @@ const ProductCard = ({ product, className }) => {
 
   return (
     <Link
-      href={`/${product.path}`}
+      href={`${product.path}`}
       className={rootClassName}
       aria-label={product.name}
     >
-      <div className=" h-full relative group bg-white text-sm flex flex-col">
-        <div className="p-1 flex-grow">
+      <div className="relative flex flex-col h-full text-sm bg-white group">
+        <div className="flex-grow p-1">
           <div className="relative w-full h-0 overflow-hidden pb-[80%]">
             <Image
               alt={product.name?.toString() || 'Product Image'}
@@ -78,11 +76,11 @@ const ProductCard = ({ product, className }) => {
             />
           </div>
         </div>
-        <div className="bg-white rounded-b-lg py-3">
-          <h3 className="text-center font-medium text-gray-900">
+        <div className="py-3 bg-white rounded-b-lg">
+          <h3 className="font-medium text-center text-gray-900">
             {product.name?.toString()}
           </h3>
-          <div className="text-center font-bold">{`$${product.price}`}</div>
+          <div className="font-bold text-center">{`$${product.price}`}</div>
         </div>
         <WishlistButton
           className="absolute top-2 right-2"
@@ -92,7 +90,7 @@ const ProductCard = ({ product, className }) => {
         <div className="absolute top-2 left-2">
           <div>
             <div
-              className="bg-white mx-1 my-3 text-orange-500 font-bold text-xs uppercase tracking-wide"
+              className="mx-1 my-3 text-xs font-bold tracking-wide text-orange-500 uppercase bg-white"
               style={{
                 backgroundColor: 'white',
                 border: '1px solid var(--on-sale-orange)',
@@ -103,7 +101,7 @@ const ProductCard = ({ product, className }) => {
               Sale
             </div>
           </div>
-          {/* <div className="bg-orange-500 absolute top-1 left-1 p-1" /> */}
+          {/* <div className="absolute p-1 bg-orange-500 top-1 left-1" /> */}
         </div>
         {/* <Button
           aria-label="Add to Cart"
