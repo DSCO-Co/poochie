@@ -48,34 +48,51 @@ const CustomHierarchicalMenu = ({ attributes, limit }) => {
   const { items, refine } = useHierarchicalMenu({ attributes, limit })
   const router = useRouter()
 
-  useEffect(() => {
-    
-    if (items && items.length > 0) {
-      if (router.asPath !== "/search") {
-        const categoryItem = getCategoryItemFromRouteName(
-          router.asPath.split('collections/')[1],
-          items
-        )
-        if (categoryItem && !categoryItem.isRefined) refine(categoryItem.value);
-      }
+  const [isItemsLoaded, setIsItemsLoaded] = useState(false);
+
+
+  // This effect runs when the "items" value changes. And will tell the other to run when the category items are loaded and can be refined. 
+useEffect(() => {
+  if (items) {
+    setIsItemsLoaded(true);
+  } else {
+    setIsItemsLoaded(false);
+  }
+}, [items]);
+
+useEffect(() => {
+  if (!isItemsLoaded) {
+    return;
+  }
+
+  if (router.asPath !== '/search') {
+    // Get the category item from the route name.
+    const categoryItem = getCategoryItemFromRouteName(
+      router.asPath.split('collections/')[1],
+      items
+    );
+
+    // If the category item is found, refine the results using the category item's value.
+    if (categoryItem) {
+      refine(categoryItem.value);
     }
-  },[router.asPath])
+  }
+}, [router.asPath, isItemsLoaded]);
 
   const handleItemClick = (item) => {
-
-    const formattedCategory = routeFormatter(item.value);
-    console.log(router.asPath);
+    const formattedCategory = routeFormatter(item.value)
+    console.log(router.asPath)
     if (item.isRefined) {
       // Deselect the item by navigating to the base collections path
       refine(item.value)
       router.push(`/search`, undefined, {
         shallow: true,
-      });
+      })
     } else {
       // Select the item by navigating to the specific collection
       router.push(`/collections/${formattedCategory}`, undefined, {
         shallow: true,
-      });
+      })
     }
   }
 

@@ -64,17 +64,17 @@ const ProductCard = ({ product, className }) => {
       href={`/${product.path}`}
       className={rootClassName}
       aria-label={product.name}
-
     >
       <div className=" h-full relative group bg-white text-sm flex flex-col">
         <div className="p-1 flex-grow">
           <div className="relative w-full h-0 overflow-hidden pb-[80%]">
             <Image
               alt={product.name?.toString() || 'Product Image'}
-              className="rounded-lg object-contain absolute top-0 left-0"
+              className={`rounded-lg absolute top-0 left-0 w-full h-full ${s.productImage}`}
               src={product.images[0]?.url || placeholderImg}
-              layout="fill"
-              objectFit="contain"
+              width={400} // Replace 500 with the desired width
+              height={400} // Replace 500 with the desired height
+              sizes="100%"
             />
           </div>
         </div>
