@@ -1,9 +1,9 @@
-import type { GetStaticPropsContext } from 'next'
-import commerce from '@lib/api/commerce'
 import { Layout } from '@components/common'
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
+import commerce from '@lib/api/commerce'
+import type { GetStaticPropsContext } from 'next'
+import Link from 'next/link'
 import { useState } from 'react'
-
 export async function getStaticProps({
   preview,
   locale,
@@ -22,7 +22,7 @@ export async function getStaticProps({
 
 export default function ContactUs() {
   const [submitted, setSubmitted] = useState<boolean>(false);
-  
+
   const handleSubmit = async (event) => {
     // Stop the form from submitting and refreshing the page.
     event.preventDefault()
@@ -68,10 +68,10 @@ export default function ContactUs() {
 
   return (
     // <Container className="pt-16 pb-8">
-      <div className="relative isolate bg-white">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
-        <div className="relative px-6 pb-12 pt-16 sm:pt-24 lg:static lg:px-8 lg:py-30">
-          <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
+    <div className="relative bg-white isolate">
+      <div className="grid grid-cols-1 mx-auto max-w-7xl lg:grid-cols-2">
+        <div className="relative px-6 pt-16 pb-12 sm:pt-24 lg:static lg:px-8 lg:py-30">
+          <div className="max-w-xl mx-auto lg:mx-0 lg:max-w-lg">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900">Get in touch</h2>
             <p className="mt-6 text-lg leading-8 text-gray-600">
               Fill out the form, email, or call us and we will get back to you as soon as we can :)
@@ -80,7 +80,7 @@ export default function ContactUs() {
               {/* <div className="flex gap-x-4">
                 <dt className="flex-none">
                   <span className="sr-only">Address</span>
-                  <BuildingOffice2Icon className="h-7 w-6 text-gray-400" aria-hidden="true" />
+                  <BuildingOffice2Icon className="w-6 text-gray-400 h-7" aria-hidden="true" />
                 </dt>
                 <dd>
                   545 Mavis Island
@@ -91,18 +91,18 @@ export default function ContactUs() {
               <div className="flex gap-x-4">
                 <dt className="flex-none">
                   <span className="sr-only">Telephone</span>
-                  <PhoneIcon className="h-7 w-6 text-gray-400" aria-hidden="true" />
+                  <PhoneIcon className="w-6 text-gray-400 h-7" aria-hidden="true" />
                 </dt>
                 <dd>
-                  <a className="hover:text-gray-900" href="tel:+1 (888) 828-4258">
+                  <Link className="hover:text-gray-900" href="tel:+1 (888) 828-4258">
                     +1 (888) 828-4258
-                  </a>
+                  </Link>
                 </dd>
               </div>
               <div className="flex gap-x-4">
                 <dt className="flex-none">
                   <span className="sr-only">Email</span>
-                  <EnvelopeIcon className="h-7 w-6 text-gray-400" aria-hidden="true" />
+                  <EnvelopeIcon className="w-6 text-gray-400 h-7" aria-hidden="true" />
                 </dt>
                 <dd>
                   <a className="hover:text-gray-900" href="mailto:support@poochi.co">
@@ -113,8 +113,8 @@ export default function ContactUs() {
             </dl>
           </div>
         </div>
-        <form id="contact-form" className="px-6 pb-12 pt-16 sm:pt-24 lg:px-8 lg:py-30" onSubmit={handleSubmit} onChange={(e) => setSubmitted(false)}>
-          <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
+        <form id="contact-form" className="px-6 pt-16 pb-12 sm:pt-24 lg:px-8 lg:py-30" onSubmit={handleSubmit} onChange={(e) => setSubmitted(false)}>
+          <div className="max-w-xl mx-auto lg:mr-0 lg:max-w-lg">
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
               <div>
                 <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900 required-form-field">

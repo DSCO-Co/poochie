@@ -67,32 +67,45 @@ function getProducts(cartData: any): CartData[] {
 }
 
 async function getOrderInfo(orderId: string) {
-    const endpointUrl = `https://api.bigcommerce.com/stores/day26hsh2m/v2/orders/${orderId}`;
+    const orderEndpointUrl = `https://api.bigcommerce.com/stores/day26hsh2m/v2/orders/${orderId}`;
+    const productEndpointUrl = `https://api.bigcommerce.com/stores/day26hsh2m/v2/orders/${orderId}/products`;
 
-    return axios.get(endpointUrl, {
+   const orderInfo = await axios.get(orderEndpointUrl, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'X-Auth-Token': process.env.BIGCOMMERCE_STORE_API_TOKEN || '',
         },
     }).then((response) => response.data);
+
+    orderInfo.productInfo = await axios.get(productEndpointUrl, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Auth-Token': process.env.BIGCOMMERCE_STORE_API_TOKEN || '',
+        },
+    }).then((response) => response.data);
+
+    return orderInfo
 }
 
-async function getAnonymousId(redis: RedisClient, cartId: string): Promise<string> {
-    const stashedData = await redis.getAnonymousId(cartId);
+// async function getAnonymousId(redis: RedisClient, cartId: string): Promise<string> {
+//     const stashedData = await redis.getAnonymousId(cartId);
 
-    if (stashedData) {
-        return stashedData.segmentAnonymousID;
-    }
+//     if (stashedData) {
+//         return stashedData.segmentAnonymousID;
+//     }
 
-    const anonymousId = uuidv4();
-    await redis.saveData(cartId, {
-        segmentAnonymousID: anonymousId,
-        bcCartID: cartId,
-    });
+//     const anonymousId = uuidv4();
+//     await redis.saveData(cartId, {
+//         segmentAnonymousID: anonymousId,
+//         bcCartID: cartId,
+//     });
 
-    return anonymousId;
-}
+//     return anonymousId;
+// }
+
+
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
     try {
@@ -119,7 +132,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const cartData = await getCart(cartId).catch(() => console.log('No cart data to get'));
         const products = getProducts(cartData);
         const eventName = getEventName(scope);
-        const anonymousId = await getAnonymousId(redis, cartId);
+        const unstashedData = await redis.unstash(cartId);
+        const anonymousId = unstashedData?.segmentAnonymousID || uuidv4();
+
 
         const eventData: EventData = {
             anonymousId,
@@ -129,14 +144,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 total: cartData?.data?.base_total,
                 revenue: cartData?.data?.cart_amount,
                 products,
-                userAgent: cartData?.ua,
-                ip: cartData?.ip,
+                userAgent: unstashedData?.ua,
+                ip: unstashedData?.ip,
             },
 
         };
 
         let orderInfo;
 
+            console.log( 'start eventData:__________________________', JSON.stringify(eventData, null, 2), '  ________________________________ end')
         if (scope === 'store/cart/converted') {
             orderInfo = await getOrderInfo(data.orderId);
 
@@ -148,6 +164,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 ${JSON.stringify(orderInfo, null, 2)}
 
             `);
+
+            // @ts-ignore
+            eventData.properties.purchaseInfo = orderInfo
 
             const {
                 billing_address,
@@ -164,6 +183,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             if (err) {
                 console.log('Error sending event to Segment');
                 console.error(err);
+            } else {
+                console.log('######## event sent to segment: ', `${JSON.stringify(eventData, null, 2)}`)
             }
         });
 

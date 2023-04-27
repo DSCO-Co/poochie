@@ -633,6 +633,7 @@ importers:
       '@types/react': ^18.0.20
       '@types/react-dom': ^18.0.6
       '@types/react-gtm-module': ^2.0.1
+      '@types/uuid': ^9.0.1
       '@upstash/redis': ^1.20.4
       '@vercel/analytics': ^1.0.0
       '@vercel/commerce': workspace:*
@@ -744,6 +745,7 @@ importers:
       '@types/node': 18.7.18
       '@types/react': 18.0.20
       '@types/react-dom': 18.0.6
+      '@types/uuid': 9.0.1
       eslint: 8.23.1
       eslint-config-next: 12.3.0_4brgkhw6cq4me3drk3kxrpb2mm
       eslint-config-prettier: 8.5.0_eslint@8.23.1
@@ -5006,6 +5008,10 @@ packages:
   /@types/uuid/8.3.4:
     resolution: {integrity: sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==}
     dev: false
+
+  /@types/uuid/9.0.1:
+    resolution: {integrity: sha512-rFT3ak0/2trgvp4yYZo5iKFEPsET7vKydKF+VRCxlQ9bpheehyAJH89dAkaLEq/j/RZXJIqcgsmPJKUP1Z28HA==}
+    dev: true
 
   /@types/ws/8.5.3:
     resolution: {integrity: sha512-6YOoWjruKj1uLf3INHH7D3qTXwFfEsg1kf3c0uDdSBJwfa/llkwIjrAGV7j7mVgGNbzTQ3HiHKKDXl6bJPD97w==}

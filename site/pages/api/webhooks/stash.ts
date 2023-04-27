@@ -14,27 +14,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const { cartId, data } = req.body;
 
         // Save the entire data object with the cartId to Redis
-        await redis.saveData(cartId, data);
+        await redis.stash(cartId, data);
         res.status(200).json({ message: 'Success' });
     } else if (req.method === 'GET') {
         const { cartId } = req.query;
 
         // Retrieve the anonymousId from Redis using the cartId
-        let anonymousId;
+        let stashedData;
         try {
-            anonymousId = await redis.getAnonymousId(cartId as string);
+            stashedData = await redis.unstash(cartId as string)
         } catch (e) {
             console.log(`------------------`);
             console.log(e);
         }
 
-        if (!anonymousId) {
+        if (!stashedData) {
             // const cache = redis.printEntireCache();
             const cache = {};
             res.status(200).json({ message: `No Match to cartID: ${cartId}`, debug: cache });
             return;
         }
-        res.status(200).json({ anonymousId });
+        res.status(200).json({ stashedData });
     } else {
         res.setHeader('Allow', ['POST', 'GET']);
         res.status(405).end(`Method ${req.method} Not Allowed`);

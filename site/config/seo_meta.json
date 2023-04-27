@@ -13,13 +13,13 @@
         "url": "/card.png",
         "width": "800",
         "height": "600",
-        "alt": "Next.js Commerce"
+        "alt": "Poochie Designer-Inspired Dog Clothes"
       }
     ]
   },
   "twitter": {
-    "handle": "@poochie.co",
-    "site": "@poochie_co",
+    "handle": "@shop_poochie",
+    "site": "@shop_poochie",
     "cardType": "summary_large_image"
   }
 }
