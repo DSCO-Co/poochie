@@ -12,7 +12,7 @@ import {
 } from '../helpers'
 import ErrorMessage from '@components/ui/ErrorMessage'
 import ProductTag from '../ProductTag'
-import { trackProductAdded} from '@Segment/segmentAnalytics'
+import { trackProductAdded } from '@Segment/segmentAnalytics'
 
 interface ProductSidebarProps {
   product: Product
@@ -45,6 +45,9 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         productId: String(product.id),
         variantId: String(variant ? variant.id : product.variants[0]?.id),
       })
+      let data = product;
+      data.sku = variant?.sku;
+      trackProductAdded(data);
       setSidebarView('CART_VIEW')
       openSidebar()
       setLoading(false)
@@ -81,8 +84,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
             type="button"
             className={s.button}
             onClick={() => {
-              addToCart(); 
-              trackProductAdded();
+              addToCart()
             }}
             loading={loading}
             disabled={variant?.availableForSale === false}

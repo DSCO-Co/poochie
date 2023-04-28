@@ -53,7 +53,7 @@ export interface ProductVariant {
   /**
    * The SKU (stock keeping unit) associated with the product variant.
    */
-  sku?: string
+  sku: string
   /**
    * The product variant’s name, or the product's name.
    */

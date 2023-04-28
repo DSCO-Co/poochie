@@ -25,6 +25,7 @@ export const getProductQuery = /* GraphQL */ `
               edges {
                 node {
                   isPurchasable
+                  sku
                   entityId
                   defaultImage {
                     urlOriginal
