@@ -128,9 +128,9 @@ export const defaultProductAddedProperties = {
   image_url: 'https://www.example.com/product/path.jpg',
 }
 
-export const trackProductAdded = async () => {
+export const trackProductAdded = async (product: any) => {
   const eventName = 'Product Added'
-  let data = await window.analytics.track(eventName, {})
+  let data = await window.analytics.track(eventName, { product })
   console.log('Product Added data:', data)
   forwardToServer(eventName, data)
 
