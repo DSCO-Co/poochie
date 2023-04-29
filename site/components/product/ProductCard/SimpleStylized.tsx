@@ -1,5 +1,3 @@
-import { trackProductAdded } from '@Segment/segmentAnalytics'
-import { Button } from '@components/ui'
 import WishlistButton from '@components/wishlist/WishlistButton'
 import Image from 'next/image'
 const placeholderImg = '/product-img-placeholder.svg'
@@ -41,7 +39,7 @@ export const SimpleStylizedCard = ({
           variant={product.variants[0]}
         />
         <div className="absolute top-2 left-2">
-          <div>
+          {/* <div>
             <div
               className="mx-1 my-3 text-xs font-bold tracking-wide uppercase text-pink-super bg-secondary-2"
               style={{
@@ -53,7 +51,7 @@ export const SimpleStylizedCard = ({
             >
               Sale
             </div>
-          </div>
+          </div> */}
           {/* <div className="absolute p-1 bg-orange-500 top-1 left-1" /> */}
         </div>
         {/* <Button
