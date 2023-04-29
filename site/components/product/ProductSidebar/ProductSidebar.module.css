@@ -55,6 +55,7 @@
 
 .button {
   width: 100%;
+  @apply bg-black;
 }
 
 .wishlistButton {
