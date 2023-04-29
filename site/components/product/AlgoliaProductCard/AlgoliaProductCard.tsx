@@ -30,6 +30,12 @@ const ProductCard = ({ product, className }) => {
 
   useEffect(() => {
     selectDefaultOptionFromProduct(product, setSelectedOptions)
+
+    console.log(`
+      -------
+      product: ${JSON.stringify(product, null, 4)}
+      -------
+    `)
   }, [product])
 
   const item = getProductVariant(product, selectedOptions)
@@ -88,19 +94,26 @@ const ProductCard = ({ product, className }) => {
           variant={product.variants[0]}
         />
         <div className="absolute top-2 left-2">
-          <div>
-            <div
-              className="mx-1 my-3 text-xs font-bold tracking-wide text-orange-500 uppercase bg-white"
-              style={{
-                backgroundColor: 'white',
-                border: '1px solid var(--on-sale-orange)',
-                boxShadow: '4px 4px 0px 0px var(--on-sale-orange)',
-                padding: '4px',
-              }}
-            >
-              Sale
-            </div>
-          </div>
+          {product.onSale && (<b>ON SALE</b>)}
+          {console.log(`
+          
+          product: ${JSON.stringify(product)}
+          
+          `)}
+          {product.category.lvl0[0] === 'Clearance' && (
+            <div>
+              <div
+                className="mx-1 my-3 text-xs font-bold tracking-wide text-orange-500 uppercase bg-white"
+                style={{
+                  backgroundColor: 'white',
+                  border: '1px solid var(--on-sale-orange)',
+                  boxShadow: '4px 4px 0px 0px var(--on-sale-orange)',
+                  padding: '4px',
+                }}
+              >
+                Sale
+              </div>
+            </div>)}
           {/* <div className="absolute p-1 bg-orange-500 top-1 left-1" /> */}
         </div>
         {/* <Button
