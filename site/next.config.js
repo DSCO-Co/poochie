@@ -19,7 +19,13 @@ module.exports = withCommerceConfig({
     ALGOLIA_SEARCH_ONLY_API_KEY: process.env.ALGOLIA_SEARCH_ONLY_API_KEY,
   },
   images: {
-    domains: ['cdn11.bigcommerce.com', 'dev.beverlyhillspup.com'],
+    domains: [
+      'cdn11.bigcommerce.com',
+      'dev.beverlyhillspup.com',
+      'poochie.co',
+      'tailwindui.com',
+      'v5.airtableusercontent.com',
+    ],
   },
   rewrites() {
     return [
@@ -47,7 +53,8 @@ module.exports = withCommerceConfig({
   experimental: {
     esmExternals: 'loose',
   },
+
 })
 
 // Don't delete this console log, useful to see the commerce config in Vercel deployments
-console.log('next.config.js', JSON.stringify(module.exports, null, 2))
+// console.log('next.config.js', JSON.stringify(module.exports, null, 2))

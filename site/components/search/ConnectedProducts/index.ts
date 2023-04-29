@@ -1,1 +1,1 @@
-export { default as ConnectedProducts } from './connnectProducts'; 
+export { default as ConnectedProducts } from './connnectProducts'

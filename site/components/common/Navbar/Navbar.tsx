@@ -23,7 +23,13 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-function DropDownMenu({ children, dropDownLinks, isActive, menuKey, setActiveMenu }) {
+function DropDownMenu({
+  children,
+  dropDownLinks,
+  isActive,
+  menuKey,
+  setActiveMenu,
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const handleMouseEnter = (event) => {
@@ -58,7 +64,7 @@ function DropDownMenu({ children, dropDownLinks, isActive, menuKey, setActiveMen
         </Menu.Button>
       </div>
 
-      <Transition
+      {/* <Transition
         show={isMenuOpen}
         as={Fragment}
         enter="transition ease-out duration-100"
@@ -74,7 +80,7 @@ function DropDownMenu({ children, dropDownLinks, isActive, menuKey, setActiveMen
               <Menu.Item key={dropDownLink.name}>
                 {({ active }) => (
                   <div className="relative">
-                    <a
+                    <Link
                       href={dropDownLink.path}
                       className={classNames(
                         active ? 'text-gray-900' : 'text-gray-900',
@@ -84,14 +90,14 @@ function DropDownMenu({ children, dropDownLinks, isActive, menuKey, setActiveMen
                       onMouseLeave={handleMouseLeave}
                     >
                       {dropDownLink.name}
-                    </a>
+                    </Link>
                   </div>
                 )}
               </Menu.Item>
             ))}
           </div>
         </Menu.Items>
-      </Transition>
+      </Transition> */}
     </Menu>
   )
 }
@@ -126,10 +132,14 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
                 isActive={activeMenu === l.href}
                 setActiveMenu={setActiveMenu}
               >
-                <Link href={l.href} className={`${s.link} ${activeMenu === l.href ? s.linkActive : ''}`}>
+                <Link
+                  href={l.href}
+                  className={`${s.link} ${
+                    activeMenu === l.href ? s.linkActive : ''
+                  }`}
+                >
                   {l.label}
                 </Link>
-
               </DropDownMenu>
             ))}
           </nav>
@@ -155,7 +165,12 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
                 </button>
               </div>
             )} */}
-            <UserNav cart={true} wishlist={true} userAvatar={true} mobileMenu={true} />
+            <UserNav
+              cart={true}
+              wishlist={true}
+              userAvatar={true}
+              mobileMenu={true}
+            />
           </div>
         </div>
         {/* Desktop search bar */}

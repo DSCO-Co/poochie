@@ -4,7 +4,7 @@ import s from './ProductView.module.css'
 import { FC, useState, useEffect } from 'react'
 import type { Product } from '@commerce/types/product'
 import { WishlistButton } from '@components/wishlist'
-import { ProductSlider, AlgoliaProductCard} from '@components/product'
+import { ProductSlider, AlgoliaProductCard } from '@components/product'
 import { Container, Text } from '@components/ui'
 import { SEO } from '@components/common'
 import ProductSidebar from '../ProductSidebar'
@@ -15,7 +15,10 @@ interface ProductViewProps {
   relatedProducts: Product[]
 }
 
-const searchClient = algoliasearch(process.env.NEXT_PUBLIC_ALGOLIA_APP_ID!, process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY!)
+const searchClient = algoliasearch(
+  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID!,
+  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY!
+)
 const index = searchClient.initIndex('Products')
 
 const ProductView: FC<ProductViewProps> = ({ product }) => {
@@ -26,8 +29,7 @@ const ProductView: FC<ProductViewProps> = ({ product }) => {
   useEffect(() => {
     async function fetchRelatedProducts() {
       try {
-
-        const keywords = product.name.split(" ")
+        const keywords = product.name.split(' ')
         const { hits } = await index.search<Product>(keywords[0], {
           hitsPerPage: 4,
         })
@@ -82,7 +84,7 @@ const ProductView: FC<ProductViewProps> = ({ product }) => {
         </div>
         <hr className="mt-7 border-accent-2" />
         <section className="py-12 px-6 mb-10">
-          <Text variant="sectionHeading">Related Products</Text>
+          <Text variant="sectionHeading">Related Products </Text>
           <div className={s.relatedProductsGrid}>
             {algoliaRelatedProducts.map((p) => (
               <div key={p.path} className="bg-accent-0 border border-accent-2">
@@ -90,10 +92,6 @@ const ProductView: FC<ProductViewProps> = ({ product }) => {
                   product={p}
                   key={p.path}
                   className="animated fadeIn"
-                  imgProps={{
-                    alt: p.name,
-                    className: 'w-full h-full object-cover',
-                  }}
                 />
               </div>
             ))}

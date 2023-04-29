@@ -64,7 +64,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ products }) => {
           onClick={slideLeft}
           className="absolute z-10 px-4 py-2 text-5xl text-black transform -translate-y-1/2 bg-transparent left-5 top-1/2"
         >
-          {"‹"}
+          {'‹'}
         </button>
         <div
           ref={sliderRef}

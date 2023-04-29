@@ -53,7 +53,7 @@ export interface ProductVariant {
   /**
    * The SKU (stock keeping unit) associated with the product variant.
    */
-  sku?: string
+  sku: string
   /**
    * The product variant’s name, or the product's name.
    */
@@ -93,7 +93,7 @@ export interface Product {
    *  The unique identifier for the product.
    */
   id: string
- /**
+  /**
    *  The unique identifier for the product. When arriving from Algolia.
    */
   productID?: string
@@ -105,7 +105,7 @@ export interface Product {
   /**
    * The name of the product, when arriving from Algolia
    */
-    productName?: String
+  productName?: String
   /**
    * Stripped description of the product, single line.
    */
@@ -146,6 +146,14 @@ export interface Product {
    * The product’s vendor name.
    */
   vendor?: string
+  /** 
+   * The product's brand name.
+   */
+  brand?: string
+  /**
+   * The product's category
+   */
+  category?: string
 }
 
 export interface SearchProductsBody {

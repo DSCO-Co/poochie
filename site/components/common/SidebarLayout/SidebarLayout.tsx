@@ -1,5 +1,8 @@
 import { UserNav } from '@components/common'
 import { ChevronLeft } from '@components/icons'
+import cn from 'clsx'
+import { FC, ReactNode } from 'react'
+import s from './SidebarLayout.module.css'
 import { useUI } from '@components/ui/context'
 import cn from 'clsx'
 import { FC, ReactNode } from 'react'
@@ -48,8 +51,7 @@ const SidebarLayout: FC<ComponentProps> = ({
       </header>
       <div className={s.container}>
         {sidebarView === 'MOBILE_MENU_VIEW' && (
-
-          // create the mobile navbar 
+          // create the mobile navbar
           <div className="bottom-0 left-0 w-full z-100 bg-primary">
             <div className="flex items-center justify-center h-24">
               <div className="flex items-center justify-center w-1/3 h-full border border-gray-300">
@@ -66,7 +68,6 @@ const SidebarLayout: FC<ComponentProps> = ({
         )}
         {children}
       </div>
-
     </div>
   )
 }

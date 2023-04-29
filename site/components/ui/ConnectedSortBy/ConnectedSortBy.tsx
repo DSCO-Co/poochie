@@ -1,7 +1,7 @@
-import { useSortBy } from 'react-instantsearch-hooks-web';
+import { useSortBy } from 'react-instantsearch-hooks-web'
 
 const ConnectedSortBy = ({ items }) => {
-  const { currentRefinement, options, refine } = useSortBy({ items });
+  const { currentRefinement, options, refine } = useSortBy({ items })
 
   return (
     <div className="flex flex-col space-y-2">
@@ -19,7 +19,7 @@ const ConnectedSortBy = ({ items }) => {
         </button>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default ConnectedSortBy;
+export default ConnectedSortBy

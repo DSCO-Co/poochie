@@ -1,4 +1,4 @@
-import React, { useEffect, RefObject } from 'react'
+import React, { RefObject, useEffect } from 'react'
 import { tabbable } from 'tabbable'
 
 interface Props {
@@ -26,6 +26,7 @@ export default function FocusTrap({ children, focusFirst = false }: Props) {
       }
     }
   }
+
 
   const selectFirstFocusableEl = () => {
     // Try to find focusable elements, if match then focus

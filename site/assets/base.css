@@ -1,10 +1,10 @@
 :root {
-  --primary: #f1d6cc;
-  --primary-2: #2d3f50;
+  --primary: #fff;
+  --primary-2: #162431;
   --secondary: #83b6e7;
-  --secondary-2: #e8a5a5;
+  --secondary-2: #fff;
   --selection: var(--cyan);
-  --text-base: var(--primary-2));
+  --text-base: var(--primary-2);
   --text-primary: var(--primary-2);
   --text-secondary: white;
   --hover: rgba(0, 0, 0, 0.075);
@@ -16,20 +16,42 @@
   --purple: #f81ce5;
   --blue: #0070f3;
   --pink: #ff0080;
+  --pink-super: #f832c0;
   --pink-light: #ff379c;
   --magenta: #eb367f;
   --violet: #7928ca;
   --violet-dark: #4c2889;
-  --accent-0: #fff;
-  --accent-1: #fafafa;
-  --accent-2: #eaeaea;
-  --accent-3: #999999;
-  --accent-4: #888888;
-  --accent-5: #666666;
-  --accent-6: #444444;
-  --accent-7: #333333;
-  --accent-8: #111111;
-  --accent-9: #000;
+  --primary-accent-0: #f7f0e6; /* 3 shades lighter */
+  --primary-accent-1: #e8d7c1;
+  --primary-accent-2: #d2bfa2;
+  --primary-accent-3: #bfa080;
+  --primary-accent-4: #a18869;
+  --primary-accent-5: #8d6e54;
+  --primary-accent-6: #795540;
+  --primary-accent-7: #61412e;
+  --primary-accent-8: #432e1d;
+  --primary-accent-9: #1f0d02;
+  --primary-2-accent-0: #f0f7f6; /* 3 shades lighter */
+  --primary-2-accent-1: #d4e3e1;
+  --primary-2-accent-2: #b7cdcb;
+  --primary-2-accent-3: #9bb6b4;
+  --primary-2-accent-4: #7e9e9a;
+  --primary-2-accent-5: #657c7e;
+  --primary-2-accent-6: #4c5b62;
+  --primary-2-accent-7: #333c44;
+  --primary-2-accent-8: #0f202e;
+  --primary-2-accent-9: #030b14;
+
+  --accent-0: #f7f8fa;
+  --accent-1: #e1e4e8;
+  --accent-2: #c8ccd4;
+  --accent-3: #9ea7b8;
+  --accent-4: #7b8a9a;
+  --accent-5: #5f6d81;
+  --accent-6: #4d576b;
+  --accent-7: #3b4253;
+  --accent-8: #1e2532;
+  --accent-9: #0b0e17;
   --font-sans: -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue',
     'Helvetica', sans-serif;
 }

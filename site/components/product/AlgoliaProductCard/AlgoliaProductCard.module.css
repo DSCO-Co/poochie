@@ -55,6 +55,10 @@
   @apply flex items-center bg-white justify-center overflow-hidden w-full h-full;
 }
 
+.productImage {
+  object-fit: contain;
+}
+
 .imageContainer .productImage {
   @apply transform transition-transform duration-500 object-cover;
 }
