@@ -1,10 +1,10 @@
 import { trackProductAdded } from '@Segment/segmentAnalytics'
+// import usePrice from '@commerce/product/use-price'
 import type { Product } from '@commerce/types/product'
 import { ProductOptions } from '@components/product'
 import { Button, Collapse, Text, useUI } from '@components/ui'
 import ErrorMessage from '@components/ui/ErrorMessage'
 import { useAddItem } from '@framework/cart'
-import usePrice from '@framework/product/use-price'
 import { FC, useEffect, useState } from 'react'
 import ProductTag from '../ProductTag'
 import {
@@ -18,22 +18,40 @@ interface ProductSidebarProps {
   className?: string
 }
 
+
+
 const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
+  const getSelectedOptionPrice = (product: Product, selectedOptions: SelectedOptions) => {
+    const variant = getProductVariant(product, selectedOptions);
+    if (variant) {
+      // @ts-ignore
+      return variant.prices.price.value;
+    }
+    return product.price.value;
+  }
+
   const addItem = useAddItem()
   const { openSidebar, setSidebarView } = useUI()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<null | Error>(null)
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({})
+  const [selectedOptionPrice, setSelectedOptionPrice] = useState(getSelectedOptionPrice(product, selectedOptions))
+
+  useEffect(() => {
+    console.log(JSON.stringify(selectedOptions, null, 4))
+    console.log(`
+    
+    -----
+    
+    `);
+
+    console.log(JSON.stringify(product, null, 4));
+    setSelectedOptionPrice(getSelectedOptionPrice(product, selectedOptions));
+  }, [selectedOptions, product])
 
   useEffect(() => {
     selectDefaultOptionFromProduct(product, setSelectedOptions)
   }, [product])
-
-  const { price } = usePrice({
-    amount: product.price.value,
-    baseAmount: product.price.retailPrice,
-    currencyCode: product.price.currencyCode!,
-  })
 
   const variant = getProductVariant(product, selectedOptions)
   const addToCart = async () => {
@@ -70,7 +88,8 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
     <div className={className}>
       <ProductTag
         name={product.name}
-        price={`${price} ${product.price?.currencyCode}`}
+        price={`$ ${selectedOptionPrice
+          } ${product.price?.currencyCode}`}
         fontSize={22}
       />
       <ProductOptions
@@ -84,7 +103,6 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         {process.env.COMMERCE_CART_ENABLED && (
           <Button
             aria-label="Add to Cart"
-
             className={"bg-black"}
             onClick={() => {
               addToCart()
