@@ -48,9 +48,8 @@ export default function MenuSidebarView({
                   </Link>
                   {l.subLinks.length > 0 && (
                     <span
-                      className={`ml-auto mr-2 inline-block transition-transform duration-300 ${
-                        expandedLink === l.href ? 'transform rotate-180' : ''
-                      }`}
+                      className={`ml-auto mr-2 inline-block transition-transform duration-300 ${expandedLink === l.href ? 'transform rotate-180' : ''
+                        }`}
                     >
                       ▼
                     </span>
