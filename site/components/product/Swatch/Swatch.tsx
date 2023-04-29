@@ -1,9 +1,10 @@
-import cn from 'clsx'
-import React from 'react'
-import s from './Swatch.module.css'
 import { Check } from '@components/icons'
 import Button, { ButtonProps } from '@components/ui/Button'
 import { isDark } from '@lib/colors'
+import cn from 'clsx'
+import React from 'react'
+import s from './Swatch.module.css'
+
 interface SwatchProps {
   active?: boolean
   children?: any
@@ -23,7 +24,9 @@ const Swatch: React.FC<Omit<ButtonProps, 'variant'> & SwatchProps> = ({
   variant = 'size',
   ...props
 }) => {
-  variant = variant?.toLowerCase()
+  variant = variant?.toLowerCase();
+
+  console.log('variant: ', variant);
 
   if (label) {
     label = label?.toLowerCase()
@@ -37,9 +40,9 @@ const Swatch: React.FC<Omit<ButtonProps, 'variant'> & SwatchProps> = ({
       [s.size]: variant === 'size',
       [s.dark]: color ? isDark(color) : false,
       [s.textLabel]: !color && label && label.length > 3,
+      [s.dimmed]: !inStock
     },
-    className,
-    inStock ? '' : 'pointer-events-none'
+    className
   )
 
   return (
@@ -49,16 +52,19 @@ const Swatch: React.FC<Omit<ButtonProps, 'variant'> & SwatchProps> = ({
       aria-label={variant && label ? `${variant} ${label}` : 'Variant Swatch'}
       className={swatchClassName}
       {...(label && color && { title: label })}
-      // style={color ? { backgroundColor: color } : {}}
-      style={inStock ? {} : { backgroundColor: 'rgba(0,0,0,0.1)' }}
+
+      style={color ? { backgroundColor: color } : {
+        backgroundColor: inStock ? "#ccc" : "#000",
+      }}
+      disabled={!inStock}
       {...props}
     >
-      {color && active && (
+      {active && (
         <span>
           <Check />
         </span>
       )}
-      {!color ? label : null}
+      {!active ? label : null}
     </Button>
   )
 }

@@ -1,18 +1,17 @@
-import s from './ProductSidebar.module.css'
+import { trackProductAdded } from '@Segment/segmentAnalytics'
+import type { Product } from '@commerce/types/product'
+import { ProductOptions } from '@components/product'
+import { Button, Collapse, Text, useUI } from '@components/ui'
+import ErrorMessage from '@components/ui/ErrorMessage'
 import { useAddItem } from '@framework/cart'
 import usePrice from '@framework/product/use-price'
 import { FC, useEffect, useState } from 'react'
-import { ProductOptions } from '@components/product'
-import type { Product } from '@commerce/types/product'
-import { Button, Text, Collapse, useUI } from '@components/ui'
+import ProductTag from '../ProductTag'
 import {
+  SelectedOptions,
   getProductVariant,
   selectDefaultOptionFromProduct,
-  SelectedOptions,
 } from '../helpers'
-import ErrorMessage from '@components/ui/ErrorMessage'
-import ProductTag from '../ProductTag'
-import { trackProductAdded } from '@Segment/segmentAnalytics'
 
 interface ProductSidebarProps {
   product: Product
@@ -63,6 +62,10 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
     }
   }
 
+  console.log(`
+  
+    isPurchasable: ${variant?.isPurchasable}
+  `)
   return (
     <div className={className}>
       <ProductTag
@@ -81,15 +84,15 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         {process.env.COMMERCE_CART_ENABLED && (
           <Button
             aria-label="Add to Cart"
-            type="button"
-            className={s.button}
+
+            className={"bg-black"}
             onClick={() => {
               addToCart()
             }}
             loading={loading}
-            disabled={variant?.availableForSale === false}
+            disabled={variant?.isPurchasable == false}
           >
-            {variant?.availableForSale === false
+            {variant?.isPurchasable == false
               ? 'Not Available'
               : 'Add To Cart'}
           </Button>
@@ -98,11 +101,11 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
       <div className="mt-6">
         <Collapse title="Details" initial={true}>
           <Text
-            className="pb-4 break-words w-full max-w-xl"
+            className="w-full max-w-xl pb-4 break-words"
             html={product.descriptionHtml || product.description}
           />
         </Collapse>
-        <Collapse title="Customer Reviews"></Collapse>
+        {/* <Collapse title="Customer Reviews"></Collapse> */}
         <Collapse title="Shipping & Returns">
           <br />
           <h5 className="font-bold">Returns Policy</h5>

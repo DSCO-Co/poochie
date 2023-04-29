@@ -1,6 +1,6 @@
-import { memo } from 'react'
-import { Swatch } from '@components/product'
 import type { ProductOption, ProductVariant } from '@commerce/types/product'
+import { Swatch } from '@components/product'
+import { memo } from 'react'
 import { SelectedOptions } from '../helpers'
 
 interface ProductOptionsProps {
@@ -63,6 +63,14 @@ const ProductOptions: React.FC<ProductOptionsProps> = ({
     return opt.values.map((v, i: number) => {
       const active =
         selectedOptions[opt.displayName.toLowerCase()] === v.label.toLowerCase()
+      console.log(`
+          Product Options:
+          -----------
+          v: ${JSON.stringify(v)}
+          option: ${JSON.stringify(opt)}
+          active: ${JSON.stringify(active)}
+          available: ${JSON.stringify(available)}
+        `)
       return (
         <Swatch
           key={`${opt.id}-${i}`}
@@ -95,7 +103,7 @@ const ProductOptions: React.FC<ProductOptionsProps> = ({
     <div>
       {options.map((opt) => (
         <div className="pb-4" key={opt.displayName}>
-          <h2 className="uppercase font-medium text-sm tracking-wide">
+          <h2 className="text-sm font-medium tracking-wide uppercase">
             {opt.displayName}
           </h2>
           <div role="listbox" className="flex flex-row py-4">

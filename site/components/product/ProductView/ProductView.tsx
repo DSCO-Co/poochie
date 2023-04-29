@@ -1,14 +1,14 @@
+import type { Product } from '@commerce/types/product'
+import { SEO } from '@components/common'
+import { AlgoliaProductCard, ProductSlider } from '@components/product'
+import { Container, Text } from '@components/ui'
+import { WishlistButton } from '@components/wishlist'
+import algoliasearch from 'algoliasearch/lite'
 import cn from 'clsx'
 import Image from 'next/image'
-import s from './ProductView.module.css'
-import { FC, useState, useEffect } from 'react'
-import type { Product } from '@commerce/types/product'
-import { WishlistButton } from '@components/wishlist'
-import { ProductSlider, AlgoliaProductCard } from '@components/product'
-import { Container, Text } from '@components/ui'
-import { SEO } from '@components/common'
+import { FC, useEffect, useState } from 'react'
 import ProductSidebar from '../ProductSidebar'
-import algoliasearch from 'algoliasearch/lite'
+import s from './ProductView.module.css'
 
 interface ProductViewProps {
   product: Product
@@ -43,11 +43,15 @@ const ProductView: FC<ProductViewProps> = ({ product }) => {
     }
 
     fetchRelatedProducts()
+
+    console.log({ product })
   }, [product])
+
+
 
   return (
     <>
-      <Container className="max-w-none w-full" clean>
+      <Container className="w-full max-w-none" clean>
         <div className={cn(s.root, 'fit')}>
           <div className={cn(s.main, 'fit')}>
             <div className={s.sliderContainer}>
@@ -83,11 +87,11 @@ const ProductView: FC<ProductViewProps> = ({ product }) => {
           />
         </div>
         <hr className="mt-7 border-accent-2" />
-        <section className="py-12 px-6 mb-10">
+        <section className="px-6 py-12 mb-10">
           <Text variant="sectionHeading">Related Products </Text>
           <div className={s.relatedProductsGrid}>
             {algoliaRelatedProducts.map((p) => (
-              <div key={p.path} className="bg-accent-0 border border-accent-2">
+              <div key={p.path} className="border bg-accent-0 border-accent-2">
                 <AlgoliaProductCard
                   product={p}
                   key={p.path}
