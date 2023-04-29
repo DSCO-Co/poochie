@@ -28,7 +28,7 @@ export const AlgoliaStylizedCard = ({ product, imgProps }) => {
               variant={product.variants[0]}
             /> */}
         <div className="absolute top-2 left-2">
-          <div>
+          {/* <div>
             <div
               className="mx-1 my-3 text-xs font-bold tracking-wide text-orange-500 uppercase bg-secondary-2"
               style={{
@@ -40,7 +40,7 @@ export const AlgoliaStylizedCard = ({ product, imgProps }) => {
             >
               Sale 
             </div>
-          </div>
+          </div> */}
           {/* <div className="absolute p-1 bg-orange-500 top-1 left-1" /> */}
         </div>
         {/* <Button
