@@ -60,9 +60,14 @@ const Swatch: React.FC<Omit<ButtonProps, 'variant'> & SwatchProps> = ({
       {...props}
     >
       {active && (
-        <span>
-          <Check />
-        </span>
+        <div className="flex">
+          <div className="flex-1 pr-2">
+            <Check />
+          </div>
+          <div>
+            {label}
+          </div>
+        </div>
       )}
       {!active ? label : null}
     </Button>
