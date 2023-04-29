@@ -108,7 +108,8 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
               addToCart()
             }}
             loading={loading}
-            disabled={variant & variant?.isPurchasable ? true : false}
+            // disabled={!variant && true || !variant?.isPurchasable || loading}
+            disabled={false}
           >
             {variant & variant.isPurchasable ? "Not Available" : "Add To Cart"}
           </Button>
