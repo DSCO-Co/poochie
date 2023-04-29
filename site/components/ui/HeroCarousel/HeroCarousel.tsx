@@ -1,7 +1,8 @@
-import { Carousel } from 'flowbite-react'
-import Image from 'next/image'
+import { Carousel } from 'flowbite-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-const HeroCarousel = ({ slides, useTimer = false, time = 5000 }) => {
+const HeroCarousel = ({ slides, useTimer = false, time = 7000 }) => {
   return (
     <Carousel slideInterval={time}>
       {slides.map((slide, index) => {
@@ -24,12 +25,16 @@ const HeroCarousel = ({ slides, useTimer = false, time = 5000 }) => {
               <h2 className="pt-20 text-6xl tracking-widest text-black uppercase sm:pt-0 font-extralight sm:text-8xl">
                 {slide.title}
               </h2>
-              <a
-                href="#"
+              <p className="pt-20 text-2xl font-semibold tracking-widest text-black sm:pt-0 sm:text4xl">
+                {slide.subtitle}
+              </p>
+
+              <Link
+                href={slide.link}
                 className="block px-16 py-4 mt-8 font-medium text-black bg-transparent border-4 border-black hover:bg-black hover:text-white hover:border-transparent sm:w-auto"
               >
                 {slide.button}
-              </a>
+              </Link>
             </div>
           </div>
         )

@@ -1,13 +1,14 @@
 import { Avatar } from '@components/common';
 import { Bag, Heart, Menu } from '@components/icons';
-import { Button, Dropdown, DropdownTrigger } from '@components/ui';
+import { Button } from '@components/ui';
 import { useUI } from '@components/ui/context';
 import useCart from '@framework/cart/use-cart';
+import { useEffect } from 'react';
+
 import useCustomer from '@framework/customer/use-customer';
 import cn from 'clsx';
 import Link from 'next/link';
 import React from 'react';
-import CustomerMenuContent from './CustomerMenuContent';
 import s from './UserNav.module.css';
 
 import type { LineItem } from '@commerce/types/cart';
@@ -36,6 +37,13 @@ const UserNav: React.FC<UserNavProps> = ({
   const { closeSidebarIfPresent, openModal, setSidebarView, openSidebar } = useUI();
 
   const itemsCount = data?.lineItems?.reduce(countItems, 0) ?? 0;
+
+  useEffect(() => {
+    console.log({ isCustomerLoggedIn })
+
+
+  }, [isCustomerLoggedIn])
+
 
   const handleCartButtonClick = () => {
     setSidebarView('CART_VIEW');
@@ -99,19 +107,19 @@ const UserNav: React.FC<UserNavProps> = ({
 
         {process.env.COMMERCE_CUSTOMERAUTH_ENABLED && userAvatar && (
           <li className={s.item}>
-            <Dropdown>
-              <DropdownTrigger>
-                <button
-                  aria-label="Menu"
-                  className={s.avatarButton}
-                  onClick={() => (isCustomerLoggedIn ? null : openModal())}
-                >
-                  {size === 'small' && <Avatar />}
-                  {size === 'large' && <Avatar scale={4} />}
-                </button>
-              </DropdownTrigger>
-              <CustomerMenuContent />
-            </Dropdown>
+            {/* <Dropdown>
+              <DropdownTrigger> */}
+            <button
+              aria-label="Menu"
+              className={s.avatarButton}
+              onClick={() => (isCustomerLoggedIn ? null : openModal())}
+            >
+              {size === 'small' && <Avatar />}
+              {size === 'large' && <Avatar scale={4} />}
+            </button>
+            {/* </DropdownTrigger> */}
+            {/* <CustomerMenuContent /> */}
+            {/* // </Dropdown> */}
           </li>
         )}
         {mobileMenu && (
