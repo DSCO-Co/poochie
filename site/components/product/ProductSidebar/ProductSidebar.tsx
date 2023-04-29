@@ -112,7 +112,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
             disabled={false}
           >
             {/* {variant && variant.isPurchasable ? "Not Available" : "Add To Cart"} */}
-            "Add to Cart"
+            Add to Cart
           </Button>
         )}
       </div>
