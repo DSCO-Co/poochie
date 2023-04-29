@@ -16,8 +16,7 @@ interface NavbarProps {
   links?: Link[]
 }
 
-import { Menu, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
+import { Menu } from '@headlessui/react'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -134,9 +133,8 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
               >
                 <Link
                   href={l.href}
-                  className={`${s.link} ${
-                    activeMenu === l.href ? s.linkActive : ''
-                  }`}
+                  className={`${s.link} ${activeMenu === l.href ? s.linkActive : ''
+                    }`}
                 >
                   {l.label}
                 </Link>

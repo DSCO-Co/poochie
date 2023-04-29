@@ -1,3 +1,4 @@
+import { Avatar } from '@components/common';
 import { Bag, Heart, Menu } from '@components/icons';
 import { Button, Dropdown, DropdownTrigger } from '@components/ui';
 import { useUI } from '@components/ui/context';
@@ -72,7 +73,7 @@ const UserNav: React.FC<UserNavProps> = ({
           <>
             <li className={s.item}>
               <Link href="/wishlist" onClick={closeSidebarIfPresent} aria-label="Wishlist">
-                <Bag scale={size === 'large' ? 2 : undefined} />
+                <Heart scale={size === 'large' ? 2 : undefined} />
                 {itemsCount > 0 && (
                   <span className={size === 'large' ? s.bagCountLarge : s.bagCount}>
                     {itemsCount}
@@ -80,7 +81,7 @@ const UserNav: React.FC<UserNavProps> = ({
                 )}
               </Link>
             </li>
-            <li className={s.item}>
+            {/* <li className={s.item}>
               {
                 // @ts-ignore  
                 <Dropdown className={s.dropdown}>
@@ -92,8 +93,26 @@ const UserNav: React.FC<UserNavProps> = ({
                   <CustomerMenuContent />
                 </Dropdown>
               }
-            </li>
+            </li> */}
           </>
+        )}
+
+        {process.env.COMMERCE_CUSTOMERAUTH_ENABLED && userAvatar && (
+          <li className={s.item}>
+            <Dropdown>
+              <DropdownTrigger>
+                <button
+                  aria-label="Menu"
+                  className={s.avatarButton}
+                  onClick={() => (isCustomerLoggedIn ? null : openModal())}
+                >
+                  {size === 'small' && <Avatar />}
+                  {size === 'large' && <Avatar scale={4} />}
+                </button>
+              </DropdownTrigger>
+              <CustomerMenuContent />
+            </Dropdown>
+          </li>
         )}
         {mobileMenu && (
           <li className={s.mobileMenu}>
@@ -101,7 +120,11 @@ const UserNav: React.FC<UserNavProps> = ({
               className={s.item}
               aria-label="Menu"
               variant="naked"
-              onClick={handleMobileMenuButtonClick}
+              onClick={() => {
+                setSidebarView('MOBILE_MENU_VIEW')
+                openSidebar()
+                closeSidebarIfPresent()
+              }}
             >
               <Menu />
             </Button>
