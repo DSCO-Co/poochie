@@ -62,10 +62,11 @@ export default function Home({
           {
             id: 2,
             image: SweetSweaters,
-            alt: 'Spring Sweaters',
-            title: 'Spring Sweaters',
-            subtitle: 'Shibas Seen Sporting Sweet Spring Sweaters!',
+            alt: 'Spring Cleaning',
+            title: 'Spring Cleaning',
+            subtitle: 'Shop our Clearance Sale for Spring Cleaning Savings!',
             button: 'Shop Now',
+            link: "/collections/clearance"
           },
           {
             id: 3,
@@ -74,6 +75,7 @@ export default function Home({
             title: 'Totally Toys',
             subtitle: 'Toys for Terriffic Terriers (and more)!',
             button: 'Shop Now',
+            link: "/collections/toys"
           },
           {
             id: 1,
@@ -82,6 +84,7 @@ export default function Home({
             title: 'Jumping Jackets',
             subtitle: 'Jack Russels Jumping for Joy in New Jackets!',
             button: 'Shop Now',
+            link: "/collections/clothing"
           },
         ]}
       />
