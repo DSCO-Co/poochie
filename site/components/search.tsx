@@ -21,7 +21,7 @@ export default function Search({}: SearchPropsType) {
 
   return (
     <Container>
-      <Configure {...({ hitsPerPage: 12 } as any)} />
+      <Configure {...({ hitsPerPage: 12 } as any)} clickAnalytics={true} />
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-3 mb-20">
         {/* Algolia search bar */}
 
