@@ -25,9 +25,9 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
     const variant = getProductVariant(product, selectedOptions);
     if (variant) {
       // @ts-ignore
-      return variant.prices.price.value;
+      return { actualPrice: variant.prices.price.value, defaultPrice: variant.prices.basePrice.value }
     }
-    return product.price.value;
+      return { actualPrice: product.price.value, defaultPrice: null }
   }
 
   const addItem = useAddItem()
@@ -88,8 +88,9 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
     <div className={className}>
       <ProductTag
         name={product.name}
-        price={`$ ${selectedOptionPrice
-          } ${product.price?.currencyCode}`}
+        basePrice={selectedOptionPrice.defaultPrice}
+        price={selectedOptionPrice.actualPrice}
+        currencyCode={product.price?.currencyCode}
         fontSize={22}
       />
       <ProductOptions

@@ -16,7 +16,8 @@ export const DefaultCard = ({ product, price, s, imgProps }) => {
         )}
         <ProductTag
           name={product.name}
-          price={`${price} ${product.price?.currencyCode}`}
+          price={price}
+          currencyCode={product.price?.currencyCode}
         />
         <div className={s.imageContainer}>
           {product?.images && (
