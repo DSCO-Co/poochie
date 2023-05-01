@@ -3,17 +3,21 @@ import s from './ProductTag.module.css'
 import { Rating } from '@components/ui'
 
 interface ProductTagProps {
-  className?: string
   name: string
-  price: string
+  price: number
+  basePrice?: number
+  currencyCode?: string
   fontSize?: number
+  className?: string
 }
 
 const ProductTag: React.FC<ProductTagProps> = ({
   name,
   price,
-  className = '',
+  basePrice,
+  currencyCode,
   fontSize = 32,
+  className = '',
 }) => {
   return (
     <div className={cn(s.root, className)}>
@@ -34,7 +38,12 @@ const ProductTag: React.FC<ProductTagProps> = ({
           &nbsp;&nbsp;&nbsp;No reviews yet
         </div>
       </div>
-      <div className={s.price}>{price}</div>
+      <div className={s.price}>
+        {basePrice && basePrice > price && (
+          <span className="line-through">{`$${basePrice}`}</span>
+        )}
+        {` $${price} ${currencyCode}`}
+      </div>
     </div>
   )
 }
