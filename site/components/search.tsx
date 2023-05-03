@@ -9,11 +9,10 @@ import {
 import type { SearchPropsType } from '@lib/search-props'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { SearchBox } from 'react-instantsearch-hooks-web'
+import { SearchBox, Configure } from 'react-instantsearch-hooks-web'
 
 import { Button } from '@components/ui'
 import { Menu as HeadlessMenu } from '@headlessui/react'
-import { Configure } from 'react-instantsearch-hooks-web'
 import { ConnectedProducts } from './search/ConnectedProducts'
 
 export default function Search({ }: SearchPropsType) {

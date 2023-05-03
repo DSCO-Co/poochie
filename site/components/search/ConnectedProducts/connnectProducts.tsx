@@ -8,9 +8,28 @@ import { Skeleton } from '@components/ui'
 import rangeMap from '@lib/range-map'
 
 import { useHits } from 'react-instantsearch-hooks-web'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { trackProductListViewed } from '@Segment/segmentAnalytics'
+
+
 
 const ConnectedProducts = () => {
+
   const { hits } = useHits()
+  const router = useRouter()
+  const initial = router.asPath.split('collections/')[1]
+
+  useEffect(() => {
+    if (hits) {
+      const products: CommerceProduct[] = hits.map((hit: any) => 
+        algoliaHitToProduct(hit)
+      )
+      console.log("Tracking products viewed: ", products);
+      trackProductListViewed(products); 
+    }
+    }, [hits]
+  )
 
   const algoliaHitToProduct = (hit: any): CommerceProduct => {
     return {

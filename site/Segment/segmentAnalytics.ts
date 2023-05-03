@@ -114,6 +114,17 @@ export const trackProductViewed = async (product: any) => {
   console.log('Product Viewed data:', data)
 }
 
+
+export const trackProductListViewed = async (products: any[]) => {
+  const eventName = 'Product List Viewed'
+  const trackedProducts = {
+    clientUserAgent: navigator.userAgent,
+    products: products
+  }
+  let data = await window.analytics.track(eventName, trackedProducts)
+  console.log('Product List Viewed data:', data)
+}
+
 export const defaultProductAddedProperties = {
   cart_id: 'CART_ID',
   product_id: 'PRODUCT_ID',
