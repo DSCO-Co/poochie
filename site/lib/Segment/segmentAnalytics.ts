@@ -158,7 +158,7 @@ export const trackCheckoutStarted = async (cartData: any) => {
   const eventName = 'Checkout Started'
   console.log('Checkout Started data:', cartData)
   let data = await window.analytics.track(eventName, { cartData })
-  console.log('Checkout Started data:', data)
+  console.log('Checkout Started data:', JSON.stringify(data, null, 2))
   forwardToServer(eventName, data)
 }
 
