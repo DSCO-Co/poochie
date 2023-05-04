@@ -16,7 +16,8 @@ export default function MenuSidebarView({
   const toggleExpand = (href: string) => {
     setExpandedLink((current) => (current === href ? null : href))
   }
-  console.log(links)
+  console.log(links);
+
 
   return (
     <SidebarLayout handleClose={() => closeSidebar()}>
