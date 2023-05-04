@@ -31,11 +31,11 @@ const ProductCard = ({ product, className }) => {
   useEffect(() => {
     selectDefaultOptionFromProduct(product, setSelectedOptions)
 
-    console.log(`
-      -------
-      product: ${JSON.stringify(product, null, 4)}
-      -------
-    `)
+    // console.log(`
+    //   -------
+    //   product: ${JSON.stringify(product, null, 4)}
+    //   -------
+    // `)
   }, [product])
 
   const item = getProductVariant(product, selectedOptions)
@@ -95,11 +95,11 @@ const ProductCard = ({ product, className }) => {
         />
         <div className="absolute top-2 left-2">
           {product.onSale && ("")}
-          {console.log(`
+          {/* {console.log(`
           
           product: ${JSON.stringify(product)}
           
-          `)}
+          `)} */}
           {product?.category?.lvl0[0] === 'Clearance' && (
             <div>
               <div

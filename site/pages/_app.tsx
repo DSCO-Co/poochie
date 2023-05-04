@@ -5,7 +5,7 @@ import 'keen-slider/keen-slider.min.css'
 import algoliasearch from 'algoliasearch/lite'
 import { Configure, InstantSearch } from 'react-instantsearch-hooks-web'
 
-import { pageViewed } from '@Segment/segmentAnalytics'
+// import { pageViewed } from '@lib/Segment/segmentAnalytics'
 import { SegmentComponent } from '@components/SegmentComponent'
 import { Head } from '@components/common'
 import { ManagedUIContext } from '@components/ui/context'
@@ -15,8 +15,8 @@ import { useRouter } from 'next/router'
 import { FC, ReactNode, useEffect } from 'react'
 
 
+import * as gtag from '@lib/gtag'
 import { Analytics } from '@vercel/analytics/react'
-
 
 const Noop: FC<{ children?: ReactNode }> = ({ children }) => <>{children}</>
 
@@ -28,6 +28,7 @@ const WRITE_KEY = "cJJ8wJPlI33vsvDvFxzlOG3NPwdd7NzQ";
 
 
 
+
 export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = (Component as any).Layout || Noop;
   const router = useRouter();
@@ -35,14 +36,15 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
 
   useEffect(() => {
-    document.body.classList?.remove('loading');
-  }, []);
+    document.body.classList?.remove('loading')
+  }, [])
 
   useEffect(() => {
-    const handleRouteChange = (url: string) => {
-      pageViewed();
-    };
-    router.events.on('routeChangeComplete', handleRouteChange);
+    const handleRouteChange = (url) => {
+      // pageViewed();
+      gtag.pageview(url)
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
     };

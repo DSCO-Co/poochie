@@ -1,4 +1,3 @@
-
 // @ts-nocheck
 import SidebarLayout from '@components/common/SidebarLayout'
 import { Bag, Check, Cross } from '@components/icons'
@@ -12,7 +11,7 @@ import { FC } from 'react'
 import CartItem from '../CartItem'
 import s from './CartSidebarView.module.css'
 import { useStasher } from '@lib/hooks'
-import { trackCheckoutStarted } from '@Segment/segmentAnalytics'
+import { trackCheckoutStarted } from '@lib/Segment/segmentAnalytics'
 
 const CartSidebarView: FC = () => {
   const { closeSidebar, setSidebarView } = useUI()
@@ -128,7 +127,7 @@ const CartSidebarView: FC = () => {
               ) : (
                 <Button
                   onClick={() => {
-                    trackCheckoutStarted(data);
+                    trackCheckoutStarted(data)
                   }}
                   href="/checkout"
                   Component="a"

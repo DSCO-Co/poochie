@@ -68,6 +68,7 @@ const SidebarLayout: FC<SidebarLayoutProps> = ({
         {sidebarView === 'MOBILE_MENU_VIEW' && renderMobileNavbar()}
         {children}
       </div>
+
     </div>
   );
 };
