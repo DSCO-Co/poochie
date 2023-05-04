@@ -7,8 +7,7 @@ import {
   CustomHierarchicalMenu,
 } from '@components/ui'
 import type { SearchPropsType } from '@lib/search-props'
-import { useRouter } from 'next/router'
-import React from 'react'
+import React, {useState}  from 'react'
 import { SearchBox, Configure } from 'react-instantsearch-hooks-web'
 
 import { Button } from '@components/ui'
@@ -16,8 +15,8 @@ import { Menu as HeadlessMenu } from '@headlessui/react'
 import { ConnectedProducts } from './search/ConnectedProducts'
 
 export default function Search({}: SearchPropsType) {
-  const router = useRouter()
-  const initial = router.asPath.split('collections/')[1]
+
+  const [useProducts, setProducts] = useState(null);
 
   return (
     <Container>
@@ -35,10 +34,14 @@ export default function Search({}: SearchPropsType) {
             <CustomHierarchicalMenu
               attributes={['categories.lvl0', 'categories.lvl1']}
               limit={40}
+              products={useProducts}
             />
 
             <h3 className="mt-2 mb-2 text-lg font-medium">Brands</h3>
-            <CustomHierarchicalMenu attributes={['brandName']} limit={40} />
+            <CustomHierarchicalMenu attributes={['brandName']} 
+            limit={40} 
+            products={useProducts}
+            />
           </div>
         </div>
         {/* Mobile Filter */}
@@ -54,12 +57,13 @@ export default function Search({}: SearchPropsType) {
                   <CustomHierarchicalMenu
                     attributes={['categories.lvl0', 'categories.lvl1']}
                     limit={40}
+                    products={useProducts}
                   />
                   <h3 className="mt-2 mb-2 text-lg font-medium">Brands</h3>
-                  <ConnectedRefinementList
-                    attribute="brandName"
+                  <CustomHierarchicalMenu
+                    attributes={['brandName']}
                     limit={100}
-                    initial={initial}
+                    products={useProducts}
                   />
                 </div>
                 <div className="col-span-1 col-start-3">
@@ -86,7 +90,7 @@ export default function Search({}: SearchPropsType) {
 
         {/* Products */}
 
-        <ConnectedProducts />
+        <ConnectedProducts setProducts={setProducts} />
 
         {/* Sort */}
         <div className="sticky top-0 order-2 max-h-screen col-span-8 overflow-auto lg:top-32 lg:col-span-2 lg:order-none">
