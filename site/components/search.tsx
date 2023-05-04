@@ -15,7 +15,7 @@ import { Button } from '@components/ui'
 import { Menu as HeadlessMenu } from '@headlessui/react'
 import { ConnectedProducts } from './search/ConnectedProducts'
 
-export default function Search({ }: SearchPropsType) {
+export default function Search({}: SearchPropsType) {
   const router = useRouter()
   const initial = router.asPath.split('collections/')[1]
 
@@ -37,14 +37,8 @@ export default function Search({ }: SearchPropsType) {
               limit={40}
             />
 
-            <div>
-              <h3 className="mt-2 mb-2 text-lg font-medium">Brands</h3>
-              <ConnectedRefinementList
-                attribute="brandName"
-                limit={100}
-                initial={initial}
-              />
-            </div>
+            <h3 className="mt-2 mb-2 text-lg font-medium">Brands</h3>
+            <CustomHierarchicalMenu attributes={['brandName']} limit={40} />
           </div>
         </div>
         {/* Mobile Filter */}

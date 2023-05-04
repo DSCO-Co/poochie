@@ -8,28 +8,47 @@ import { Skeleton } from '@components/ui'
 import rangeMap from '@lib/range-map'
 
 import { useHits } from 'react-instantsearch-hooks-web'
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { trackProductListViewed } from '@Segment/segmentAnalytics'
 
 
+function useStabilize(value, delay) {
+  const [stabilizedValue, setStabilizedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setStabilizedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return stabilizedValue;
+}
 
 const ConnectedProducts = () => {
 
-  const { hits } = useHits()
-  const router = useRouter()
-  const initial = router.asPath.split('collections/')[1]
+  const { hits } = useHits();
+  const router = useRouter();
+  const collection = router.asPath.split('collections/')[1];
+
+  // Stabilize hits with a 1000ms delay
+  const stableProducts = useStabilize(hits, 1000);
 
   useEffect(() => {
-    if (hits) {
-      const products: CommerceProduct[] = hits.map((hit: any) => 
+    if (stableProducts) {
+      const products: CommerceProduct[] = hits.map((hit: any) =>
         algoliaHitToProduct(hit)
-      )
-      console.log("Tracking products viewed: ", products);
-      trackProductListViewed(products); 
+      );
+
+      const category = collection ? collection : "All";
+      console.log('Tracking products viewed: ', products, "Category: ", category);
+      trackProductListViewed(products, category);
     }
-    }, [hits]
-  )
+  }, [stableProducts]);
 
   const algoliaHitToProduct = (hit: any): CommerceProduct => {
     return {

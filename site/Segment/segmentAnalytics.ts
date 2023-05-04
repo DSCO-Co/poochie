@@ -115,11 +115,12 @@ export const trackProductViewed = async (product: any) => {
 }
 
 
-export const trackProductListViewed = async (products: any[]) => {
+export const trackProductListViewed = async (products: any[], category: string) => {
   const eventName = 'Product List Viewed'
   const trackedProducts = {
     clientUserAgent: navigator.userAgent,
-    products: products
+    products: products,
+    category: category
   }
   let data = await window.analytics.track(eventName, trackedProducts)
   console.log('Product List Viewed data:', data)
