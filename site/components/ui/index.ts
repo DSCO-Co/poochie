@@ -1,9 +1,5 @@
 export { default as Button } from './Button'
 export { default as Collapse } from './Collapse'
-export {
-  default as ConnectedRefinementList,
-  default as Custom,
-} from './ConnectedRefinementList'
 export { default as ConnectedSortBy } from './ConnectedSortBy'
 export { default as Container } from './Container'
 export { default as Grid } from './Grid'

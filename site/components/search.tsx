@@ -1,7 +1,6 @@
 import { Layout } from '@components/common'
 import {
   ConnectedPagination,
-  ConnectedRefinementList,
   ConnectedSortBy,
   Container,
   CustomHierarchicalMenu,
