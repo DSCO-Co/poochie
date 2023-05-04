@@ -1,5 +1,6 @@
 //Source https://github.com/segmentio/react-example/blob/main/src/examples/analytics-quick-start/analytics.ts
-import { AnalyticsWindow } from './types/Segment'
+import * as gtag from '@lib/gtag';
+import { AnalyticsWindow } from './types/Segment';
 
 declare let window: AnalyticsWindow
 
@@ -87,53 +88,59 @@ export const defaultProductViewedProperties = {
   image_url: 'https://www.example.com/product/path.jpg',
 }
 
-interface ProductImage {
-  url: string
-}
-
-interface ProductVariant {
-  id: string
-  name: string
-  sku: string
-}
-
-interface Product {
-  description?: string
-  id: string
-  images: ProductImage[]
-  name: string
-  options?: unknown
-  path: string
-  price: number
-  slug?: string
-  variants: ProductVariant[]
-}
 
 export const trackProductViewed = async (product: any) => {
   const eventName = 'Product Viewed'
   product.clientUserAgent = navigator.userAgent;
-  let data = await window.analytics.track(eventName, { product })
-  console.log('Product Viewed data:', data)
+  // let data = await window.analytics.track(eventName, { product })
+
+  const data = {
+    action: 'view_item',
+    category: 'ecommerce',
+    label: product.name,
+    value: product.price,
+    items: [
+      {
+        item_id: product?.variants[0]?.sku,
+        item_name: product.name,
+        // item_brand: product.brand,
+      }
+
+    ]
+  }
+
+  gtag.event(data)
+
+  // console.log('Product Viewed data:', data)
+  console.log(`------------------`);
+  console.log('Product Viewed data:', data);
 }
 
-export const defaultProductAddedProperties = {
-  cart_id: 'CART_ID',
-  product_id: 'PRODUCT_ID',
-  sku: 'SKU',
-  category: 'CATEGORY',
-  name: 'Basic Shirt',
-  brand: 'BRAND',
-  price: 18.99,
-  quantity: 1,
-  coupon: 'COUPON',
-  url: 'https://www.example.com/product/path',
-  image_url: 'https://www.example.com/product/path.jpg',
-}
 
 export const trackProductAdded = async (product: any) => {
   const eventName = 'Product Added'
-  let data = await window.analytics.track(eventName, { product })
-  console.log('Product Added data:', data)
+  // let data = await window.analytics.track(eventName, { product })
+
+
+  const data = {
+    action: 'add_to_cart',
+    category: 'ecommerce',
+    label: product.name,
+    value: product.price,
+    items: [
+      {
+        item_id: product?.variants[0]?.sku,
+        item_name: product.name,
+        // item_brand: product.brand,
+      }
+
+    ]
+  }
+
+  console.log('Product Added data:', data);
+
+  gtag.event(data)
+
   forwardToServer(eventName, data)
 
 }
@@ -166,23 +173,4 @@ export const trackCheckoutStarted = async (cartData: any) => {
 
 
 
-// export const trackProductSearched = (formValue: string) => {
-//   const eventName = "Product Searched"
-//   window.analytics.track(eventName, {
-//     query: formValue,
-//   })
-// }
 
-
-// export const defaultPromotionClickedProperties = {
-//   promotion_id: "promo_1",
-//   creative: "button_example",
-//   position: "ecommerce_examples",
-// }
-// export const trackPromotionClicked = (percentage: string) => {
-//   const eventName = "Promotion Clicked"
-//   window.analytics.track(eventName, {
-//     name: `${percentage}_off_next_order`,
-//     ...defaultPromotionClickedProperties,
-//   })
-// }

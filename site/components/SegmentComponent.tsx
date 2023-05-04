@@ -7,7 +7,7 @@ interface SegmentProps {
     writeKey: string
 }
 
-export const SegmentComponent: React.FC<SegmentProps> = ({ writeKey }) => {
+export const SegmentComponent: React.FC<SegmentProps> = ({ writeKey, debug = false }) => {
     useEffect(() => {
         if (window.analytics) {
             return
@@ -21,6 +21,7 @@ export const SegmentComponent: React.FC<SegmentProps> = ({ writeKey }) => {
                     console.error('Segment snippet included twice.')
             } else {
                 analytics.invoked = true
+
                 analytics.methods = [
                     'trackSubmit',
                     'trackClick',
@@ -65,17 +66,20 @@ export const SegmentComponent: React.FC<SegmentProps> = ({ writeKey }) => {
         }
     }, [writeKey]);
 
-    useEffect(() => {
-        pageViewed();
-        console.log("pageViewed");
-    }, [])
+    // useEffect(() => {
+    //     pageViewed();
+    //     console.log("pageViewed");
+    // }, [])
 
 
     return (
         <Script
             id="segment-script"
             src={`https://cdn.segment.com/analytics.js/v1/${writeKey}/analytics.min.js`}
-            strategy="beforeInteractive"
+            onLoad={() => {
+                window.analytics.debug(debug);
+                pageViewed();
+            }}
         />
     )
 }

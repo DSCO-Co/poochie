@@ -1,14 +1,13 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import type { LineItem } from '@commerce/types/cart'
+import Quantity from '@components/ui/Quantity'
+import { useUI } from '@components/ui/context'
+import useRemoveItem from '@framework/cart/use-remove-item'
+import useUpdateItem from '@framework/cart/use-update-item'
+import usePrice from '@framework/product/use-price'
 import cn from 'clsx'
 import Image from 'next/image'
-import Link from 'next/link'
+import { ChangeEvent, useEffect, useState } from 'react'
 import s from './CartItem.module.css'
-import { useUI } from '@components/ui/context'
-import type { LineItem } from '@commerce/types/cart'
-import usePrice from '@framework/product/use-price'
-import useUpdateItem from '@framework/cart/use-update-item'
-import useRemoveItem from '@framework/cart/use-remove-item'
-import Quantity from '@components/ui/Quantity'
 
 type ItemOption = {
   name: string
@@ -76,6 +75,10 @@ const CartItem = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item.quantity])
 
+
+  useEffect(() => {
+    console.log({ item });
+  }, [item])
   return (
     <li
       className={cn(s.root, {
@@ -83,45 +86,45 @@ const CartItem = ({
       })}
       {...rest}
     >
-      <div className="flex flex-row space-x-4 py-4">
-        <div className="w-16 h-16 bg-violet relative overflow-hidden cursor-pointer">
-          <Link href={`/product/${item.path}`}>
-            <Image
-              onClick={() => closeSidebarIfPresent()}
-              className={s.productImage}
-              width={64}
-              height={64}
-              src={item.variant.image?.url || placeholderImg}
-              alt={item.variant.image?.alt || 'Product Image'}
-            />
-          </Link>
+      <div className="flex flex-row py-4 space-x-4">
+        <div className="relative w-16 h-16 overflow-hidden cursor-pointer bg-violet">
+          {/* <Link href={`/${item.path}`}>  TODO: BUG fix pathing in cart */}
+          <Image
+            onClick={() => closeSidebarIfPresent()}
+            className={s.productImage}
+            width={64}
+            height={64}
+            src={item.variant.image?.url || placeholderImg}
+            alt={item.variant.image?.alt || 'Product Image'}
+          />
+          {/* </Link> */}
         </div>
-        <div className="flex-1 flex flex-col text-base">
-          <Link href={`/product/${item.path}`}>
-            <span
-              className={s.productName}
-              onClick={() => closeSidebarIfPresent()}
-            >
-              {item.name}
-            </span>
-          </Link>
+        <div className="flex flex-col flex-1 text-base">
+          {/* <Link href={`/${item.path}`}> */}
+          <span
+            className={s.productName}
+            onClick={() => closeSidebarIfPresent()}
+          >
+            {item.name}
+          </span>
+          {/* </Link> */}
           {options && options.length > 0 && (
             <div className="flex items-center pb-1">
               {options.map((option: ItemOption, i: number) => (
                 <div
                   key={`${item.id}-${option.name}`}
-                  className="text-sm font-semibold text-accent-7 inline-flex items-center justify-center"
+                  className="inline-flex items-center justify-center text-sm font-semibold text-accent-7"
                 >
                   {option.name}
                   {option.name === 'Color' ? (
                     <span
-                      className="mx-2 rounded-full bg-transparent border w-5 h-5 p-1 text-accent-9 inline-flex items-center justify-center overflow-hidden"
+                      className="inline-flex items-center justify-center w-5 h-5 p-1 mx-2 overflow-hidden bg-transparent border rounded-full text-accent-9"
                       style={{
                         backgroundColor: `${option.value}`,
                       }}
                     ></span>
                   ) : (
-                    <span className="mx-2 rounded-full bg-transparent border h-5 p-1 text-accent-9 inline-flex items-center justify-center overflow-hidden">
+                    <span className="inline-flex items-center justify-center h-5 p-1 mx-2 overflow-hidden bg-transparent border rounded-full text-accent-9">
                       {option.value}
                     </span>
                   )}

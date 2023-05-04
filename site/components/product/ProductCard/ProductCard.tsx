@@ -3,17 +3,14 @@ import Link from 'next/link'
 import { FC } from 'react'
 
 import {
-  // AlgoliaStylizedCard,
-  CalloutProductCard,
   DefaultCard,
   ProductCardProps,
   SimpleCard,
   SimpleStylizedCard,
   SlimCard,
-  useProductCard,
+  useProductCard
 } from './'
 
-import { trackProductViewed } from '@lib/Segment/segmentAnalytics'
 import s from './ProductCard.module.css'
 
 const ProductCard: FC<ProductCardProps> = ({
@@ -38,7 +35,7 @@ const ProductCard: FC<ProductCardProps> = ({
       className={`${rootClassName} rounded-xl`}
       aria-label={product.name}
       onClick={() => {
-        // trackProductViewed(product);
+
       }}
     >
       {variant === 'slim' && <SlimCard product={product} imgProps={imgProps} />}

@@ -42,6 +42,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const handleRouteChange = (url) => {
       // pageViewed();
+      console.log("FIRED HANDLE ROUTE CHANGE");
       gtag.pageview(url)
     }
     router.events.on('routeChangeComplete', handleRouteChange)

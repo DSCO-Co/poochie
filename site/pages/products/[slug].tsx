@@ -1,14 +1,14 @@
+import { trackProductViewed } from '@Segment/segmentAnalytics'
 import { Layout } from '@components/common'
 import { ProductView } from '@components/product'
 import commerce from '@lib/api/commerce'
-import { useEffect } from 'react'
-import { trackProductViewed } from '@Segment/segmentAnalytics'
 import type {
   GetStaticPathsContext,
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from 'next'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 export async function getStaticProps({
   params,
@@ -62,7 +62,7 @@ export async function getStaticProps({
 
 export async function getStaticPaths({ locales }: GetStaticPathsContext) {
   const { products } = await commerce.getAllProductPaths()
-  
+
 
   return {
     //
@@ -91,6 +91,7 @@ export default function Slug({
   useEffect(() => {
     if (product) {
       trackProductViewed(product);
+      console.log({ product });
     }
   }, [product])
 

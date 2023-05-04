@@ -5,13 +5,13 @@ import { Button, Text } from '@components/ui'
 import { useUI } from '@components/ui/context'
 import useCart from '@framework/cart/use-cart'
 import usePrice from '@framework/product/use-price'
+import { trackCheckoutStarted } from '@lib/Segment/segmentAnalytics'
+import { useStasher } from '@lib/hooks'
 import cn from 'clsx'
 import Link from 'next/link'
 import { FC } from 'react'
 import CartItem from '../CartItem'
 import s from './CartSidebarView.module.css'
-import { useStasher } from '@lib/hooks'
-import { trackCheckoutStarted } from '@lib/Segment/segmentAnalytics'
 
 const CartSidebarView: FC = () => {
   const { closeSidebar, setSidebarView } = useUI()
@@ -35,9 +35,17 @@ const CartSidebarView: FC = () => {
   // const attributor = useAttributor();
   // const ip = useIp();
 
-  const stasher = useStasher()
+  useStasher();
+  // console.log(`
+  //   ---------
 
-  console.log({ stasher })
+  //   data: ${JSON.stringify(data)}
+
+  //   ---------
+
+  // `);
+
+  // console.log({ stasher })
 
   const error = null
   const success = null

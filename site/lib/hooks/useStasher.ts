@@ -18,19 +18,23 @@ export function useStasher() {
                 // @ts-ignore
                 bcCartID: data.id,
                 ip,
+                // @ts-ignore
                 segmentAnonymousID: window.analytics.user().anonymousId(),
                 // @ts-ignore
                 cookies: attributor?.cookie?.props?.cookie?.cookies,
                 ua: window.navigator.userAgent,
             }))
         }
-    }, [data])
+    }, [data, ip])
 
     useEffect(() => {
         if (!cartId || !stashData) return;
 
-        console.log('stashData', stashData);
-        console.log('cartId', cartId);
+        console.log(`
+        cartId: ${cartId}
+        stashData: ${stashData}
+        
+        `)
 
         setStatus('loading');
 

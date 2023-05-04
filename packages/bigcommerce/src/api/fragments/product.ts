@@ -44,6 +44,7 @@ export const multipleChoiceOptionFragment = /* GraphQL */ `
 export const productInfoFragment = /* GraphQL */ `
   fragment productInfo on Product {
     entityId
+    sku
     name
     path
     brand {
