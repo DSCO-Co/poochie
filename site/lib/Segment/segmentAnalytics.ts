@@ -114,7 +114,6 @@ export const trackProductViewed = async (product: any) => {
   console.log('Product Viewed data:', data)
 }
 
-
 export const trackProductListViewed = async (products: any[], category: string) => {
   const eventName = 'Product List Viewed'
   const trackedProducts = {
