@@ -38,13 +38,6 @@ const UserNav: React.FC<UserNavProps> = ({
 
   const itemsCount = data?.lineItems?.reduce(countItems, 0) ?? 0;
 
-  useEffect(() => {
-    console.log({ isCustomerLoggedIn })
-
-
-  }, [isCustomerLoggedIn])
-
-
   const handleCartButtonClick = () => {
     setSidebarView('CART_VIEW');
     openSidebar();

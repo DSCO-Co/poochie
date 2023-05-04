@@ -1,4 +1,4 @@
-import { trackProductAdded } from '@Segment/segmentAnalytics'
+import { trackProductAdded } from '@lib/Segment/segmentAnalytics'
 // import usePrice from '@commerce/product/use-price'
 import type { Product } from '@commerce/types/product'
 import { ProductOptions } from '@components/product'
@@ -18,16 +18,20 @@ interface ProductSidebarProps {
   className?: string
 }
 
-
-
 const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
-  const getSelectedOptionPrice = (product: Product, selectedOptions: SelectedOptions) => {
-    const variant = getProductVariant(product, selectedOptions);
+  const getSelectedOptionPrice = (
+    product: Product,
+    selectedOptions: SelectedOptions
+  ) => {
+    const variant = getProductVariant(product, selectedOptions)
     if (variant) {
       // @ts-ignore
-      return { actualPrice: variant.prices.price.value, defaultPrice: variant.prices.basePrice.value }
+      return {
+        actualPrice: variant.prices.price.value,
+        defaultPrice: variant.prices.basePrice.value,
+      }
     }
-      return { actualPrice: product.price.value, defaultPrice: null }
+    return { actualPrice: product.price.value, defaultPrice: null }
   }
 
   const addItem = useAddItem()
@@ -35,18 +39,12 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<null | Error>(null)
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({})
-  const [selectedOptionPrice, setSelectedOptionPrice] = useState(getSelectedOptionPrice(product, selectedOptions))
+  const [selectedOptionPrice, setSelectedOptionPrice] = useState(
+    getSelectedOptionPrice(product, selectedOptions)
+  )
 
   useEffect(() => {
-    console.log(JSON.stringify(selectedOptions, null, 4))
-    console.log(`
-    
-    -----
-    
-    `);
-
-    console.log(JSON.stringify(product, null, 4));
-    setSelectedOptionPrice(getSelectedOptionPrice(product, selectedOptions));
+    setSelectedOptionPrice(getSelectedOptionPrice(product, selectedOptions))
   }, [selectedOptions, product])
 
   useEffect(() => {
@@ -62,9 +60,9 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         productId: String(product.id),
         variantId: String(variant ? variant.id : product.variants[0]?.id),
       })
-      let data = product;
-      data.sku = variant?.sku;
-      trackProductAdded(data);
+      let data = product
+      data.sku = variant?.sku
+      trackProductAdded(data)
       setSidebarView('CART_VIEW')
       openSidebar()
       setLoading(false)
@@ -80,10 +78,6 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
     }
   }
 
-  console.log(`
-  
-    isPurchasable: ${variant?.isPurchasable}
-  `)
   return (
     <div className={className}>
       <ProductTag
@@ -104,7 +98,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         {process.env.COMMERCE_CART_ENABLED && (
           <Button
             aria-label="Add to Cart"
-            className={"bg-black"}
+            className={'bg-black'}
             onClick={() => {
               addToCart()
             }}

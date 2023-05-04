@@ -8,7 +8,7 @@ import useWishlist from '@framework/wishlist/use-wishlist'
 import useRemoveItem from '@framework/wishlist/use-remove-item'
 import s from './WishlistButton.module.css'
 import type { Product, ProductVariant } from '@commerce/types/product'
-import { trackProductAddedToWishlist } from '@Segment/segmentAnalytics'
+import { trackProductAddedToWishlist } from '@lib/Segment/segmentAnalytics'
 
 type Props = {
   productId: Product['id']
@@ -67,7 +67,10 @@ const WishlistButton: FC<Props> = ({
     <button
       aria-label="Add to wishlist"
       className={cn(s.root, className)}
-      onClick={(e) => {handleWishlistChange(e); trackProductAddedToWishlist();}}
+      onClick={(e) => {
+        handleWishlistChange(e)
+        trackProductAddedToWishlist()
+      }}
       {...props}
     >
       <Heart
