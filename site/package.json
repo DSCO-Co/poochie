@@ -20,6 +20,7 @@
     "@react-spring/web": "^9.4.1",
     "@segment/analytics-next": "^1.51.5",
     "@segment/analytics-node": "1.0.0-beta.26",
+    "@segment/snippet": "^4.16.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.4",

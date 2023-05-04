@@ -890,6 +890,9 @@ importers:
       '@segment/analytics-node':
         specifier: 1.0.0-beta.26
         version: 1.0.0-beta.26
+      '@segment/snippet':
+        specifier: ^4.16.0
+        version: 4.16.0
       '@tailwindcss/aspect-ratio':
         specifier: ^0.4.2
         version: 0.4.2(tailwindcss@3.1.8)
@@ -2926,6 +2929,22 @@ packages:
       '@lukeed/csprng': 1.1.0
     dev: false
 
+  /@ndhoule/each@2.0.1:
+    resolution: {integrity: sha512-wHuJw6x+rF6Q9Skgra++KccjBozCr9ymtna0FhxmV/8xT/hZ2ExGYR8SV8prg8x4AH/7mzDYErNGIVHuzHeybw==}
+    dependencies:
+      '@ndhoule/keys': 2.0.0
+    dev: false
+
+  /@ndhoule/keys@2.0.0:
+    resolution: {integrity: sha512-vtCqKBC1Av6dsBA8xpAO+cgk051nfaI+PnmTZep2Px0vYrDvpUmLxv7z40COlWH5yCpu3gzNhepk+02yiQiZNw==}
+    dev: false
+
+  /@ndhoule/map@2.0.1:
+    resolution: {integrity: sha512-WOEf2An9mL4DVY6NHgaRmFC82pZGrmzW4I0hpPPdczDP4Gp5+Q1Nny77x3w0qzENA8+cbgd9+Lx2ClSTLvkB0g==}
+    dependencies:
+      '@ndhoule/each': 2.0.1
+    dev: false
+
   /@next/bundle-analyzer@12.3.0:
     resolution: {integrity: sha512-hzRLHIrtwOiGEku9rmG7qZk+OQhnqQOL+ycl2XrjBaztBN/xaqnjoG4+HEf9L7ELN943BR+K/ZlaF2OEgbGm+Q==}
     dependencies:
@@ -3823,6 +3842,12 @@ packages:
 
   /@segment/isodate@1.0.3:
     resolution: {integrity: sha512-BtanDuvJqnACFkeeYje7pWULVv8RgZaqKHWwGFnL/g/TH/CcZjkIVTfGDp/MAxmilYHUkrX70SqwnYSTNEaN7A==}
+    dev: false
+
+  /@segment/snippet@4.16.0:
+    resolution: {integrity: sha512-GJtfIrFyFRYB07ajWgPggxWNqCESHwgFqynSLvQ+/c0lEOYBEMJhwgrjHYZq0tDMhEhFpgOUyO4awUCHecxxTg==}
+    dependencies:
+      '@ndhoule/map': 2.0.1
     dev: false
 
   /@segment/tsub@1.0.1:
