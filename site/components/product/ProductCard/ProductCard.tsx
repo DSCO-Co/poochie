@@ -38,7 +38,7 @@ const ProductCard: FC<ProductCardProps> = ({
       className={`${rootClassName} rounded-xl`}
       aria-label={product.name}
       onClick={() => {
-        // trackProductViewed(product);
+        trackProductViewed(product)
       }}
     >
       {variant === 'slim' && <SlimCard product={product} imgProps={imgProps} />}
