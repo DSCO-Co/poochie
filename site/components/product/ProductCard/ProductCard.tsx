@@ -13,7 +13,7 @@ import {
   useProductCard,
 } from './'
 
-import { trackProductViewed } from '@lib/Segment/segmentAnalytics'
+import { trackProductViewed } from '@lib/Analytics/tracker'
 import s from './ProductCard.module.css'
 
 const ProductCard: FC<ProductCardProps> = ({

@@ -5,7 +5,7 @@ import 'keen-slider/keen-slider.min.css'
 import algoliasearch from 'algoliasearch/lite'
 import { Configure, InstantSearch } from 'react-instantsearch-hooks-web'
 
-import { pageViewed } from '@lib/Segment/segmentAnalytics'
+import { pageViewed } from '@lib/Analytics/tracker'
 import { Head } from '@components/common'
 import { ManagedUIContext } from '@components/ui/context'
 import { CookieProvider } from '@lib/contexts'
@@ -14,7 +14,6 @@ import { useRouter } from 'next/router'
 import { FC, ReactNode, useEffect } from 'react'
 
 import { Analytics } from '@vercel/analytics/react'
-import * as gtag from '@lib/gtag'
 
 const Noop: FC<{ children?: ReactNode }> = ({ children }) => <>{children}</>
 
@@ -33,8 +32,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
   useEffect(() => {
     const handleRouteChange = (url) => {
-      // pageViewed();
-      gtag.pageview(url)
+      pageViewed(url)
     }
     router.events.on('routeChangeComplete', handleRouteChange)
     return () => {

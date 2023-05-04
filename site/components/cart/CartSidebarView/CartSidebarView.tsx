@@ -11,7 +11,7 @@ import { FC } from 'react'
 import CartItem from '../CartItem'
 import s from './CartSidebarView.module.css'
 import { useStasher } from '@lib/hooks'
-import { trackCheckoutStarted } from '@lib/Segment/segmentAnalytics'
+import { trackCheckoutStarted } from '@lib/Analytics/tracker'
 
 const CartSidebarView: FC = () => {
   const { closeSidebar, setSidebarView } = useUI()

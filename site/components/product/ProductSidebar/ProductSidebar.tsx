@@ -1,4 +1,4 @@
-import { trackProductAdded } from '@lib/Segment/segmentAnalytics'
+import { trackProductAdded } from '@lib/Analytics/tracker'
 // import usePrice from '@commerce/product/use-price'
 import type { Product } from '@commerce/types/product'
 import { ProductOptions } from '@components/product'
@@ -26,9 +26,9 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
     const variant = getProductVariant(product, selectedOptions)
     if (variant) {
       return {
-      // @ts-ignore
+        // @ts-ignore
         actualPrice: variant.prices.price.value,
-      // @ts-ignore
+        // @ts-ignore
         defaultPrice: variant.prices.basePrice.value,
       }
     }

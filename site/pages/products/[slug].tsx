@@ -2,7 +2,7 @@ import { Layout } from '@components/common'
 import { ProductView } from '@components/product'
 import commerce from '@lib/api/commerce'
 import { useEffect } from 'react'
-import { trackProductViewed } from '@Segment/segmentAnalytics'
+import { trackProductViewed } from '@lib/Analytics/tracker'
 import type {
   GetStaticPathsContext,
   GetStaticPropsContext,
@@ -42,7 +42,6 @@ export async function getStaticProps({
 
   const { products: relatedProducts } = await allProductsPromise
 
-
   if (!product) {
     return {
       notFound: true,
@@ -62,7 +61,6 @@ export async function getStaticProps({
 
 export async function getStaticPaths({ locales }: GetStaticPathsContext) {
   const { products } = await commerce.getAllProductPaths()
-  
 
   return {
     //
@@ -87,14 +85,11 @@ export default function Slug({
   product,
   relatedProducts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-
   useEffect(() => {
     if (product) {
-      trackProductViewed(product);
+      trackProductViewed(product)
     }
   }, [product])
-
-
 
   const router = useRouter()
   return router.isFallback ? (
