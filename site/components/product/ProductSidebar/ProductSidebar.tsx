@@ -25,9 +25,10 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
   ) => {
     const variant = getProductVariant(product, selectedOptions)
     if (variant) {
-      // @ts-ignore
       return {
+      // @ts-ignore
         actualPrice: variant.prices.price.value,
+      // @ts-ignore
         defaultPrice: variant.prices.basePrice.value,
       }
     }
