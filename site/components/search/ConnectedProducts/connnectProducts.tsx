@@ -33,7 +33,7 @@ const ConnectedProducts = ({setProducts}) => {
       path: hit.path,
       slug: hit.slug,
       price: hit.price,
-      options: variantsToOptions(hit.variants),
+      options: [],
       variants: hit.variants,
     }
   }
