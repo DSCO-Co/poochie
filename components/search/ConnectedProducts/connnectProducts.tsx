@@ -1,4 +1,3 @@
-import type { ProductsPropsType } from '@lib/products-props'
 
 import type { Product as CommerceProduct } from '@commerce/types/product'
 
@@ -30,7 +29,7 @@ const ConnectedProducts = () => {
   }
 
   return (
-    <div className="col-span-8 order-3 lg:order-none">
+    <div className="order-3 col-span-8 lg:order-none">
       {hits ? (
         <div
           className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-3"

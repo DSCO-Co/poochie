@@ -1,26 +1,29 @@
 import { Layout } from '@components/common'
-import commerce from '@lib/api/commerce'
 import type { GetStaticPropsContext } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
+
+import { getConfig } from '@bigcommerce/storefront-data-hooks/api'
+import getAllPages from '@bigcommerce/storefront-data-hooks/api/operations/get-all-pages'
+import getSiteInfo from '@bigcommerce/storefront-data-hooks/api/operations/get-site-info'
+
 
 export async function getStaticProps({
   preview,
   locale,
   locales,
 }: GetStaticPropsContext) {
-  const config = { locale, locales }
-  const { pages } = await commerce.getAllPages({ config, preview })
-  const { categories, brands } = await commerce.getSiteInfo({ config, preview })
+  const config = getConfig({ locale });
+  const pagesPromise = getAllPages({ config, preview })
+  const siteInfoPromise = getSiteInfo({ config, preview })
+  const { pages } = await pagesPromise
+  const { categories } = await siteInfoPromise
+
   return {
-    props: {
-      pages,
-      categories,
-      brands,
-    },
-    revalidate: 200,
+    props: { pages, categories },
   }
 }
+
 
 const ShippingPage = () => {
   return (

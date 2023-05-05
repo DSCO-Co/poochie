@@ -1,8 +1,8 @@
 import '@assets/chrome-bug.css'
 import '@assets/main.css'
-import 'keen-slider/keen-slider.min.css'
-
+import { CommerceProvider } from '@bigcommerce/storefront-data-hooks'
 import algoliasearch from 'algoliasearch/lite'
+import 'keen-slider/keen-slider.min.css'
 import { Configure, InstantSearch } from 'react-instantsearch-hooks-web'
 
 // import { pageViewed } from '@lib/Segment/segmentAnalytics'
@@ -76,18 +76,20 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         id="segment-script"
         dangerouslySetInnerHTML={{ __html: renderSnippet() }}
       />
-      <CookieProvider>
-        <ManagedUIContext>
-          <InstantSearch searchClient={searchClient} indexName="Products">
-            <Configure />
-            <Layout pageProps={pageProps}>
+      <CommerceProvider locale={"en-US"}>
+        <CookieProvider>
+          <ManagedUIContext>
+            <InstantSearch searchClient={searchClient} indexName="Products">
+              <Configure />
+              <Layout pageProps={pageProps}>
 
-              <Component {...pageProps} />
-              <Analytics />
-            </Layout>
-          </InstantSearch>
-        </ManagedUIContext>
-      </CookieProvider>
+                <Component {...pageProps} />
+                <Analytics />
+              </Layout>
+            </InstantSearch>
+          </ManagedUIContext>
+        </CookieProvider>
+      </CommerceProvider>
     </>
   )
 }

@@ -1,14 +1,20 @@
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 
-import commerce from '@lib/api/commerce'
+// import commerce from '@lib/api/commerce'
+import { getConfig } from '@bigcommerce/storefront-data-hooks/api'
+import getAllPages from '@bigcommerce/storefront-data-hooks/api/operations/get-all-pages'
+import getAllProducts from '@bigcommerce/storefront-data-hooks/api/operations/get-all-products'
+import getSiteInfo from '@bigcommerce/storefront-data-hooks/api/operations/get-site-info'
 
 export async function getSearchStaticProps({
   preview,
   locale,
   locales,
 }: GetStaticPropsContext) {
-  const config = { locale, locales }
-  const productsPromise = commerce.getAllProducts({
+
+  const config = getConfig({ locale });
+
+  const productsPromise = getAllProducts({
     variables: { first: 50 },
     config,
     preview,
@@ -19,8 +25,8 @@ export async function getSearchStaticProps({
   const algoliaSearchOnlyKey = process.env.ALGOLIA_SEARCH_ONLY_API_KEY
   const algoliaAppId = process.env.ALGOLIA_APP_ID
 
-  const pagesPromise = commerce.getAllPages({ config, preview })
-  const siteInfoPromise = commerce.getSiteInfo({ config, preview })
+  const pagesPromise = getAllPages({ config, preview })
+  const siteInfoPromise = getSiteInfo({ config, preview })
   const { pages } = await pagesPromise
   const { products } = await productsPromise
   const { categories, brands } = await siteInfoPromise

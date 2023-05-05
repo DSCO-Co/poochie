@@ -1,6 +1,8 @@
+import { getConfig } from '@bigcommerce/storefront-data-hooks/api'
+import getAllPages from '@bigcommerce/storefront-data-hooks/api/operations/get-all-pages'
+import getSiteInfo from '@bigcommerce/storefront-data-hooks/api/operations/get-site-info'
 import { Layout } from '@components/common'
 import { Container, Text } from '@components/ui'
-import commerce from '@lib/api/commerce'
 import type { GetStaticPropsContext } from 'next'
 import Link from 'next/link'
 
@@ -9,9 +11,9 @@ export async function getStaticProps({
   locale,
   locales,
 }: GetStaticPropsContext) {
-  const config = { locale, locales }
-  const pagesPromise = commerce.getAllPages({ config, preview })
-  const siteInfoPromise = commerce.getSiteInfo({ config, preview })
+  const config = getConfig({ locale });
+  const pagesPromise = getAllPages({ config, preview })
+  const siteInfoPromise = getSiteInfo({ config, preview })
   const { pages } = await pagesPromise
   const { categories } = await siteInfoPromise
 
@@ -19,6 +21,7 @@ export async function getStaticProps({
     props: { pages, categories },
   }
 }
+
 
 export default function TOS() {
   return (

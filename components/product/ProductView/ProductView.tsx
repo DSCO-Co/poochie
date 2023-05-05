@@ -1,4 +1,4 @@
-import type { Product } from '@commerce/types/product'
+// import type { Product } from '@commerce/types/product'
 import { SEO } from '@components/common'
 import { AlgoliaProductCard, ProductSlider } from '@components/product'
 import { Container, Text } from '@components/ui'
@@ -9,6 +9,8 @@ import Image from 'next/image'
 import { FC, useEffect, useState } from 'react'
 import ProductSidebar from '../ProductSidebar'
 import s from './ProductView.module.css'
+
+
 
 interface ProductViewProps {
   product: Product
@@ -56,6 +58,7 @@ const ProductView: FC<ProductViewProps> = ({ product }) => {
           <div className={cn(s.main, 'fit')}>
             <div className={s.sliderContainer}>
               <ProductSlider key={product.id}>
+                {console.log({ product })}
                 {product.images.map((image, i) => (
                   <div key={image.url} className={s.imageContainer}>
                     <Image

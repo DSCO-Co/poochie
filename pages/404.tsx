@@ -1,16 +1,19 @@
-import type { GetStaticPropsContext } from 'next'
-import commerce from '@lib/api/commerce'
+import { getConfig } from '@bigcommerce/storefront-data-hooks/api'
+import getAllPages from '@bigcommerce/storefront-data-hooks/api/operations/get-all-pages'
+import getSiteInfo from '@bigcommerce/storefront-data-hooks/api/operations/get-site-info'
 import { Layout } from '@components/common'
 import { Text } from '@components/ui'
+import type { GetStaticPropsContext } from 'next'
 
 export async function getStaticProps({
   preview,
   locale,
   locales,
 }: GetStaticPropsContext) {
-  const config = { locale, locales }
-  const { pages } = await commerce.getAllPages({ config, preview })
-  const { categories, brands } = await commerce.getSiteInfo({ config, preview })
+  const config = getConfig({ locale });
+
+  const { pages } = await getAllPages({ config, preview })
+  const { categories, brands } = await getSiteInfo({ config, preview })
   return {
     props: {
       pages,
@@ -23,7 +26,7 @@ export async function getStaticProps({
 
 export default function NotFound() {
   return (
-    <div className="max-w-2xl mx-8 sm:mx-auto py-20 flex flex-col items-center justify-center fit">
+    <div className="flex flex-col items-center justify-center max-w-2xl py-20 mx-8 sm:mx-auto fit">
       <Text variant="heading">Not Found</Text>
       <Text className="">
         The requested page doesn't exist or you don't have access to it.

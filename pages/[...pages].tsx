@@ -1,14 +1,19 @@
-import type {
-  GetStaticPathsContext,
-  GetStaticPropsContext,
-  InferGetStaticPropsType,
-} from 'next'
-import commerce from '@lib/api/commerce'
-import { Text } from '@components/ui'
+import { getConfig } from '@bigcommerce/storefront-data-hooks/api'
+import getAllPages, { Page } from '@bigcommerce/storefront-data-hooks/api/operations/get-all-pages'
+import getPage from '@bigcommerce/storefront-data-hooks/api/operations/get-page'
+
+import getSiteInfo from '@bigcommerce/storefront-data-hooks/api/operations/get-site-info'
+
 import { Layout } from '@components/common'
+import { Text } from '@components/ui'
+
 import getSlug from '@lib/get-slug'
 import { missingLocaleInPages } from '@lib/usage-warns'
-import type { Page } from '@commerce/types/page'
+import type {
+  GetStaticPathsContext,
+  GetStaticPropsContext
+} from 'next'
+// import type { Page } from '@commerce/types/page'
 import { useRouter } from 'next/router'
 
 export async function getStaticProps({
@@ -17,11 +22,18 @@ export async function getStaticProps({
   locale,
   locales,
 }: GetStaticPropsContext<{ pages: string[] }>) {
-  const config = { locale, locales }
-  const pagesPromise = commerce.getAllPages({ config, preview })
-  const siteInfoPromise = commerce.getSiteInfo({ config, preview })
-  const { pages } = await pagesPromise
-  const { categories } = await siteInfoPromise
+
+  const config = getConfig({ locale });
+
+  const { categories, brands } = await getSiteInfo({
+    config,
+    preview,
+  });
+
+  const { pages } = await getAllPages({
+    config,
+    preview,
+  });
   const path = params?.pages.join('/')
   const slug = locale ? `${locale}/${path}` : path
   const pageItem = pages.find((p: Page) =>
@@ -29,7 +41,7 @@ export async function getStaticProps({
   )
   const data =
     pageItem &&
-    (await commerce.getPage({
+    (await getPage({
       variables: { id: pageItem.id! },
       config,
       preview,
@@ -51,7 +63,7 @@ export async function getStaticProps({
 
 export async function getStaticPaths({ locales }: GetStaticPathsContext) {
   const config = { locales }
-  const { pages }: { pages: Page[] } = await commerce.getAllPages({ config })
+  const { pages }: { pages: Page[] } = await getAllPages({ config: getConfig({ locale: "en-US" }), })
   const [invalidPaths, log] = missingLocaleInPages()
   const paths = pages
     .map((page) => page.url)
@@ -76,7 +88,7 @@ export default function Pages({ page }: { page: Page }) {
   return router.isFallback ? (
     <h1>Loading...</h1> // TODO (BC) Add Skeleton Views
   ) : (
-    <div className="max-w-2xl mx-8 sm:mx-auto py-20">
+    <div className="max-w-2xl py-20 mx-8 sm:mx-auto">
       {page?.body && <Text html={page.body} />}
     </div>
   )

@@ -1,17 +1,20 @@
-import type { GetStaticPropsContext } from 'next'
-import commerce from '@lib/api/commerce'
+import { getConfig } from '@bigcommerce/storefront-data-hooks/api'
+import getAllPages from '@bigcommerce/storefront-data-hooks/api/operations/get-all-pages'
+import getSiteInfo from '@bigcommerce/storefront-data-hooks/api/operations/get-site-info'
 import { Layout } from '@components/common'
 import { Container, Text } from '@components/ui'
-import Image from 'next/image';
+import type { GetStaticPropsContext } from 'next'
+import Image from 'next/image'
 
 export async function getStaticProps({
   preview,
   locale,
   locales,
 }: GetStaticPropsContext) {
-  const config = { locale, locales }
-  const pagesPromise = commerce.getAllPages({ config, preview })
-  const siteInfoPromise = commerce.getSiteInfo({ config, preview })
+  const config = getConfig({ locale });
+
+  const pagesPromise = getAllPages({ config, preview })
+  const siteInfoPromise = getSiteInfo({ config, preview })
   const { pages } = await pagesPromise
   const { categories } = await siteInfoPromise
 
@@ -27,14 +30,14 @@ export default function About() {
       <br />
       {/* Image: A group of dogs and cats enjoying Poochie products */}
       {/* <!-- Image Description: A group of dogs and cats enjoying Poochie products --> */}
-      <div className="flex justify-center mb-2"> 
-      <Image
-        src="/wholesome_family.png"
-        alt="A group of dogs enjoying Poochie products"
-        width={500}
-        height={300}
-        quality={90}
-      />
+      <div className="flex justify-center mb-2">
+        <Image
+          src="/wholesome_family.png"
+          alt="A group of dogs enjoying Poochie products"
+          width={500}
+          height={300}
+          quality={90}
+        />
       </div>
       <Text>
         At Poochie, we understand that pets are not just animals, but cherished
@@ -48,13 +51,13 @@ export default function About() {
       {/* Image: A luxurious dog bed */}
       {/* <!-- Image Description: A luxurious dog bed --> */}
       <div className="flex justify-center mb-8">
-      <Image
-        src="/Cute_puppies_playing_in_luxury_dog.png"
-        alt="A luxurious dog bed"
-        width={500}
-        height={300}
-        quality={90}
-      />
+        <Image
+          src="/Cute_puppies_playing_in_luxury_dog.png"
+          alt="A luxurious dog bed"
+          width={500}
+          height={300}
+          quality={90}
+        />
       </div>
       <Text>
         Our team of pet lovers and experts carefully select and test each

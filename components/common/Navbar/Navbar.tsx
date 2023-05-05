@@ -1,4 +1,5 @@
-import type { Category } from '@commerce/types/site'
+// import type { Category } from '@commerce/types/site'
+// import {Category} from '@bigcommerce/storefront-data-hooks/commerce/utils/types'
 import { FreeShippingBanner, Searchbar, UserNav } from '@components/common'
 import { Container, Logo } from '@components/ui'
 import Link from 'next/link'
@@ -9,7 +10,8 @@ import NavbarRoot from './NavbarRoot'
 interface Link {
   href: string
   label: string
-  subLinks?: any[] | Category[] | undefined
+  subLinks?: any[] | undefined
+  // Category[]
 }
 
 interface NavbarProps {

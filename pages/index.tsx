@@ -9,11 +9,14 @@ import { Guarantees, HeroCarousel, ProductCarousel } from '@components/ui'
 import JumpingJackets from '@assets/heroes/Jumping-Jackets-Background.jpg'
 import SweetSweaters from '@assets/heroes/Sweet-Sweaters-Background.jpg'
 import TotallyToys from '@assets/heroes/Totally-Toys-Background.jpg'
+import { normalizePage } from '@lib/bigcommerce/normalizer'
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
-
 // import useCart from '@framework/cart/use-cart'
 // import useCustomer from '@framework/customer/use-customer'
 
+
+
+import { normalizeProduct } from '@lib/bigcommerce/normalizer'
 import { useAttributor } from '@lib/hooks'
 
 export async function getStaticProps({
@@ -25,7 +28,7 @@ export async function getStaticProps({
   // const config = { locale, locales }
 
   const { products } = await getAllProducts({
-    variables: { field: 'featuredProducts', first: 6 },
+    variables: { first: 6 },
     config: getConfig({ locale }),
     preview,
   });
@@ -41,19 +44,13 @@ export async function getStaticProps({
   });
 
 
-
-  // const pagesPromise = commerce.getAllPages({ config, preview })
-  // const siteInfoPromise = commerce.getSiteInfo({ config, preview })
-  // const { products } = await productsPromise
-  // const { pages } = await pagesPromise
-  // const { categories, brands } = await siteInfoPromise
-
   return {
     props: {
-      products,
+      products: products.map(({ node }) => normalizeProduct(node)),
+      // products,
       categories,
       brands,
-      pages,
+      pages: pages.map(normalizePage),
     },
     revalidate: 60,
   }
@@ -105,7 +102,7 @@ export default function Home({
           },
         ]}
       />
-
+      {console.log({ products, test: "asdasd" })}
       <ProductCarousel products={products} />
       <Guarantees />
     </>

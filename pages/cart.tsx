@@ -1,6 +1,9 @@
-import commerce from '@bigcommerce/storefront-data-hooks/api'
+import { getConfig } from '@bigcommerce/storefront-data-hooks/api'
+import getAllPages from '@bigcommerce/storefront-data-hooks/api/operations/get-all-pages'
 import useCart from '@bigcommerce/storefront-data-hooks/cart/use-cart'
 import usePrice from '@bigcommerce/storefront-data-hooks/use-price'
+
+import getSiteInfo from '@bigcommerce/storefront-data-hooks/api/operations/get-site-info'
 import { CartItem } from '@components/cart'
 import { Layout } from '@components/common'
 import { Bag, Check, CreditCard, Cross, MapPin } from '@components/icons'
@@ -13,9 +16,9 @@ export async function getStaticProps({
   locale,
   locales,
 }: GetStaticPropsContext) {
-  const config = { locale, locales }
-  const pagesPromise = commerce.getAllPages({ config, preview })
-  const siteInfoPromise = commerce.getSiteInfo({ config, preview })
+  const config = getConfig({ locale });
+  const pagesPromise = getAllPages({ config, preview })
+  const siteInfoPromise = getSiteInfo({ config, preview })
   const { pages } = await pagesPromise
   const { categories } = await siteInfoPromise
   return {
@@ -26,18 +29,19 @@ export async function getStaticProps({
 export default function Cart() {
   const error = null
   const success = null
-  const { data, isLoading, isEmpty } = useCart()
+
+  const { data, isEmpty } = useCart()
   const { openSidebar, setSidebarView } = useUI()
 
   const { price: subTotal } = usePrice(
     data && {
-      amount: Number(data.subtotalPrice),
+      amount: Number(data.base_amount),
       currencyCode: data.currency.code,
     }
   )
   const { price: total } = usePrice(
     data && {
-      amount: Number(data.totalPrice),
+      amount: Number(data.base_amount),
       currencyCode: data.currency.code,
     }
   )
@@ -50,7 +54,7 @@ export default function Cart() {
   return (
     <Container className="grid gap-20 pt-4 lg:grid-cols-12">
       <div className="lg:col-span-7">
-        {isLoading || isEmpty ? (
+        {isEmpty ? (
           <div className="flex flex-col items-center justify-center flex-1 px-12 py-24 ">
             <span className="flex items-center justify-center w-16 h-16 p-12 border border-dashed rounded-lg border-secondary bg-primary text-primary">
               <Bag className="absolute" />
@@ -86,7 +90,7 @@ export default function Cart() {
             <Text variant="pageHeading">My Cart</Text>
             <Text variant="sectionHeading">Review your Order</Text>
             <ul className="py-6 space-y-6 border-b sm:py-0 sm:space-y-0 sm:divide-y sm:divide-accent-2 border-accent-2">
-              {data!.lineItems.map((item: any) => (
+              {data!.line_items.physical_items.map((item: any) => (
                 <CartItem
                   key={item.id}
                   item={item}

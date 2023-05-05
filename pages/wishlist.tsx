@@ -1,38 +1,32 @@
-import commerce from '@bigcommerce/storefront-data-hooks/api'
 import { Layout } from '@components/common'
 import { Heart } from '@components/icons'
 import { Container, Skeleton, Text } from '@components/ui'
 import type { GetStaticPropsContext } from 'next'
 // import useCustomer from '@bigcommerce/storefront-data-hooks/use-customer'
+import { getConfig } from '@bigcommerce/storefront-data-hooks/api'
+import getAllPages from '@bigcommerce/storefront-data-hooks/api/operations/get-all-pages'
+import getSiteInfo from '@bigcommerce/storefront-data-hooks/api/operations/get-site-info'
 import useWishlist from '@bigcommerce/storefront-data-hooks/wishlist/use-wishlist'
 import { WishlistCard } from '@components/wishlist'
 import rangeMap from '@lib/range-map'
+
 
 export async function getStaticProps({
   preview,
   locale,
   locales,
 }: GetStaticPropsContext) {
-  // Disabling page if Feature is not available
-  if (!process.env.COMMERCE_WISHLIST_ENABLED) {
-    return {
-      notFound: true,
-    }
-  }
-
-  const config = { locale, locales }
-  const pagesPromise = commerce.getAllPages({ config, preview })
-  const siteInfoPromise = commerce.getSiteInfo({ config, preview })
+  const config = getConfig({ locale });
+  const pagesPromise = getAllPages({ config, preview })
+  const siteInfoPromise = getSiteInfo({ config, preview })
   const { pages } = await pagesPromise
   const { categories } = await siteInfoPromise
 
   return {
-    props: {
-      pages,
-      categories,
-    },
+    props: { pages, categories },
   }
 }
+
 
 export default function Wishlist() {
   // @ts-ignore Shopify - Fix this types

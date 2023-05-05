@@ -1,6 +1,6 @@
 import { CommerceProvider } from '@bigcommerce/storefront-data-hooks'
-import type { Page } from '@commerce/types/page'
-import type { Category } from '@commerce/types/site'
+// import type { Page } from '@commerce/types/page'
+// import type { Category } from '@commerce/types/site'
 import LoginView from '@components/auth/LoginView'
 import CartSidebarView from '@components/cart/CartSidebarView'
 import CheckoutSidebarView from '@components/checkout/CheckoutSidebarView'
@@ -50,8 +50,11 @@ const Modal = dynamic(() => import('@components/ui/Modal'), {
 
 interface Props {
   pageProps: {
-    pages?: Page[]
-    categories: Category[]
+
+    // pages?: Page[]
+    // categories: Category[]
+    pages?: any[]
+    categories?: any[]
   }
   children?: React.ReactNode
 }
@@ -108,10 +111,11 @@ const Layout: React.FC<Props> = ({
   pageProps: { categories = [], ...pageProps },
 }) => {
   const { acceptedCookies, onAcceptCookies } = useAcceptCookies()
-  const { locale = 'en-US' } = useRouter()
+  const { locale = 'en-US' } = useRouter();
+  console.log({ categories })
   const navBarLinks = categories.map((c) => ({
     label: c.name,
-    href: `/${c.slug}`,
+    href: `/${c.path}`,
     subLinks: c.children,
   }))
 
