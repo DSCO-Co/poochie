@@ -7,6 +7,8 @@ import { Button, Collapse, Text, useUI } from '@components/ui'
 import ErrorMessage from '@components/ui/ErrorMessage'
 import { FC, useEffect, useState } from 'react'
 import ProductTag from '../ProductTag'
+
+
 import {
   SelectedOptions,
   getProductVariant,
@@ -23,6 +25,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
     product: Product,
     selectedOptions: SelectedOptions
   ) => {
+
     const variant = getProductVariant(product, selectedOptions)
     if (variant) {
       return {
@@ -88,8 +91,11 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         currencyCode={product.price?.currencyCode}
         fontSize={22}
       />
+
       <ProductOptions
+        // @ts-ignore
         options={product.options}
+        // @ts-ignore
         variants={product.variants}
         selectedOptions={selectedOptions}
         setSelectedOptions={setSelectedOptions}

@@ -5,7 +5,7 @@ import getAllProducts from '@bigcommerce/storefront-data-hooks/api/operations/ge
 import getProduct from '@bigcommerce/storefront-data-hooks/api/operations/get-product'
 import getSiteInfo from '@bigcommerce/storefront-data-hooks/api/operations/get-site-info'
 import { ProductView } from '@components/product'
-import { normalizeProduct } from '@lib/bigcommerce/normalizer'
+import { normalizePage, normalizeProduct } from '@lib/bigcommerce/normalizer'
 
 import { Layout } from '@components/common'
 // import type { GetStaticPathsContext } from 'next'
@@ -79,9 +79,9 @@ export async function getServerSideProps({
 
   return {
     props: {
-      pages,
+      pages: pages.map(normalizePage),
       product: normalizeProduct(product),
-      relatedProducts,
+      relatedProducts: relatedProducts.map(({ node }) => normalizeProduct(node)),
       categories,
     },
     // revalidate: 200,
