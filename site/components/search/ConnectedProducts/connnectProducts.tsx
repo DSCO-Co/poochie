@@ -1,6 +1,6 @@
 import type { ProductsPropsType } from '@lib/products-props'
 
-import type { Product as CommerceProduct } from '@commerce/types/product'
+import type { Product, ProductOption } from '@commerce/types/product'
 
 import { AlgoliaProductCard } from '@components/product'
 import { Skeleton } from '@components/ui'
@@ -17,26 +17,59 @@ const ConnectedProducts = ({setProducts}) => {
 
   //Pass the products via the setProducts State Hook. 
   useEffect(() => {
-      const products: CommerceProduct[] = hits.map((hit: any) =>algoliaHitToProduct(hit));
+      const products: Product[] = hits.map((hit: any) =>algoliaHitToProduct(hit));
       setProducts(products); 
   }, [hits]);
 
-  const algoliaHitToProduct = (hit: any): CommerceProduct => {
+  const algoliaHitToProduct = (hit: any): Product => {
     return {
-      id: hit.ProductID,
+      id: hit.objectId,
       sku: hit.sku,
-      name: hit.productName,
-      brand: hit.brandName,
+      name: hit.name,
+      brand: hit.brand,
       category: hit.categories,
       description: hit.description,
       images: hit.images,
       path: hit.path,
       slug: hit.slug,
       price: hit.price,
-      options: hit.options,
+      options: variantsToOptions(hit.variants),
       variants: hit.variants,
     }
   }
+
+  const variantsToOptions = (variants: any[]): ProductOption[] => {
+    const productOptions: ProductOption[] = [
+      {
+        __typename: 'MultipleChoiceOption',
+        id: '1',
+        displayName: 'Option 1 Size',
+        values: [],
+      },
+      {
+        __typename: 'MultipleChoiceOption',
+        id: '2',
+        displayName: 'Option 2 Size',
+        values: [],
+      },
+    ];
+  
+    variants.forEach((variant) => {
+      if (variant.option_1_size && !productOptions[0].values.includes(variant.option_1_size)) {
+        productOptions[0].values.push(variant.option_1_size);
+      }
+  
+      if (variant.option_2_size && !productOptions[1].values.includes(variant.option_2_size)) {
+        productOptions[1].values.push(variant.option_2_size);
+      }
+    });
+  
+    // Filter out product options with empty values
+    const filteredProductOptions = productOptions.filter((option) => option.values.length > 0);
+  
+    return filteredProductOptions;
+  };
+  
 
   return (
     <div className="col-span-8 order-3 lg:order-none">
@@ -45,7 +78,7 @@ const ConnectedProducts = ({setProducts}) => {
           className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           {hits.map((hit: any) => {
-            const product: CommerceProduct = algoliaHitToProduct(hit)
+            const product: Product = algoliaHitToProduct(hit)
 
             return (
               <AlgoliaProductCard
