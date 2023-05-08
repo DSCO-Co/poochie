@@ -1,6 +1,10 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Info } from '@components/icons'
 import { Button, Input, Logo } from '@components/ui'
 import { useUI } from '@components/ui/context'
+// @ts-ignore
 import useSignup from '@lib/data-hooks/use-signup'
 import { validate } from 'email-validator'
 import { FC, useCallback, useEffect, useState } from 'react'
@@ -39,6 +43,7 @@ const SignUpView: FC<Props> = () => {
         password,
       })
       closeModal()
+      // @ts-ignore
     } catch ({ errors }) {
       console.error(errors)
       if (errors instanceof Array) {
