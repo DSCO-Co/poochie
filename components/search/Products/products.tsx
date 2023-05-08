@@ -9,7 +9,7 @@ import type { Brand } from '@commerce/types/site'
 import { ProductCard } from '@components/product'
 import { Skeleton } from '@components/ui'
 
-import useSearch from '@bigcommerce/storefront-data-hooks/products/use-search'
+import useSearch from '@lib/data-hooks/products/use-search'
 import rangeMap from '@lib/range-map'
 
 import {

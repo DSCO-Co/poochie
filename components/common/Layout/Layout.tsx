@@ -1,4 +1,4 @@
-import { CommerceProvider } from '@bigcommerce/storefront-data-hooks'
+import { CommerceProvider } from '@lib/data-hooks/index'
 // import type { Page } from '@commerce/types/page'
 // import type { Category } from '@commerce/types/site'
 import LoginView from '@components/auth/LoginView'

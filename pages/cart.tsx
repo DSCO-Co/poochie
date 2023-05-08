@@ -1,14 +1,14 @@
-import { getConfig } from '@bigcommerce/storefront-data-hooks/api'
-import getAllPages from '@bigcommerce/storefront-data-hooks/api/operations/get-all-pages'
-import useCart from '@bigcommerce/storefront-data-hooks/cart/use-cart'
-import usePrice from '@bigcommerce/storefront-data-hooks/use-price'
+import { getConfig } from '@lib/data-hooks/api'
+import getAllPages from '@lib/data-hooks/api/operations/get-all-pages'
+import useCart from '@lib/data-hooks/cart/use-cart'
+import usePrice from '@lib/data-hooks/use-price'
 
-import getSiteInfo from '@bigcommerce/storefront-data-hooks/api/operations/get-site-info'
 import { CartItem } from '@components/cart'
 import { Layout } from '@components/common'
 import { Bag, Check, CreditCard, Cross, MapPin } from '@components/icons'
 import { Button, Container, Text } from '@components/ui'
 import { useUI } from '@components/ui/context'
+import getSiteInfo from '@lib/data-hooks/api/operations/get-site-info'
 import type { GetStaticPropsContext } from 'next'
 
 export async function getStaticProps({

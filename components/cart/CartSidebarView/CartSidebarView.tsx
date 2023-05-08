@@ -1,11 +1,11 @@
 // @ts-nocheck
-import useCart from '@bigcommerce/storefront-data-hooks/cart/use-cart'
-import usePrice from '@bigcommerce/storefront-data-hooks/use-price'
 import SidebarLayout from '@components/common/SidebarLayout'
 import { Bag, Check, Cross } from '@components/icons'
 import { Button, Text } from '@components/ui'
 import { useUI } from '@components/ui/context'
 import { trackCheckoutStarted } from '@lib/Segment/segmentAnalytics'
+import useCart from '@lib/data-hooks/cart/use-cart'
+import usePrice from '@lib/data-hooks/use-price'
 import { useStasher } from '@lib/hooks'
 import cn from 'clsx'
 import Link from 'next/link'

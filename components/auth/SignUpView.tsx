@@ -1,7 +1,7 @@
-import useSignup from '@bigcommerce/storefront-data-hooks/use-signup'
 import { Info } from '@components/icons'
 import { Button, Input, Logo } from '@components/ui'
 import { useUI } from '@components/ui/context'
+import useSignup from '@lib/data-hooks/use-signup'
 import { validate } from 'email-validator'
 import { FC, useCallback, useEffect, useState } from 'react'
 

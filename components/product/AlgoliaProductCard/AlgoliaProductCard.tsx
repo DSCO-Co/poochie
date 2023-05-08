@@ -1,5 +1,5 @@
-import useAddItem from '@bigcommerce/storefront-data-hooks/cart/use-add-item'
 import WishlistButton from '@components/wishlist/WishlistButton'
+import useAddItem from '@lib/data-hooks/cart/use-add-item'
 import cn from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'

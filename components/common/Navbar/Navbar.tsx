@@ -1,5 +1,5 @@
 // import type { Category } from '@commerce/types/site'
-// import {Category} from '@bigcommerce/storefront-data-hooks/commerce/utils/types'
+// import {Category} from '@lib/data-hooks/commerce/utils/types'
 import { FreeShippingBanner, Searchbar, UserNav } from '@components/common'
 import { Container, Logo } from '@components/ui'
 import Link from 'next/link'

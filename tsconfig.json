@@ -27,8 +27,8 @@
       "@framework": ["../packages/bigcommerce/src"],
       "@framework/*": ["../packages/bigcommerce/src/*"],
       "@Segment/*": ["lib/Segment/*"],
-      "@dsco/bc-data-hooks": ["lib/data-hooks/src"],
-      "@bigcommerce/storefront-data-hooks": ["lib/data-hooks/src"]
+      "@lib/data-hooks/*": ["lib/data-hooks/src/*"],
+      "@lib/data-hooks": ["lib/data-hooks/src/"]
     }
   },
   "include": [

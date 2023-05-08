@@ -1,9 +1,9 @@
-import useLogout from '@bigcommerce/storefront-data-hooks/use-logout'
 import { Moon, Sun } from '@components/icons'
 import {
   DropdownContent,
   DropdownMenuItem,
 } from '@components/ui/Dropdown/Dropdown'
+import useLogout from '@lib/data-hooks/use-logout'
 import cn from 'clsx'
 import { useTheme } from 'next-themes'
 import { useRouter } from 'next/router'

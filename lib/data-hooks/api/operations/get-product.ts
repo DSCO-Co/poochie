@@ -1,7 +1,7 @@
-import type { GetProductQuery, GetProductQueryVariables } from '../../schema'
-import setProductLocaleMeta from '../utils/set-product-locale-meta'
-import { productInfoFragment } from '../fragments/product'
 import { BigcommerceConfig, getConfig } from '..'
+import type { GetProductQuery, GetProductQueryVariables } from '../../schema'
+import { productInfoFragment } from '../fragments/product'
+import setProductLocaleMeta from '../utils/set-product-locale-meta'
 
 export const getProductQuery = /* GraphQL */ `
   query getProduct(
@@ -18,6 +18,8 @@ export const getProductQuery = /* GraphQL */ `
             variants(first: 250) {
               edges {
                 node {
+                  isPurchasable
+                  sku
                   entityId
                   defaultImage {
                     urlOriginal

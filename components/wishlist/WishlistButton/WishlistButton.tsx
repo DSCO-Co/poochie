@@ -1,13 +1,13 @@
-import useAddItem from '@bigcommerce/storefront-data-hooks/cart/use-add-item'
-import useCustomer from '@bigcommerce/storefront-data-hooks/use-customer'
-import useRemoveItem from '@bigcommerce/storefront-data-hooks/wishlist/use-remove-item'
-import useWishlist from '@bigcommerce/storefront-data-hooks/wishlist/use-wishlist'
 import { Heart } from '@components/icons'
 import { useUI } from '@components/ui'
+import useAddItem from '@lib/data-hooks/cart/use-add-item'
+import useCustomer from '@lib/data-hooks/use-customer'
+import useRemoveItem from '@lib/data-hooks/wishlist/use-remove-item'
+import useWishlist from '@lib/data-hooks/wishlist/use-wishlist'
 import cn from 'clsx'
 import React, { FC, useState } from 'react'
 import s from './WishlistButton.module.css'
-// import type { Product, ProductVariant } from '@bigcommerce/storefront-data-hooks/api/'
+// import type { Product, ProductVariant } from '@lib/data-hooks/api/'
 import { trackProductAddedToWishlist } from '@lib/Segment/segmentAnalytics'
 
 type Props = {

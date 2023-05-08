@@ -1,10 +1,10 @@
-import useCart from '@bigcommerce/storefront-data-hooks/cart/use-cart';
 import { Avatar } from '@components/common';
 import { Bag, Heart, Menu } from '@components/icons';
 import { Button } from '@components/ui';
 import { useUI } from '@components/ui/context';
+import useCart from '@lib/data-hooks/cart/use-cart';
 
-import useCustomer from '@bigcommerce/storefront-data-hooks/use-customer';
+import useCustomer from '@lib/data-hooks/use-customer';
 import cn from 'clsx';
 import Link from 'next/link';
 import React from 'react';

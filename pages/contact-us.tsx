@@ -1,9 +1,9 @@
 import { Layout } from '@components/common'
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
 
-import { getConfig } from '@bigcommerce/storefront-data-hooks/api'
-import getAllPages from '@bigcommerce/storefront-data-hooks/api/operations/get-all-pages'
-import getSiteInfo from '@bigcommerce/storefront-data-hooks/api/operations/get-site-info'
+import { getConfig } from '@lib/data-hooks/api'
+import getAllPages from '@lib/data-hooks/api/operations/get-all-pages'
+import getSiteInfo from '@lib/data-hooks/api/operations/get-site-info'
 import type { GetStaticPropsContext } from 'next'
 import Link from 'next/link'
 import { useState } from 'react'

@@ -1,10 +1,10 @@
 import { trackProductAdded } from '@lib/Segment/segmentAnalytics'
-// import usePrice from '@bigcommerce/storefront-data-hooks/use-price'
-import useAddItem from '@bigcommerce/storefront-data-hooks/cart/use-add-item'
-import type { Product } from '@bigcommerce/storefront-data-hooks/schema'
+// import usePrice from '@lib/data-hooks/use-price'
 import { ProductOptions } from '@components/product'
 import { Button, Collapse, Text, useUI } from '@components/ui'
 import ErrorMessage from '@components/ui/ErrorMessage'
+import useAddItem from '@lib/data-hooks/cart/use-add-item'
+import type { Product } from '@lib/data-hooks/schema'
 import { FC, useEffect, useState } from 'react'
 import ProductTag from '../ProductTag'
 

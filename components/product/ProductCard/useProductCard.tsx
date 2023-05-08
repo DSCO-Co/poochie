@@ -1,5 +1,5 @@
-import useAddItem from '@bigcommerce/storefront-data-hooks/cart/use-add-item';
-import usePrice from '@bigcommerce/storefront-data-hooks/commerce/use-price';
+import useAddItem from '@lib/data-hooks/cart/use-add-item';
+import usePrice from '@lib/data-hooks/commerce/use-price';
 import { useEffect, useState } from 'react';
 import {
   SelectedOptions,

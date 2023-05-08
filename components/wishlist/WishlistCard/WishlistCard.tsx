@@ -6,12 +6,12 @@ import Link from 'next/link'
 import { useState } from 'react'
 import s from './WishlistCard.module.css'
 
-import type { WishlistItem } from '@bigcommerce/storefront-data-hooks/api/wishlist'
-import useAddItem from '@bigcommerce/storefront-data-hooks/cart/use-add-item'
-import usePrice from '@bigcommerce/storefront-data-hooks/commerce/use-price'
-import type { Product } from '@bigcommerce/storefront-data-hooks/schema'
-import useRemoveItem from '@bigcommerce/storefront-data-hooks/wishlist/use-remove-item'
 import { useUI } from '@components/ui/context'
+import type { WishlistItem } from '@lib/data-hooks/api/wishlist'
+import useAddItem from '@lib/data-hooks/cart/use-add-item'
+import usePrice from '@lib/data-hooks/commerce/use-price'
+import type { Product } from '@lib/data-hooks/schema'
+import useRemoveItem from '@lib/data-hooks/wishlist/use-remove-item'
 
 const placeholderImg = '/product-img-placeholder.svg'
 

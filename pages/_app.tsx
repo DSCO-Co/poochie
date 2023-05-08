@@ -1,6 +1,6 @@
 import '@assets/chrome-bug.css'
 import '@assets/main.css'
-import { CommerceProvider } from '@bigcommerce/storefront-data-hooks'
+import { CommerceProvider } from '@lib/data-hooks/index'
 import algoliasearch from 'algoliasearch/lite'
 import 'keen-slider/keen-slider.min.css'
 import { Configure, InstantSearch } from 'react-instantsearch-hooks-web'

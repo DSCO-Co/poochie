@@ -1,10 +1,10 @@
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 
 // import commerce from '@lib/api/commerce'
-import { getConfig } from '@bigcommerce/storefront-data-hooks/api'
-import getAllPages from '@bigcommerce/storefront-data-hooks/api/operations/get-all-pages'
-import getAllProducts from '@bigcommerce/storefront-data-hooks/api/operations/get-all-products'
-import getSiteInfo from '@bigcommerce/storefront-data-hooks/api/operations/get-site-info'
+import { getConfig } from '@lib/data-hooks/api'
+import getAllPages from '@lib/data-hooks/api/operations/get-all-pages'
+import getAllProducts from '@lib/data-hooks/api/operations/get-all-products'
+import getSiteInfo from '@lib/data-hooks/api/operations/get-site-info'
 
 export async function getSearchStaticProps({
   preview,

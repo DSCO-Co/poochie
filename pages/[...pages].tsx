@@ -1,8 +1,8 @@
-import { getConfig } from '@bigcommerce/storefront-data-hooks/api'
-import getAllPages, { Page } from '@bigcommerce/storefront-data-hooks/api/operations/get-all-pages'
-import getPage from '@bigcommerce/storefront-data-hooks/api/operations/get-page'
+import { getConfig } from '@lib/data-hooks/api'
+import getAllPages, { Page } from '@lib/data-hooks/api/operations/get-all-pages'
+import getPage from '@lib/data-hooks/api/operations/get-page'
 
-import getSiteInfo from '@bigcommerce/storefront-data-hooks/api/operations/get-site-info'
+import getSiteInfo from '@lib/data-hooks/api/operations/get-site-info'
 
 import { Layout } from '@components/common'
 import { Text } from '@components/ui'
