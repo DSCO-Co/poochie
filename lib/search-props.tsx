@@ -11,8 +11,7 @@ export async function getSearchStaticProps({
   locale,
   locales,
 }: GetStaticPropsContext) {
-
-  const config = getConfig({ locale });
+  const config = getConfig({ locale })
 
   const productsPromise = getAllProducts({
     variables: { first: 50 },

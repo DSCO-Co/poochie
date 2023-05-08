@@ -10,7 +10,7 @@ export async function getStaticProps({
   locale,
   locales,
 }: GetStaticPropsContext) {
-  const config = getConfig({ locale });
+  const config = getConfig({ locale })
 
   const { pages } = await getAllPages({ config, preview })
   const { categories, brands } = await getSiteInfo({ config, preview })

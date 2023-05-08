@@ -9,10 +9,7 @@ import { Text } from '@components/ui'
 
 import getSlug from '@lib/get-slug'
 import { missingLocaleInPages } from '@lib/usage-warns'
-import type {
-  GetStaticPathsContext,
-  GetStaticPropsContext
-} from 'next'
+import type { GetStaticPathsContext, GetStaticPropsContext } from 'next'
 // import type { Page } from '@commerce/types/page'
 import { useRouter } from 'next/router'
 
@@ -22,18 +19,17 @@ export async function getStaticProps({
   locale,
   locales,
 }: GetStaticPropsContext<{ pages: string[] }>) {
-
-  const config = getConfig({ locale });
+  const config = getConfig({ locale })
 
   const { categories, brands } = await getSiteInfo({
     config,
     preview,
-  });
+  })
 
   const { pages } = await getAllPages({
     config,
     preview,
-  });
+  })
   const path = params?.pages.join('/')
   const slug = locale ? `${locale}/${path}` : path
   const pageItem = pages.find((p: Page) =>
@@ -63,7 +59,9 @@ export async function getStaticProps({
 
 export async function getStaticPaths({ locales }: GetStaticPathsContext) {
   const config = { locales }
-  const { pages }: { pages: Page[] } = await getAllPages({ config: getConfig({ locale: "en-US" }), })
+  const { pages }: { pages: Page[] } = await getAllPages({
+    config: getConfig({ locale: 'en-US' }),
+  })
   const [invalidPaths, log] = missingLocaleInPages()
   const paths = pages
     .map((page) => page.url)

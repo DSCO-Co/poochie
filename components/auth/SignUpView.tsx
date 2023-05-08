@@ -9,7 +9,7 @@ import useSignup from '@lib/data-hooks/use-signup'
 import { validate } from 'email-validator'
 import { FC, useCallback, useEffect, useState } from 'react'
 
-interface Props { }
+interface Props {}
 
 const SignUpView: FC<Props> = () => {
   // Form State

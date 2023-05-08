@@ -16,7 +16,7 @@ import { Menu as HeadlessMenu } from '@headlessui/react'
 import { Configure } from 'react-instantsearch-hooks-web'
 import { ConnectedProducts } from './search/ConnectedProducts'
 
-export default function Search({ }: SearchPropsType) {
+export default function Search({}: SearchPropsType) {
   const router = useRouter()
   // TODO: Fix this @callam - this is why we have the error with links flickering
 

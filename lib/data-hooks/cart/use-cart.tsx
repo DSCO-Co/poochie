@@ -11,7 +11,11 @@ const defaultOpts = {
 export type { Cart }
 
 export type UseCartInput = {
-  include?: ("redirect_urls" | "line_items.physical_items.options" | "line_items.digital_items.options")[]
+  include?: (
+    | 'redirect_urls'
+    | 'line_items.physical_items.options'
+    | 'line_items.digital_items.options'
+  )[]
 }
 
 export const fetcher: HookFetcher<Cart | null, CartInput> = (
@@ -36,12 +40,15 @@ export function extendHook(
   swrOptions?: SwrOptions<Cart | null, CartInput>
 ) {
   const useCart = (input?: UseCartInput) => {
-    const response = useCommerceCart(defaultOpts, [
-      ['include', input?.include?.join(',')]
-    ], customFetcher, {
-      revalidateOnFocus: false,
-      ...swrOptions,
-    })
+    const response = useCommerceCart(
+      defaultOpts,
+      [['include', input?.include?.join(',')]],
+      customFetcher,
+      {
+        revalidateOnFocus: false,
+        ...swrOptions,
+      }
+    )
 
     // Uses a getter to only calculate the prop when required
     // response.data is also a getter and it's better to not trigger it early

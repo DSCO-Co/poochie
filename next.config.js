@@ -47,7 +47,7 @@ module.exports = {
     //       destination: `${process.env.NEXT_PUBLIC_VENDURE_SHOP_API_URL}/:path*`,
     //     },
     // ].filter(Boolean)
-    return [];
+    return []
   },
 
   // Avoid Module not found: ESM packages (supports-color) need to be imported. Use 'import' to reference the package instead. https://nextjs.org/docs/messages/import-esm-externals

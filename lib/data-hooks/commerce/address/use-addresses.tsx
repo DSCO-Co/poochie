@@ -1,4 +1,4 @@
-import useData from "../utils/use-data"
+import useData from '../utils/use-data'
 
 const useAddresses = useData
 

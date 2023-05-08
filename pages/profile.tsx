@@ -6,13 +6,12 @@ import getSiteInfo from '@lib/data-hooks/api/operations/get-site-info'
 import useCustomer from '@lib/data-hooks/use-customer'
 import type { GetStaticPropsContext } from 'next'
 
-
 export async function getStaticProps({
   preview,
   locale,
   locales,
 }: GetStaticPropsContext) {
-  const config = getConfig({ locale });
+  const config = getConfig({ locale })
   const pagesPromise = getAllPages({ config, preview })
   const siteInfoPromise = getSiteInfo({ config, preview })
   const { pages } = await pagesPromise
@@ -22,7 +21,6 @@ export async function getStaticProps({
     props: { pages, categories },
   }
 }
-
 
 export default function Profile() {
   const { data } = useCustomer()

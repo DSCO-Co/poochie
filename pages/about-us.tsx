@@ -11,7 +11,7 @@ export async function getStaticProps({
   locale,
   locales,
 }: GetStaticPropsContext) {
-  const config = getConfig({ locale });
+  const config = getConfig({ locale })
 
   const pagesPromise = getAllPages({ config, preview })
   const siteInfoPromise = getSiteInfo({ config, preview })
@@ -26,7 +26,9 @@ export async function getStaticProps({
 export default function About() {
   return (
     <Container className="pt-16 pb-8">
-      <Text className="flex justify-center" variant="sectionHeading">About Us</Text>
+      <Text className="flex justify-center" variant="sectionHeading">
+        About Us
+      </Text>
       <br />
       {/* Image: A group of dogs and cats enjoying Poochie products */}
       {/* <!-- Image Description: A group of dogs and cats enjoying Poochie products --> */}

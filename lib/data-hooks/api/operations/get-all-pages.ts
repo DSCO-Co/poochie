@@ -4,9 +4,8 @@ import { definitions } from '../definitions/store-content'
 
 export type Page = definitions['page_Full']
 
-export type GetAllPagesResult<
-  T extends { pages: any[] } = { pages: Page[] }
-> = T
+export type GetAllPagesResult<T extends { pages: any[] } = { pages: Page[] }> =
+  T
 
 async function getAllPages(opts?: {
   config?: BigcommerceConfig

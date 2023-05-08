@@ -11,7 +11,7 @@ export async function getStaticProps({
   locale,
   locales,
 }: GetStaticPropsContext) {
-  const config = getConfig({ locale });
+  const config = getConfig({ locale })
   const pagesPromise = getAllPages({ config, preview })
   const siteInfoPromise = getSiteInfo({ config, preview })
   const { pages } = await pagesPromise
@@ -21,7 +21,6 @@ export async function getStaticProps({
     props: { pages, categories },
   }
 }
-
 
 export default function Refund() {
   return (

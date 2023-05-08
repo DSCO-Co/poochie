@@ -31,9 +31,11 @@ export default async function fetchStoreApi<T>(
   if (!res.ok) {
     const data = isJSON ? await res.json() : await getTextOrNull(res)
     const headers = getRawHeaders(res)
-    const msg = `Big Commerce API error (${res.status
-      }) \nHeaders: ${JSON.stringify(headers, null, 2)}\n${typeof data === 'string' ? data : JSON.stringify(data, null, 2)
-      }`
+    const msg = `Big Commerce API error (${
+      res.status
+    }) \nHeaders: ${JSON.stringify(headers, null, 2)}\n${
+      typeof data === 'string' ? data : JSON.stringify(data, null, 2)
+    }`
 
     throw new BigcommerceApiError(msg, res, data)
   }

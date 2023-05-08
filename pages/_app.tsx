@@ -24,15 +24,12 @@ const Noop: FC<{ children?: ReactNode }> = ({ children }) => <>{children}</>
 const searchClient = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_APP_ID!,
   process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY!
-);
-const WRITE_KEY = "cJJ8wJPlI33vsvDvFxzlOG3NPwdd7NzQ";
-
-
-
+)
+const WRITE_KEY = 'cJJ8wJPlI33vsvDvFxzlOG3NPwdd7NzQ'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const Layout = (Component as any).Layout || Noop;
-  const router = useRouter();
+  const Layout = (Component as any).Layout || Noop
+  const router = useRouter()
 
   function renderSnippet() {
     const opts = {
@@ -60,14 +57,14 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const handleRouteChange = (url) => {
       // pageViewed();
-      console.log("FIRED HANDLE ROUTE CHANGE");
+      console.log('FIRED HANDLE ROUTE CHANGE')
       gtag.pageview(url)
     }
     router.events.on('routeChangeComplete', handleRouteChange)
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router.events]);
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   return (
     <>
@@ -76,13 +73,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         id="segment-script"
         dangerouslySetInnerHTML={{ __html: renderSnippet() }}
       />
-      <CommerceProvider locale={"en-US"}>
+      <CommerceProvider locale={'en-US'}>
         <CookieProvider>
           <ManagedUIContext>
             <InstantSearch searchClient={searchClient} indexName="Products">
               <Configure />
               <Layout pageProps={pageProps}>
-
                 <Component {...pageProps} />
                 <Analytics />
               </Layout>

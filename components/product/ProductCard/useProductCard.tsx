@@ -1,11 +1,11 @@
-import useAddItem from '@lib/data-hooks/cart/use-add-item';
-import usePrice from '@lib/data-hooks/commerce/use-price';
-import { useEffect, useState } from 'react';
+import useAddItem from '@lib/data-hooks/cart/use-add-item'
+import usePrice from '@lib/data-hooks/commerce/use-price'
+import { useEffect, useState } from 'react'
 import {
   SelectedOptions,
   getProductVariant,
   selectDefaultOptionFromProduct,
-} from '../helpers';
+} from '../helpers'
 
 export const useProductCard = (product) => {
   const { price } = usePrice({

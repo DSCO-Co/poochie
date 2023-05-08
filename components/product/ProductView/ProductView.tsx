@@ -10,8 +10,6 @@ import { FC, useEffect, useState } from 'react'
 import ProductSidebar from '../ProductSidebar'
 import s from './ProductView.module.css'
 
-
-
 interface ProductViewProps {
   product: Product
   relatedProducts: Product[]
@@ -48,8 +46,6 @@ const ProductView: FC<ProductViewProps> = ({ product }) => {
 
     console.log({ product })
   }, [product])
-
-
 
   return (
     <>

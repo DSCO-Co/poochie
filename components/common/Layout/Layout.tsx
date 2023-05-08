@@ -50,7 +50,6 @@ const Modal = dynamic(() => import('@components/ui/Modal'), {
 
 interface Props {
   pageProps: {
-
     // pages?: Page[]
     // categories: Category[]
     pages?: any[]
@@ -111,7 +110,7 @@ const Layout: React.FC<Props> = ({
   pageProps: { categories = [], ...pageProps },
 }) => {
   const { acceptedCookies, onAcceptCookies } = useAcceptCookies()
-  const { locale = 'en-US' } = useRouter();
+  const { locale = 'en-US' } = useRouter()
   console.log({ categories })
   const navBarLinks = categories.map((c) => ({
     label: c.name,

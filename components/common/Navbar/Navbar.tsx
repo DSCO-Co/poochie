@@ -135,7 +135,13 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
               >
                 <Link
                   href={l.href}
-                  className={`${s.link} ${activeMenu === l.href ? s.linkActive : ''} ${l.href === '/collections/clearance' ? 'bg-rose-500 px-5 text-white !important font-bold' : ''}`}
+                  className={`${s.link} ${
+                    activeMenu === l.href ? s.linkActive : ''
+                  } ${
+                    l.href === '/collections/clearance'
+                      ? 'bg-rose-500 px-5 text-white !important font-bold'
+                      : ''
+                  }`}
                 >
                   {l.label}
                 </Link>

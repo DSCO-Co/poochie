@@ -1,8 +1,8 @@
-import { Button } from '@components/ui';
-import { Card } from 'flowbite-react';
+import { Button } from '@components/ui'
+import { Card } from 'flowbite-react'
 const placeholderImg = '/product-img-placeholder.svg'
 
-import Link from 'next/link';
+import Link from 'next/link'
 export const CalloutProductCard = ({
   product,
   price,

@@ -8,7 +8,8 @@ const getOrders: OrdersHandlers['getOrders'] = async ({
 }) => {
   let result: Orders = []
   if (customerToken) {
-    const customerId = customerToken && (await getCustomerId({ customerToken, config }))
+    const customerId =
+      customerToken && (await getCustomerId({ customerToken, config }))
 
     if (!customerId) {
       // If the customerToken is invalid, then this request is too
@@ -18,11 +19,14 @@ const getOrders: OrdersHandlers['getOrders'] = async ({
       })
     }
 
-    result = await config.storeApiFetch(`/v2/orders?customer_id=${customerId}`, {
-      headers: {
-        Accept: "application/json",
+    result = await config.storeApiFetch(
+      `/v2/orders?customer_id=${customerId}`,
+      {
+        headers: {
+          Accept: 'application/json',
+        },
       }
-    })
+    )
   }
 
   res.status(200).json({ data: result ?? null })

@@ -1,4 +1,4 @@
-import omit from 'lodash.omit';
+import omit from 'lodash.omit'
 import getAllProducts, { ProductEdge } from '../../operations/get-all-products'
 import type { ProductsHandlers } from '../products'
 
@@ -25,15 +25,15 @@ export type Meta = {
     links?: {
       /**
        * Link to the current page returned in the response.
-         */
+       */
       current?: string
       /**
        * Link to the next page returned in the response.
-         */
+       */
       next?: string
       /**
        * Link to the previous page returned in the response.
-         */
+       */
       previous?: string
     }
     /**
@@ -66,10 +66,14 @@ const getProducts: ProductsHandlers['getProducts'] = async ({
   if (search) url.searchParams.set('keyword', search)
   if (page) url.searchParams.set('page', page)
 
-  const categoriesIn = [...categories?.split(',') || [], category].reduce((acc, category) => {
-    if (category && Number.isInteger(Number(category))) return [...acc, category]
-    return acc
-  }, [] as string[])
+  const categoriesIn = [...(categories?.split(',') || []), category].reduce(
+    (acc, category) => {
+      if (category && Number.isInteger(Number(category)))
+        return [...acc, category]
+      return acc
+    },
+    [] as string[]
+  )
 
   if (categoriesIn.length > 0)
     url.searchParams.set('categories:in', categoriesIn.join(','))
@@ -90,9 +94,10 @@ const getProducts: ProductsHandlers['getProducts'] = async ({
   // We only want the id of each product
   url.searchParams.set('include_fields', 'id')
 
-  const { data, meta } = await config.storeApiFetch<{ data: { id: number }[], meta: Meta }>(
-    url.pathname + url.search
-  )
+  const { data, meta } = await config.storeApiFetch<{
+    data: { id: number }[]
+    meta: Meta
+  }>(url.pathname + url.search)
   const entityIds = data.map((p) => p.id)
   const found = entityIds.length > 0
   // We want the GraphQL version of each product
@@ -120,13 +125,17 @@ const getProducts: ProductsHandlers['getProducts'] = async ({
     ...omit(meta.pagination, ['links', 'current_page']),
     pages: {
       current: meta.pagination.current_page,
-      ...meta.pagination.links?.previous ? {
-        previous: meta.pagination.current_page - 1
-      } : {},
-      ...meta.pagination.links?.next ? {
-        next: meta.pagination.current_page + 1
-      } : {}
-    }
+      ...(meta.pagination.links?.previous
+        ? {
+            previous: meta.pagination.current_page - 1,
+          }
+        : {}),
+      ...(meta.pagination.links?.next
+        ? {
+            next: meta.pagination.current_page + 1,
+          }
+        : {}),
+    },
   }
   res.status(200).json({ data: { products, found, pagination } })
 }

@@ -1,9 +1,9 @@
 // @ts-nocheck
-import { Button, Input, Logo } from '@components/ui';
-import { useUI } from '@components/ui/context';
-import useLogin from '@lib/data-hooks/commerce/use-login';
-import { validate } from 'email-validator';
-import { useCallback, useEffect, useState } from 'react';
+import { Button, Input, Logo } from '@components/ui'
+import { useUI } from '@components/ui/context'
+import useLogin from '@lib/data-hooks/commerce/use-login'
+import { validate } from 'email-validator'
+import { useCallback, useEffect, useState } from 'react'
 
 const LoginView: React.FC = () => {
   // Form State

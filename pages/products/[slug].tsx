@@ -9,9 +9,6 @@ import { getAllProductPaths } from '@lib/data-hooks/api/operations'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
-
-
-
 // export async function getStaticProps({
 //   params,
 //   locale,
@@ -32,17 +29,11 @@ import { useEffect } from 'react'
 //   const slug = `/products/${params!.slug}`;
 //   // const { slug } = params!;
 
-
-
-
-
-
 //   const { product } = await getProduct({
 //     variables: { path: slug },
 //     config: getConfig({ locale }),
 //     preview,
 //   });
-
 
 //   const { categories } = await getSiteInfo({
 //     config: getConfig({ locale }),
@@ -59,11 +50,6 @@ import { useEffect } from 'react'
 //     config: getConfig({ locale }),
 //     preview,
 //   });
-
-
-
-
-
 
 //   // if (!product) {
 //   //   return {
@@ -86,26 +72,18 @@ export async function getStaticPaths({ locales }: GetStaticPathsContext) {
   const { products } = await getAllProductPaths({
     variables: { first: 4 },
   })
-  console.log({ products: JSON.stringify(products) });
+  console.log({ products: JSON.stringify(products) })
 
   return {
-
     paths: products.map((product: any) => `${product.path}`),
     fallback: 'blocking',
   }
 }
 
-
-
-
-export default function Slug({
-  product,
-  relatedProducts,
-}) {
+export default function Slug({ product, relatedProducts }) {
   useEffect(() => {
     if (product) {
-      trackProductViewed(product);
-
+      trackProductViewed(product)
     }
   }, [product])
 

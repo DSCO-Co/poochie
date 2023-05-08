@@ -8,7 +8,7 @@ import {
   SimpleCard,
   SimpleStylizedCard,
   SlimCard,
-  useProductCard
+  useProductCard,
 } from './'
 
 import s from './ProductCard.module.css'
@@ -34,9 +34,7 @@ const ProductCard: FC<ProductCardProps> = ({
       href={`${product.path}`}
       className={`${rootClassName} rounded-xl`}
       aria-label={product.name}
-      onClick={() => {
-
-      }}
+      onClick={() => {}}
     >
       {variant === 'slim' && <SlimCard product={product} imgProps={imgProps} />}
 

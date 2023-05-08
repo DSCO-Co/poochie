@@ -8,14 +8,12 @@ import type { GetStaticPropsContext } from 'next'
 import Link from 'next/link'
 import { useState } from 'react'
 
-
-
 export async function getStaticProps({
   preview,
   locale,
   locales,
 }: GetStaticPropsContext) {
-  const config = getConfig({ locale });
+  const config = getConfig({ locale })
   const pagesPromise = getAllPages({ config, preview })
   const siteInfoPromise = getSiteInfo({ config, preview })
   const { pages } = await pagesPromise
@@ -26,9 +24,8 @@ export async function getStaticProps({
   }
 }
 
-
 export default function ContactUs() {
-  const [submitted, setSubmitted] = useState<boolean>(false);
+  const [submitted, setSubmitted] = useState<boolean>(false)
 
   const handleSubmit = async (event) => {
     // Stop the form from submitting and refreshing the page.
@@ -67,11 +64,10 @@ export default function ContactUs() {
     // Get the response data from server as JSON.
     const result = await response.json()
     // Reset the form
-    setSubmitted(true);
-    const form = document.getElementById('contact-form') as HTMLFormElement;
+    setSubmitted(true)
+    const form = document.getElementById('contact-form') as HTMLFormElement
     if (form) form.reset()
   }
-
 
   return (
     // <Container className="pt-16 pb-8">
@@ -79,9 +75,12 @@ export default function ContactUs() {
       <div className="grid grid-cols-1 mx-auto max-w-7xl lg:grid-cols-2">
         <div className="relative px-6 pt-16 pb-12 sm:pt-24 lg:static lg:px-8 lg:py-30">
           <div className="max-w-xl mx-auto lg:mx-0 lg:max-w-lg">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900">Get in touch</h2>
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900">
+              Get in touch
+            </h2>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Fill out the form, email, or call us and we will get back to you as soon as we can :)
+              Fill out the form, email, or call us and we will get back to you
+              as soon as we can :)
             </p>
             <dl className="mt-10 space-y-4 text-base leading-7 text-gray-600">
               {/* <div className="flex gap-x-4">
@@ -98,10 +97,16 @@ export default function ContactUs() {
               <div className="flex gap-x-4">
                 <dt className="flex-none">
                   <span className="sr-only">Telephone</span>
-                  <PhoneIcon className="w-6 text-gray-400 h-7" aria-hidden="true" />
+                  <PhoneIcon
+                    className="w-6 text-gray-400 h-7"
+                    aria-hidden="true"
+                  />
                 </dt>
                 <dd>
-                  <Link className="hover:text-gray-900" href="tel:+1 (888) 828-4258">
+                  <Link
+                    className="hover:text-gray-900"
+                    href="tel:+1 (888) 828-4258"
+                  >
                     +1 (888) 828-4258
                   </Link>
                 </dd>
@@ -109,10 +114,16 @@ export default function ContactUs() {
               <div className="flex gap-x-4">
                 <dt className="flex-none">
                   <span className="sr-only">Email</span>
-                  <EnvelopeIcon className="w-6 text-gray-400 h-7" aria-hidden="true" />
+                  <EnvelopeIcon
+                    className="w-6 text-gray-400 h-7"
+                    aria-hidden="true"
+                  />
                 </dt>
                 <dd>
-                  <a className="hover:text-gray-900" href="mailto:support@poochi.co">
+                  <a
+                    className="hover:text-gray-900"
+                    href="mailto:support@poochi.co"
+                  >
                     support@poochi.co
                   </a>
                 </dd>
@@ -120,11 +131,19 @@ export default function ContactUs() {
             </dl>
           </div>
         </div>
-        <form id="contact-form" className="px-6 pt-16 pb-12 sm:pt-24 lg:px-8 lg:py-30" onSubmit={handleSubmit} onChange={(e) => setSubmitted(false)}>
+        <form
+          id="contact-form"
+          className="px-6 pt-16 pb-12 sm:pt-24 lg:px-8 lg:py-30"
+          onSubmit={handleSubmit}
+          onChange={(e) => setSubmitted(false)}
+        >
           <div className="max-w-xl mx-auto lg:mr-0 lg:max-w-lg">
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
               <div>
-                <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900 required-form-field">
+                <label
+                  htmlFor="first-name"
+                  className="block text-sm font-semibold leading-6 text-gray-900 required-form-field"
+                >
                   First name
                 </label>
                 <div className="mt-2.5">
@@ -140,7 +159,10 @@ export default function ContactUs() {
                 </div>
               </div>
               <div>
-                <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900 required-form-field">
+                <label
+                  htmlFor="last-name"
+                  className="block text-sm font-semibold leading-6 text-gray-900 required-form-field"
+                >
                   Last name
                 </label>
                 <div className="mt-2.5">
@@ -156,7 +178,10 @@ export default function ContactUs() {
                 </div>
               </div>
               <div className="sm:col-span-2">
-                <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900 required-form-field">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-semibold leading-6 text-gray-900 required-form-field"
+                >
                   Email
                 </label>
                 <div className="mt-2.5">
@@ -172,7 +197,10 @@ export default function ContactUs() {
                 </div>
               </div>
               <div className="sm:col-span-2">
-                <label htmlFor="phone-number" className="block text-sm font-semibold leading-6 text-gray-900">
+                <label
+                  htmlFor="phone-number"
+                  className="block text-sm font-semibold leading-6 text-gray-900"
+                >
                   Phone number
                 </label>
                 <div className="mt-2.5">
@@ -187,7 +215,10 @@ export default function ContactUs() {
                 </div>
               </div>
               <div className="sm:col-span-2">
-                <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900 required-form-field">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-semibold leading-6 text-gray-900 required-form-field"
+                >
                   Message
                 </label>
                 <div className="mt-2.5">
@@ -203,8 +234,21 @@ export default function ContactUs() {
                 </div>
               </div>
             </div>
-            <div className={submitted ? "mt-8 flex justify-between" : "mt-8 flex justify-end"}>
-              {submitted ? <label htmlFor="message" className="block text-sm font-semibold leading-6 text-green">Submitted!</label> : null}
+            <div
+              className={
+                submitted
+                  ? 'mt-8 flex justify-between'
+                  : 'mt-8 flex justify-end'
+              }
+            >
+              {submitted ? (
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-semibold leading-6 text-green"
+                >
+                  Submitted!
+                </label>
+              ) : null}
               <button
                 type="submit"
                 className="rounded-md bg-black px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"

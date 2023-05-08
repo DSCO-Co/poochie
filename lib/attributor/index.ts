@@ -1,2 +1,1 @@
-export * from './Attributor';
-
+export * from './Attributor'

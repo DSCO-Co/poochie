@@ -146,7 +146,7 @@ export interface Product {
    * The product’s vendor name.
    */
   vendor?: string
-  /** 
+  /**
    * The product's brand name.
    */
   brand?: string

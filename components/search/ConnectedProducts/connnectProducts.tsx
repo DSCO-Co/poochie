@@ -1,4 +1,3 @@
-
 import type { Product as CommerceProduct } from '@commerce/types/product'
 
 import { AlgoliaProductCard } from '@components/product'
@@ -31,9 +30,7 @@ const ConnectedProducts = () => {
   return (
     <div className="order-3 col-span-8 lg:order-none">
       {hits ? (
-        <div
-          className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-        >
+        <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {hits.map((hit: any) => {
             const product: CommerceProduct = algoliaHitToProduct(hit)
 

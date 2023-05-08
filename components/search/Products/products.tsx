@@ -12,10 +12,7 @@ import { Skeleton } from '@components/ui'
 import useSearch from '@lib/data-hooks/products/use-search'
 import rangeMap from '@lib/range-map'
 
-import {
-  filterQuery,
-  useSearchMeta
-} from '@lib/search'
+import { filterQuery, useSearchMeta } from '@lib/search'
 
 import ErrorMessage from '../../ui/ErrorMessage'
 

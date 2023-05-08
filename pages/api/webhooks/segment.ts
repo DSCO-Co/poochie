@@ -7,11 +7,9 @@ export default async function handler(req, res) {
   const segmentServerWriteKey = process.env.SEGMENT_SERVER_WRITEKEY
   if (!segmentServerWriteKey) {
     console.error('SEGMENT_SERVER_WRITEKEY is not defined')
-    res
-      .status(500)
-      .json({
-        error: 'Internal server error SEGMENT_SERVER_WRITEKEY is not defined',
-      })
+    res.status(500).json({
+      error: 'Internal server error SEGMENT_SERVER_WRITEKEY is not defined',
+    })
     return
   }
 
@@ -171,11 +169,9 @@ export default async function handler(req, res) {
             break
 
           default:
-            res
-              .status(500)
-              .json({
-                error: `Server Event ${receivedData.eventName} did not match any server events.`,
-              })
+            res.status(500).json({
+              error: `Server Event ${receivedData.eventName} did not match any server events.`,
+            })
             break
         }
 

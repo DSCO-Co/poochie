@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useRefinementList } from 'react-instantsearch-hooks-web'
 
-
 const categoriesData = {
   Apparel: [
     'Dog Sweaters',
@@ -65,7 +64,11 @@ const CustomRefinementList = ({ attribute, limit, initial }) => {
   const [dropdown, setDropdown] = useState(-1)
   const [initialDropdownSet, setInitialDropdownSet] = useState(false)
 
-  const { items, refine } = useRefinementList({ attribute, limit, operator: "and" })
+  const { items, refine } = useRefinementList({
+    attribute,
+    limit,
+    operator: 'and',
+  })
 
   const handleDropdownClick = (index) => {
     setDropdown(dropdown === index ? -1 : index)
@@ -144,7 +147,11 @@ const SubCategoryRefinementList = ({
   limit,
   initial,
 }) => {
-  const { items, refine, canRefine } = useRefinementList({ attribute, limit, operator: "and" })
+  const { items, refine, canRefine } = useRefinementList({
+    attribute,
+    limit,
+    operator: 'and',
+  })
 
   const subCategories = useMemo(() => {
     return categoriesData[parentCategory] || []
@@ -172,7 +179,7 @@ const SubCategoryRefinementList = ({
               type="checkbox"
               checked={item.isRefined}
               onChange={() => {
-                console.log("Item",item, typeof item.value)
+                console.log('Item', item, typeof item.value)
                 refine(item.value)
                 console.log(item.isRefined)
               }}

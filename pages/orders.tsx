@@ -7,13 +7,12 @@ import { getConfig } from '@lib/data-hooks/api'
 import getAllPages from '@lib/data-hooks/api/operations/get-all-pages'
 import getSiteInfo from '@lib/data-hooks/api/operations/get-site-info'
 
-
 export async function getStaticProps({
   preview,
   locale,
   locales,
 }: GetStaticPropsContext) {
-  const config = getConfig({ locale });
+  const config = getConfig({ locale })
   const pagesPromise = getAllPages({ config, preview })
   const siteInfoPromise = getSiteInfo({ config, preview })
   const { pages } = await pagesPromise
@@ -23,7 +22,6 @@ export async function getStaticProps({
     props: { pages, categories },
   }
 }
-
 
 export default function Orders() {
   return (

@@ -35,7 +35,7 @@ const CartSidebarView: FC = () => {
   // const attributor = useAttributor();
   // const ip = useIp();
 
-  useStasher();
+  useStasher()
   // console.log(`
   //   ---------
 

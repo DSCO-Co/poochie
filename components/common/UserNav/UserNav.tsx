@@ -1,26 +1,26 @@
-import { Avatar } from '@components/common';
-import { Bag, Heart, Menu } from '@components/icons';
-import { Button } from '@components/ui';
-import { useUI } from '@components/ui/context';
-import useCart from '@lib/data-hooks/cart/use-cart';
+import { Avatar } from '@components/common'
+import { Bag, Heart, Menu } from '@components/icons'
+import { Button } from '@components/ui'
+import { useUI } from '@components/ui/context'
+import useCart from '@lib/data-hooks/cart/use-cart'
 
-import useCustomer from '@lib/data-hooks/use-customer';
-import cn from 'clsx';
-import Link from 'next/link';
-import React from 'react';
-import s from './UserNav.module.css';
+import useCustomer from '@lib/data-hooks/use-customer'
+import cn from 'clsx'
+import Link from 'next/link'
+import React from 'react'
+import s from './UserNav.module.css'
 
-import type { LineItem } from '@commerce/types/cart';
+import type { LineItem } from '@commerce/types/cart'
 
-const countItems = (count: number, item: LineItem) => count + item.quantity;
+const countItems = (count: number, item: LineItem) => count + item.quantity
 
 interface UserNavProps {
-  className?: string;
-  cart?: boolean;
-  wishlist?: boolean;
-  userAvatar?: boolean;
-  mobileMenu?: boolean;
-  size?: 'small' | 'large';
+  className?: string
+  cart?: boolean
+  wishlist?: boolean
+  userAvatar?: boolean
+  mobileMenu?: boolean
+  size?: 'small' | 'large'
 }
 
 const UserNav: React.FC<UserNavProps> = ({
@@ -31,23 +31,24 @@ const UserNav: React.FC<UserNavProps> = ({
   mobileMenu = false,
   size = 'small',
 }) => {
-  const { data } = useCart();
-  const { data: isCustomerLoggedIn } = useCustomer();
-  const { closeSidebarIfPresent, openModal, setSidebarView, openSidebar } = useUI();
+  const { data } = useCart()
+  const { data: isCustomerLoggedIn } = useCustomer()
+  const { closeSidebarIfPresent, openModal, setSidebarView, openSidebar } =
+    useUI()
 
-  const itemsCount = data?.lineItems?.reduce(countItems, 0) ?? 0;
+  const itemsCount = data?.lineItems?.reduce(countItems, 0) ?? 0
 
   const handleCartButtonClick = () => {
-    setSidebarView('CART_VIEW');
-    openSidebar();
-    closeSidebarIfPresent();
-  };
+    setSidebarView('CART_VIEW')
+    openSidebar()
+    closeSidebarIfPresent()
+  }
 
   const handleMobileMenuButtonClick = () => {
-    setSidebarView('MOBILE_MENU_VIEW');
-    openSidebar();
-    closeSidebarIfPresent();
-  };
+    setSidebarView('MOBILE_MENU_VIEW')
+    openSidebar()
+    closeSidebarIfPresent()
+  }
 
   return (
     <nav className={cn(s.root, className)}>
@@ -62,7 +63,9 @@ const UserNav: React.FC<UserNavProps> = ({
             >
               <Bag scale={size === 'large' ? 2 : undefined} />
               {itemsCount > 0 && (
-                <span className={size === 'large' ? s.bagCountLarge : s.bagCount}>
+                <span
+                  className={size === 'large' ? s.bagCountLarge : s.bagCount}
+                >
                   {itemsCount}
                 </span>
               )}
@@ -72,10 +75,16 @@ const UserNav: React.FC<UserNavProps> = ({
         {process.env.COMMERCE_WISHLIST_ENABLED && wishlist && (
           <>
             <li className={s.item}>
-              <Link href="/wishlist" onClick={closeSidebarIfPresent} aria-label="Wishlist">
+              <Link
+                href="/wishlist"
+                onClick={closeSidebarIfPresent}
+                aria-label="Wishlist"
+              >
                 <Heart scale={size === 'large' ? 2 : undefined} />
                 {itemsCount > 0 && (
-                  <span className={size === 'large' ? s.bagCountLarge : s.bagCount}>
+                  <span
+                    className={size === 'large' ? s.bagCountLarge : s.bagCount}
+                  >
                     {itemsCount}
                   </span>
                 )}
@@ -132,7 +141,7 @@ const UserNav: React.FC<UserNavProps> = ({
         )}
       </ul>
     </nav>
-  );
-};
+  )
+}
 
-export default UserNav;
+export default UserNav

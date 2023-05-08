@@ -14,8 +14,6 @@ import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 // import useCart from '@framework/cart/use-cart'
 // import useCustomer from '@framework/customer/use-customer'
 
-
-
 import { normalizeProduct } from '@lib/bigcommerce/normalizer'
 import { useAttributor } from '@lib/hooks'
 
@@ -24,25 +22,23 @@ export async function getStaticProps({
   locale,
   locales,
 }: GetStaticPropsContext) {
-
   // const config = { locale, locales }
 
   const { products } = await getAllProducts({
     variables: { first: 6 },
     config: getConfig({ locale }),
     preview,
-  });
+  })
 
   const { categories, brands } = await getSiteInfo({
     config: getConfig({ locale }),
     preview,
-  });
+  })
 
   const { pages } = await getAllPages({
     config: getConfig({ locale }),
     preview,
-  });
-
+  })
 
   return {
     props: {
@@ -60,8 +56,8 @@ export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const attributor = useAttributor()
-  console.log({ attributor });
-  console.log({ products });
+  console.log({ attributor })
+  console.log({ products })
 
   // const cart = useCart();
   // const customer = useCustomer();
@@ -80,7 +76,7 @@ export default function Home({
             title: 'Spring Cleaning',
             subtitle: 'Shop our Clearance Sale for Spring Cleaning Savings!',
             button: 'Shop Now',
-            link: "/collections/clearance"
+            link: '/collections/clearance',
           },
           {
             id: 3,
@@ -89,7 +85,7 @@ export default function Home({
             title: 'Totally Toys',
             subtitle: 'Toys for Terriffic Terriers (and more)!',
             button: 'Shop Now',
-            link: "/collections/toys"
+            link: '/collections/toys',
           },
           {
             id: 1,
@@ -98,11 +94,11 @@ export default function Home({
             title: 'Jumping Jackets',
             subtitle: 'Jack Russels Jumping for Joy in New Jackets!',
             button: 'Shop Now',
-            link: "/collections/clothing"
+            link: '/collections/clothing',
           },
         ]}
       />
-      {console.log({ products, test: "asdasd" })}
+      {console.log({ products, test: 'asdasd' })}
       <ProductCarousel products={products} />
       <Guarantees />
     </>

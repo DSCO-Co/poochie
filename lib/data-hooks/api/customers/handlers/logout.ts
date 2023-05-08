@@ -1,7 +1,7 @@
 import { serialize } from 'cookie'
 import { LogoutHandlers } from '../logout'
-import { getIronSession } from 'iron-session';
-import { sessionOptions } from '../../../lib/session';
+import { getIronSession } from 'iron-session'
+import { sessionOptions } from '../../../lib/session'
 
 const logoutHandler: LogoutHandlers['logout'] = async ({
   req: request,
@@ -13,7 +13,11 @@ const logoutHandler: LogoutHandlers['logout'] = async ({
   // Remove the cookie
   res.setHeader(
     'Set-Cookie',
-    serialize(config.customerCookie, '', { maxAge: -1, path: '/', domain: host?.includes(':') ? host?.slice(0, host.indexOf(':')) : host })
+    serialize(config.customerCookie, '', {
+      maxAge: -1,
+      path: '/',
+      domain: host?.includes(':') ? host?.slice(0, host.indexOf(':')) : host,
+    })
   )
 
   // kill the session

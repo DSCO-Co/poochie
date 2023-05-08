@@ -24,9 +24,9 @@ const Swatch: React.FC<Omit<ButtonProps, 'variant'> & SwatchProps> = ({
   variant = 'size',
   ...props
 }) => {
-  variant = variant?.toLowerCase();
+  variant = variant?.toLowerCase()
 
-  console.log('variant: ', variant);
+  console.log('variant: ', variant)
 
   if (label) {
     label = label?.toLowerCase()
@@ -40,7 +40,7 @@ const Swatch: React.FC<Omit<ButtonProps, 'variant'> & SwatchProps> = ({
       [s.size]: variant === 'size',
       [s.dark]: color ? isDark(color) : false,
       [s.textLabel]: !color && label && label.length > 3,
-      [s.dimmed]: !inStock
+      [s.dimmed]: !inStock,
     },
     className
   )
@@ -52,10 +52,13 @@ const Swatch: React.FC<Omit<ButtonProps, 'variant'> & SwatchProps> = ({
       aria-label={variant && label ? `${variant} ${label}` : 'Variant Swatch'}
       className={swatchClassName}
       {...(label && color && { title: label })}
-
-      style={color ? { backgroundColor: color } : {
-        backgroundColor: inStock ? "#ccc" : "#000",
-      }}
+      style={
+        color
+          ? { backgroundColor: color }
+          : {
+              backgroundColor: inStock ? '#ccc' : '#000',
+            }
+      }
       disabled={!inStock}
       {...props}
     >
@@ -64,9 +67,7 @@ const Swatch: React.FC<Omit<ButtonProps, 'variant'> & SwatchProps> = ({
           <div className="flex-1 pr-2">
             <Check />
           </div>
-          <div>
-            {label}
-          </div>
+          <div>{label}</div>
         </div>
       )}
       {!active ? label : null}

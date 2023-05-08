@@ -1,10 +1,10 @@
-import isAllowedMethod from "../utils/is-allowed-method"
+import isAllowedMethod from '../utils/is-allowed-method'
 import createApiHandler, {
-	BigcommerceApiHandler,
-	BigcommerceHandler,
-} from "../utils/create-api-handler"
-import { BigcommerceApiError } from "../utils/errors"
-import getOrderProducts from "./handlers/get-order-products"
+  BigcommerceApiHandler,
+  BigcommerceHandler,
+} from '../utils/create-api-handler'
+import { BigcommerceApiError } from '../utils/errors'
+import getOrderProducts from './handlers/get-order-products'
 
 // This type should match:
 // https://developer.bigcommerce.com/api-reference/store-management/orders/order-products/getallorderproducts#responses
@@ -37,7 +37,7 @@ export interface Product {
   /**
    * Type of product
    */
-  type?: "physical" | "digital"
+  type?: 'physical' | 'digital'
   /**
    * The product's base price. (Float, Float-As-String, Integer)
    */
@@ -238,7 +238,7 @@ interface ProductAppliedDiscount {
   /**
    * Determines if the discount if discount was applied at the Order or Product level. Read Only.
    */
-  target?: "order" | "product"
+  target?: 'order' | 'product'
   [k: string]: unknown
 }
 interface ProductOption {
@@ -268,14 +268,14 @@ interface ProductOption {
    * Option Type
    */
   type?:
-    | "Checkbox"
-    | "Date field"
-    | "File Upload"
-    | "Multi-line text field"
-    | "Multiple choice"
-    | "Product Pick List"
-    | "Swatch"
-    | "Text field"
+    | 'Checkbox'
+    | 'Date field'
+    | 'File Upload'
+    | 'Multi-line text field'
+    | 'Multiple choice'
+    | 'Product Pick List'
+    | 'Swatch'
+    | 'Text field'
   /**
    * The option’s name, as used internally. Must be unique.
    */
@@ -305,35 +305,33 @@ interface ProductOption {
 export type Products = Product[]
 
 export type OrderProductHandlers = {
-	getOrderProducts: BigcommerceHandler<Products, { orderId?: number }>
+  getOrderProducts: BigcommerceHandler<Products, { orderId?: number }>
 }
 
-const METHODS = ["GET"]
+const METHODS = ['GET']
 
-const orderProductsApi: BigcommerceApiHandler<Products, OrderProductHandlers> = async (
-	req,
-	res,
-	config,
-	handlers
-) => {
-	if (!isAllowedMethod(req, res, METHODS)) return
+const orderProductsApi: BigcommerceApiHandler<
+  Products,
+  OrderProductHandlers
+> = async (req, res, config, handlers) => {
+  if (!isAllowedMethod(req, res, METHODS)) return
 
-	try {
-		// Return current orders info
-		if (req.method === "GET") {
-			const body = {
-				orderId: Number(req.query.order_id)
-			}
-			return await handlers.getOrderProducts({ req, res, config, body })
-		}
-	} catch (error) {
-		const message =
-			error instanceof BigcommerceApiError
-				? "An unexpected error ocurred with the Bigcommerce API"
-				: "An unexpected error ocurred"
+  try {
+    // Return current orders info
+    if (req.method === 'GET') {
+      const body = {
+        orderId: Number(req.query.order_id),
+      }
+      return await handlers.getOrderProducts({ req, res, config, body })
+    }
+  } catch (error) {
+    const message =
+      error instanceof BigcommerceApiError
+        ? 'An unexpected error ocurred with the Bigcommerce API'
+        : 'An unexpected error ocurred'
 
-		res.status(500).json({ data: null, errors: [{ message }] })
-	}
+    res.status(500).json({ data: null, errors: [{ message }] })
+  }
 }
 
 export const handlers = { getOrderProducts }

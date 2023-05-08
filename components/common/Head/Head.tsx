@@ -4,11 +4,7 @@ import type { VFC } from 'react'
 const Head: VFC = () => {
   return (
     <SEO>
-      <link
-        rel="apple-touch-icon"
-        sizes="76x76"
-        href="/apple-touch-icon.png"
-      />
+      <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png" />
       <link
         rel="icon"
         type="image/png"
@@ -25,7 +21,10 @@ const Head: VFC = () => {
       <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
       <meta name="msapplication-TileColor" content="#da532c" />
       <meta name="theme-color" content="#ffffff" />
-      <meta name="google-site-verification" content="ZWBomXdji_C5xY2lLXEADvZ6ND2ZGcgAEknpH_XiFRw" />
+      <meta
+        name="google-site-verification"
+        content="ZWBomXdji_C5xY2lLXEADvZ6ND2ZGcgAEknpH_XiFRw"
+      />
       <meta
         key="viewport"
         name="viewport"

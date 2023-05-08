@@ -77,9 +77,8 @@ const CartItem = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item.quantity])
 
-
   useEffect(() => {
-    console.log({ item });
+    console.log({ item })
   }, [item])
   return (
     <li

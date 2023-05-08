@@ -27,7 +27,6 @@ export default function FocusTrap({ children, focusFirst = false }: Props) {
     }
   }
 
-
   const selectFirstFocusableEl = () => {
     // Try to find focusable elements, if match then focus
     // Up to 6 seconds of load time threshold

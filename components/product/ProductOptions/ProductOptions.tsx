@@ -106,9 +106,7 @@ const ProductOptions: React.FC<ProductOptionsProps> = ({
 
   return (
     <div>
-      <>
-        {console.log(`YO ====> ${JSON.stringify(options)}`)}
-      </>
+      <>{console.log(`YO ====> ${JSON.stringify(options)}`)}</>
       {options.map((opt) => (
         <div className="pb-4" key={opt.displayName}>
           <h2 className="text-sm font-medium tracking-wide uppercase">

@@ -1,1 +1,1 @@
-export * from './cookieContext';
+export * from './cookieContext'

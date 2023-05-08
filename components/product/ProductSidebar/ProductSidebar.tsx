@@ -8,7 +8,6 @@ import type { Product } from '@lib/data-hooks/schema'
 import { FC, useEffect, useState } from 'react'
 import ProductTag from '../ProductTag'
 
-
 import {
   SelectedOptions,
   getProductVariant,
@@ -25,7 +24,6 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
     product: Product,
     selectedOptions: SelectedOptions
   ) => {
-
     const variant = getProductVariant(product, selectedOptions)
     if (variant) {
       return {

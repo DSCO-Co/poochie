@@ -1,16 +1,16 @@
-import { UserNav } from '@components/common';
-import { ChevronLeft, Cross } from '@components/icons';
-import { useUI } from '@components/ui/context';
-import cn from 'clsx';
-import { FC, ReactNode } from 'react';
-import s from './SidebarLayout.module.css';
+import { UserNav } from '@components/common'
+import { ChevronLeft, Cross } from '@components/icons'
+import { useUI } from '@components/ui/context'
+import cn from 'clsx'
+import { FC, ReactNode } from 'react'
+import s from './SidebarLayout.module.css'
 
 type SidebarLayoutProps = {
-  className?: string;
-  children?: ReactNode;
-  handleClose?: () => void;
-  handleBack?: () => void;
-};
+  className?: string
+  children?: ReactNode
+  handleClose?: () => void
+  handleBack?: () => void
+}
 
 const SidebarLayout: FC<SidebarLayoutProps> = ({
   children,
@@ -18,7 +18,7 @@ const SidebarLayout: FC<SidebarLayoutProps> = ({
   handleClose,
   handleBack,
 }) => {
-  const { sidebarView } = useUI();
+  const { sidebarView } = useUI()
 
   const renderBackButton = () => (
     <button
@@ -29,7 +29,7 @@ const SidebarLayout: FC<SidebarLayoutProps> = ({
       <ChevronLeft className="w-6 h-6 hover:text-accent-3" />
       <span className="ml-2 text-xs text-accent-7">Back</span>
     </button>
-  );
+  )
 
   const renderMobileNavbar = () => (
     <div className="bottom-0 left-0 w-full z-100 bg-primary">
@@ -45,7 +45,7 @@ const SidebarLayout: FC<SidebarLayoutProps> = ({
         </div>
       </div>
     </div>
-  );
+  )
 
   return (
     <div className={cn(s.root, className)}>
@@ -68,9 +68,8 @@ const SidebarLayout: FC<SidebarLayoutProps> = ({
         {sidebarView === 'MOBILE_MENU_VIEW' && renderMobileNavbar()}
         {children}
       </div>
-
     </div>
-  );
-};
+  )
+}
 
-export default SidebarLayout;
+export default SidebarLayout

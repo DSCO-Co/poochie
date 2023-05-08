@@ -10,16 +10,16 @@ import getProducts, { Meta } from './handlers/get-products'
 export type SearchProductsData = {
   products: ProductEdge[]
   found: boolean
-  pagination: Omit<Meta["pagination"], "links" | "current_page"> & {
+  pagination: Omit<Meta['pagination'], 'links' | 'current_page'> & {
     pages: {
       /**
        * The page you are currently on within the collection.
        */
-      current: Meta["pagination"]["current_page"],
+      current: Meta['pagination']['current_page']
       /**
        * The previous page within the same collection
        */
-      previous?: number,
+      previous?: number
       /**
        * The next page within the same collection
        */
@@ -31,7 +31,14 @@ export type SearchProductsData = {
 export type ProductsHandlers = {
   getProducts: BigcommerceHandler<
     SearchProductsData,
-    { search?: 'string'; category?: string; categories?: string, brand?: string; sort?: string, page?: string }
+    {
+      search?: 'string'
+      category?: string
+      categories?: string
+      brand?: string
+      sort?: string
+      page?: string
+    }
   >
 }
 

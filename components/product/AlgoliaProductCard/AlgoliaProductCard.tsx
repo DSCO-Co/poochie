@@ -94,7 +94,7 @@ const ProductCard = ({ product, className }) => {
           variant={product.variants[0]}
         />
         <div className="absolute top-2 left-2">
-          {product.onSale && ("")}
+          {product.onSale && ''}
           {/* {console.log(`
           
           product: ${JSON.stringify(product)}
@@ -113,7 +113,8 @@ const ProductCard = ({ product, className }) => {
               >
                 Sale
               </div>
-            </div>)}
+            </div>
+          )}
           {/* <div className="absolute p-1 bg-orange-500 top-1 left-1" /> */}
         </div>
         {/* <Button
