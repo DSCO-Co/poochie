@@ -1,0 +1,112 @@
+import { Trash } from '@components/icons'
+import { Button, Text } from '@components/ui'
+import cn from 'clsx'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useState } from 'react'
+import s from './WishlistCard.module.css'
+
+import { useUI } from '@components/ui/context'
+import type { WishlistItem } from '@lib/data-hooks/api/wishlist'
+import useAddItem from '@lib/data-hooks/cart/use-add-item'
+import usePrice from '@lib/data-hooks/commerce/use-price'
+import type { Product } from '@lib/data-hooks/schema'
+import useRemoveItem from '@lib/data-hooks/wishlist/use-remove-item'
+
+const placeholderImg = '/product-img-placeholder.svg'
+
+const WishlistCard: React.FC<{
+  item: WishlistItem
+}> = ({ item }) => {
+  // @ts-ignore
+  const product: Product = item.product
+
+  const { price } = usePrice({
+    // @ts-ignore
+    amount: product.prices?.price,
+    // @ts-ignore
+    baseAmount: product.prices?.retailPrice,
+    currencyCode: product.prices?.price?.currencyCode!,
+  })
+  // @ts-ignore Wishlist is not always enabled
+  const removeItem = useRemoveItem({ wishlist: { includeProducts: true } })
+  const [loading, setLoading] = useState(false)
+  const [removing, setRemoving] = useState(false)
+
+  // TODO: fix this missing argument issue
+  /* @ts-ignore */
+  const addItem = useAddItem()
+  const { openSidebar } = useUI()
+
+  const handleRemove = async () => {
+    setRemoving(true)
+
+    try {
+      // If this action succeeds then there's no need to do `setRemoving(true)`
+      // because the component will be removed from the view
+      await removeItem({ id: item.id! })
+    } catch (error) {
+      setRemoving(false)
+    }
+  }
+  const addToCart = async () => {
+    setLoading(true)
+    try {
+      await addItem({
+        // @ts-ignore
+        productId: String(product.id),
+        // @ts-ignore
+        variantId: String(product.variants[0].id),
+      })
+      openSidebar()
+      setLoading(false)
+    } catch (err) {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div className={cn(s.root, { 'opacity-75 pointer-events-none': removing })}>
+      <div className={s.imageWrapper}>
+        <Image
+          width={230}
+          height={230}
+          src={product.images[0]?.url || placeholderImg}
+          alt={product.images[0]?.alt || 'Product Image'}
+        />
+      </div>
+
+      <div className={s.description}>
+        <div className="flex-1 mb-6">
+          <h3 className="mb-2 -mt-1 text-2xl">
+            <Link href={`/product${product.path}`}>{product.name}</Link>
+          </h3>
+          <div className="mb-4">
+            <Text html={product.description} />
+          </div>
+        </div>
+        <div>
+          <Button
+            width={260}
+            aria-label="Add to Cart"
+            type="button"
+            onClick={addToCart}
+            loading={loading}
+          >
+            Add to Cart
+          </Button>
+        </div>
+      </div>
+      <div className={s.actions}>
+        <div className="flex justify-end font-bold">{price}</div>
+        <div className="flex justify-end mt-4 lg:mt-0">
+          <button onClick={handleRemove}>
+            <Trash />
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default WishlistCard
