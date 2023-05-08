@@ -60,6 +60,11 @@ const ProductOptions: React.FC<ProductOptionsProps> = ({
 
   const getSelect = (opt: ProductOption) => {
     const available = getAvailableOptions(opt)
+    console.log(`
+    ---
+      ${JSON.stringify(opt)}
+    --++
+    `)
     return opt.values.map((v, i: number) => {
       const active =
         selectedOptions[opt.displayName.toLowerCase()] === v.label.toLowerCase()
@@ -101,6 +106,9 @@ const ProductOptions: React.FC<ProductOptionsProps> = ({
 
   return (
     <div>
+      <>
+        {console.log(`YO ====> ${JSON.stringify(options)}`)}
+      </>
       {options.map((opt) => (
         <div className="pb-4" key={opt.displayName}>
           <h2 className="text-sm font-medium tracking-wide uppercase">
