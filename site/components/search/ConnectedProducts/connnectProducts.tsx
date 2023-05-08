@@ -8,9 +8,18 @@ import { Skeleton } from '@components/ui'
 import rangeMap from '@lib/range-map'
 
 import { useHits } from 'react-instantsearch-hooks-web'
+import { useEffect, useRef, useState } from 'react'
 
-const ConnectedProducts = () => {
-  const { hits } = useHits()
+
+const ConnectedProducts = ({setProducts}) => {
+
+  const { hits } = useHits();
+
+  //Pass the products via the setProducts State Hook. 
+  useEffect(() => {
+      const products: CommerceProduct[] = hits.map((hit: any) =>algoliaHitToProduct(hit));
+      setProducts(products); 
+  }, [hits]);
 
   const algoliaHitToProduct = (hit: any): CommerceProduct => {
     return {

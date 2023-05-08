@@ -11,6 +11,7 @@ import {
   useProductCard
 } from './'
 
+import { trackProductViewed } from '@lib/Analytics/tracker'
 import s from './ProductCard.module.css'
 
 const ProductCard: FC<ProductCardProps> = ({
@@ -35,7 +36,7 @@ const ProductCard: FC<ProductCardProps> = ({
       className={`${rootClassName} rounded-xl`}
       aria-label={product.name}
       onClick={() => {
-
+        trackProductViewed(product)
       }}
     >
       {variant === 'slim' && <SlimCard product={product} imgProps={imgProps} />}

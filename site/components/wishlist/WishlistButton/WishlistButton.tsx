@@ -8,7 +8,7 @@ import useWishlist from '@framework/wishlist/use-wishlist'
 import useRemoveItem from '@framework/wishlist/use-remove-item'
 import s from './WishlistButton.module.css'
 import type { Product, ProductVariant } from '@commerce/types/product'
-import { trackProductAddedToWishlist } from '@lib/Segment/segmentAnalytics'
+import { trackProductAddedToWishlist } from '@lib/Analytics/tracker'
 
 type Props = {
   productId: Product['id']
