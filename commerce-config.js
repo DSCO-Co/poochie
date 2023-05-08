@@ -42,7 +42,6 @@ function withCommerceConfig(nextConfig = {}) {
   // )
   // const { commerce } = config
   // const { provider } = commerce
-
   // if (!provider) {
   //   throw new Error(
   //     `The commerce provider is missing, please add a valid provider name or its environment variables`
@@ -55,7 +54,6 @@ function withCommerceConfig(nextConfig = {}) {
   //     )}"`
   //   )
   // }
-
   // // Update paths in `tsconfig.json` to point to the selected provider
   // if (commerce.updateTSConfig !== false) {
   //   const tsconfigPath = path.join(
@@ -71,37 +69,30 @@ function withCommerceConfig(nextConfig = {}) {
   //   const distPath = path.join(path.relative(process.cwd(), absolutePath), '..')
   //   // -> /packages/[name]/src
   //   const modulePath = path.join(distPath, '../src')
-
   //   tsconfig.compilerOptions.paths['@framework'] = [`${modulePath}`]
   //   tsconfig.compilerOptions.paths['@framework/*'] = [`${modulePath}/*`]
-
   //   fs.writeFileSync(
   //     tsconfigPath,
   //     prettier.format(JSON.stringify(tsconfig), { parser: 'json' })
   //   )
-
-    // const webpack = config.webpack
-
-    // To improve the DX of using references, we'll switch from `src` to `dist`
-    // only for webpack so imports resolve correctly but typechecking goes to `src`
-    // config.webpack = (cfg, options) => {
-    //   if (Array.isArray(cfg.resolve.plugins)) {
-    //     const jsconfigPaths = cfg.resolve.plugins.find(
-    //       (plugin) => plugin.constructor.name === 'JsConfigPathsPlugin'
-    //     )
-
-    //     if (jsconfigPaths) {
-    //       jsconfigPaths.paths['@framework'] = [distPath]
-    //       jsconfigPaths.paths['@framework/*'] = [`${distPath}/*`]
-    //     }
-    //   }
-
-    //   return webpack ? webpack(cfg, options) : cfg
-    // }
-  }
-
-  // return core.withCommerceConfig(config)
-  // return config;
+  // const webpack = config.webpack
+  // To improve the DX of using references, we'll switch from `src` to `dist`
+  // only for webpack so imports resolve correctly but typechecking goes to `src`
+  // config.webpack = (cfg, options) => {
+  //   if (Array.isArray(cfg.resolve.plugins)) {
+  //     const jsconfigPaths = cfg.resolve.plugins.find(
+  //       (plugin) => plugin.constructor.name === 'JsConfigPathsPlugin'
+  //     )
+  //     if (jsconfigPaths) {
+  //       jsconfigPaths.paths['@framework'] = [distPath]
+  //       jsconfigPaths.paths['@framework/*'] = [`${distPath}/*`]
+  //     }
+  //   }
+  //   return webpack ? webpack(cfg, options) : cfg
+  // }
 }
+
+// return core.withCommerceConfig(config)
+// return config;
 
 module.exports = { withCommerceConfig, getProviderName }
