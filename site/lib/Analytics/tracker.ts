@@ -56,6 +56,9 @@ export const trackAccountCreated = (accountName: string) => {
  * eCommerce Analytics calls
  */
 export const trackProductViewed = async (product: any) => {
+  //Cometly
+  //@ts-ignore
+  window.comet('view_content');
   //gtag
   gtag.productView()
   //Segment
@@ -77,6 +80,11 @@ export const trackProductListViewed = async (
 }
 
 export const trackProductAdded = async (product: any) => {
+  //Cometly
+  //@ts-ignore
+  window.comet('add_to_cart');
+  
+  //Segment
   const eventName = 'Product Added'
   let data = await window.analytics.track(eventName, { product })
   console.log('Product Added data:', data)
