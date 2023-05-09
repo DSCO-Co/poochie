@@ -16,6 +16,18 @@ const MyDocument = () => {
           strategy="beforeInteractive"
         />
         <meta name="cometly-domain-verification" content="89ff378f-6d84-4756-9948-f401f111735c" />
+        <Script
+          id="cometlytrack"
+          src="https://t.cometlytrack.com/e?uid=5f4c9f-3377699720527922-e8cace-s"
+        />
+        <Script
+          id="cometlytrack-init"
+          strategy='afterInteractive'
+          dangerouslySetInnerHTML={{
+            __html: `comet('init');`,
+          }}
+        />
+
 
         {/* gtag.js script init */}
         <script
