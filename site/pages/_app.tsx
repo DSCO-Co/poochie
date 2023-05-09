@@ -52,12 +52,17 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     if (window !== undefined) {
       // @ts-ignore
       window.analytics.page()
+      // @ts-ignore
+      window.comet('init');
     }
   }, [])
 
   useEffect(() => {
     const handleRouteChange = (url) => {
       pageViewed(url)
+
+      // @ts-ignore
+      window.comet('init');
     }
     router.events.on('routeChangeComplete', handleRouteChange)
     return () => {

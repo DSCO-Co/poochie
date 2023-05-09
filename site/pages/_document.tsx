@@ -17,19 +17,13 @@ const MyDocument = () => {
         />
 
         {/* Cometly Tag */}
-        <meta name="cometly-domain-verification" content="89ff378f-6d84-4756-9948-f401f111735c" />
+        <meta name="cometly-domain-verification" content="88012f3c-ab33-4aec-b52f-c10bcfc2d0fe" />
         <Script
           id="cometlytrack"
-          strategy='beforeInteractive'
+          strategy="beforeInteractive"
           src="https://t.cometlytrack.com/e?uid=caf5e9-4503599627370554-b15e9c-s"
         />
-        <Script
-          id="cometlytrack-init"
-          strategy='afterInteractive'
-          dangerouslySetInnerHTML={{
-            __html: `comet('init');`,
-          }}
-        />
+
 
 
         {/* gtag.js script init */}
