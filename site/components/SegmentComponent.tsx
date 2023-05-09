@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { pageViewed } from '@Segment/segmentAnalytics';
+// import { pageViewed } from '@Segment/segmentAnalytics';
+import { pageViewed } from '@lib/Analytics/tracker';
 import Script from 'next/script';
 import { useEffect } from 'react';
 

@@ -1,8 +1,9 @@
-import { trackProductViewed } from '@Segment/segmentAnalytics'
+import { useEffect } from 'react'
+// import { trackProductViewed } from '@Segment/segmentAnalytics'
 import { Layout } from '@components/common'
 import { ProductView } from '@components/product'
 import commerce from '@lib/api/commerce'
-import { useEffect } from 'react'
+
 import { trackProductViewed } from '@lib/Analytics/tracker'
 import type {
   GetStaticPathsContext,
@@ -10,7 +11,6 @@ import type {
   InferGetStaticPropsType,
 } from 'next'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 
 export async function getStaticProps({
   params,
