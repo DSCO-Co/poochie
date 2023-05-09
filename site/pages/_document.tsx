@@ -1,6 +1,6 @@
+import * as gtag from '@lib/Analytics/gtag'
 import { Head, Html, Main, NextScript } from 'next/document'
 import Script from 'next/script'
-import * as gtag from '@lib/Analytics/gtag'
 
 const MyDocument = () => {
   return (
@@ -15,6 +15,7 @@ const MyDocument = () => {
           src="https://static.zdassets.com/ekr/snippet.js?key=5526ab38-c934-45d0-8bce-8fce9c7738fe"
           strategy="beforeInteractive"
         />
+        <meta name="cometly-domain-verification" content="89ff378f-6d84-4756-9948-f401f111735c" />
 
         {/* gtag.js script init */}
         <script
