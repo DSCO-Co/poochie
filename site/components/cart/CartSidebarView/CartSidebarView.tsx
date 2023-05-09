@@ -1,19 +1,17 @@
-// @ts-nocheck
+
 import SidebarLayout from '@components/common/SidebarLayout'
 import { Bag, Check, Cross } from '@components/icons'
 import { Button, Text } from '@components/ui'
 import { useUI } from '@components/ui/context'
 import useCart from '@framework/cart/use-cart'
 import usePrice from '@framework/product/use-price'
-import { trackCheckoutStarted } from '@lib/Segment/segmentAnalytics'
+import { trackCheckoutStarted } from '@lib/Analytics/tracker'
 import { useStasher } from '@lib/hooks'
 import cn from 'clsx'
 import Link from 'next/link'
 import { FC } from 'react'
 import CartItem from '../CartItem'
 import s from './CartSidebarView.module.css'
-import { useStasher } from '@lib/hooks'
-import { trackCheckoutStarted } from '@lib/Analytics/tracker'
 
 const CartSidebarView: FC = () => {
   const { closeSidebar, setSidebarView } = useUI()
