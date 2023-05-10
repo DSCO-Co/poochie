@@ -14,7 +14,7 @@ export function FreeShippingBanner() {
         <div className="h-[44px] w-screen relative flex items-center gap-x-6 bg-pink-super py-2.5 px-6 before:flex-1">
           <p className="text-sm leading-6 text-white">
             <strong className="font-bold">
-              FAST SHIPPING GUARANTEED! FREE SHIPPING ON ORDERS OVER $100
+              Use Code SPRINGCLEAN for 20% off through Monday, 5/15!
             </strong>
           </p>
           <div className="flex justify-end flex-1">
