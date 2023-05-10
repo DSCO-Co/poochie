@@ -2,7 +2,7 @@ import '@assets/chrome-bug.css'
 import '@assets/main.css'
 import 'keen-slider/keen-slider.min.css'
 
-import algoliasearch from 'algoliasearch/lite'
+import searchClient from "@components/common/AlgoliaSearchClient";
 import { Configure, InstantSearch } from 'react-instantsearch-hooks-web'
 
 import { pageViewed } from '@lib/Analytics/tracker'
