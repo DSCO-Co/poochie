@@ -47,6 +47,7 @@ const navigation = {
     { name: 'Privacy Policy', href: '/policies/privacy-policy' },
     { name: 'Terms of Service', href: '/policies/terms-of-service' },
     { name: 'Shipping & Tracking', href: '/shipping' },
+    { name: 'Contact Us', href: '/contact-us' },
   ],
   legal: [
     { name: 'Claim', href: '#' },

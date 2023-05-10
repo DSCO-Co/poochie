@@ -373,9 +373,7 @@ export default function TOS() {
         </span>
         <br />
         <br />
-        <b>
-          SECTION 13 - DISCLAIMER OF WARRANTIES; LIMITATION OF LIABILITY
-        </b>
+        <b>SECTION 13 - DISCLAIMER OF WARRANTIES; LIMITATION OF LIABILITY</b>
         <br />
         <span>
           We do not guarantee, represent or warrant that your use of our Service
@@ -429,8 +427,8 @@ export default function TOS() {
         <b>SECTION 14 - INDEMNIFICATION</b>
         <br />
         <span>
-          You agree to indemnify, defend and hold harmless Poochie and
-          our parent, subsidiaries, affiliates, partners, officers, directors,
+          You agree to indemnify, defend and hold harmless Poochie and our
+          parent, subsidiaries, affiliates, partners, officers, directors,
           agents, contractors, licensors, Service providers, subcontractors,
           suppliers, interns and employees, harmless from any claim or demand,
           including reasonable attorneys’ fees, made by any third-party due to
@@ -543,9 +541,9 @@ export default function TOS() {
         <br />
         <span>shop@poochie.co</span>
         <br />
-        <span>1632 north orange grove Ave</span>
+        <span>5940 S Rainbow Blvd Ste 400</span>
         <br />
-        <span>West Hollywood, CA 90046</span>
+        <span>Las Vegas, Nevada</span>
         <br />
         <span>
           <br />

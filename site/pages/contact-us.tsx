@@ -113,7 +113,8 @@ export default function ContactUs() {
             </dl>
           </div>
         </div>
-        <form id="contact-form" className="px-6 pt-16 pb-12 sm:pt-24 lg:px-8 lg:py-30" onSubmit={handleSubmit} onChange={(e) => setSubmitted(false)}>
+        {/* <form id="contact-form" className="px-6 pt-16 pb-12 sm:pt-24 lg:px-8 lg:py-30" onSubmit={handleSubmit} onChange={(e) => setSubmitted(false)}>
+          console.log('<form id="contact-form" className="px-6 pt-16 pb-12 sm:pt-24 lg:px-8 lg:py-30" onSubmit={handleSubmit} onChange={(e) => setSubmitted(false)}>
           <div className="max-w-xl mx-auto lg:mr-0 lg:max-w-lg">
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
               <div>
@@ -206,7 +207,193 @@ export default function ContactUs() {
               </button>
             </div>
           </div>
-        </form>
+        </form>:', <form id="contact-form" className="px-6 pt-16 pb-12 sm:pt-24 lg:px-8 lg:py-30" onSubmit={handleSubmit} onChange={(e) => setSubmitted(false)}>
+          <div className="max-w-xl mx-auto lg:mr-0 lg:max-w-lg">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+              <div>
+                <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900 required-form-field">
+                  First name
+                </label>
+                <div className="mt-2.5">
+                  <input
+                    maxLength={50}
+                    required
+                    type="text"
+                    name="first-name"
+                    id="first-name"
+                    autoComplete="given-name"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900 required-form-field">
+                  Last name
+                </label>
+                <div className="mt-2.5">
+                  <input
+                    maxLength={50}
+                    required
+                    type="text"
+                    name="last-name"
+                    id="last-name"
+                    autoComplete="family-name"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-2">
+                <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900 required-form-field">
+                  Email
+                </label>
+                <div className="mt-2.5">
+                  <input
+                    maxLength={100}
+                    required
+                    type="email"
+                    name="email"
+                    id="email"
+                    autoComplete="email"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-2">
+                <label htmlFor="phone-number" className="block text-sm font-semibold leading-6 text-gray-900">
+                  Phone number
+                </label>
+                <div className="mt-2.5">
+                  <input
+                    maxLength={20}
+                    type="tel"
+                    name="phone-number"
+                    id="phone-number"
+                    autoComplete="tel"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-2">
+                <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900 required-form-field">
+                  Message
+                </label>
+                <div className="mt-2.5">
+                  <textarea
+                    required
+                    maxLength={1000}
+                    name="message"
+                    id="message"
+                    rows={4}
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                    defaultValue={''}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className={submitted ? "mt-8 flex justify-between" : "mt-8 flex justify-end"}>
+              {submitted ? <label htmlFor="message" className="block text-sm font-semibold leading-6 text-green">Submitted!</label> : null}
+              <button
+                type="submit"
+                className="rounded-md bg-black px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              >
+                Send message
+              </button>
+            </div>
+          </div>
+        </form>)
+          <div className="max-w-xl mx-auto lg:mr-0 lg:max-w-lg">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+              <div>
+                <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900 required-form-field">
+                  First name
+                </label>
+                <div className="mt-2.5">
+                  <input
+                    maxLength={50}
+                    required
+                    type="text"
+                    name="first-name"
+                    id="first-name"
+                    autoComplete="given-name"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900 required-form-field">
+                  Last name
+                </label>
+                <div className="mt-2.5">
+                  <input
+                    maxLength={50}
+                    required
+                    type="text"
+                    name="last-name"
+                    id="last-name"
+                    autoComplete="family-name"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-2">
+                <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900 required-form-field">
+                  Email
+                </label>
+                <div className="mt-2.5">
+                  <input
+                    maxLength={100}
+                    required
+                    type="email"
+                    name="email"
+                    id="email"
+                    autoComplete="email"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-2">
+                <label htmlFor="phone-number" className="block text-sm font-semibold leading-6 text-gray-900">
+                  Phone number
+                </label>
+                <div className="mt-2.5">
+                  <input
+                    maxLength={20}
+                    type="tel"
+                    name="phone-number"
+                    id="phone-number"
+                    autoComplete="tel"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-2">
+                <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900 required-form-field">
+                  Message
+                </label>
+                <div className="mt-2.5">
+                  <textarea
+                    required
+                    maxLength={1000}
+                    name="message"
+                    id="message"
+                    rows={4}
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                    defaultValue={''}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className={submitted ? "mt-8 flex justify-between" : "mt-8 flex justify-end"}>
+              {submitted ? <label htmlFor="message" className="block text-sm font-semibold leading-6 text-green">Submitted!</label> : null}
+              <button
+                type="submit"
+                className="rounded-md bg-black px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              >
+                Send message
+              </button>
+            </div>
+          </div>
+        </form> */}
       </div>
     </div>
   )
