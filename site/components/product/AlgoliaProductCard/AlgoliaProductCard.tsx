@@ -100,7 +100,7 @@ const ProductCard = ({ product, className }) => {
           product: ${JSON.stringify(product)}
           
           `)} */}
-          {product?.category?.lvl0[0] === 'Clearance' && (
+          {!product?.sale_price && (
             <div>
               <div
                 className="mx-1 my-3 text-xs font-bold tracking-wide text-orange-500 uppercase bg-white"
