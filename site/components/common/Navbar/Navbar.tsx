@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { FC, useState } from 'react'
 import s from './Navbar.module.css'
 import NavbarRoot from './NavbarRoot'
+import AlgliaSearchBarWithSuggestions from "@components/common/AlgoliaSearchBarWithSuggestions";
 
 interface Link {
   href: string
@@ -141,6 +142,9 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
             ))}
           </nav>
           <div className="flex items-center justify-end flex-1 flex-shrink-[2] space-x-8">
+
+
+            
             {/* {process.env.COMMERCE_SEARCH_ENABLED && (
               <div className="flex items-center justify-center">
                 <button
@@ -174,7 +178,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
         {process.env.COMMERCE_SEARCH_ENABLED && (
           <div className="flex justify-center">
             <div className="justify-center w-[320px] hidden lg:flex">
-              {showSearchBar && <Searchbar />}
+              {showSearchBar && <Searchbar/> }
             </div>
           </div>
         )}

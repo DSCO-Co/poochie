@@ -139,6 +139,10 @@ export interface Product {
    */
   price: ProductPrice
   /**
+   * The product's sale price.
+   */
+  sale_price?: ProductPrice
+  /**
    * List of product's options.
    */
   options: ProductOption[]

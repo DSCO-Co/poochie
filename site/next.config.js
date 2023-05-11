@@ -25,6 +25,7 @@ module.exports = withCommerceConfig({
       'poochie.co',
       'tailwindui.com',
       'v5.airtableusercontent.com',
+      'd2cqqbgb7rkuro.cloudfront.net',
     ],
   },
   rewrites() {

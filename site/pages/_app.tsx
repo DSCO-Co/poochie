@@ -2,7 +2,7 @@ import '@assets/chrome-bug.css'
 import '@assets/main.css'
 import 'keen-slider/keen-slider.min.css'
 
-import algoliasearch from 'algoliasearch/lite'
+import searchClient from "@components/common/AlgoliaSearchClient";
 import { Configure, InstantSearch } from 'react-instantsearch-hooks-web'
 
 import { pageViewed } from '@lib/Analytics/tracker'
@@ -19,13 +19,7 @@ import { Analytics } from '@vercel/analytics/react'
 
 const Noop: FC<{ children?: ReactNode }> = ({ children }) => <>{children}</>
 
-const searchClient = algoliasearch(
-  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID!,
-  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY!
-);
 const WRITE_KEY = "cJJ8wJPlI33vsvDvFxzlOG3NPwdd7NzQ";
-
-
 
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -79,7 +73,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       />
       <CookieProvider>
         <ManagedUIContext>
-          <InstantSearch searchClient={searchClient} indexName="Products">
+          <InstantSearch searchClient={searchClient} indexName="DEVELOPMENT_Products">
             <Configure />
             <Layout pageProps={pageProps}>
 

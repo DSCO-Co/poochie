@@ -86,7 +86,16 @@ const ProductCard = ({ product, className }) => {
           <h3 className="font-medium text-center text-gray-900">
             {product.name?.toString()}
           </h3>
-          <div className="font-bold text-center">{`$${product.price}`}</div>
+          {product.sale_price && product.sale_price !== product.price ? (
+            <div className="flex justify-center items-center">
+              <span className="font-bold line-through text-red mr-2">
+                {`$${product.price}`}
+              </span>
+              <span className="font-bold text-red-600">{`$${product.sale_price}`}</span>
+            </div>
+          ) : (
+            <div className="font-bold text-center">{`$${product.price}`}</div>
+          )}
         </div>
         <WishlistButton
           className="absolute top-2 right-2"
@@ -94,13 +103,13 @@ const ProductCard = ({ product, className }) => {
           variant={product.variants[0]}
         />
         <div className="absolute top-2 left-2">
-          {product.onSale && ("")}
+          {product.onSale && ''}
           {/* {console.log(`
           
           product: ${JSON.stringify(product)}
           
           `)} */}
-          {product?.category?.lvl0[0] === 'Clearance' && (
+          {product?.sale_price && (
             <div>
               <div
                 className="mx-1 my-3 text-xs font-bold tracking-wide text-orange-500 uppercase bg-white"
@@ -113,7 +122,8 @@ const ProductCard = ({ product, className }) => {
               >
                 Sale
               </div>
-            </div>)}
+            </div>
+          )}
           {/* <div className="absolute p-1 bg-orange-500 top-1 left-1" /> */}
         </div>
         {/* <Button

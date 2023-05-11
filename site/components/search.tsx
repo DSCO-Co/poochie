@@ -17,15 +17,20 @@ export default function Search({}: SearchPropsType) {
 
   const [useProducts, setProducts] = useState(null);
 
+  const sortByItems = [
+    { value: 'DEVELOPMENT_Products', label: 'Trending' }, 
+    { value: 'DEVELOPMENT_Products_price_asc', label: 'Price: Low to high' },
+    { value: 'DEVELOPMENT_Products_price_desc', label: 'Price: High to Low',},
+  ]
   return (
     <Container>
       <Configure {...({ hitsPerPage: 12 } as any)} />
       <div className="grid grid-cols-1 gap-4 mt-3 mb-20 lg:grid-cols-12">
         {/* Algolia search bar */}
 
-        <div className="py-6 text-center col-span-full">
+        {/* <div className="py-6 text-center col-span-full">
           <SearchBox />
-        </div>
+        </div> */}
 
         <div className="top-0 order-1 hidden max-h-screen col-span-8 overflow-auto lg:block lg:sticky lg:top-32 lg:col-span-2 lg:order-none">
           <div>
@@ -37,7 +42,7 @@ export default function Search({}: SearchPropsType) {
             />
 
             <h3 className="mt-2 mb-2 text-lg font-medium">Brands</h3>
-            <CustomHierarchicalMenu attributes={['brandName']} 
+            <CustomHierarchicalMenu attributes={['brand']} 
             limit={40} 
             products={useProducts}
             />
@@ -60,7 +65,7 @@ export default function Search({}: SearchPropsType) {
                   />
                   <h3 className="mt-2 mb-2 text-lg font-medium">Brands</h3>
                   <CustomHierarchicalMenu
-                    attributes={['brandName']}
+                    attributes={['brand']}
                     limit={100}
                     products={useProducts}
                   />
@@ -68,18 +73,7 @@ export default function Search({}: SearchPropsType) {
                 <div className="col-span-1 col-start-3">
                   <h3 className="mb-2 text-lg font-medium">Sort by</h3>
                   <ConnectedSortBy
-                    items={[
-                      { value: 'Products', label: 'Trending' },
-                      { value: 'Products_latest', label: 'Latest Arrivals' },
-                      {
-                        value: 'Products_price_asc',
-                        label: 'Price: Low to high',
-                      },
-                      {
-                        value: 'Products_price_desc',
-                        label: 'Price: High to Low',
-                      },
-                    ]}
+                    items={sortByItems}
                   />
                 </div>
               </div>
@@ -96,15 +90,7 @@ export default function Search({}: SearchPropsType) {
           <div className="hidden mb-6 lg:block">
             <h3 className="mb-2 text-lg font-medium">Sort by</h3>
             <ConnectedSortBy
-              items={[
-                { value: 'Products', label: 'Trending' },
-                { value: 'Products_latest', label: 'Latest Arrivals' },
-                { value: 'Products_price_asc', label: 'Price: Low to high' },
-                {
-                  value: 'Products_price_desc',
-                  label: 'Price: High to Low',
-                },
-              ]}
+              items={sortByItems}
             />
           </div>
         </div>
