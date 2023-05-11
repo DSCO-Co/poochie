@@ -73,7 +73,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       />
       <CookieProvider>
         <ManagedUIContext>
-          <InstantSearch searchClient={searchClient} indexName="DEVELOPMENT_Products">
+          <InstantSearch searchClient={searchClient} indexName="Products">
             <Configure />
             <Layout pageProps={pageProps}>
 
