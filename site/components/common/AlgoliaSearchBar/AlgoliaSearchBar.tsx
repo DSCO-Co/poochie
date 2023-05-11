@@ -40,8 +40,8 @@ function AlgoliaSearchBar() {
         />
         {query && (
           <ul className="absolute w-full bg-white border rounded-lg mt-2 overflow-hidden">
-            {hits.hits.slice(0, 5).map(hit => (
-              <Link href={`${hit.path}`}>
+            {hits.hits.slice(0, 5).map((hit, index) => (
+              <Link href={`${hit.path}`} key={index}>
                 <li key={hit.objectID} className="px-4 py-2 flex items-center">
                   <div className="mr-3">
                     <Image 
