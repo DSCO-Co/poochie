@@ -18,9 +18,9 @@ export default function Search({}: SearchPropsType) {
   const [useProducts, setProducts] = useState(null);
 
   const sortByItems = [
-    { value: 'DEVELOPMENT_Products', label: 'Trending' }, 
-    { value: 'DEVELOPMENT_Products_price_asc', label: 'Price: Low to high' },
-    { value: 'DEVELOPMENT_Products_price_desc', label: 'Price: High to Low',},
+    { value: 'Products', label: 'Trending' }, 
+    { value: 'Products_price_asc', label: 'Price: Low to high' },
+    { value: 'Products_price_desc', label: 'Price: High to Low',},
   ]
   return (
     <Container>
