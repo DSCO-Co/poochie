@@ -18,7 +18,7 @@ export function AlgoliaSearchBarWithSuggestions() {
 
   const plugins = useMemo(() => {
     const querySuggestionsPlugin = createQuerySuggestionsPlugin({
-      indexName: 'Products',
+      indexName: 'DEVELOPMENT_Products',
       searchClient,
       categoryAttribute: [
         'instant_search',

@@ -178,7 +178,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
         {process.env.COMMERCE_SEARCH_ENABLED && (
           <div className="flex justify-center">
             <div className="justify-center w-[320px] hidden lg:flex">
-              {showSearchBar && <AlgliaSearchBarWithSuggestions/>}
+              {showSearchBar && <Searchbar/> }
             </div>
           </div>
         )}

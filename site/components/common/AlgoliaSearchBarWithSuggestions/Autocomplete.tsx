@@ -30,6 +30,8 @@ export function Autocomplete(props: AutocompleteProps) {
         Fragment: React.Fragment,
     },
     render({ children }, root) {
+
+      console.log("Children: ", children); 
         if (!panelRoot.current) {
           //@ts-ignore
             panelRoot.current = createRoot(root);
