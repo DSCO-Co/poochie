@@ -10,5 +10,5 @@ export { default as I18nWidget } from './I18nWidget'
 export { default as SEO } from './SEO'
 export { default as connectHits } from './Connectors'
 export { default as searchClient } from './AlgoliaSearchClient'
-export { default as AlgoliaSearchBarWithSuggestions } from './AlgoliaSearchBarWithSuggestions';
+export { default as AlgoliaSearchBar } from './AlgoliaSearchBar';
 export * from './Banners'

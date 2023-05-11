@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { FC, useState } from 'react'
 import s from './Navbar.module.css'
 import NavbarRoot from './NavbarRoot'
-import AlgliaSearchBarWithSuggestions from "@components/common/AlgoliaSearchBarWithSuggestions";
+import AlgoliaSearchBar from '../AlgoliaSearchBar/AlgoliaSearchBar'
 
 interface Link {
   href: string
@@ -145,7 +145,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
 
 
             
-            {/* {process.env.COMMERCE_SEARCH_ENABLED && (
+            {process.env.COMMERCE_SEARCH_ENABLED && (
               <div className="flex items-center justify-center">
                 <button
                   onClick={() =>
@@ -165,7 +165,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
                   </svg>
                 </button>
               </div>
-            )} */}
+            )}
             <UserNav
               cart={true}
               wishlist={true}
@@ -178,14 +178,14 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
         {process.env.COMMERCE_SEARCH_ENABLED && (
           <div className="flex justify-center">
             <div className="justify-center w-[320px] hidden lg:flex">
-              {showSearchBar && <Searchbar/> }
+              {showSearchBar && <AlgoliaSearchBar/> }
             </div>
           </div>
         )}
         {/* Mobile search bar */}
         {process.env.COMMERCE_SEARCH_ENABLED && (
           <div className="flex pb-4 lg:px-6 lg:hidden">
-            {showSearchBar && <Searchbar id="mobile-search" />}
+            {showSearchBar && <AlgoliaSearchBar/>}
           </div>
         )}
       </Container>
