@@ -145,7 +145,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
 
 
             
-            {process.env.COMMERCE_SEARCH_ENABLED && (
+            {/* {process.env.COMMERCE_SEARCH_ENABLED && (
               <div className="flex items-center justify-center">
                 <button
                   onClick={() =>
@@ -165,7 +165,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
                   </svg>
                 </button>
               </div>
-            )}
+            )} */}
             <UserNav
               cart={true}
               wishlist={true}
