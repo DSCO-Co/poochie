@@ -21,18 +21,19 @@ export const SimpleStylizedCard = ({
             src={product.images[0]?.url || placeholderImg}
             height={500}
             width={500}
-            quality="85"
-            {...imgProps}
           />
         </div>
-        <div className="py-3 rounded-b-lg bg-secondary-2">
-          <h3 className="font-medium text-center text-gray-900">
-            {product.name}
-          </h3>
-          <div className="pt-4 text-lg font-bold text-center text-gray-900 dark:text-white">
-            {`${price} ${product.price?.currencyCode}`}
-          </div>
-        </div>
+
+        {product.sale_price ? (
+            <div className="flex justify-center items-center">
+              <span className="font-bold line-through text-red mr-2">
+                {`${product.price}`}
+              </span>
+              <span className="font-bold text-red-600">{`${product.sale_price} ${product.price?.currencyCode}`}</span>
+            </div>
+          ) : (
+            <div className="font-bold text-center">{`${price}  ${product.price?.currencyCode}`}</div>
+          )}
         <WishlistButton
           className="absolute top-2 right-2"
           productId={product.id}
