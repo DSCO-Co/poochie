@@ -76,8 +76,8 @@ const ProductCard = ({ product, className }) => {
               alt={product.name?.toString() || 'Product Image'}
               className={`rounded-lg absolute top-0 left-0 w-full h-full ${s.productImage}`}
               src={product.images[0]?.url || placeholderImg}
-              width={400} // Replace 500 with the desired width
-              height={400} // Replace 500 with the desired height
+              width={400} 
+              height={400}
               sizes="100%"
             />
           </div>

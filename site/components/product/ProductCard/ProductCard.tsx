@@ -28,8 +28,7 @@ const ProductCard: FC<ProductCardProps> = ({
     { [s.slim]: variant === 'slim', [s.simple]: variant === 'simple' },
     className
   )
-  // console.log('variant:', variant)
-  // console.log({ product });
+
   return (
     <Link
       href={`${product.path}`}

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchBox, useHits, InstantSearch } from 'react-instantsearch-hooks-web';
 import searchClient from '../AlgoliaSearchClient/searchClient';
-import Link from 'next/link'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
+import Link from 'next/link';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 // AlgoliaSearchBar component
 function AlgoliaSearchBar() {
@@ -27,8 +27,13 @@ function AlgoliaSearchBar() {
     setTimeout(() => setQuery(''), 200);
   };
 
+  useEffect(() => {
+    // Clear the query when anything on the page changes
+    document.addEventListener('change', () => setQuery(''));
+  }, []);
+
   return (
-    <div className="relative z-50 w-full lg:w-[500px]">
+    <div className="relative z-50 w-full lg:w-[500px] mb-2">
       <InstantSearch searchClient={searchClient} indexName="DEVELOPMENT_Products">
         <input
           type="search"
@@ -42,7 +47,7 @@ function AlgoliaSearchBar() {
           <ul className="absolute w-full bg-white border rounded-lg mt-2 overflow-hidden">
             {hits.hits.slice(0, 5).map((hit, index) => (
               <Link href={`${hit.path}`} key={index}>
-                <li key={hit.objectID} className="px-4 py-2 flex items-center">
+                <li key={hit.objectID} className="px-4 py-2 flex items-center transform transition-all duration-200 hover:scale-105">
                   <div className="mr-3">
                     <Image 
                       src={hit.image_thumbnail as string} 

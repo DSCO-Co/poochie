@@ -141,7 +141,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
               </DropDownMenu>
             ))}
           </nav>
-          <div className="flex items-center justify-end flex-1 flex-shrink-[2] space-x-8">
+          <div className="flex items-center justify-end flex-1 flex-shrink-[2] space-x-8 ">
 
 
             
