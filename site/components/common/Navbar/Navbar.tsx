@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { FC, useState } from 'react'
 import s from './Navbar.module.css'
 import NavbarRoot from './NavbarRoot'
-import AlgoliaSearchBar from '../AlgoliaSearchBar/AlgoliaSearchBar'
+import AlgoliaSearchBar from '../AlgoliaSearchBar'
 
 interface Link {
   href: string
