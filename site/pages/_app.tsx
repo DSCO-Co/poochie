@@ -1,23 +1,24 @@
-import '@assets/chrome-bug.css'
-import '@assets/main.css'
-import 'keen-slider/keen-slider.min.css'
+import '@assets/chrome-bug.css';
+import '@assets/main.css';
+import 'keen-slider/keen-slider.min.css';
 
 import searchClient from "@components/common/AlgoliaSearchClient";
-import { Configure, InstantSearch } from 'react-instantsearch-hooks-web'
+import { Configure, InstantSearch } from 'react-instantsearch-hooks-web';
 
-import { Head } from '@components/common'
-import { ManagedUIContext } from '@components/ui/context'
-import { CookieProvider } from '@lib/contexts'
-import type { AppProps } from 'next/app'
-import { useRouter } from 'next/router'
-import Script from 'next/script'
-import { FC, ReactNode, useEffect } from 'react'
+import { Head } from '@components/common';
+import { ManagedUIContext } from '@components/ui/context';
+import fbq from '@lib/Analytics/fpixel';
+import { pageViewed } from '@lib/Analytics/tracker';
+import { CookieProvider } from '@lib/contexts';
+import * as snippet from '@segment/snippet';
+import { Analytics } from '@vercel/analytics/react';
+import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
+import Script from 'next/script';
+import { FC, ReactNode, useEffect } from 'react';
 
 const WRITE_KEY = "cJJ8wJPlI33vsvDvFxzlOG3NPwdd7NzQ";
-import { Analytics } from '@vercel/analytics/react'
-import * as snippet from '@segment/snippet'
-import { pageViewed } from '@lib/Analytics/tracker'
-import fbq from '@lib/Analytics/fpixel'
+
 
 const Noop: FC<{ children?: ReactNode }> = ({ children }) => <>{children}</>
 
