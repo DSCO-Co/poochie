@@ -86,6 +86,9 @@ export const trackProductAdded = async (product: any) => {
   //Cometly
   //@ts-ignore
   window.comet('add_to_cart');
+
+  //pixel
+  fbq.productAdded(product)
   
   //Segment
   const eventName = 'Product Added'

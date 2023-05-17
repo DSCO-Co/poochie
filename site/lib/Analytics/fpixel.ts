@@ -29,7 +29,6 @@ const event = (name, options = {}) => {
 }
 
 const productView = (data) => {
-  console.log('data:', data)
   event('ViewContent', {
     value: data.price.value,
     currency: data.price.currencyCode,
@@ -38,9 +37,22 @@ const productView = (data) => {
   });
 }
 
+
+
+const productAdded = (data) => {
+    console.log('data:', data)
+    event('AddToCart', {
+      value: data.price.value,
+      currency: data.price.currencyCode,
+      content_type: 'product', // required property
+      content_ids: data.variants[0].sku, // required property, if not using 'contents' property
+    });
+  }
+
 export default {
   FB_PIXEL_ID,
   pageview,
   event,
   productView,
+  productAdded,
 }
