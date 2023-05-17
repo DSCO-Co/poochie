@@ -31,8 +31,8 @@ const event = (name, options = {}) => {
 const productView = (data) => {
   console.log('data:', data)
   event('ViewContent', {
-    value: 0.5,
-    currency: data.prie,
+    value: data.price.value,
+    currency: data.price.currencyCode,
     content_type: 'product', // required property
     content_ids: data.variants[0].sku, // required property, if not using 'contents' property
   });
