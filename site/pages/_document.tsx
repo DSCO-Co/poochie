@@ -1,6 +1,6 @@
 import { FB_PIXEL_ID } from '@lib/Analytics/fpixel'
 import * as gtag from '@lib/Analytics/gtag'
-import { Head, Html, Main, NextScript } from 'next/document'
+import { Footer, Head, Html, Main, NextScript } from 'next/document'
 import Script from 'next/script'
 
 const MyDocument = () => {
@@ -20,11 +20,7 @@ const MyDocument = () => {
           name="cometly-domain-verification"
           content="88012f3c-ab33-4aec-b52f-c10bcfc2d0fe"
         />
-        <Script
-          id="cometlytrack"
-          strategy="beforeInteractive"
-          src="https://t.cometlytrack.com/e?uid=caf5e9-4503599627370554-b15e9c-s"
-        />
+
 
         {/* gtag.js script init */}
         <script
@@ -54,8 +50,15 @@ const MyDocument = () => {
           />
         </noscript>
 
+
+      </Head>
+      <body className="loading">
+        <Main />
+        <NextScript />
+      </body>
+      <Footer>
         {/* Hotjar Tracking Code for  */}
-        <Script strategy="beforeInteractive" id="hotjar">
+        <Script id="hotjar">
           {`
            (function(h,o,t,j,a,r){
             h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
@@ -67,11 +70,11 @@ const MyDocument = () => {
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
          `}
         </Script>
-      </Head>
-      <body className="loading">
-        <Main />
-        <NextScript />
-      </body>
+        <Script
+          id="cometlytrack"
+          src="https://t.cometlytrack.com/e?uid=caf5e9-4503599627370554-b15e9c-s"
+        />
+      </Footer>
     </Html>
   )
 }
