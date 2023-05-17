@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchBox, useHits, InstantSearch } from 'react-instantsearch-hooks-web';
 import searchClient from '../AlgoliaSearchClient/searchClient';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
+import Link from 'next/link'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 // AlgoliaSearchBar component
 function AlgoliaSearchBar() {
@@ -11,6 +11,22 @@ function AlgoliaSearchBar() {
   const { refine } = useSearchBox();
   const hits = useHits();
   const router = useRouter();
+
+  useEffect(() => {
+    // Create a function to run when the route changes
+    const handleRouteChange = () => {
+      setQuery('');
+      refine('');
+    };
+
+    // Add the route change event listener
+    router.events.on('routeChangeStart', handleRouteChange);
+
+    // Cleanup function to remove the listener when the component is unmounted
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange);
+    };
+  }, [router.events, refine]);
 
   const handleInput = (event) => {
     const newQuery = event.target.value;
@@ -23,14 +39,9 @@ function AlgoliaSearchBar() {
     }
   };
 
-  const handleBlur = () => {
-    setTimeout(() => setQuery(''), 200);
-  };
-
-  useEffect(() => {
-    // Clear the query when anything on the page changes
-    document.addEventListener('change', () => setQuery(''));
-  }, []);
+  // const handleBlur = () => {
+    // setTimeout(() => setQuery(''), 200);
+  // };
 
   return (
     <div className="relative z-50 w-full lg:w-[500px] mb-2">
@@ -40,7 +51,7 @@ function AlgoliaSearchBar() {
           placeholder="Search for products"
           value={query}
           onChange={handleInput}
-          onBlur={handleBlur}
+          // onBlur={handleBlur}
           className="w-full rounded-lg border px-4 py-2"
         />
         {query && (
