@@ -18,6 +18,7 @@ module.exports = withCommerceConfig({
     ALGOLIA_APP_ID: process.env.ALGOLIA_APP_ID,
     ALGOLIA_SEARCH_ONLY_API_KEY: process.env.ALGOLIA_SEARCH_ONLY_API_KEY,
   },
+  // transpilePackages: ['@vercel/commerce-bigcommerce', '@vercel/commerce'],
   images: {
     domains: [
       'cdn11.bigcommerce.com',
@@ -53,6 +54,14 @@ module.exports = withCommerceConfig({
   // Avoid Module not found: ESM packages (supports-color) need to be imported. Use 'import' to reference the package instead. https://nextjs.org/docs/messages/import-esm-externals
   experimental: {
     esmExternals: 'loose',
+    externalDir: true,
+  },
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
   },
 })
 

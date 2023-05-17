@@ -84,20 +84,20 @@ function withCommerceConfig(nextConfig = {}) {
 
     // To improve the DX of using references, we'll switch from `src` to `dist`
     // only for webpack so imports resolve correctly but typechecking goes to `src`
-    config.webpack = (cfg, options) => {
-      if (Array.isArray(cfg.resolve.plugins)) {
-        const jsconfigPaths = cfg.resolve.plugins.find(
-          (plugin) => plugin.constructor.name === 'JsConfigPathsPlugin'
-        )
+    // config.webpack = (cfg, options) => {
+    //   if (Array.isArray(cfg.resolve.plugins)) {
+    //     const jsconfigPaths = cfg.resolve.plugins.find(
+    //       (plugin) => plugin.constructor.name === 'JsConfigPathsPlugin'
+    //     )
 
-        if (jsconfigPaths) {
-          jsconfigPaths.paths['@framework'] = [distPath]
-          jsconfigPaths.paths['@framework/*'] = [`${distPath}/*`]
-        }
-      }
+    //     if (jsconfigPaths) {
+    //       jsconfigPaths.paths['@framework'] = [distPath]
+    //       jsconfigPaths.paths['@framework/*'] = [`${distPath}/*`]
+    //     }
+    //   }
 
-      return webpack ? webpack(cfg, options) : cfg
-    }
+    //   return webpack ? webpack(cfg, options) : cfg
+    // }
   }
 
   return core.withCommerceConfig(config)
