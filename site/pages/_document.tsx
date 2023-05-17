@@ -50,12 +50,11 @@ const MyDocument = () => {
           />
         </noscript>
 
-        {/* Cometly Tag */}
+        {/* Cometly  */}
 
-        <script
+        <Script
           id="cometlytrack"
           src="https://t.cometlytrack.com/e?uid=caf5e9-4503599627370554-b15e9c-s"
-          async
         />
 
       </Head>
