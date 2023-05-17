@@ -33,7 +33,7 @@ const forwardToServer = (eventName: EventType, data) => {
 const pageViewed = async (name = 'John Doe', category = 'Default category') => {
   let data = await window.analytics.page()
   // @ts-ignore
-  data.event.context.clientUserAgent = navigator.userAgent
+  // data.event.context.clientUserAgent = navigator.userAgent
   // console.log('Page Viewed data:', data)
   forwardToServer('Page Viewed', data)
 }
