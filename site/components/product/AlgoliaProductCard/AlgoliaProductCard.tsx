@@ -12,12 +12,6 @@ import {
   selectDefaultOptionFromProduct,
 } from '../helpers'
 
-// interface Props {
-//   className?: string
-//   product: Product
-//   imgProps?: Omit<ImageProps, 'src' | 'layout' | 'placeholder' | 'blurDataURL'>
-// }
-
 // Define a type for the price object
 type PriceObject = {
   value: number;
@@ -116,11 +110,6 @@ const ProductCard = ({ product, className }) => {
         />
         <div className="absolute top-2 left-2">
           {product.onSale && ''}
-          {/* {console.log(`
-          
-          product: ${JSON.stringify(product)}
-          
-          `)} */}
           {product?.sale_price && (
             <div>
               <div
@@ -136,7 +125,6 @@ const ProductCard = ({ product, className }) => {
               </div>
             </div>
           )}
-          {/* <div className="absolute p-1 bg-orange-500 top-1 left-1" /> */}
         </div>
         {/* <Button
           aria-label="Add to Cart"
