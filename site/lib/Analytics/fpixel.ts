@@ -37,8 +37,6 @@ const productView = (data) => {
   });
 }
 
-
-
 const productAdded = (data) => {
     console.log('data:', data)
     event('AddToCart', {
@@ -49,10 +47,23 @@ const productAdded = (data) => {
     });
   }
 
+const searchClicked = (data) => {
+  event('Search', {
+    value: data.product.sale_price ?? data.product.price,
+		currency: 'USD',
+		content_category: data.product.categories.lvl0[0],
+		content_ids: data.product.variants[0].sku,
+		search_string: data.query
+    	});
+
+  console.log("inside of pixel after fire: ", data);
+}
+
 export default {
   FB_PIXEL_ID,
   pageview,
   event,
   productView,
   productAdded,
+  searchClicked,
 }

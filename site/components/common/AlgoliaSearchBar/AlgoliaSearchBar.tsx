@@ -4,6 +4,8 @@ import searchClient from '../AlgoliaSearchClient/searchClient';
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { trackSearchClicked } from '@lib/Analytics/tracker';
+import { Product } from '@commerce/types';
 
 // AlgoliaSearchBar component
 function AlgoliaSearchBar() {
@@ -11,6 +13,10 @@ function AlgoliaSearchBar() {
   const { refine } = useSearchBox();
   const hits = useHits();
   const router = useRouter();
+
+  const handleClick  = (product) => {
+    trackSearchClicked(query, product); 
+  }
 
   useEffect(() => {
     // Create a function to run when the route changes
@@ -57,7 +63,7 @@ function AlgoliaSearchBar() {
         {query && (
           <ul className="absolute w-full bg-white border rounded-lg mt-2 overflow-hidden">
             {hits.hits.slice(0, 5).map((hit, index) => (
-              <Link href={`${hit.path}`} key={index}>
+              <Link href={`${hit.path}`} key={index} onClick={() => handleClick(hit)}>
                 <li key={hit.objectID} className="px-4 py-2 flex items-center transform transition-all duration-200 hover:scale-105">
                   <div className="mr-3">
                     <Image 

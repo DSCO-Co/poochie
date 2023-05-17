@@ -118,3 +118,16 @@ export const trackCheckoutStarted = async (cartData: any) => {
   console.log('Checkout Started data:', JSON.stringify(data, null, 2))
   forwardToServer(eventName, data)
 }
+
+
+export const trackSearchClicked = async (query: string, hit) => {
+  console.log("in tracker", query, hit);
+
+  const data = {
+    query: query, 
+    product: hit, 
+  }
+  console.log(data);
+  fbq.searchClicked(data)
+
+}
