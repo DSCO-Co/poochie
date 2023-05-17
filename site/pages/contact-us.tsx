@@ -106,7 +106,7 @@ export default function ContactUs() {
                 </dt>
                 <dd>
                   <a className="hover:text-gray-900" href="mailto:support@poochi.co">
-                    support@poochi.co
+                    support@poochie.co
                   </a>
                 </dd>
               </div>
