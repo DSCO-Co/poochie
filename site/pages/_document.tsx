@@ -1,6 +1,6 @@
 import { FB_PIXEL_ID } from '@lib/Analytics/fpixel'
 import * as gtag from '@lib/Analytics/gtag'
-import { Footer, Head, Html, Main, NextScript } from 'next/document'
+import { Head, Html, Main, NextScript } from 'next/document'
 import Script from 'next/script'
 
 const MyDocument = () => {
@@ -50,15 +50,8 @@ const MyDocument = () => {
           />
         </noscript>
 
-
-      </Head>
-      <body className="loading">
-        <Main />
-        <NextScript />
-      </body>
-      <Footer>
         {/* Hotjar Tracking Code for  */}
-        <Script id="hotjar">
+        <script async>
           {`
            (function(h,o,t,j,a,r){
             h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
@@ -69,12 +62,19 @@ const MyDocument = () => {
           a.appendChild(r);
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
          `}
-        </Script>
-        <Script
+        </script>
+        <script
           id="cometlytrack"
           src="https://t.cometlytrack.com/e?uid=caf5e9-4503599627370554-b15e9c-s"
+          async
         />
-      </Footer>
+
+      </Head>
+      <body className="loading">
+        <Main />
+        <NextScript />
+      </body>
+
     </Html>
   )
 }
