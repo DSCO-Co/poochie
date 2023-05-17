@@ -34,7 +34,7 @@ const pageViewed = async (name = 'John Doe', category = 'Default category') => {
   let data = await window.analytics.page()
   // @ts-ignore
   data.event.context.clientUserAgent = navigator.userAgent
-  console.log('Page Viewed data:', data)
+  // console.log('Page Viewed data:', data)
   forwardToServer('Page Viewed', data)
 }
 
@@ -65,7 +65,7 @@ const trackProductViewed = async (product: any) => {
   const eventName = 'Product Viewed'
   product.clientUserAgent = navigator.userAgent
   let data = await window.analytics.track(eventName, { product })
-  console.log('Product Viewed data:', data)
+  // console.log('Product Viewed data:', data)
 }
 
 const trackProductListViewed = async (products: any[], category: string) => {
@@ -76,35 +76,35 @@ const trackProductListViewed = async (products: any[], category: string) => {
     category: category,
   }
   let data = await window.analytics.track(eventName, trackedProducts)
-  console.log('Product List Viewed data:', data)
+  // console.log('Product List Viewed data:', data)
 }
 
 const trackProductAdded = async (product: any) => {
   const eventName = 'Product Added'
   let data = await window.analytics.track(eventName, { product })
-  console.log('Product Added data:', data)
+  // console.log('Product Added data:', data)
   forwardToServer(eventName, data)
 }
 
 const trackProductRemoved = async () => {
   const eventName = 'Product Removed'
   let data = await window.analytics.track(eventName, {})
-  console.log('Product Removed data:', data)
+  // console.log('Product Removed data:', data)
   forwardToServer(eventName, data)
 }
 
 const trackProductAddedToWishlist = async () => {
   const eventName = 'Product Added to Wishlist'
   let data = await window.analytics.track(eventName, {})
-  console.log('Product Added to Wishlist', data)
+  // console.log('Product Added to Wishlist', data)
   forwardToServer(eventName, data)
 }
 
 const trackCheckoutStarted = async (cartData: any) => {
   const eventName = 'Checkout Started'
-  console.log('Checkout Started data:', cartData)
+  // console.log('Checkout Started data:', cartData)
   let data = await window.analytics.track(eventName, { cartData })
-  console.log('Checkout Started data:', JSON.stringify(data, null, 2))
+  // console.log('Checkout Started data:', JSON.stringify(data, null, 2))
   forwardToServer(eventName, data)
 }
 

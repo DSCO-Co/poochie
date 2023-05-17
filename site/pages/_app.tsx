@@ -53,10 +53,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     // This pageview only triggers the first time (it's important for Pixel to have real information)
-    fbq.pageview()
+    // fbq.pageview()
     const handleRouteChange = (url) => {
       pageViewed(url)
-      fbq.pageview()
+      // fbq.pageview()
 
       // @ts-ignore
       window.comet('init');
