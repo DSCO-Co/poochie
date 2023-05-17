@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { AnalyticsWindow } from '@lib/Analytics/Segment/types/Segment'
 import gtag from '@lib/Analytics/gtag'
+import fbq from '@lib/Analytics/fpixel'
 import segment from '@lib/Analytics/Segment/segmentAnalytics'
 
 declare let window: AnalyticsWindow
@@ -60,9 +61,11 @@ export const trackProductViewed = async (product: any) => {
   //@ts-ignore
   window.comet('view_content');
   //gtag
-  gtag.productView()
+  gtag.productView();
+  //pixel
+  fbq.productView(product);
   //Segment
-  segment.trackProductViewed(product)
+  segment.trackProductViewed(product);
 }
 
 export const trackProductListViewed = async (
@@ -83,6 +86,9 @@ export const trackProductAdded = async (product: any) => {
   //Cometly
   //@ts-ignore
   window.comet('add_to_cart');
+
+  //pixel
+  fbq.productAdded(product)
   
   //Segment
   const eventName = 'Product Added'
