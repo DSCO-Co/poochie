@@ -18,6 +18,24 @@ import {
 //   imgProps?: Omit<ImageProps, 'src' | 'layout' | 'placeholder' | 'blurDataURL'>
 // }
 
+// Define a type for the price object
+type PriceObject = {
+  value: number;
+};
+
+// Define a type that can be either a number or a PriceObject
+type PriceInput = number | PriceObject;
+
+function getPrice(price: PriceInput): number {
+  if (typeof price === 'number') {
+    return price;
+  } else if (typeof price === 'object' && price !== null && 'value' in price) {
+    return price.value;
+  } else {
+    throw new Error('Invalid price input');
+  }
+}
+
 const placeholderImg = '/product-img-placeholder.svg'
 
 const ProductCard = ({ product, className }) => {
@@ -30,12 +48,6 @@ const ProductCard = ({ product, className }) => {
 
   useEffect(() => {
     selectDefaultOptionFromProduct(product, setSelectedOptions)
-
-    // console.log(`
-    //   -------
-    //   product: ${JSON.stringify(product, null, 4)}
-    //   -------
-    // `)
   }, [product])
 
   const item = getProductVariant(product, selectedOptions)
@@ -94,7 +106,7 @@ const ProductCard = ({ product, className }) => {
               <span className="font-bold text-red-600">{`$${product.sale_price}`}</span>
             </div>
           ) : (
-            <div className="font-bold text-center">{`$${product.price}`}</div>
+            <div className="font-bold text-center">{`$${getPrice(product.price)}`}</div>
           )}
         </div>
         <WishlistButton

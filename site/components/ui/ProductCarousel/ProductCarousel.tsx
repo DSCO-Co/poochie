@@ -1,6 +1,6 @@
 import type { Product } from '@commerce/types/product'
 import React, { useEffect, useRef, useState } from 'react'
-import ProductCard from '../../product/ProductCard'
+import AlgoliaProductCard from '../../product/AlgoliaProductCard'
 
 interface CarouselProps {
   products: Product[]
@@ -86,15 +86,9 @@ const ProductCarousel: React.FC<CarouselProps> = ({ products }) => {
                     key={`${product.path}-${currentSlide}-${visibleCards}`}
                     className="mx-auto max-h-100 max-w-80 md:max-w-xs"
                   >
-                    <ProductCard
-                      variant="simple-stylized"
+                    <AlgoliaProductCard
                       className={`animated fadeIn transition-transform duration-500 mx-2 -ml-2`}
                       product={product}
-                      imgProps={{
-                        width: 480,
-                        height: 480,
-                        alt: product.name,
-                      }}
                     />
                   </div>
                 ))}
