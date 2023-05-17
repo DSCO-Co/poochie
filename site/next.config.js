@@ -21,7 +21,6 @@ module.exports = withCommerceConfig({
   images: {
     domains: [
       'cdn11.bigcommerce.com',
-      'dev.beverlyhillspup.com',
       'poochie.co',
       'tailwindui.com',
       'v5.airtableusercontent.com',
